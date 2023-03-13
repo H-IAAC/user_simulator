@@ -2,16 +2,16 @@ using UnityEngine;
 using UnityEngine.AI;
 using HIAAC.ScriptableList;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(IGoTo))]
 public class TestAgent : MonoBehaviour
 {
     [SerializeField] Vector3SList locations;
     
-    NavMeshAgent agent;
+    IGoTo goToHandler;
     
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        goToHandler = GetComponent<IGoTo>();
 
         if(locations.Count > 0)
         {
@@ -22,7 +22,7 @@ public class TestAgent : MonoBehaviour
 
     void Update()
     {
-        if(agent.remainingDistance <= agent.stoppingDistance)
+        if(goToHandler.Ended)
         {
             goToRandomTarget();
         }
@@ -31,7 +31,7 @@ public class TestAgent : MonoBehaviour
     void goToRandomTarget()
     {
         Vector3 target = getRandomTarget();
-        agent.SetDestination(target);
+        goToHandler.GoTo(target);
     }
 
     Vector3 getRandomTarget()

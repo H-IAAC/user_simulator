@@ -21,6 +21,14 @@ public class LinearGoTo : MonoBehaviour, IGoTo
         }
     }
 
+    public Vector3 Destination
+    {
+        get
+        {
+            return destination;
+        }
+    }
+
     public float Velocity
     {
         set
@@ -49,13 +57,15 @@ public class LinearGoTo : MonoBehaviour, IGoTo
         this.transform.position = currentPosition;
     }
 
-    public void GoTo(Vector3 destination)
+    void IGoTo.goToImplementation(Vector3 destination)
     {
         origin = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         this.destination = new Vector3(destination.x, destination.y, destination.z);
 
         recomputeTime();
     }
+
+
 
     void recomputeTime()
     {
