@@ -2,33 +2,36 @@ using UnityEditor;
 using UnityEngine;
 using SFB;
 
-public class FromJSONWizard : ScriptableWizard
+namespace HIAAC.FromJSON
 {
-    public string[] filePaths;    
-    
-    [MenuItem("Tools/JSON/Scriptable objects from JSONs")]
-    static void CreateWizard()
+    public class FromJSONWizard : ScriptableWizard
     {
-        ScriptableWizard.DisplayWizard<FromJSONWizard>("Scriptable objects from JSONs", "Create", "Select");
-    }
-
-    void OnWizardUpdate()
-    {
-        if(filePaths == null)
+        public string[] filePaths;    
+        
+        [MenuItem("Tools/JSON/Scriptable objects from JSONs")]
+        static void CreateWizard()
         {
-            //isValid = false;
+            ScriptableWizard.DisplayWizard<FromJSONWizard>("Scriptable objects from JSONs", "Create", "Select");
         }
 
+        void OnWizardUpdate()
+        {
+            if(filePaths == null)
+            {
+                //isValid = false;
+            }
 
-    } 
 
-    void OnWizardOtherButton()
-    {
-        filePaths = StandaloneFileBrowser.OpenFilePanel("Select JSONs", "", "json", true);
-    }
+        } 
 
-    void OnWizardCreate()
-    {
-        FromJSON.SOFromFilePath(filePaths);
+        void OnWizardOtherButton()
+        {
+            filePaths = StandaloneFileBrowser.OpenFilePanel("Select JSONs", "", "json", true);
+        }
+
+        void OnWizardCreate()
+        {
+            FromJSON.SOFromFilePath(filePaths);
+        }
     }
 }
