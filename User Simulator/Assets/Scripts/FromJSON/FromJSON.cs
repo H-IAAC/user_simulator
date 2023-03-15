@@ -84,7 +84,8 @@ namespace HIAAC.FromJSON
 
             ScriptableObject obj = ScriptableObject.CreateInstance(typeName);
 
-            JsonConvert.PopulateObject(json, obj);
+            //JsonConvert.PopulateObject(json, obj);
+            JsonUtility.FromJsonOverwrite(json, obj);
 
             return obj;
         }
