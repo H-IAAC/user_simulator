@@ -6,7 +6,7 @@ namespace HIAAC.ScriptableList
 {
     public abstract class ScriptableList<T> : ScriptableObject, IList<T>
     {
-        public static List<T> List = new List<T>();
+        public List<T> List = new List<T>();
 
         [SerializeField] bool notResetOnEnable = false;
 
@@ -22,6 +22,11 @@ namespace HIAAC.ScriptableList
             }
 
             itemCount = List.Count;
+        }
+
+        void OnValidate()
+        {
+            this.itemCount = List.Count;
         }
 
         public void Reset()

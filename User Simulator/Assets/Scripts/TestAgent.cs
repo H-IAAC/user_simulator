@@ -2,12 +2,21 @@ using UnityEngine;
 using UnityEngine.AI;
 using HIAAC.ScriptableList;
 
+public enum LocationSelectionMode
+{
+    SEQUENTIAL,
+    RANDOM
+}
+
 [RequireComponent(typeof(IGoTo))]
 public class TestAgent : MonoBehaviour
 {
     [SerializeField] Vector3SList locations;
+    [SerializeField] LocationSelectionMode locationSelectionMode = LocationSelectionMode.RANDOM;
     
     IGoTo goToHandler;
+
+    int index = 0;
     
     void Start()
     {
@@ -15,7 +24,7 @@ public class TestAgent : MonoBehaviour
 
         if(locations.Count > 0)
         {
-            goToRandomTarget();
+            selectTarget();
         }
         
     }
@@ -24,19 +33,47 @@ public class TestAgent : MonoBehaviour
     {
         if(goToHandler.Ended)
         {
-            goToRandomTarget();
+            selectTarget();
         }
     }
 
-    void goToRandomTarget()
+    void selectTarget()
     {
-        Vector3 target = getRandomTarget();
+        Vector3 target;
+        switch(locationSelectionMode)
+        {
+            case LocationSelectionMode.SEQUENTIAL:
+                target = selectSequentialTarget();
+            break;
+
+            case LocationSelectionMode.RANDOM:
+                target = selectRandomTarget();
+            break;
+
+            default:
+                target = Vector3.zero;
+            break;
+        }
+
         goToHandler.GoTo(target);
     }
 
-    Vector3 getRandomTarget()
+    Vector3 selectSequentialTarget()
     {
-        int index = Random.Range(0, locations.Count);
+        index += 1;
+        
+        if(index >= locations.Count)
+        {
+            index = 0;
+        }
+
+        return locations[index];
+    }
+
+    Vector3 selectRandomTarget()
+    {
+        index = Random.Range(0, locations.Count);
+
         return locations[index];
     }
 }

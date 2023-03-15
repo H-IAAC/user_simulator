@@ -93,6 +93,8 @@ public class GoToSelector : MonoBehaviour, IGoTo
                 instantiatedStrategies[value] = instantiated;
             }
             
+            instantiated.enabled = true;
+            
             if(actualImplementation != null)
             {
                 actualImplementation.enabled = false;
@@ -117,9 +119,10 @@ public class GoToSelector : MonoBehaviour, IGoTo
         }
     }
 
-    void Start()
+    void Awake()
     {
         actualImplementation = actualStrategy.Instantiate(this.gameObject);
+        instantiatedStrategies[actualStrategy] = actualImplementation;
     }
 
     void IGoTo.goToImplementation(Vector3 destination)

@@ -1,10 +1,10 @@
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public class LinearGoTo : MonoBehaviour, IGoTo
 {   
     [SerializeProperty("Velocity")][Tooltip("The movement velocity in Unity_units/s")][SerializeField] 
-    float velocity = 1;
+    float velocity = 3.5f;
 
     Vector3 origin;
     Vector3 destination;
@@ -13,6 +13,7 @@ public class LinearGoTo : MonoBehaviour, IGoTo
     float duration = 0;
     float endTime = 0;
 
+    NavMeshAgent agent;
     public bool Ended
     {
         get
@@ -43,6 +44,16 @@ public class LinearGoTo : MonoBehaviour, IGoTo
         }
     }
 
+    void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    void OnEnable()
+    {
+        checkNavMeshAgent();
+    }
+
     void Update()
     {
         if(Time.time > endTime)
@@ -50,8 +61,13 @@ public class LinearGoTo : MonoBehaviour, IGoTo
             return;
         }
 
-
         float t = (Time.time-startTime)/duration;
+
+        if(t>1 || t<0)
+        {
+            Debug.LogError("WRONG t");
+        }
+
         Vector3 currentPosition = Vector3.Lerp(origin, destination, t);
 
         this.transform.position = currentPosition;
@@ -80,5 +96,17 @@ public class LinearGoTo : MonoBehaviour, IGoTo
         startTime = Time.time;
         duration = Vector3.Distance(origin, destination)/velocity;
         endTime = startTime+duration;
+    }
+
+    void checkNavMeshAgent()
+    {
+        if(agent != null)
+        {
+            if(agent.enabled == true)
+            {
+                Debug.LogWarning("LinearGoTo doesn't work with NavMeshAgent. Disabling agent.");
+                agent.enabled = false;
+            }
+        }
     }
 }

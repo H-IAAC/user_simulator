@@ -6,7 +6,7 @@ public class NavMeshGoTo : MonoBehaviour, IGoTo
 {
     NavMeshAgent agent;
 
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }
@@ -21,6 +21,11 @@ public class NavMeshGoTo : MonoBehaviour, IGoTo
             {
                 return;
             }
+
+            if(agent.enabled == false)
+            {
+                agent.enabled = true;
+            }
         }
         
         agent.SetDestination(destination);
@@ -30,7 +35,7 @@ public class NavMeshGoTo : MonoBehaviour, IGoTo
     {
         get
         {
-            if(agent == null)
+            if(agent == null || agent.enabled == false)
             {
                 return true;
             }
@@ -47,9 +52,20 @@ public class NavMeshGoTo : MonoBehaviour, IGoTo
         }
     }
 
+    void OnEnable()
+    {
+        if(agent.enabled == false)
+        {
+            agent.enabled = true;
+        }
+    }
+
     void OnDisable()
     {
-        agent.isStopped = true;   
+        if(agent.enabled == true)
+        {
+            agent.isStopped = true;
+        }
     }
 
 }
