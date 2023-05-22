@@ -49,6 +49,22 @@ namespace HIAAC.UserSimulator
             }
         }
 
+        public string SensorID
+        {
+            set
+            {
+                if(!sensorHandle.IsNil)
+                {
+                    Debug.LogWarning("Setting sensor info after simulation started will not be reflected in dataset");
+                }
+                
+                this.sensorInfo.id = value;
+            }
+            get
+            {
+                return this.sensorInfo.id;
+            }
+        }
         
 
         //------------------------------------------------------------------------------------------------------------

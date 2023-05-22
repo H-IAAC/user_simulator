@@ -18,7 +18,7 @@ namespace HIAAC.UserSimulator
             }
         }
 
-                public override void ToMessage(IMessageBuilder builder)
+        public override void ToMessage(IMessageBuilder builder)
         {
             base.ToMessage(builder);
             
