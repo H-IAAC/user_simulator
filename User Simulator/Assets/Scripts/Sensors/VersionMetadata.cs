@@ -15,6 +15,7 @@ public class VersionMetadata : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         DatasetCapture.ReportMetadata("sceneName", scene.name);
 
+        DatasetCapture.ReportMetadata("projectName", Application.productName);
         DatasetCapture.ReportMetadata("projectVersion", Application.version);
     }
 }
