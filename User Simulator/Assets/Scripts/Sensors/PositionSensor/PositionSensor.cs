@@ -10,7 +10,7 @@ namespace HIAAC.UserSimulator
     {
         Vector3 position;
 
-        protected override Sensor Capture(SensorDefinition sensorDefinition)
+        protected override Sensor Capture(USensorDefinition sensorDefinition)
         {
             return new PositionSensorCapture(sensorDefinition, transform);
         }
@@ -33,7 +33,7 @@ namespace HIAAC.UserSimulator
             return ObservationSpec.Vector(3);
         }
 
-        protected override SensorDefinition CreateSensorDefinition(SensorInfo sensorInfo, PerceptionSensorProperties sensorProperties)
+        protected override USensorDefinition CreateSensorDefinition(SensorInfo sensorInfo, PerceptionSensorProperties sensorProperties)
         {
             return new PositionSensorDefinition(sensorInfo, perceptionSensorProperties, "position");
         }

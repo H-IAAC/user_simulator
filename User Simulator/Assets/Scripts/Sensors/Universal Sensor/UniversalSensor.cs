@@ -16,9 +16,9 @@ namespace HIAAC.UserSimulator
         protected abstract void Compute();
         protected abstract void ResetSensorState();
 
-        protected abstract Sensor Capture(SensorDefinition sensorDefinition);
+        protected abstract Sensor Capture(USensorDefinition sensorDefinition);
         protected abstract int Write(ObservationWriter writer);
-        protected abstract SensorDefinition CreateSensorDefinition(SensorInfo sensorInfo, PerceptionSensorProperties sensorProperties);
+        protected abstract USensorDefinition CreateSensorDefinition(SensorInfo sensorInfo, PerceptionSensorProperties sensorProperties);
 
         protected abstract ObservationSpec CreateObservationSpec();
 
@@ -49,20 +49,20 @@ namespace HIAAC.UserSimulator
             }
         }
 
-        public string SensorID
+        public string GroupID
         {
             set
             {
                 if(!sensorHandle.IsNil)
                 {
-                    Debug.LogWarning("Setting sensor info after simulation started will not be reflected in dataset");
+                    Debug.LogWarning("Setting sensor group ID after simulation started will not be reflected in the dataset");
                 }
                 
-                this.sensorInfo.id = value;
+                this.sensorInfo.groupID = value;
             }
             get
             {
-                return this.sensorInfo.id;
+                return this.sensorInfo.groupID;
             }
         }
         
@@ -70,7 +70,7 @@ namespace HIAAC.UserSimulator
         //------------------------------------------------------------------------------------------------------------
         //Perception things
         SensorHandle sensorHandle;
-        SensorDefinition sensorDefinition;
+        USensorDefinition sensorDefinition;
         public void RequestCapture()
         {
             if (perceptionSensorProperties.captureTriggerMode.Equals(CaptureTriggerMode.Manual))

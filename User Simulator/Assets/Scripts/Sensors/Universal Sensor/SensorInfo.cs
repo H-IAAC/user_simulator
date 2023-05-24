@@ -5,5 +5,6 @@ namespace HIAAC.UserSimulator
     {
         public string id;
         public string description;
+        public string groupID;
     }
 }

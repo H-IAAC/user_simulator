@@ -16,13 +16,13 @@ namespace HIAAC.UserSimulator
             Debug.LogWarning("Light sensor is not full implemented. Ligh intensity is always 255.");
         }
 
-        protected override Sensor Capture(SensorDefinition sensorDefinition)
+        protected override Sensor Capture(USensorDefinition sensorDefinition)
         {
             LightSensorDefinition LsensorDefinition = (LightSensorDefinition) sensorDefinition;
             return new LightSensorCapture(LsensorDefinition, transform, lightIntensity);
         }
 
-        protected override SensorDefinition CreateSensorDefinition(SensorInfo sensorInfo, PerceptionSensorProperties sensorProperties)
+        protected override USensorDefinition CreateSensorDefinition(SensorInfo sensorInfo, PerceptionSensorProperties sensorProperties)
         {
             return new LightSensorDefinition(sensorInfo, sensorProperties, "lightSensor");
         }

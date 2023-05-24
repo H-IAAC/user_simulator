@@ -6,6 +6,8 @@ namespace HIAAC.UserSimulator
     public class USensorDefinition : SensorDefinition
     {
         public override string modelType => "type.HIAAC.br/HIAAC.USensor";
+
+        string groupID = "";
         
         public USensorDefinition(SensorInfo sensorInfo, PerceptionSensorProperties perceptionSensorProperties, string modality)
             : base(sensorInfo.id, perceptionSensorProperties.captureTriggerMode, sensorInfo.description, 
@@ -16,6 +18,8 @@ namespace HIAAC.UserSimulator
             {
                 Debug.LogError("modelType sensor definition should be override to correct sensor model type");
             }
+
+            this.groupID = sensorInfo.groupID;
         }
 
         public override void ToMessage(IMessageBuilder builder)
@@ -23,6 +27,8 @@ namespace HIAAC.UserSimulator
             base.ToMessage(builder);
             
             builder.AddInt("capture_size", 1);
+            builder.AddString("groupID", groupID);
+
         }
     }
 }
