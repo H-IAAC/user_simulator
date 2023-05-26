@@ -4,12 +4,27 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Perception.Randomization.Scenarios;
 using UnityEngine.Perception.GroundTruth;
+using Unity.MLAgents;
 using System;
 
 public class Pause : MonoBehaviour
 {
     float defaultTimeScale;
     bool paused = false;
+
+    GameObject academyStepperInner;
+
+    GameObject AcademyStepper
+    {
+        get
+        {
+            if(academyStepperInner == null)
+            {
+                academyStepperInner = GameObject.Find("AcademyFixedUpdateStepper");
+            }
+            return academyStepperInner;
+        }
+    }
 
     public void PauseScene()
     {
@@ -30,6 +45,10 @@ public class Pause : MonoBehaviour
 
             //Avoid skipping timestamp, but captures become with wrong timestamp (DO NOT USE)
             //SetExecutionState("NotStarted");
+        }
+        if(Utils.MLAgentsRunning)
+        {
+            AcademyStepper.SetActive(false);
         }
     }
 
@@ -60,6 +79,11 @@ public class Pause : MonoBehaviour
                                                 BindingFlags.   Instance | BindingFlags.Public | BindingFlags.NonPublic);
             int value = (int) field2.GetValue(scenario);
             field2.SetValue(scenario, value-1);
+        }
+
+        if(Utils.MLAgentsRunning)
+        {
+            AcademyStepper.SetActive(true);
         }
         
     }

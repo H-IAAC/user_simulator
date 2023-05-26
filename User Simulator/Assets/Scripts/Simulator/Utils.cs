@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Perception.GroundTruth;
 using UnityEngine.Perception.GroundTruth.DataModel;
 using Unity.MLAgents.Sensors;
+using Unity.MLAgents;
 using UnityEngine.Perception.Randomization.Scenarios;
 
 public static class Utils
@@ -10,12 +11,15 @@ public static class Utils
     {
         get
         {
-            if(ScenarioBase.activeScenario == null)
-            {
-                return false;
-            }
+            return !(ScenarioBase.activeScenario == null);
+        }
+    }
 
-            return true;
+    public static bool MLAgentsRunning
+    {
+        get
+        {
+            return Academy.IsInitialized;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace HIAAC.UserSimulator
         protected override int Write(ObservationWriter writer)
         {
             writer.Add(position);
-            return 3;   
+            return 1;   
         }
 
         protected override ObservationSpec CreateObservationSpec()
