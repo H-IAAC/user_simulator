@@ -22,27 +22,15 @@ public class Pause : MonoBehaviour
         Time.timeScale = 0.0f;
 
         paused = true;
-
-        ScenarioBase.activeScenario.DelayIteration();
-
-        SetExecutionState("NotStarted");
         
-    }
+        if(Utils.PerceptionRunning)
+        {
+            //Stop scenario iterations
+            ScenarioBase.activeScenario.DelayIteration();
 
-    void SetExecutionState(string value)
-    {
-        var field = typeof(DatasetCapture).GetField("m_ActiveSimulation", BindingFlags.Static | BindingFlags.NonPublic);
-        var state = field.GetValue(null);
-
-        var executionStateField = state.GetType().GetProperty("ExecutionState", BindingFlags.NonPublic | BindingFlags.Instance);
-        
-        var enumType = state.GetType().GetNestedType("ExecutionStateType", BindingFlags.NonPublic);
-        var enumItem = enumType.GetField(value);
-        var enumValue = (int)enumItem.GetValue(enumType);
-        
-        var enumInstance = Enum.ToObject(enumType, enumValue);
-        
-        executionStateField.SetValue(state, enumInstance);
+            //Avoid skipping timestamp, but captures become with wrong timestamp (DO NOT USE)
+            //SetExecutionState("NotStarted");
+        }
     }
 
     public void RunScene()
@@ -56,14 +44,24 @@ public class Pause : MonoBehaviour
         
         paused = false;
 
-        ScenarioBase scenario = ScenarioBase.activeScenario;
+        if(Utils.PerceptionRunning)
+        {
+            //Stop scenario iterations
+            ScenarioBase scenario = ScenarioBase.activeScenario;
+            var field = typeof(ScenarioBase).GetField("m_ShouldDelayIteration", 
+                                                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            field.SetValue(scenario, false);
 
-        var field = typeof(ScenarioBase).GetField("m_ShouldDelayIteration", 
-                                                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            //Avoid skipping timestamp, but captures become with wrong timestamp (DO NOT USE)
+            //SetExecutionState("Running");
 
-        field.SetValue(scenario, false);
-
-        SetExecutionState("Running");
+            //Avoid wrong dataset size
+            var field2 = typeof(ScenarioBase).GetProperty("currentIterationFrame", 
+                                                BindingFlags.   Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            int value = (int) field2.GetValue(scenario);
+            field2.SetValue(scenario, value-1);
+        }
+        
     }
 
     public void ToggleState()
@@ -80,6 +78,22 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
+    }
+
+    void SetExecutionState(string value)
+    {
+        var field = typeof(DatasetCapture).GetField("m_ActiveSimulation", BindingFlags.Static | BindingFlags.NonPublic);
+        var state = field.GetValue(null);
+
+        var executionStateField = state.GetType().GetProperty("ExecutionState", BindingFlags.NonPublic | BindingFlags.Instance);
+        
+        var enumType = state.GetType().GetNestedType("ExecutionStateType", BindingFlags.NonPublic);
+        var enumItem = enumType.GetField(value);
+        var enumValue = (int)enumItem.GetValue(enumType);
+        
+        var enumInstance = Enum.ToObject(enumType, enumValue);
+        
+        executionStateField.SetValue(state, enumInstance);
     }
 
 }
