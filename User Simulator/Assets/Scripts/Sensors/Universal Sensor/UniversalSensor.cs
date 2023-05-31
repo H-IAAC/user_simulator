@@ -65,6 +65,14 @@ namespace HIAAC.UserSimulator
                 return this.sensorInfo.groupID;
             }
         }
+
+        public string ID
+        {
+            get
+            {
+                return sensorInfo.id;
+            }
+        }
         
 
         //------------------------------------------------------------------------------------------------------------
