@@ -30,5 +30,13 @@ namespace HIAAC.UserSimulator
             builder.AddString("groupID", groupID);
 
         }
+
+        public string GroupID
+        {
+            get
+            {
+                return groupID;
+            }
+        }
     }
 }

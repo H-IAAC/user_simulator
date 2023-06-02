@@ -5,7 +5,7 @@ namespace HIAAC.UserSimulator
 {
     public class PositionSensorCapture : USensorCapture
     {
-        public PositionSensorCapture(SensorDefinition definition, Transform transform) 
+        public PositionSensorCapture(USensorDefinition definition, Transform transform) 
             : base(definition, transform)
         {
         }
