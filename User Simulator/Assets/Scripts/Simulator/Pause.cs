@@ -9,6 +9,8 @@ using System;
 
 public class Pause : MonoBehaviour
 {
+    [SerializeField] BoolVariable gamePausedVariable;
+
     float defaultTimeScale;
     bool paused = false;
 
@@ -26,6 +28,11 @@ public class Pause : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        gamePausedVariable.value = false;
+    }
+
     public void PauseScene()
     {
         if(paused)
@@ -37,6 +44,7 @@ public class Pause : MonoBehaviour
         Time.timeScale = 0.0f;
 
         paused = true;
+        gamePausedVariable.value = true;
         
         if(Utils.PerceptionRunning)
         {
@@ -62,6 +70,7 @@ public class Pause : MonoBehaviour
         Time.timeScale = defaultTimeScale;
         
         paused = false;
+        gamePausedVariable.value = false;
 
         if(Utils.PerceptionRunning)
         {
@@ -100,9 +109,6 @@ public class Pause : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-    }
 
     void SetExecutionState(string value)
     {
