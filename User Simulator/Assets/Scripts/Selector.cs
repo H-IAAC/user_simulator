@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Selector : CursorCast
 {   
     [SerializeField] bool onlyDeselectWhenOver = true;
+    [SerializeField] bool allowToggle = true;
     bool selecting;
     Selectable selectedObject;
     RaycastHit lastHit;
@@ -76,18 +77,51 @@ public class Selector : CursorCast
     {
         if(selectedObject != null)
         {
+            if(allowToggle)
+            {
+                Selectable lastHitSelectable = getSelectable(lastHit);
+                if(lastHitSelectable != selectedObject && checkIfHitting(lastHit))
+                {
+                    selectedObject.EndSelect();
+                    selectedObject = lastHitSelectable;
+                    selectedHit = lastHit;
+                    selectedObject.StartSelect();
+                    return;
+                }
+            }
+            
             if(onlyDeselectWhenOver && !checkIfHitting(selectedHit))
             {
                 return;
             }
 
             selectedObject.EndSelect();
-            selecting = false;
-        }       
+        }
+
+        selecting = false;       
     }
 
     public void ReceiveCursorHit(RaycastHit hit, Vector2 position)
     {
         lastHit = hit;
+    }
+
+    Selectable getSelectable(RaycastHit hit)
+    {
+        Selectable selectable = null;
+
+        //Check RigidBody object
+        Selectable hitSelectable = lastHit.transform.gameObject.GetComponent<Selectable>();
+        if(hitSelectable != null)
+        {
+            selectable = hitSelectable;
+        }
+        else //Check collider object
+        {
+            Selectable colliderSelectable = lastHit.collider.gameObject.GetComponent<Selectable>();
+            selectable = colliderSelectable;
+        }
+
+        return selectable;
     }
 }
