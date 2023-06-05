@@ -1,9 +1,15 @@
 using System;
 using System.IO;
-using UnityEditor;
+using System.Reflection;
 using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SFB;
+
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
+
 
 namespace HIAAC.FromJSON
 {
@@ -45,7 +51,7 @@ namespace HIAAC.FromJSON
             }
         #endif
 
-        public static void SOFromFilePath(string path, bool save=true)
+        public static ScriptableObject SOFromFilePath(string path, bool save=true)
         {
             StreamReader reader = new StreamReader(path);
             string json = reader.ReadToEnd();
@@ -53,22 +59,32 @@ namespace HIAAC.FromJSON
 
             ScriptableObject so = SOFromJSON(json);
             
-            string soPath = "Assets/"+Path.GetFileNameWithoutExtension(path)+".asset";
-            AssetDatabase.CreateAsset(so, soPath);
+            #if UNITY_EDITOR
+                string soPath = "Assets/"+Path.GetFileNameWithoutExtension(path)+".asset";
+                AssetDatabase.CreateAsset(so, soPath);
 
-            if(save)
-            {
-                AssetDatabase.SaveAssets();
-            }
+                if(save)
+                {
+                    AssetDatabase.SaveAssets();
+                }
+            #endif
+
+            return so;
         }
 
-        public static void SOFromFilePath(string[] paths)
+        public static ScriptableObject[] SOFromFilePath(string[] paths, bool save=true)
         {
-            foreach(string path in paths)
+            ScriptableObject[] objects = new ScriptableObject[paths.Length];
+            
+            for(int i = 0; i<paths.Length; i++)
             {
-                SOFromFilePath(path, false);
+                objects[i] = SOFromFilePath(paths[i], false);
             }
-            AssetDatabase.SaveAssets();
+            #if UNITY_EDITOR
+                AssetDatabase.SaveAssets();
+            #endif
+
+            return objects;
         }
 
         public static ScriptableObject SOFromJSON(string json)
@@ -89,5 +105,19 @@ namespace HIAAC.FromJSON
 
             return obj;
         }
+
+        public delegate void OnLoad(ScriptableObject obj);
+
+        public static void askSO(OnLoad callback)
+        {
+            StandaloneFileBrowser.OpenFilePanelAsync("Select JSONs", "", "json", false, (paths) => {onFileSelect(callback, paths);});
+        }
+
+        static void onFileSelect(OnLoad callback, string[] paths)
+        {
+            ScriptableObject so = SOFromFilePath(paths[0]);
+            callback.Invoke(so);
+        } 
+
     }
 }
