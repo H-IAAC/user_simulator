@@ -17,8 +17,9 @@ public class LoadJSONTest : MonoBehaviour
         
     }
 
-    public void soCallback(ScriptableObject so)
+    public void soCallback(ScriptableObject[] objects)
     {
+        ScriptableObject so = objects[0];
         print(so);
 
         PointTrajectory trajectory = (PointTrajectory) so;

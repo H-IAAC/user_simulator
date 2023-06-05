@@ -106,17 +106,17 @@ namespace HIAAC.FromJSON
             return obj;
         }
 
-        public delegate void OnLoad(ScriptableObject obj);
+        public delegate void OnLoad(ScriptableObject[] objs);
 
-        public static void askSO(OnLoad callback)
+        public static void askSO(OnLoad callback, bool allowMultiple=false)
         {
-            StandaloneFileBrowser.OpenFilePanelAsync("Select JSONs", "", "json", false, (paths) => {onFileSelect(callback, paths);});
+            StandaloneFileBrowser.OpenFilePanelAsync("Select JSONs", "", "json", allowMultiple, (paths) => {onFileSelect(callback, paths);});
         }
 
         static void onFileSelect(OnLoad callback, string[] paths)
         {
-            ScriptableObject so = SOFromFilePath(paths[0]);
-            callback.Invoke(so);
+            ScriptableObject[] objects = SOFromFilePath(paths);
+            callback.Invoke(objects);
         } 
 
     }
