@@ -22,6 +22,6 @@ public class UIPanelCaller : MonoBehaviour
 
     public void Hide()
     {
-        gameEvent.Raise<GameObject>(null);
+        gameEvent.Raise();
     }
 }

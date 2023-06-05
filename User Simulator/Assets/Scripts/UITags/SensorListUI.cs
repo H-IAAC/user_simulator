@@ -14,12 +14,12 @@ public class SensorListUI : UIInfoPanel
 
     float width;
 
-    public void Start()
+    public void Awake()
     {
         textObjects = new List<GameObject>();
         texts = new List<TextMeshProUGUI>();
 
-        float width = GetComponent<RectTransform>().rect.width;
+        width = GetComponent<RectTransform>().rect.width;
     }
 
     public override void Show(GameObject target)

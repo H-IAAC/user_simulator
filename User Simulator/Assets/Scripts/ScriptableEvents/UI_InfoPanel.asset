@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e204de3833171ca42adc7edf37005daa, type: 3}
   m_Name: UI_InfoPanel
   m_EditorClassIdentifier: 
-  debugMode: 1
+  debugMode: 0
