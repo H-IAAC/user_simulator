@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
+/// <summary>
+/// Listener to game event that call UnityEvents when raised and supports argument casting.
+/// </summary>
 public class TypedGameEventListener<T> : GameEventListener
 {
     [Tooltip("Response to invoke when Event is raised.")]
@@ -16,6 +18,9 @@ public class TypedGameEventListener<T> : GameEventListener
         baseEvent = new UnityEvent<float>();
     }
 
+    /// <summary>
+    /// Raises the local UnityEvents using the default type value.
+    /// </summary>
     override protected IEnumerator RaiseResponse()
     {
         if(delay > 0)
@@ -27,6 +32,12 @@ public class TypedGameEventListener<T> : GameEventListener
         TypedResponse.Invoke(default);
     }
 
+    /// <summary>
+    /// Raises the local UnityEvents, casting the arguments before calling.
+    /// </summary>
+    /// <typeparam name="T2">Type of the argument used for raising the event.</typeparam>
+    /// <param name="arg">Argument of the event.</param>
+    /// <returns></returns>
     override protected IEnumerator RaiseResponse<T2>(T2 arg)
     {
         if(delay > 0)

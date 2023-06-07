@@ -8,6 +8,9 @@ public class ScriptableVariable<T> : ScriptableObject
 {
     T _value;
 
+    /// <summary>
+    /// Stored value.
+    /// </summary>
     public T value
     {
         get
@@ -22,5 +25,8 @@ public class ScriptableVariable<T> : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Event raised when the stored value changes.
+    /// </summary>
     public UnityEvent ValueChange;
 }

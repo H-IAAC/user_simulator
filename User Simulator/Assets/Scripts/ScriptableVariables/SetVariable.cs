@@ -16,6 +16,9 @@ where VariableType : ScriptableVariable<ValueType>
    [Tooltip("Value to be set.")]
    [SerializeField] ValueType onEnableValue;
 
+   /// <summary>
+   /// Sets the OnEnable variable value.
+   /// </summary>
    void OnEnable()
    {
       variable.value = onEnableValue;

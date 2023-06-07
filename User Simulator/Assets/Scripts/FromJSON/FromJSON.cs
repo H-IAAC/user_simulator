@@ -13,9 +13,16 @@ using SFB;
 
 namespace HIAAC.FromJSON
 {
+    /// <summary>
+    /// Converts JSON to ScriptableObjects
+    /// </summary>
     public class FromJSON
     {
         #if UNITY_EDITOR
+
+            /// <summary>
+            /// Creates an ScriptableObject from TextAsset.
+            /// </summary>
             [MenuItem("Assets/Create/JSON/Scriptable Object from JSON", false, 0)]
             static void SOFromTextAsset()
             {
@@ -35,6 +42,10 @@ namespace HIAAC.FromJSON
                 AssetDatabase.SaveAssets();
             }
             
+            /// <summary>
+            /// Validates if the select file is a TextAsset to convert to ScriptableObject.
+            /// </summary>
+            /// <returns>True if the activeObject is a TextAsset.</returns>
             [MenuItem("Assets/Create/JSON/Scriptable Object from JSON", true)]
             static bool SOFromTextAssetValidator()
             {
@@ -51,6 +62,12 @@ namespace HIAAC.FromJSON
             }
         #endif
 
+        /// <summary>
+        /// Creates an ScriptableObject from a JSON file path.
+        /// </summary>
+        /// <param name="path">JSON file path.</param>
+        /// <param name="save">If should save the object to the project assets (Editor only).</param>
+        /// <returns>Created ScriptableObject</returns>
         public static ScriptableObject SOFromFilePath(string path, bool save=true)
         {
             StreamReader reader = new StreamReader(path);
@@ -72,6 +89,12 @@ namespace HIAAC.FromJSON
             return so;
         }
 
+        /// <summary>
+        /// Creates multiples ScriptableObjects from JSON files paths.
+        /// </summary>
+        /// <param name="path">JSON files paths.</param>
+        /// <param name="save">If should save the objects to the project assets (Editor only).</param>
+        /// <returns>Created ScriptableObjects</returns>
         public static ScriptableObject[] SOFromFilePath(string[] paths, bool save=true)
         {
             ScriptableObject[] objects = new ScriptableObject[paths.Length];
@@ -87,6 +110,12 @@ namespace HIAAC.FromJSON
             return objects;
         }
 
+        /// <summary>
+        /// Creates an ScriptableObject from a string with json.
+        /// </summary>
+        /// <param name="json">String with json object encoding.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If the json data doesn't contains 'type' field.</exception>
         public static ScriptableObject SOFromJSON(string json)
         {
             JObject data = JObject.Parse(json);
@@ -108,11 +137,21 @@ namespace HIAAC.FromJSON
 
         public delegate void OnLoad(ScriptableObject[] objs);
 
+        /// <summary>
+        /// Asks the user to select a JSON file and creates a SO.
+        /// </summary>
+        /// <param name="callback">Function to call when the object is created (must be of <see cref="FromJSON.OnLoad"> OnLoad </see> type)</param>
+        /// <param name="allowMultiple">If should allow the user to select multiple files.</param>
         public static void askSO(OnLoad callback, bool allowMultiple=false)
         {
             StandaloneFileBrowser.OpenFilePanelAsync("Select JSONs", "", "json", allowMultiple, (paths) => {onFileSelect(callback, paths);});
         }
 
+        /// <summary>
+        /// Internal callback for when the user select the JSON files.
+        /// </summary>
+        /// <param name="callback">Caller callback to invoke after creating the objects.</param>
+        /// <param name="paths">Paths of the JSON files.</param>
         static void onFileSelect(OnLoad callback, string[] paths)
         {
             ScriptableObject[] objects = SOFromFilePath(paths);

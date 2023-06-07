@@ -1,15 +1,21 @@
 using UnityEngine.Perception.GroundTruth.DataModel;
 using UnityEngine;
 
+/// <summary>
+/// Properties needed for a Perception sensor.
+/// </summary>
 [System.Serializable]
 public struct PerceptionSensorProperties
 {
+    [Tooltip(".")]
     [SerializeProperty("SimulationDeltaTime")][SerializeField]
     float simulationDeltaTime;
 
+    [Tooltip(".")]
     [SerializeProperty("FramesBetweenCaptures")][SerializeField]
     int framesBetweenCaptures;
 
+    [Tooltip("Frame in the sequence to start capturing the sensor")]
     [SerializeProperty("StartAtFrame")][SerializeField]
     int startAtFrame;
 

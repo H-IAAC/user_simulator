@@ -4,6 +4,9 @@ using UnityEngine.Perception.GroundTruth;
 
 namespace HIAAC.UserSimulator
 {
+    /// <summary>
+    /// Singleton to manage group IDs.
+    /// </summary>
     public class GroupIDManager
     {
         List<string> groupIDs;
@@ -11,6 +14,11 @@ namespace HIAAC.UserSimulator
 
         static GroupIDManager instance;
 
+        /// <summary>
+        /// Adds an group ID, creating a unique ID.
+        /// </summary>
+        /// <param name="groupID">The base group ID.</param>
+        /// <returns>Unique ID if the groupID is already in use.</returns>
         public static string addGroup(string groupID)
         {
             if(instance == null)
@@ -42,6 +50,9 @@ namespace HIAAC.UserSimulator
             idCount = new Dictionary<string, int>();
         }
 
+        /// <summary>
+        /// Adds the groups IDs to generate dataset metadata
+        /// </summary>
         void Report()
         {
             DatasetCapture.ReportMetadata("groupIDs", groupIDs.ToArray());

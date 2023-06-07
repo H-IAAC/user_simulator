@@ -1,21 +1,32 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Perception.GroundTruth;
-using UnityEngine.Perception.Randomization.Scenarios;
 
-public class VersionMetadata : MonoBehaviour
+namespace HIAAC.UserSimulator
 {
-    void Start()
+    /// <summary>
+    /// Adds version metadata (scene name, project name, project version) to the generated dataset.
+    /// </summary>
+    public class VersionMetadata : MonoBehaviour
     {
-        DatasetCapture.SimulationEnding += Report;
-    }
+        /// <summary>
+        /// Adds the callback to the simulation ending event.
+        /// </summary>
+        void Start()
+        {
+            DatasetCapture.SimulationEnding += Report;
+        }
 
-    void Report()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        DatasetCapture.ReportMetadata("sceneName", scene.name);
+        /// <summary>
+        /// Reports the version metadata
+        /// </summary>
+        void Report()
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            DatasetCapture.ReportMetadata("sceneName", scene.name);
 
-        DatasetCapture.ReportMetadata("projectName", Application.productName);
-        DatasetCapture.ReportMetadata("projectVersion", Application.version);
+            DatasetCapture.ReportMetadata("projectName", Application.productName);
+            DatasetCapture.ReportMetadata("projectVersion", Application.version);
+        }
     }
 }

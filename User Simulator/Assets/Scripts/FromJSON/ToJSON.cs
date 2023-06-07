@@ -4,9 +4,16 @@ using UnityEngine;
 
 namespace HIAAC.FromJSON
 {
+    /// <summary>
+    /// Converts ScriptableObjects to JSON
+    /// </summary>
     public class ToJSON : MonoBehaviour
     {
         #if UNITY_EDITOR
+
+            /// <summary>
+            /// Creates an TextAsset with JSON from a ScriptableObject
+            /// </summary>
             [MenuItem("Assets/Create/JSON/JSON from Scriptable Object", false, 0)]
             static void SOToTextAsset()
             {
@@ -26,6 +33,10 @@ namespace HIAAC.FromJSON
                 AssetDatabase.Refresh();
             }
 
+            /// <summary>
+            /// Validates if all the selected objects are ScriptableObjects for conversion.
+            /// </summary>
+            /// <returns>True  if if all the selected objects are ScriptableObjects.</returns>
             [MenuItem("Assets/Create/JSON/JSON from Scriptable Object", true)]
             static bool SOToTextAssetValidator()
             {
@@ -43,6 +54,11 @@ namespace HIAAC.FromJSON
             }
         #endif
 
+        /// <summary>
+        /// Converts an ScriptableObject to JSON string.
+        /// </summary>
+        /// <param name="so">ScriptableObject to convert</param>
+        /// <returns>Generated JSON string.</returns>
         public static string SOToJSON(ScriptableObject so)
         {
             string json = JsonUtility.ToJson(so, true);

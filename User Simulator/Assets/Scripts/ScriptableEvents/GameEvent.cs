@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
+/// <summary>
+/// Generic serializable event.
+/// </summary>
 [CreateAssetMenu(menuName ="HIAAC/Game Event")]
 public class GameEvent : ScriptableObject
 {
@@ -12,7 +14,11 @@ public class GameEvent : ScriptableObject
 
     [Tooltip("Sends a debug log when event is raised.")]
     [SerializeField] bool debugMode = false;
+    
 
+    /// <summary>
+    /// Raises the event, calling the listeners.
+    /// </summary>
     public void Raise()
     {
         if(debugMode)
@@ -26,6 +32,11 @@ public class GameEvent : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Raises the event sending an argument to the listeners.
+    /// </summary>
+    /// <typeparam name="T">Type of the argument.</typeparam>
+    /// <param name="arg">Argument</param>
     public void Raise<T>(T arg)
     {
         if(debugMode)
@@ -39,11 +50,20 @@ public class GameEvent : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Registers a listener to be notified when the event is raised.
+    /// </summary>
+    /// <param name="listener">The listener to notify.</param>
     public void RegisterListener(EventListener listener)
     {
         if (!eventListeners.Contains(listener))
             eventListeners.Add(listener);
     }
+
+    /// <summary>
+    /// Unregisters a listener to be notified when the event is raised.
+    /// </summary>
+    /// <param name="listener">The listener to stop notifing.</param>
 
     public void UnregisterListener(EventListener listener)
     {
