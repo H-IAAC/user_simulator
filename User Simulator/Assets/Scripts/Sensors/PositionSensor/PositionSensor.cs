@@ -6,6 +6,9 @@ using UnityEngine.Perception.GroundTruth.DataModel;
 
 namespace HIAAC.UserSimulator
 {
+    /// <summary>
+    /// Sensor for capture position data.
+    /// </summary>
     public class PositionSensor : UniversalSensor
     {
         Vector3 position;

@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
+/// <summary>
+/// Casts the cursor position to the world and check for collisions
+/// </summary>
 public class CursorCast : MonoBehaviour
 {
     [Tooltip("Layers that can be hit by the cursor.")]
@@ -21,7 +22,10 @@ public class CursorCast : MonoBehaviour
     Vector2 lastPosition;
     
 
-
+    /// <summary>
+    /// Receives the cursor action information.
+    /// </summary>
+    /// <param name="context">Cursor action context</param>
     public void ReceiveCursorInput(InputAction.CallbackContext context)
     {
         Vector2 cursorPosition = context.ReadValue<Vector2>();        
@@ -31,6 +35,10 @@ public class CursorCast : MonoBehaviour
         lastPosition = cursorPosition;
     }
 
+    /// <summary>
+    /// Checks if the cursor hitted any object and invoke the event.
+    /// </summary>
+    /// <param name="position">Cursor position</param>
     void checkHit(Vector2 position)
     {
         Ray ray = Camera.main.ScreenPointToRay(position);
@@ -49,6 +57,11 @@ public class CursorCast : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Checks if the cursor is still hitting a previous object.
+    /// </summary>
+    /// <param name="oldHit">Old object hit.</param>
+    /// <returns>True if is still hitting</returns>
     public bool checkIfHitting(RaycastHit oldHit)
     {
         Ray ray = Camera.main.ScreenPointToRay(lastPosition);

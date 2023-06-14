@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 
+//Test agent for MLAgents scenario
 public class TestMLAgent : Agent
 {
     // Start is called before the first frame update

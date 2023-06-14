@@ -8,6 +8,9 @@ public enum LocationSelectionMode
     RANDOM
 }
 
+/// <summary>
+/// Moves the agent between positions
+/// </summary>
 [RequireComponent(typeof(IGoTo))]
 public class TestAgent : MonoBehaviour
 {

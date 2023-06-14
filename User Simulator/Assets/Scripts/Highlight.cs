@@ -1,11 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Events;
 
+/// <summary>
+/// Hightlight the object when enabled
+/// </summary>
 public class Hightlight : MonoBehaviour
 {
+    [Tooltip("Color to hightlight the object.")]
     [SerializeField]
     private Color color = Color.white;
     List<Material> materials;
@@ -14,6 +15,7 @@ public class Hightlight : MonoBehaviour
 
     void Awake()
     {
+        //Search for materials in the object
         oldColors = new Dictionary<Material, Color>();
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
         materials = new List<Material>();
@@ -25,6 +27,7 @@ public class Hightlight : MonoBehaviour
 
     void OnEnable()
     {
+        //Changes the object color to the hightlight color
         foreach (Material material in materials)
         {
             oldColors[material] = material.GetColor("_BaseColor");
@@ -36,6 +39,7 @@ public class Hightlight : MonoBehaviour
     
     void OnDisable()
     {
+        //Returns the object color to the original color
         foreach (Material material in materials)
         {
             if(oldColors.ContainsKey(material))

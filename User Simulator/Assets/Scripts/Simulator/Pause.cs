@@ -7,8 +7,12 @@ using UnityEngine.Perception.GroundTruth;
 using Unity.MLAgents;
 using System;
 
+/// <summary>
+/// Pauses the current simulation
+/// </summary>
 public class Pause : MonoBehaviour
 {
+    [Tooltip("Variable to indicate if the game is running.")]
     [SerializeField] BoolVariable gamePausedVariable;
 
     float defaultTimeScale;
@@ -33,6 +37,11 @@ public class Pause : MonoBehaviour
         gamePausedVariable.value = false;
     }
 
+    /// <summary>
+    /// Pauses the current scene and simulation libraries.
+    /// 
+    /// Does not pause Update based behaviors and animations.
+    /// </summary>
     public void PauseScene()
     {
         if(paused)
@@ -60,6 +69,9 @@ public class Pause : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Unpause the current scene and simulation libraries.
+    /// </summary>
     public void RunScene()
     {
         if(!paused)
@@ -97,6 +109,9 @@ public class Pause : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Toggles the current simulation state.
+    /// </summary>
     public void ToggleState()
     {
         if(paused)
@@ -110,6 +125,10 @@ public class Pause : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Sets the Perpection execution state to enable pausing the simulation.
+    /// </summary>
+    /// <param name="value">Value to set. Needs to be an valid enum ExecutionStateType value.</param>
     void SetExecutionState(string value)
     {
         var field = typeof(DatasetCapture).GetField("m_ActiveSimulation", BindingFlags.Static | BindingFlags.NonPublic);

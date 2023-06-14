@@ -130,6 +130,11 @@ namespace HIAAC.UserSimulator
         //Perception things
         SensorHandle sensorHandle;
         USensorDefinition sensorDefinition;
+
+        /// <summary>
+        /// Request the sensor to register a new capture. 
+        /// Can only be used when the sensor is in the Manual capture trigger mode.
+        /// </summary>
         public void RequestCapture()
         {
             if (perceptionSensorProperties.captureTriggerMode.Equals(CaptureTriggerMode.Manual))
@@ -143,6 +148,9 @@ namespace HIAAC.UserSimulator
             }
         }
 
+        /// <summary>
+        /// Ensure the sensor is registred when there is an active Perception scenario.
+        /// </summary>
         void EnsureSensorRegistered()
         { 
             if(ScenarioBase.activeScenario == null)
@@ -162,26 +170,45 @@ namespace HIAAC.UserSimulator
         //ISensor
         ObservationSpec observationSpec;
 
+        /// <summary>
+        /// Reset the sensor state
+        /// </summary>
         void ISensor.Reset()
         {
             ResetSensorState();
         }
 
+        /// <summary>
+        /// Update the sensor reading value
+        /// </summary>
         void ISensor.Update()
         {
             Compute();
         }
 
+        /// <summary>
+        /// Get the MLAgents observation specification.
+        /// </summary>
+        /// <returns>MLAgents observation specification</returns>
         ObservationSpec ISensor.GetObservationSpec()
         {
             return observationSpec;
         }
 
+
+        /// <summary>
+        /// Get the sensor name (same as ID).
+        /// </summary>
+        /// <returns>Sensor name/ID</returns>
         string ISensor.GetName()
         {
             return sensorInfo.id;
         }
 
+        /// <summary>
+        /// Get the sensor MLAgents compression specification.
+        /// </summary>
+        /// <returns>MLAgents compression specification</returns>
         CompressionSpec ISensor.GetCompressionSpec()
         {
             return CompressionSpec.Default();
@@ -192,12 +219,23 @@ namespace HIAAC.UserSimulator
             throw new System.NotImplementedException();
         }
 
+
+        /// <summary>
+        /// Writes the sensor data with the ObservationWriter.
+        /// </summary>
+        /// <param name="writer">Writer to send sensor data.</param>
+        /// <returns>Size of the observation.</returns>
         int ISensor.Write(ObservationWriter writer)
         {
             return Write(writer);
         }
 
         //Sensor Component
+
+        /// <summary>
+        /// Create the ISensor objects of the sensor.
+        /// </summary>
+        /// <returns>ISensor objects of the sensor.</returns>
         public override ISensor[] CreateSensors()
         {
             ISensor[] thisList = {this};

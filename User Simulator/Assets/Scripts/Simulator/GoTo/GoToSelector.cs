@@ -12,6 +12,9 @@ public enum GoToStrategies
     NavMesh
 }
 
+/// <summary>
+/// Selects between multiple avaiable strategies.
+/// </summary>
 public static class GoToStrategiesExtensions
 {
     public static IGoTo Instantiate(this GoToStrategies strategy, GameObject go)

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Goes to the desired position using NavMesh
+/// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
 public class NavMeshGoTo : MonoBehaviour, IGoTo
 {

@@ -7,11 +7,21 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+/// <summary>
+/// Marks the field to use a property when editing in Inspector.
+/// </summary>
 [System.AttributeUsage(System.AttributeTargets.Field)]
 public class SerializeProperty : PropertyAttribute
 {
+    /// <summary>
+    /// Name of the corresponding property
+    /// </summary>
     public string PropertyName { get; private set; }
 
+    /// <summary>
+    /// SerializeProperty constructor
+    /// </summary>
+    /// <param name="propertyName">Name of the corresponding property.</param>
     public SerializeProperty(string propertyName)
     {
         PropertyName = propertyName;
@@ -36,6 +46,7 @@ public class SerializePropertyAttributeDrawer : PropertyDrawer
         {
             
             
+            //Checks if the property is inside another class/struct
             if (path.Length > 1)
             {
                 FieldInfo fi = target.GetType().GetField(path[0], BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -55,6 +66,8 @@ public class SerializePropertyAttributeDrawer : PropertyDrawer
         {
             object realTarget = target;
             FieldInfo fi = null;
+
+            //Checks if the property is inside another class/struct
             if(path.Length > 1)
             {
                 fi = target.GetType().GetField(path[0], BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);

@@ -3,6 +3,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
  
+/// <summary>
+/// Reveals hidden objects in the hierarchy
+/// </summary>
 public static class RevealHiddenObjects
 {
     [MenuItem("Tools/Reveal Hidden GameObjects")]

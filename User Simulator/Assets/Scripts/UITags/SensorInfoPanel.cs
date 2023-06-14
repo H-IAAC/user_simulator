@@ -4,7 +4,12 @@ using UnityEngine;
 using HIAAC.UserSimulator;
 using TMPro;
 
-public class SensorListUI : UIInfoPanel
+/// <summary>
+/// Info panel for showing sensor information.
+/// 
+/// Lists the sensor in the target object.
+/// </summary>
+public class SensorInfoPanel : UIInfoPanel
 {
     [SerializeField] GameObject verticalLayout;
 

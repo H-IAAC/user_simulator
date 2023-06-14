@@ -6,7 +6,11 @@ using Unity.MLAgents.Sensors;
 namespace HIAAC.UserSimulator
 {
     
-
+    /// <summary>
+    /// Sensor to capture light intensity data
+    /// 
+    /// WARNING: Not fully implemented
+    /// </summary>
     public class LightSensor : UniversalSensor
     {
         float lightIntensity;

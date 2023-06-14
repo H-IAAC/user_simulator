@@ -7,6 +7,9 @@ using UnityEngine.Perception.Randomization.Scenarios;
 
 public static class Utils
 {
+    /// <summary>
+    /// Checks if the Perception library is running.
+    /// </summary>
     public static bool PerceptionRunning
     {
         get
@@ -15,6 +18,9 @@ public static class Utils
         }
     }
 
+    /// <summary>
+    /// Checks if the MLAgents library is running.
+    /// </summary>
     public static bool MLAgentsRunning
     {
         get

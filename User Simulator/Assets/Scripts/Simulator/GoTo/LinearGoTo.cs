@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Goes to the destination moving linearly towards it
+/// (timed linear interpolation between the current and target position).
+/// </summary>
 public class LinearGoTo : MonoBehaviour, IGoTo
 {   
     [SerializeProperty("Velocity")][Tooltip("The movement velocity in Unity_units/s")][SerializeField] 
@@ -30,6 +34,9 @@ public class LinearGoTo : MonoBehaviour, IGoTo
         }
     }
 
+    /// <summary>
+    /// Velocity of the movement.
+    /// </summary>
     public float Velocity
     {
         set
@@ -56,6 +63,7 @@ public class LinearGoTo : MonoBehaviour, IGoTo
 
     void Update()
     {
+        //Checks if ended
         if(Time.time > endTime)
         {
             return;
@@ -68,11 +76,16 @@ public class LinearGoTo : MonoBehaviour, IGoTo
             Debug.LogError("WRONG t");
         }
 
+        //Updates the current position
         Vector3 currentPosition = Vector3.Lerp(origin, destination, t);
 
         this.transform.position = currentPosition;
     }
 
+    /// <summary>
+    /// Updates the desired destination.
+    /// </summary>
+    /// <param name="destination">Desired destination</param>
     void IGoTo.goToImplementation(Vector3 destination)
     {
         origin = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -82,7 +95,9 @@ public class LinearGoTo : MonoBehaviour, IGoTo
     }
 
 
-
+    /// <summary>
+    /// Recomputes the interpolation times.
+    /// </summary>
     void recomputeTime()
     {
         if(origin == null || destination == null)
@@ -98,6 +113,9 @@ public class LinearGoTo : MonoBehaviour, IGoTo
         endTime = startTime+duration;
     }
 
+    /// <summary>
+    /// Checks if the object have an enabled NavMeshAgent
+    /// </summary>
     void checkNavMeshAgent()
     {
         if(agent != null)

@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+/// <summary>
+/// Enable selecting objects in the screen
+/// </summary>
 public class Selector : CursorCast
 {   
+    [Tooltip("If true, only delects a selected object when cursor is over it.")]
     [SerializeField] bool onlyDeselectWhenOver = true;
+    
+    [Tooltip("If true, allows selecting a new object without deselecting the previous object.")]
     [SerializeField] bool allowToggle = true;
     bool selecting;
     Selectable selectedObject;
@@ -21,6 +26,10 @@ public class Selector : CursorCast
         this.onHit.AddListener(ReceiveCursorHit);
     }
     
+    /// <summary>
+    /// Handles the select action.
+    /// </summary>
+    /// <param name="context">Context of the select action</param>
     public void HandleSelectAction(InputAction.CallbackContext context)
     {
         if(context.phase == InputActionPhase.Started)
@@ -36,7 +45,9 @@ public class Selector : CursorCast
         }
     }
 
-
+    /// <summary>
+    /// Checks if is hitting any object, and marks it as selected.
+    /// </summary>
     public void EnableSelect()
     {
         if(lastHit.transform != null)
@@ -73,6 +84,9 @@ public class Selector : CursorCast
 
     }
 
+    /// <summary>
+    /// Deselect the object if is selecting anything.
+    /// </summary>
     public void DisableSelect()
     {
         if(selectedObject != null)
@@ -101,11 +115,21 @@ public class Selector : CursorCast
         selecting = false;       
     }
 
+    /// <summary>
+    /// Receives the cursor hit information.
+    /// </summary>
+    /// <param name="hit">Hit information.</param>
+    /// <param name="position">Position of the cursor when casting</param>
     public void ReceiveCursorHit(RaycastHit hit, Vector2 position)
     {
         lastHit = hit;
     }
 
+    /// <summary>
+    /// Checks if the hit has any Selectable and returns it.
+    /// </summary>
+    /// <param name="hit">Hit to check</param>
+    /// <returns>S</returns>
     Selectable getSelectable(RaycastHit hit)
     {
         Selectable selectable = null;
