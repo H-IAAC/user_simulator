@@ -1,0 +1,27 @@
+using UnityEngine;
+
+public class WaitNode : ActionNode
+{
+    public float duration = 1;
+    float startTime;
+
+    public override void OnStart()
+    {
+        startTime = Time.time;
+    }
+
+    public override void OnStop()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override NodeState OnUpdate()
+    {
+        if(Time.time - startTime >= duration)
+        {
+            return NodeState.Success;
+        }
+
+        return NodeState.Runnning;
+    }
+}
