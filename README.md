@@ -18,7 +18,7 @@ See more projects from the group [here](https://github.com/brgsil/RepoOrganizer)
 
 For editing the simulation:
 
-- [Unity](https://unity.com/pt/download) Editor [2022.2.6f1](https://unity.com/releases/editor/archive#:~:text=Release%20Notes-,Unity%202022.2.6,-February%2010%2C%202023)
+- [Unity](https://unity.com/pt/download) Editor [2022.2.6f1](https://unity.com/releases/editor/archive#download-archive-2022#:~:text=Release%20Notes-,Unity%202022.2.6,-February%2010%2C%202023)
 
 ## Installation / Usage
 
