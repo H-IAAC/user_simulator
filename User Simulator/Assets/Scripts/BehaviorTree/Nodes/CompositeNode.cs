@@ -3,5 +3,17 @@ using UnityEngine;
 
 public abstract class CompositeNode : Node
 {
-    public List<Node> children = new List<Node>();
+    [HideInInspector] public List<Node> children = new List<Node>();
+
+    public override Node Clone()
+    {
+        CompositeNode node = Instantiate(this);
+        
+        foreach(Node child in children)
+        {
+            node.children.Add(child.Clone());
+        }
+
+        return node;
+    }
 }

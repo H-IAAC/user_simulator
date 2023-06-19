@@ -12,7 +12,7 @@ public class WaitNode : ActionNode
 
     public override void OnStop()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override NodeState OnUpdate()

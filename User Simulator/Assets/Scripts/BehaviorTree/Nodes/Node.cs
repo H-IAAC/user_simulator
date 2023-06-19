@@ -2,8 +2,10 @@ using UnityEngine;
 
 public abstract class Node: ScriptableObject
 {
-    public NodeState state = NodeState.Runnning;
-    public bool started = false;
+    [HideInInspector] public NodeState state = NodeState.Runnning;
+    [HideInInspector] public bool started = false;
+    [HideInInspector] public string guid;
+    [HideInInspector] public Vector2 position;
 
     public NodeState Update()
     {
@@ -22,6 +24,11 @@ public abstract class Node: ScriptableObject
         }
 
         return state;
+    }
+
+    public virtual Node Clone()
+    {
+        return Instantiate(this);
     }
 
     public abstract void OnStart();

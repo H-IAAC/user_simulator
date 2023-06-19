@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class BehaviorTreeRunner : MonoBehaviour
 {
-    BehaviorTree tree;
+    [SerializeField] BehaviorTree tree;
 
     void Start()
     {
-        tree = ScriptableObject.CreateInstance<BehaviorTree>();
-
-        DebugLogNode logNode = ScriptableObject.CreateInstance<DebugLogNode>();
-        logNode.message = "TEST DEBUG NODE";
-
-        tree.rootNode = logNode;
+        tree = tree.Clone();
     }
 
     void Update()
