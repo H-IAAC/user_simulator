@@ -12,7 +12,9 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="blackboard-container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                     <ui:Label tabindex="-1" text="Blackboard" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
-                    <ui:IMGUIContainer />
+                    <ui:VisualElement style="flex-grow: 1; background-color: rgb(56, 56, 56);">
+                        <ui:IMGUIContainer />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </SplitView>
         </ui:VisualElement>

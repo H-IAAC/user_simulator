@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class SequencerNode: CompositeNode
 {
+    int current = 0;
+
+    void OnEnable()
+    {
+        current = 0;
+    }
+
     public override void OnStart()
     {
 
@@ -13,6 +20,42 @@ public class SequencerNode: CompositeNode
     }
 
     public override NodeState OnUpdate()
+    {
+        if(useMemory)
+        {
+            return memoriedUpdate();
+        }
+        else
+        {
+            return memorylessUpdate();
+        }
+    }
+
+    NodeState memoriedUpdate()
+    {
+        if(current >= children.Count)
+        {
+            current = 0;
+            return NodeState.Success;
+        }
+
+        NodeState childState = children[current].Update();
+
+        switch (childState)
+        {
+            case NodeState.Runnning:
+                return NodeState.Runnning;
+            case NodeState.Failure:
+                return NodeState.Failure;
+            case NodeState.Success:
+                current++;
+                return memoriedUpdate();
+        }
+
+        return NodeState.Success;
+    }
+
+    NodeState memorylessUpdate()
     {
         foreach(Node child in children)
         {
@@ -26,4 +69,5 @@ public class SequencerNode: CompositeNode
 
         return NodeState.Success;
     }
+
 }

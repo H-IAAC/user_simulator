@@ -128,3 +128,11 @@
 .failure #node-state {
     background-color: rgb(255, 0, 0);
 }
+
+.memoried #memory-label {
+    display: flex;
+}
+
+.memoryless #memory-label {
+    display: none;
+}

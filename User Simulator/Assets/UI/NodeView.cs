@@ -179,6 +179,17 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
                     break;
             }
         }
+
+        if(node.useMemory)
+        {
+            AddToClassList("memoried");
+            RemoveFromClassList("memoryless");
+        }
+        else
+        {
+            RemoveFromClassList("memoried");
+            AddToClassList("memoryless");
+        }
         
     }
 }
