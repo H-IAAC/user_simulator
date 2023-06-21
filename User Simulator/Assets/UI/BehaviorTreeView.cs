@@ -4,6 +4,7 @@ using UnityEditor.Experimental.GraphView;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class BehaviorTreeView : GraphView
 {
@@ -41,11 +42,17 @@ public class BehaviorTreeView : GraphView
 
     internal void PopulateView(BehaviorTree tree)
     {
-        this.tree = tree;
 
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
+
+        this.tree = tree;
+
+        if(tree == null)
+        {
+            return;
+        }
 
         if(tree.rootNode == null)
         {
@@ -110,6 +117,15 @@ public class BehaviorTreeView : GraphView
             }
         }
 
+        if(graphViewChange.movedElements != null)
+        {
+            foreach(var node in nodes)
+            {
+                NodeView view = node as NodeView;
+                view.SortChildren();
+            }
+        }
+
         return graphViewChange;
     }
 
@@ -147,5 +163,14 @@ public class BehaviorTreeView : GraphView
     {
                                             // It's not input-input connection            It's not connected to itself
         return ports.ToList().Where(endPort => endPort.direction != startPort.direction && endPort.node != startPort.node).ToList();
+    }
+
+    public void UpdateNodeStates()
+    {
+        foreach(var node in nodes)
+        {
+            NodeView view = node as NodeView;
+            view.UpdateState();
+        }
     }
 }

@@ -6,17 +6,17 @@ public class DebugLogNode : ActionNode
 
     public override void OnStart()
     {
-        Debug.Log($"OnStart{message}");
+        Debug.Log($"OnStart {message}");
     }
 
     public override void OnStop()
     {
-        Debug.Log($"OnStop{message}");
+        Debug.Log($"OnStop {message}");
     }
 
     public override NodeState OnUpdate()
     {
-        Debug.Log($"OnUpdate{message}");
+        Debug.Log($"OnUpdate {message}");
 
         return NodeState.Success;
     }

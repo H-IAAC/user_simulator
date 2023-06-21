@@ -8,7 +8,10 @@ public class BehaviorTree: ScriptableObject
     public RootNode rootNode;
     public NodeState treeState = NodeState.Runnning;
 
-    public List<Node> nodes = new List<Node>();
+    public List<Node> nodes = new();
+
+
+    public Blackboard blackboard = new();
 
     public NodeState Update()
     {
@@ -25,9 +28,20 @@ public class BehaviorTree: ScriptableObject
         Node node = ScriptableObject.CreateInstance(type) as Node;
         node.name = type.Name;
         node.guid = GUID.Generate().ToString();
+
+        Undo.RecordObject(this, "Behavior Tree (CreateNode)");
+
         nodes.Add(node);
 
-        AssetDatabase.AddObjectToAsset(node, this);
+        if (!Application.isPlaying)
+        {
+            AssetDatabase.AddObjectToAsset(node, this);
+        }
+
+        
+
+        Undo.RegisterCreatedObjectUndo(node, "Behavior Tree (CreateNode)");
+
         AssetDatabase.SaveAssets();
 
         return node;
@@ -35,9 +49,13 @@ public class BehaviorTree: ScriptableObject
 
     public void DeleteNode(Node node)
     {
+        Undo.RecordObject(this, "Behavior Tree (DeleteNode)");
+
         nodes.Remove(node);
 
-        AssetDatabase.RemoveObjectFromAsset(node);
+        //AssetDatabase.RemoveObjectFromAsset(node);
+        Undo.DestroyObjectImmediate(node);
+
         AssetDatabase.SaveAssets();
     }
 
@@ -47,18 +65,31 @@ public class BehaviorTree: ScriptableObject
         {
             DecoratorNode decorator = parent as DecoratorNode;
 
+            Undo.RecordObject(decorator, "Behavior Tree (AddChild)");
+
             decorator.child = child;
+
+            EditorUtility.SetDirty(decorator);
         }
         else if (parent is CompositeNode)
         {
             CompositeNode composite = parent as CompositeNode;
 
+            Undo.RecordObject(composite, "Behavior Tree (AddChild)");
+
             composite.children.Add(child);
+
+            EditorUtility.SetDirty(composite);
         }
         else if(parent is RootNode)
         {
             RootNode root = parent as RootNode;
+
+            Undo.RecordObject(root, "Behavior Tree (AddChild)");
+
             root.child = child;
+
+            EditorUtility.SetDirty(root);
         }
 
 
@@ -70,18 +101,31 @@ public class BehaviorTree: ScriptableObject
         {
             DecoratorNode decorator = parent as DecoratorNode;
 
+            Undo.RecordObject(decorator, "Behavior Tree (RemoveChild)");
+
             decorator.child = null;
+
+            EditorUtility.SetDirty(decorator);
         }
         else if (parent is CompositeNode)
         {
             CompositeNode composite = parent as CompositeNode;
 
+            Undo.RecordObject(composite, "Behavior Tree (RemoveChild)");
+            
             composite.children.Remove(child);
+
+            EditorUtility.SetDirty(composite);
         }
         else if(parent is RootNode)
         {
             RootNode root = parent as RootNode;
+
+            Undo.RecordObject(root, "Behavior Tree (RemoveChild)");
+
             root.child = null;
+
+            EditorUtility.SetDirty(root);
         }
     }
 
@@ -117,11 +161,38 @@ public class BehaviorTree: ScriptableObject
         return new List<Node>();
     }
 
+    public void Traverse(Node node, System.Action<Node> visiter)
+    {
+        if(node)
+        {
+            visiter.Invoke(node);
+            List<Node> children = GetChildren(node);
+
+            foreach(Node child in children)
+            {
+                Traverse(child, visiter);
+            }
+        }
+    }
+
     public BehaviorTree Clone()
     {
         BehaviorTree tree = Instantiate(this);
         tree.rootNode = tree.rootNode.Clone() as RootNode;
 
+        tree.nodes = new List<Node>();
+        Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); });
+
         return tree;
+    }
+
+    public void Bind(GameObject gameObject)
+    {
+        Traverse(rootNode, (node) =>
+            {
+                node.gameObject = gameObject;
+                node.blackboard = blackboard;
+            }
+        );
     }
 }
