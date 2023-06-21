@@ -1,6 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
 
 [CreateAssetMenu(menuName="Behavior Tree/Behavior Tree")]
 public class BehaviorTree: ScriptableObject
@@ -23,150 +27,57 @@ public class BehaviorTree: ScriptableObject
         return treeState;
     }
 
-    public Node CreateNode(System.Type type)
+    public Node CreateNode(Type type)
     {
-        Node node = ScriptableObject.CreateInstance(type) as Node;
+        Node node = CreateInstance(type) as Node;
         node.name = type.Name;
-        node.guid = GUID.Generate().ToString();
 
-        Undo.RecordObject(this, "Behavior Tree (CreateNode)");
+        node.guid = Guid.NewGuid().ToString();
+
+        #if UNITY_EDITOR
+            Undo.RecordObject(this, "Behavior Tree (CreateNode)");
+        #endif
 
         nodes.Add(node);
 
-        if (!Application.isPlaying)
-        {
-            AssetDatabase.AddObjectToAsset(node, this);
-        }
+        #if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                AssetDatabase.AddObjectToAsset(node, this);
+            }
+            Undo.RegisterCreatedObjectUndo(node, "Behavior Tree (CreateNode)");
+
+            AssetDatabase.SaveAssets();
+        #endif
 
         
-
-        Undo.RegisterCreatedObjectUndo(node, "Behavior Tree (CreateNode)");
-
-        AssetDatabase.SaveAssets();
 
         return node;
     }
 
     public void DeleteNode(Node node)
     {
-        Undo.RecordObject(this, "Behavior Tree (DeleteNode)");
+        #if UNITY_EDITOR
+            Undo.RecordObject(this, "Behavior Tree (DeleteNode)");
+        #endif
 
         nodes.Remove(node);
+        
+        #if UNITY_EDITOR
+            //AssetDatabase.RemoveObjectFromAsset(node);
+            Undo.DestroyObjectImmediate(node);
 
-        //AssetDatabase.RemoveObjectFromAsset(node);
-        Undo.DestroyObjectImmediate(node);
-
-        AssetDatabase.SaveAssets();
+            AssetDatabase.SaveAssets();
+        #endif
     }
 
-    public void AddChild(Node parent, Node child)
-    {
-        if(parent is DecoratorNode)
-        {
-            DecoratorNode decorator = parent as DecoratorNode;
-
-            Undo.RecordObject(decorator, "Behavior Tree (AddChild)");
-
-            decorator.child = child;
-
-            EditorUtility.SetDirty(decorator);
-        }
-        else if (parent is CompositeNode)
-        {
-            CompositeNode composite = parent as CompositeNode;
-
-            Undo.RecordObject(composite, "Behavior Tree (AddChild)");
-
-            composite.children.Add(child);
-
-            EditorUtility.SetDirty(composite);
-        }
-        else if(parent is RootNode)
-        {
-            RootNode root = parent as RootNode;
-
-            Undo.RecordObject(root, "Behavior Tree (AddChild)");
-
-            root.child = child;
-
-            EditorUtility.SetDirty(root);
-        }
-
-
-    }
-
-    public void RemoveChild(Node parent, Node child)
-    {
-        if(parent is DecoratorNode)
-        {
-            DecoratorNode decorator = parent as DecoratorNode;
-
-            Undo.RecordObject(decorator, "Behavior Tree (RemoveChild)");
-
-            decorator.child = null;
-
-            EditorUtility.SetDirty(decorator);
-        }
-        else if (parent is CompositeNode)
-        {
-            CompositeNode composite = parent as CompositeNode;
-
-            Undo.RecordObject(composite, "Behavior Tree (RemoveChild)");
-            
-            composite.children.Remove(child);
-
-            EditorUtility.SetDirty(composite);
-        }
-        else if(parent is RootNode)
-        {
-            RootNode root = parent as RootNode;
-
-            Undo.RecordObject(root, "Behavior Tree (RemoveChild)");
-
-            root.child = null;
-
-            EditorUtility.SetDirty(root);
-        }
-    }
-
-    public List<Node> GetChildren(Node parent)
-    {
-
-        if(parent is DecoratorNode)
-        {
-            DecoratorNode decorator = parent as DecoratorNode;
-
-            if(decorator.child != null)
-            {   
-                Node[] c = {decorator.child};
-                return new List<Node>(c);
-            }
-        }
-        else if (parent is CompositeNode)
-        {
-            CompositeNode composite = parent as CompositeNode;
-
-            return composite.children;
-        }
-        else if(parent is RootNode)
-        {
-            RootNode root = parent as RootNode;
-            if(root.child != null)
-            {   
-                Node[] c = {root.child};
-                return new List<Node>(c);
-            }
-        }
-
-        return new List<Node>();
-    }
 
     public void Traverse(Node node, System.Action<Node> visiter)
     {
         if(node)
         {
             visiter.Invoke(node);
-            List<Node> children = GetChildren(node);
+            List<Node> children = node.GetChildren();
 
             foreach(Node child in children)
             {

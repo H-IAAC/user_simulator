@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Node: ScriptableObject
@@ -10,7 +11,10 @@ public abstract class Node: ScriptableObject
     [HideInInspector] public Blackboard blackboard;
     [HideInInspector] public GameObject gameObject;
 
+    public bool useMemory = false;
+
     [TextArea] public string description;
+    
 
     public NodeState Update()
     {
@@ -39,4 +43,10 @@ public abstract class Node: ScriptableObject
     public abstract void OnStart();
     public abstract void OnStop();
     public abstract NodeState OnUpdate();
+
+    public abstract void AddChild(Node child);
+
+    public abstract void RemoveChild(Node child);
+
+    public abstract List<Node> GetChildren();
 }

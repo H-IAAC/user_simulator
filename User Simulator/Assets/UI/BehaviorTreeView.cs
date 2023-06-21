@@ -72,7 +72,7 @@ public class BehaviorTreeView : GraphView
         {
             NodeView parentView = FindNodeView(node);
 
-            List<Node> children = tree.GetChildren(node);
+            List<Node> children = node.GetChildren();
             foreach(Node child in children)
             {
                 NodeView childView = FindNodeView(child);
@@ -89,19 +89,19 @@ public class BehaviorTreeView : GraphView
         {
             foreach(GraphElement elem in graphViewChange.elementsToRemove)
             {
-                NodeView nodeView = elem as NodeView;
-                if(nodeView != null)
+                if (elem is NodeView nodeView)
                 {
                     tree.DeleteNode(nodeView.node);
                 }
 
-                Edge edge = elem as Edge;
-                if(edge != null)
+                if (elem is Edge edge)
                 {
                     NodeView parentView = edge.output.node as NodeView;
                     NodeView childView = edge.input.node as NodeView;
 
-                    tree.RemoveChild(parentView.node, childView.node);
+                    Undo.RecordObject(parentView.node, "Behavior Tree (RemoveChild)");
+                    parentView.node.RemoveChild(childView.node);
+                    EditorUtility.SetDirty(parentView.node);
                 }
             }
         }
@@ -113,7 +113,9 @@ public class BehaviorTreeView : GraphView
                 NodeView parentView = edge.output.node as NodeView;
                 NodeView childView = edge.input.node as NodeView;
 
-                tree.AddChild(parentView.node, childView.node);
+                Undo.RecordObject(parentView.node, "Behavior Tree (AddChild)");
+                parentView.node.AddChild(childView.node);
+                EditorUtility.SetDirty(parentView.node);
             }
         }
 
@@ -131,7 +133,7 @@ public class BehaviorTreeView : GraphView
 
     void CreateNodeView(Node node)
     {
-        NodeView nodeView = new NodeView(node);
+        NodeView nodeView = new(node);
         nodeView.OnNodeSelected = OnNodeSelected;
         AddElement(nodeView);
     }
@@ -147,7 +149,7 @@ public class BehaviorTreeView : GraphView
             TypeCache.TypeCollection types = TypeCache.GetTypesDerivedFrom(baseType);
             foreach(Type type in types)
             {
-                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
+                evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", (a) => CreateNode(type));
             }
         }
         

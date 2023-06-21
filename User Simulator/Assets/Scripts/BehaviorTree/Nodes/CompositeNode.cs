@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class CompositeNode : Node
 {
-    [HideInInspector] 
+    //[HideInInspector] 
     public List<Node> children = new List<Node>();
 
     public override Node Clone()
@@ -18,5 +18,20 @@ public abstract class CompositeNode : Node
         }
 
         return node;
+    }
+
+    public override void AddChild(Node child)
+    {
+        children.Add(child);
+    }
+
+    public override void RemoveChild(Node child)
+    {
+        children.Remove(child);
+    }
+
+    public override List<Node> GetChildren()
+    {
+        return children;
     }
 }

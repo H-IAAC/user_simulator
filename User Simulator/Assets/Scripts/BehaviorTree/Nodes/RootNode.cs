@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class RootNode : Node
 {
     public Node child;
@@ -23,5 +25,27 @@ public class RootNode : Node
         node.child = child.Clone();
 
         return node;
+    }
+
+    public override void AddChild(Node child)
+    {
+        this.child = child;
+    }
+
+    public override void RemoveChild(Node child)
+    {
+        this.child = null;
+    }
+
+    public override List<Node> GetChildren()
+    {
+        List<Node> children = new();
+        
+        if(child != null)
+        {
+            children.Add(child);
+        }
+
+        return children;
     }
 }
