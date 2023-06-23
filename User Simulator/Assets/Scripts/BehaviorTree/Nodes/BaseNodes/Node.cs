@@ -15,7 +15,7 @@ public abstract class Node: ScriptableObject
     bool useMemory = false;
     [TextArea] public string description;
 
-    [HideInInspector] Node parent;
+    [HideInInspector] public Node parent;
 
     public Node(MemoryMode memoryMode = MemoryMode.Memoryless)
     {
