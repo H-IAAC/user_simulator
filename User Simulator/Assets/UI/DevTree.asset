@@ -40,7 +40,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 39fedd7f51822fc45a33c6b1cf9d3e84
-  position: {x: 39, y: -224}
+  position: {x: 38.99996, y: -237.33807}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   state: 0
   started: 1
   guid: 7cf5aeac2339069419746ea726e38549
-  position: {x: -135.29005, y: 185.87251}
+  position: {x: -150, y: 186}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 0}

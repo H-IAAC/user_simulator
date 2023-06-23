@@ -133,7 +133,7 @@ public class BehaviorTreeView : GraphView
 
     void CreateNodeView(Node node)
     {
-        NodeView nodeView = new(node);
+        NodeView nodeView = new(node, tree.runtime);
         nodeView.OnNodeSelected = OnNodeSelected;
         AddElement(nodeView);
     }

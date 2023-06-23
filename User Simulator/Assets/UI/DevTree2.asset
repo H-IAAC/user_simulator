@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-503578297969142665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 0743b97a-96c1-4cf0-a37b-8c4709d3e0df
+  position: {x: 0, y: 301.88}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  message: 
+--- !u!114 &-488800248754972829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: a75a48e9-4d3f-4c65-96e0-2e0ccb73ba5b
+  position: {x: 0, y: 0}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  child: {fileID: 4825008473877183225}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: DevTree2
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -488800248754972829}
+  treeState: 0
+  nodes:
+  - {fileID: -488800248754972829}
+  - {fileID: 4825008473877183225}
+  - {fileID: -503578297969142665}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &4825008473877183225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8480b827507b5954d92fc2a4971aab19, type: 3}
+  m_Name: FallbackNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 0411613b-369b-49ec-8c26-6e503e5c1f69
+  position: {x: 0, y: 145}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  children:
+  - {fileID: -503578297969142665}

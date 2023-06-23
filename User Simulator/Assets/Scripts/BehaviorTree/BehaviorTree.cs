@@ -17,6 +17,8 @@ public class BehaviorTree: ScriptableObject
 
     public Blackboard blackboard = new();
 
+    [HideInInspector] public bool runtime = false;
+
     public NodeState Update()
     {
         if(rootNode.state == NodeState.Runnning)
@@ -99,6 +101,7 @@ public class BehaviorTree: ScriptableObject
 
     public void Bind(GameObject gameObject)
     {
+        runtime = true;
         Traverse(rootNode, (node) =>
             {
                 node.gameObject = gameObject;

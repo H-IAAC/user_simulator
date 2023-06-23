@@ -32,6 +32,7 @@ public abstract class Node: ScriptableObject
             started = false;
         }
 
+
         return state;
     }
 

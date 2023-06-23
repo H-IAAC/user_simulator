@@ -14,7 +14,9 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
     public Port input;
     public Port output;
 
-    public NodeView(Node node) : base("Assets/UI/NodeView.uxml")
+    bool runtime;
+
+    public NodeView(Node node, bool runtime) : base("Assets/UI/NodeView.uxml")
     {
         this.node = node;
 
@@ -34,6 +36,8 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         Label descriptionLabel = this.Q<Label>("description");
         descriptionLabel.bindingPath = "description";
         descriptionLabel.Bind(new SerializedObject(node));
+
+        this.runtime = runtime;
     }
 
     void SetupClasses()
@@ -161,7 +165,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         RemoveFromClassList("failure");
         RemoveFromClassList("success");
 
-        if(Application.isPlaying)
+        if(Application.isPlaying && runtime)
         {
             switch (node.state)
             {

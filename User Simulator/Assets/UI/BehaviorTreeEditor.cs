@@ -40,7 +40,7 @@ public class BehaviorTreeEditor : EditorWindow
 
         blackboardView.onGUIHandler = () =>
         {
-            if(treeObject == null)
+            if(treeObject == null || treeObject.targetObject == null)
             {
                 return;
             }
