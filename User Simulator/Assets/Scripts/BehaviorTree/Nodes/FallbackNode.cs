@@ -4,6 +4,11 @@ public class FallbackNode: CompositeNode
 {
     int current = 0;
 
+    public FallbackNode() : base(MemoryMode.Both)
+    {
+
+    }
+
     public override void OnStart()
     {
 
@@ -16,7 +21,7 @@ public class FallbackNode: CompositeNode
 
     public override NodeState OnUpdate()
     {
-        if(!useMemory)
+        if(!UseMemory)
         {
             current = 0;
         }

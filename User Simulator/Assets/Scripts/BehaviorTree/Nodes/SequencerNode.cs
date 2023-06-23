@@ -4,6 +4,11 @@ public class SequencerNode: CompositeNode
 {
     int current = 0;
 
+    public SequencerNode() : base(MemoryMode.Both)
+    {
+
+    }
+
     void OnEnable()
     {
         current = 0;
@@ -21,7 +26,7 @@ public class SequencerNode: CompositeNode
 
     public override NodeState OnUpdate()
     {
-        if(useMemory)
+        if(UseMemory)
         {
             return memoriedUpdate();
         }

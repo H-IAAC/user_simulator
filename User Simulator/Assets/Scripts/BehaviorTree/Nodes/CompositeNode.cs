@@ -3,8 +3,13 @@ using UnityEngine;
 
 public abstract class CompositeNode : Node
 {
-    //[HideInInspector] 
-    public List<Node> children = new List<Node>();
+    [HideInInspector] 
+    public List<Node> children = new();
+
+    public CompositeNode(MemoryMode memoryMode = MemoryMode.Memoryless) : base(memoryMode)
+    {
+
+    }
 
     public override Node Clone()
     {

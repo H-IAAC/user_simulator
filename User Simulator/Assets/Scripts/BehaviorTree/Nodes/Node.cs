@@ -11,10 +11,48 @@ public abstract class Node: ScriptableObject
     [HideInInspector] public Blackboard blackboard;
     [HideInInspector] public GameObject gameObject;
 
-    public bool useMemory = false;
-
+    [SerializeField][SerializeProperty("UseMemory")]
+    bool useMemory = false;
     [TextArea] public string description;
     
+    public Node(MemoryMode memoryMode = MemoryMode.Memoryless)
+    {
+        this.MemoryMode = memoryMode;
+
+        switch (memoryMode)
+        {
+            case MemoryMode.Memoried:
+                this.useMemory = true;
+                break;
+            case MemoryMode.Memoryless:
+                this.useMemory = false;
+                break;
+            case MemoryMode.Both:
+                break;
+        }
+    }
+
+    public MemoryMode MemoryMode
+    {
+        private set; get;
+    }
+
+    public bool UseMemory
+    {
+        get
+        {
+            return useMemory;
+        }
+
+        set
+        {
+            if(MemoryMode == MemoryMode.Both)
+            {
+                useMemory = value;
+            }
+
+        }
+    }
 
     public NodeState Update()
     {

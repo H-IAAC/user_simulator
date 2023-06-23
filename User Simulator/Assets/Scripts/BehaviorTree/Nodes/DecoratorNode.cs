@@ -5,6 +5,11 @@ public abstract class DecoratorNode : Node
 {
     [HideInInspector] public Node child;
 
+    public DecoratorNode(MemoryMode memoryMode = MemoryMode.Memoryless) : base(memoryMode)
+    {
+
+    }
+
     public override Node Clone()
     {
         DecoratorNode node = Instantiate(this);

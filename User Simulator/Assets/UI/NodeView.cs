@@ -184,7 +184,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
             }
         }
 
-        if(node.useMemory)
+        if(node.UseMemory)
         {
             AddToClassList("memoried");
             RemoveFromClassList("memoryless");

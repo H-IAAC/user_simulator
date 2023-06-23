@@ -4,6 +4,11 @@ public class RepeatNode: DecoratorNode
 {
     public int repeatCount = 1;
     int currentRepeatCount = 0;
+
+    public RepeatNode() : base(MemoryMode.Both)
+    {
+
+    }
     
     void OnEnable()
     {
@@ -22,7 +27,7 @@ public class RepeatNode: DecoratorNode
 
     public override NodeState OnUpdate()
     {
-        if(useMemory)
+        if(UseMemory)
         {
             return memoriedUpdate();
         }
