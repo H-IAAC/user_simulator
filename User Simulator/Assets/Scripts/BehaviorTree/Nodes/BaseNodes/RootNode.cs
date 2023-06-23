@@ -30,6 +30,7 @@ public class RootNode : Node
     public override void AddChild(Node child)
     {
         this.child = child;
+        child.parent = this;
     }
 
     public override void RemoveChild(Node child)

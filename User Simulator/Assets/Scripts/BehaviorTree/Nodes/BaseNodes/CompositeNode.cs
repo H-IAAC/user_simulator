@@ -28,6 +28,7 @@ public abstract class CompositeNode : Node
     public override void AddChild(Node child)
     {
         children.Add(child);
+        child.parent = this;
     }
 
     public override void RemoveChild(Node child)

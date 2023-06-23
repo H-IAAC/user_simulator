@@ -74,7 +74,7 @@ public class BehaviorTree: ScriptableObject
     }
 
 
-    public void Traverse(Node node, System.Action<Node> visiter)
+    public void Traverse(Node node, Action<Node> visiter)
     {
         if(node)
         {
@@ -94,7 +94,25 @@ public class BehaviorTree: ScriptableObject
         tree.rootNode = tree.rootNode.Clone() as RootNode;
 
         tree.nodes = new List<Node>();
-        Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); });
+        List<string> clonedGUID = new();
+        
+        Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+
+        foreach(Node origNode in this.nodes)
+        {
+            if(!clonedGUID.Contains(origNode.guid))
+            {
+                Node parent = origNode;
+                while(parent.parent != null)
+                {
+                    parent = parent.parent;
+                }
+
+                Node cloned = parent.Clone();
+
+                Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+            }
+        }
 
         return tree;
     }

@@ -14,7 +14,9 @@ public abstract class Node: ScriptableObject
     [SerializeField][SerializeProperty("UseMemory")]
     bool useMemory = false;
     [TextArea] public string description;
-    
+
+    [HideInInspector] Node parent;
+
     public Node(MemoryMode memoryMode = MemoryMode.Memoryless)
     {
         this.MemoryMode = memoryMode;
