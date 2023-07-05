@@ -2,12 +2,23 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Trajectory of multiple points.
+/// </summary>
 [CreateAssetMenu(menuName ="HIAAC/Simulator/Point Trajectory")]
 public class PointTrajectory : ScriptableObject
 {
+    [Tooltip("Points in the trajectory.")]
     [SerializeField] public List<Vector3> trajectory = new List<Vector3>();
+
+    [Tooltip("Curve to interpolate between two points. Default is linear.")]
     [SerializeField ] public AnimationCurve interpolationCurve = AnimationCurve.Linear(0, 0, 1, 1);
 
+    /// <summary>
+    /// Samples the trajectory in some position.
+    /// </summary>
+    /// <param name="time">Time to sample the trajectory. Must be in [0, 1]. </param>
+    /// <returns>Sampled trajectory point.</returns>
     public Vector3 Sample(float time)
     {
         int count = trajectory.Count - 1;
@@ -25,6 +36,12 @@ public class PointTrajectory : ScriptableObject
         return Sample(index, localTime);
     }
 
+    /// <summary>
+    /// Samples the trajectory in some position.
+    /// </summary>
+    /// <param name="index">Index of the starting point.</param>
+    /// <param name="localTime">Time to sample the trajectory between the points. Must be in [0, 1].</param>
+    /// <returns>Sampled trajectory point.</returns>
     public Vector3 Sample(int index, float localTime)
     {
         if(index >= trajectory.Count)
@@ -37,6 +54,10 @@ public class PointTrajectory : ScriptableObject
         return position;
     }
 
+    /// <summary>
+    /// Converts the trajectory to a float array.
+    /// </summary>
+    /// <returns>Trajectory in float[][] representation.</returns>
     [SerializeField] public float[][] AsFloatArray
     {
         set

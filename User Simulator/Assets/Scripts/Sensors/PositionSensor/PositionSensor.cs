@@ -6,11 +6,14 @@ using UnityEngine.Perception.GroundTruth.DataModel;
 
 namespace HIAAC.UserSimulator
 {
+    /// <summary>
+    /// Sensor for capture position data.
+    /// </summary>
     public class PositionSensor : UniversalSensor
     {
         Vector3 position;
 
-        protected override Sensor Capture(SensorDefinition sensorDefinition)
+        protected override Sensor Capture(USensorDefinition sensorDefinition)
         {
             return new PositionSensorCapture(sensorDefinition, transform);
         }
@@ -25,7 +28,7 @@ namespace HIAAC.UserSimulator
         protected override int Write(ObservationWriter writer)
         {
             writer.Add(position);
-            return 3;   
+            return 1;   
         }
 
         protected override ObservationSpec CreateObservationSpec()
@@ -33,7 +36,7 @@ namespace HIAAC.UserSimulator
             return ObservationSpec.Vector(3);
         }
 
-        protected override SensorDefinition CreateSensorDefinition(SensorInfo sensorInfo, PerceptionSensorProperties sensorProperties)
+        protected override USensorDefinition CreateSensorDefinition(SensorInfo sensorInfo, PerceptionSensorProperties sensorProperties)
         {
             return new PositionSensorDefinition(sensorInfo, perceptionSensorProperties, "position");
         }

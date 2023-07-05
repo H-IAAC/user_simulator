@@ -31,7 +31,7 @@ namespace HIAAC.FromJSON
 
         void OnWizardCreate()
         {
-            FromJSON.SOFromFilePath(filePaths);
+            FromJSON.SOFromFilePath(filePaths, true);
         }
     }
 }
