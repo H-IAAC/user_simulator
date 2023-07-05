@@ -35,6 +35,16 @@ namespace HIAAC.ScriptableList
             itemCount = 0;
         }
 
+        protected virtual T processGettedItem(T gettedItem)
+        {
+            return gettedItem;
+        }
+
+        protected virtual T processInsertedItem(T insertedItem)
+        {
+            return insertedItem;
+        }
+
         //Interface properties
         
         public int Count
@@ -51,7 +61,7 @@ namespace HIAAC.ScriptableList
         { 
             get
             {
-                return List[index];
+                return processGettedItem(List[index]);
             } 
         }
 
@@ -59,6 +69,7 @@ namespace HIAAC.ScriptableList
 
         public void Add(T item)
         {
+            item = processInsertedItem(item);
             if(!List.Contains(item))
             {
                 List.Add(item);
@@ -69,6 +80,7 @@ namespace HIAAC.ScriptableList
 
         public bool Remove(T item)
         {
+            item = processInsertedItem(item);
             if(List.Contains(item))
             {
                 List.Remove(item);
@@ -82,11 +94,13 @@ namespace HIAAC.ScriptableList
 
         public int IndexOf(T item)
         {
+            item = processInsertedItem(item);
             return List.IndexOf(item);
         }
 
         public void Insert(int index, T item)
         {
+            item = processInsertedItem(item);
             if(!List.Contains(item))
             {
                 List.Insert(index, item);
@@ -107,6 +121,7 @@ namespace HIAAC.ScriptableList
 
         public bool Contains(T item)
         {
+            item = processInsertedItem(item);
             return List.Contains(item);
         }
 

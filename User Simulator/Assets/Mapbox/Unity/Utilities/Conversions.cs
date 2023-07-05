@@ -43,8 +43,13 @@ namespace Mapbox.Unity.Utilities
 		/// <param name="s">string.</param>
 		public static Vector2d StringToLatLon(string s)
 		{
-			var latLonSplit = s.Split(',');
-			if (latLonSplit.Length != 2)
+			 var latLonSplit = s.Split(new string[] { "," }, StringSplitOptions.None);
+			// Case where the decimal separator is a comma
+			if (latLonSplit.Length == 4) {
+				latLonSplit[0] = string.Join(",", latLonSplit[0], latLonSplit[1]);
+				latLonSplit[1] = string.Join(",", latLonSplit[2], latLonSplit[3]);
+			}
+			else if (latLonSplit.Length != 2)
 			{
 				throw new ArgumentException("Wrong number of arguments");
 			}

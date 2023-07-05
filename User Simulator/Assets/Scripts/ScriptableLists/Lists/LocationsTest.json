@@ -1,0 +1,17 @@
+{
+    "List": [
+        {
+            "x": 8.0,
+            "y": 1.0,
+            "z": 3.0
+        },
+        {
+            "x": 8.0,
+            "y": 1.0,
+            "z": 5.0
+        }
+    ],
+    "notResetOnEnable": true,
+    "itemCount": 2,
+    "type": "HIAAC.ScriptableList.Vector3SList"
+}

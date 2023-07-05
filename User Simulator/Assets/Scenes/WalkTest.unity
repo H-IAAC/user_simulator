@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e607cd4a734a161449aec50d3ef75bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locations: {fileID: 11400000, guid: 9a33eac22bf47f04fb24f88857fa4071, type: 2}
+  locations: {fileID: 0}
   locationSelectionMode: 0
 --- !u!195 &32674100
 NavMeshAgent:
