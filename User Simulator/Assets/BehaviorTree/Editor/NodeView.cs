@@ -16,7 +16,15 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 
     bool runtime;
 
-    public NodeView(Node node, bool runtime) : base("Assets/UI/NodeView.uxml")
+    static string UIFilePath = getUIFilePath();
+
+    static string getUIFilePath()
+    {
+        string[] guids = AssetDatabase.FindAssets("t:VisualTreeAsset NodeView");
+        return AssetDatabase.GUIDToAssetPath(guids[0]);
+    }
+
+    public NodeView(Node node, bool runtime) : base(UIFilePath)
     {
         this.node = node;
 

@@ -2,16 +2,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.Callbacks;
+using UnityEditor.Experimental.GraphView;
 
 public class BehaviorTreeEditor : EditorWindow
 {
     BehaviorTreeView treeView;
     InspectorView inspectorView;
-
-    IMGUIContainer blackboardView;
-
+    BlackboardView blackboard;
     SerializedObject treeObject;
-    UnityEditor.SerializedProperty blackboardProperty;
 
     [SerializeField]
     private VisualTreeAsset m_VisualTreeAsset = default;
@@ -31,24 +29,13 @@ public class BehaviorTreeEditor : EditorWindow
         // Instantiate UXML
         m_VisualTreeAsset.CloneTree(root);
 
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/UI/BehaviorTreeEditor.uss");
+        string[] guids = AssetDatabase.FindAssets("t:StyleSheet BehaviorTreeEditor");
+        StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(AssetDatabase.GUIDToAssetPath(guids[0]));
         root.styleSheets.Add(styleSheet);
 
         treeView = root.Q<BehaviorTreeView>();
         inspectorView = root.Q<InspectorView>();
-        blackboardView = root.Q<IMGUIContainer>();
-
-        blackboardView.onGUIHandler = () =>
-        {
-            if(treeObject == null || treeObject.targetObject == null)
-            {
-                return;
-            }
-
-            treeObject.Update();
-            EditorGUILayout.PropertyField(blackboardProperty);
-            treeObject.ApplyModifiedProperties();
-        };
+        GenerateBlackboard();
 
         treeView.OnNodeSelected = OnNodeSelectionChanged;
 
@@ -113,7 +100,6 @@ public class BehaviorTreeEditor : EditorWindow
         if(tree)
         {
             treeObject = new SerializedObject(tree);
-            blackboardProperty = treeObject.FindProperty("blackboard");
         }
     }
 
@@ -136,5 +122,13 @@ public class BehaviorTreeEditor : EditorWindow
     void OnInspectorUpdate()
     {
         treeView.UpdateNodeStates();
+    }
+
+    void GenerateBlackboard()
+    {
+        blackboard = new BlackboardView(treeView);
+
+        treeView.Add(blackboard);
+        treeView.blackboard = blackboard;
     }
 }

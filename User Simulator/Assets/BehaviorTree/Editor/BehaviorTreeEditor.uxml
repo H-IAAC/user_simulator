@@ -5,18 +5,10 @@
     </uie:Toolbar>
     <SplitView fixed-pane-initial-dimension="300" name="SplitView">
         <ui:VisualElement name="left-panel">
-            <SplitView orientation="Vertical" fixed-pane-initial-dimension="179">
-                <ui:VisualElement name="inspector-container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                    <ui:Label tabindex="-1" text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
-                    <InspectorView />
-                </ui:VisualElement>
-                <ui:VisualElement name="blackboard-container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                    <ui:Label tabindex="-1" text="Blackboard" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
-                    <ui:VisualElement style="flex-grow: 1; background-color: rgb(56, 56, 56);">
-                        <ui:IMGUIContainer />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </SplitView>
+            <ui:VisualElement name="inspector-container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:Label tabindex="-1" text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
+                <InspectorView />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="right-panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
             <ui:Label tabindex="-1" text="Tree View" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />

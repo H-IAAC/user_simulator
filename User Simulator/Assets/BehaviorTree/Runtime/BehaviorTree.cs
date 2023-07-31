@@ -14,9 +14,6 @@ public class BehaviorTree: ScriptableObject
 
     public List<Node> nodes = new();
 
-
-    public Blackboard blackboard = new();
-
     [HideInInspector] public bool runtime = false;
 
     public NodeState Update()
@@ -123,7 +120,6 @@ public class BehaviorTree: ScriptableObject
         Traverse(rootNode, (node) =>
             {
                 node.gameObject = gameObject;
-                node.blackboard = blackboard;
             }
         );
     }

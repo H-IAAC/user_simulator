@@ -14,6 +14,8 @@ public class BehaviorTreeView : GraphView
 
     BehaviorTree tree;
 
+    public Blackboard blackboard;
+
     public BehaviorTreeView()
     {
         Insert(0, new GridBackground());
@@ -23,7 +25,8 @@ public class BehaviorTreeView : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/UI/BehaviorTreeEditor.uss");
+        string[] guids = AssetDatabase.FindAssets("t:StyleSheet BehaviorTreeEditor");
+        StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(AssetDatabase.GUIDToAssetPath(guids[0]));
         styleSheets.Add(styleSheet);
 
         Undo.undoRedoPerformed += OnUndoRedo;
@@ -175,4 +178,5 @@ public class BehaviorTreeView : GraphView
             view.UpdateState();
         }
     }
+
 }
