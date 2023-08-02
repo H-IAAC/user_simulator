@@ -15,9 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6f6af10721cf49e429e0dd3af06663b9
-  position: {x: 39, y: 7}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
+  position: {x: 39, y: -9.080002}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -42,8 +40,6 @@ MonoBehaviour:
   started: 0
   guid: 39fedd7f51822fc45a33c6b1cf9d3e84
   position: {x: 38.99996, y: -237.33807}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -65,13 +61,24 @@ MonoBehaviour:
   started: 1
   guid: 389046bd-6f92-42bb-8ce6-6c7d6bc71a52
   position: {x: 487, y: 186}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
   parent: {fileID: 5154269754289353352}
   duration: 1
+--- !u!114 &-1900621537836985236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Single
+  m_EditorClassIdentifier: Assembly-CSharp::FloatBlackboardProperty
+  value: 0
 --- !u!114 &-1833932416179665659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,8 +95,6 @@ MonoBehaviour:
   started: 0
   guid: 6d0530cd-07a4-4d6b-b5bd-dd992477e16e
   position: {x: 703, y: 186}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -120,7 +125,7 @@ MonoBehaviour:
   - {fileID: -3130002179640355611}
   - {fileID: 5154269754289353352}
   blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
+  - {fileID: -1900621537836985236}
   runtime: 0
 --- !u!114 &848509763994974797
 MonoBehaviour:
@@ -137,9 +142,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: faa9f6708879b8b43af7defa9e181f0f
-  position: {x: 245.20001, y: 186}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
+  position: {x: 247, y: 186}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -161,8 +164,6 @@ MonoBehaviour:
   started: 0
   guid: fb6f37cf-bd32-42ab-828e-06583b47153a
   position: {x: -180.40002, y: 186.00002}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
@@ -183,9 +184,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: df936cb6a60e3f64eae34aaabd0cca5b
-  position: {x: 39.00001, y: 186.00006}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
+  position: {x: 38.999886, y: 186.00002}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -207,8 +206,6 @@ MonoBehaviour:
   started: 1
   guid: 0d45fc1a-d1ff-45a6-8ce4-1d0da43e1d69
   position: {x: 585, y: 7}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -232,8 +229,6 @@ MonoBehaviour:
   started: 0
   guid: c41271f1-e259-4425-8505-5710ca30ad78
   position: {x: 39, y: -113}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 

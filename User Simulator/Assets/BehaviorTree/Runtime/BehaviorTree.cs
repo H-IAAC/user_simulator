@@ -14,6 +14,8 @@ public class BehaviorTree: ScriptableObject
 
     public List<Node> nodes = new();
 
+    public List<BlackboardProperty> blackboard = new();
+
     [HideInInspector] public bool runtime = false;
 
     public NodeState Update()
@@ -122,5 +124,11 @@ public class BehaviorTree: ScriptableObject
                 node.gameObject = gameObject;
             }
         );
+    }
+
+    public void Validate()
+    {
+        nodes.RemoveAll(item => item == null);
+        blackboard.RemoveAll(item => item == null);
     }
 }

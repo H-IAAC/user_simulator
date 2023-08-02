@@ -12,9 +12,9 @@ public class BehaviorTreeView : GraphView
 
     public new class UxmlFactory : UxmlFactory<BehaviorTreeView, GraphView.UxmlTraits>{}
 
-    BehaviorTree tree;
+    public BehaviorTree tree;
 
-    public Blackboard blackboard;
+    public BlackboardView blackboard;
 
     public BehaviorTreeView()
     {
@@ -96,8 +96,7 @@ public class BehaviorTreeView : GraphView
                 {
                     tree.DeleteNode(nodeView.node);
                 }
-
-                if (elem is Edge edge)
+                else if (elem is Edge edge)
                 {
                     NodeView parentView = edge.output.node as NodeView;
                     NodeView childView = edge.input.node as NodeView;
@@ -105,6 +104,10 @@ public class BehaviorTreeView : GraphView
                     Undo.RecordObject(parentView.node, "Behavior Tree (RemoveChild)");
                     parentView.node.RemoveChild(childView.node);
                     EditorUtility.SetDirty(parentView.node);
+                }
+                else if (elem is BlackboardField field)
+                {
+                    blackboard.OnFieldDelete(field);
                 }
             }
         }

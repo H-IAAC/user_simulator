@@ -8,7 +8,7 @@ public class BehaviorTreeEditor : EditorWindow
 {
     BehaviorTreeView treeView;
     InspectorView inspectorView;
-    BlackboardView blackboard;
+    BlackboardView blackboardView;
     SerializedObject treeObject;
 
     [SerializeField]
@@ -37,7 +37,8 @@ public class BehaviorTreeEditor : EditorWindow
         inspectorView = root.Q<InspectorView>();
         GenerateBlackboard();
 
-        treeView.OnNodeSelected = OnNodeSelectionChanged;
+        treeView.OnNodeSelected = (node) => { OnNodeSelectionChanged(node.node); };
+        blackboardView.OnPropertySelect = OnNodeSelectionChanged;
 
         OnSelectionChange();
     }
@@ -76,8 +77,10 @@ public class BehaviorTreeEditor : EditorWindow
 
     void OnSelectionChange()
     {
+
         BehaviorTree tree = Selection.activeObject as BehaviorTree;
 
+        //If tree not selected, check if GO have tree
         if(!tree && Selection.activeGameObject)
         {
             BehaviorTreeRunner runner = Selection.activeGameObject.GetComponent<BehaviorTreeRunner>();
@@ -88,25 +91,30 @@ public class BehaviorTreeEditor : EditorWindow
             }
         }
 
-        if(tree && treeView != null)
+        if(!tree)
+        {
+            return;
+        }
+
+        tree.Validate();
+
+        if(treeView != null)
         {
             if(Application.isPlaying || AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
             {
                 treeView.PopulateView(tree);
+                blackboardView.PopulateView(tree);
             }
         }
 
-
-        if(tree)
-        {
-            treeObject = new SerializedObject(tree);
-        }
+        treeObject = new SerializedObject(tree);
     }
 
-    void OnNodeSelectionChanged(NodeView node)
+    void OnNodeSelectionChanged(UnityEngine.Object obj)
     {
-        inspectorView.UpdateSelection(node);
+        inspectorView.UpdateSelection(obj);
     }
+
 
     [OnOpenAsset]
     public static bool OnOpenAsset(int instanceId, int line)
@@ -126,9 +134,9 @@ public class BehaviorTreeEditor : EditorWindow
 
     void GenerateBlackboard()
     {
-        blackboard = new BlackboardView(treeView);
+        blackboardView = new BlackboardView(treeView);
 
-        treeView.Add(blackboard);
-        treeView.blackboard = blackboard;
+        treeView.Add(blackboardView);
+        treeView.blackboard = blackboardView;
     }
 }
