@@ -79,16 +79,3 @@ public abstract class BlackboardProperty<T> : BlackboardProperty
     }
 
 }
-
-
-[Serializable]
-public struct MyStruct
-{
-    public int x;
-    public float f;
-}
-
-public class MyStructProperty : BlackboardProperty<MyStruct>
-{
-
-}
