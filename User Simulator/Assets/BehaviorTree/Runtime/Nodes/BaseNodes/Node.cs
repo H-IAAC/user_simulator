@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Linq;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -32,6 +33,8 @@ public abstract class Node: ScriptableObject
     [HideInInspector] public List<BlackboardProperty> variables = new();
 
     [HideInInspector] public List<BlackboardProperty> blackboard;
+
+    [HideInInspector] public BehaviorTree tree;
 
     public Node(MemoryMode memoryMode = MemoryMode.Memoryless)
     {
@@ -105,6 +108,11 @@ public abstract class Node: ScriptableObject
         property.name = this.name + "-" + name;
 
         #if UNITY_EDITOR
+        if(AssetDatabase.GetAssetPath(this) == "")
+        {
+            throw new Exception("Creating property before object initalization.");
+        }
+
         if (!Application.isPlaying)
             {
                 AssetDatabase.AddObjectToAsset(property, AssetDatabase.GetAssetPath(this));
@@ -133,15 +141,24 @@ public abstract class Node: ScriptableObject
         else
         {
             index = blackboard.FindIndex(x => x.PropertyName == bbName);
-            if(index < 0)
+            if (index < 0)
             {
                 throw new ArgumentException($"Property does not exist in blackboard. Property name: {bbName}");
             }
 
             return (T)blackboard[index].Value;
         }
+    }
 
-        
+    public void ClearPropertyDefinitions()
+    {
+        variables.Clear();
+        propertyBlackboardMap.Clear();
+    }
+    
+    public bool HasProperty(string name)
+    {
+        return propertyBlackboardMap.Any(x => x.variable == name);
     }
 
     public virtual Node Clone()

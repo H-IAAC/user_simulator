@@ -26,6 +26,58 @@ MonoBehaviour:
   m_Name: duration
   m_EditorClassIdentifier: Assembly-CSharp::FloatBlackboardProperty
   value: 0.01
+--- !u!114 &-8021129909926907123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
+  m_Name: message
+  m_EditorClassIdentifier: 
+  value: 
+--- !u!114 &-7720622054993248628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
+  m_Name: message
+  m_EditorClassIdentifier: 
+  value: In 2
+--- !u!114 &-7103197608832875633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
+  m_Name: String
+  m_EditorClassIdentifier: 
+  value: 
+--- !u!114 &-5822873458633221530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Single
+  m_EditorClassIdentifier: Assembly-CSharp::FloatBlackboardProperty
+  value: 0
 --- !u!114 &-5796432903998192358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,34 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
   m_Name: message
   m_EditorClassIdentifier: 
-  value: FromBlackboard
---- !u!114 &-3386763568733331458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: d4081d21-f9c3-4d4e-b148-669966e68bbe
-  position: {x: -118, y: 280}
-  gameObject: {fileID: 0}
-  useMemory: 0
-  description: 
-  parent: {fileID: 1029918347481560378}
-  propertyBlackboardMap:
-  - variable: message
-    blackboardProperty: 
-  variables:
-  - {fileID: 2899094836589859639}
-  blackboard:
-  - {fileID: -5796432903998192358}
+  value: FromBlackboard2
 --- !u!114 &-1099103346904749429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,18 +125,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
-  m_Name: New Behavior Tree
+  m_Name: DebugPrintExample2
   m_EditorClassIdentifier: 
   rootNode: {fileID: -1099103346904749429}
   treeState: 0
   nodes:
   - {fileID: -1099103346904749429}
-  - {fileID: -3386763568733331458}
   - {fileID: 2967284760407862544}
   - {fileID: 1029918347481560378}
+  - {fileID: 1668516283428024140}
+  - {fileID: 6480327767322100541}
   blackboard:
   - {fileID: -5796432903998192358}
-  runtime: 0
+  - {fileID: 409358563058533091}
+  - {fileID: -5822873458633221530}
+  - {fileID: -7103197608832875633}
+  runtime: 1
+--- !u!114 &409358563058533091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
+  m_Name: message2
+  m_EditorClassIdentifier: 
+  value: Tree2
 --- !u!114 &1029918347481560378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +169,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: fca7988c-8973-49bb-ae9a-ec022fb40afb
-  position: {x: -9, y: 130}
+  position: {x: -9, y: 136}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -137,8 +179,36 @@ MonoBehaviour:
   blackboard:
   - {fileID: -5796432903998192358}
   children:
-  - {fileID: -3386763568733331458}
+  - {fileID: 1668516283428024140}
   - {fileID: 2967284760407862544}
+  - {fileID: 6480327767322100541}
+--- !u!114 &1668516283428024140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 6a88a0f5-23ea-4b6e-b1ed-6d04abac3ba7
+  position: {x: -174, y: 278}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 1029918347481560378}
+  propertyBlackboardMap:
+  - variable: message
+    blackboardProperty: 
+  variables:
+  - {fileID: -7720622054993248628}
+  blackboard:
+  - {fileID: -5796432903998192358}
 --- !u!114 &2899094836589859639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +237,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: fe8408c7-dfba-4fef-b6e2-1060a2f1850f
-  position: {x: 103, y: 280}
+  position: {x: -8.999939, y: 277.70007}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -192,6 +262,34 @@ MonoBehaviour:
   m_Name: message
   m_EditorClassIdentifier: 
   value: 
+--- !u!114 &6480327767322100541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 2cd4c782-09b7-4b11-a112-b015062f3a3c
+  position: {x: 170, y: 278}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 1029918347481560378}
+  propertyBlackboardMap:
+  - variable: message
+    blackboardProperty: message2
+  variables:
+  - {fileID: -8021129909926907123}
+  blackboard:
+  - {fileID: -5796432903998192358}
+  - {fileID: 409358563058533091}
 --- !u!114 &9155051675919825784
 MonoBehaviour:
   m_ObjectHideFlags: 0

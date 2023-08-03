@@ -77,6 +77,11 @@ public class BehaviorTreeEditor : EditorWindow
 
     void OnSelectionChange()
     {
+        if(inspectorView != null)
+        {
+            inspectorView.Clear();
+        }
+
 
         BehaviorTree tree = Selection.activeObject as BehaviorTree;
 

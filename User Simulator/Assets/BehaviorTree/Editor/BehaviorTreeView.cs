@@ -121,6 +121,7 @@ public class BehaviorTreeView : GraphView
 
                 Undo.RecordObject(parentView.node, "Behavior Tree (AddChild)");
                 parentView.node.AddChild(childView.node);
+                parentView.SortChildren();
                 EditorUtility.SetDirty(parentView.node);
             }
         }

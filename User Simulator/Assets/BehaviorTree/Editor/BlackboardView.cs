@@ -164,8 +164,6 @@ public class BlackboardView : Blackboard
 
         int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
 
-        Debug.Log($"Removing {name} from {tree.name}");
-
         tree.blackboard.RemoveAt(index);
     }
 

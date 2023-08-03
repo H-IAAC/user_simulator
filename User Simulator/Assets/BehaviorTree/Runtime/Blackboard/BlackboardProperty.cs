@@ -22,6 +22,15 @@ public abstract class BlackboardProperty : ScriptableObject
 
     public abstract object Value{ get; set; }
 
+    public virtual BlackboardProperty Clone()
+    {
+        BlackboardProperty clone = CreateInstance(this.GetType()) as BlackboardProperty;
+        clone.PropertyName = this.PropertyName;
+        clone.Value = Value;
+
+        return clone;
+    }
+
 }
 
 public abstract class BlackboardProperty<T> : BlackboardProperty

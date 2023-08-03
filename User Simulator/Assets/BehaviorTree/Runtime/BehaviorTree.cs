@@ -33,6 +33,7 @@ public class BehaviorTree: ScriptableObject
         Node node = CreateInstance(type) as Node;
         node.name = type.Name;
         node.blackboard = this.blackboard;
+        node.tree = this;
 
         node.guid = Guid.NewGuid().ToString();
 
@@ -114,6 +115,17 @@ public class BehaviorTree: ScriptableObject
             }
         }
 
+        tree.blackboard = new();
+        foreach(BlackboardProperty property in blackboard)
+        {
+            tree.blackboard.Add(property.Clone());
+        }
+        foreach(Node node in tree.nodes)
+        {
+            node.blackboard = tree.blackboard;
+            node.tree = tree;
+        }
+
         return tree;
     }
 
@@ -131,5 +143,7 @@ public class BehaviorTree: ScriptableObject
     {
         nodes.RemoveAll(item => item == null);
         blackboard.RemoveAll(item => item == null);
+
+        nodes.ForEach(x => x.tree = this);
     }
 }
