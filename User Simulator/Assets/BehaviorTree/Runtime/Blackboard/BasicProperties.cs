@@ -27,3 +27,7 @@ public class Vector2BlackboardProperty : BlackboardProperty<Vector2>
 public class Vector3BlackboardProperty : BlackboardProperty<Vector3>
 {
 }
+
+public class CurveBlackboardProperty : BlackboardProperty<AnimationCurve>
+{
+}
