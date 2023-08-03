@@ -166,6 +166,11 @@ public abstract class Node: ScriptableObject
         return Instantiate(this);
     }
 
+    public virtual float GetUtility()
+    {
+        return 0f;
+    }
+
     public abstract void OnStart();
     public abstract void OnStop();
     public abstract NodeState OnUpdate();
