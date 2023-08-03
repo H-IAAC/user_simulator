@@ -65,6 +65,19 @@ MonoBehaviour:
   m_Name: String
   m_EditorClassIdentifier: 
   value: 
+--- !u!114 &-6483890445169730556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: value
+  m_EditorClassIdentifier: Assembly-CSharp::FloatBlackboardProperty
+  value: 1.93
 --- !u!114 &-5822873458633221530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +119,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8965cae5-5db2-4f02-9d96-1d7e1c61fcdf
-  position: {x: -0.000020980835, y: -1.149955}
+  position: {x: -9.000006, y: -2.322506}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -114,6 +127,7 @@ MonoBehaviour:
   propertyBlackboardMap: []
   variables: []
   blackboard: []
+  tree: {fileID: 11400000}
   child: {fileID: 1029918347481560378}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -138,8 +152,6 @@ MonoBehaviour:
   blackboard:
   - {fileID: -5796432903998192358}
   - {fileID: 409358563058533091}
-  - {fileID: -5822873458633221530}
-  - {fileID: -7103197608832875633}
   runtime: 1
 --- !u!114 &409358563058533091
 MonoBehaviour:
@@ -178,6 +190,7 @@ MonoBehaviour:
   variables: []
   blackboard:
   - {fileID: -5796432903998192358}
+  tree: {fileID: 11400000}
   children:
   - {fileID: 1668516283428024140}
   - {fileID: 2967284760407862544}
@@ -209,6 +222,7 @@ MonoBehaviour:
   - {fileID: -7720622054993248628}
   blackboard:
   - {fileID: -5796432903998192358}
+  tree: {fileID: 11400000}
 --- !u!114 &2899094836589859639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +263,7 @@ MonoBehaviour:
   - {fileID: 5645173334333132372}
   blackboard:
   - {fileID: -5796432903998192358}
+  tree: {fileID: 11400000}
 --- !u!114 &5645173334333132372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,6 +305,7 @@ MonoBehaviour:
   blackboard:
   - {fileID: -5796432903998192358}
   - {fileID: 409358563058533091}
+  tree: {fileID: 11400000}
 --- !u!114 &9155051675919825784
 MonoBehaviour:
   m_ObjectHideFlags: 0

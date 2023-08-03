@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class FallbackNode: CompositeNode
 {
     int current = 0;
@@ -11,7 +9,7 @@ public class FallbackNode: CompositeNode
 
     public override void OnStart()
     {
-
+        
     }
 
     public override void OnStop()

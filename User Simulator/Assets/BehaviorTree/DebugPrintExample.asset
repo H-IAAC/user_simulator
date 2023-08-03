@@ -220,19 +220,16 @@ MonoBehaviour:
   propertyBlackboardMap:
   - variable: message
     blackboardProperty: message
-  - variable: String
-    blackboardProperty: 
   - variable: message2
     blackboardProperty: 
   variables:
   - {fileID: 160744277348079491}
-  - {fileID: 7661704205053506808}
   - {fileID: 2158679158916450394}
   blackboard:
   - {fileID: -5796432903998192358}
   tree: {fileID: 11400000}
   subtree: {fileID: 11400000, guid: b7d8c6596e22e1a4d891ba86eeff1c43, type: 2}
-  passValue: 010000
+  passValue: 0100
   autoRemapOnAssign: 0
 --- !u!114 &-1432568811254515283
 MonoBehaviour:
@@ -295,7 +292,6 @@ MonoBehaviour:
   - {fileID: 1107234227264891726}
   blackboard:
   - {fileID: -5796432903998192358}
-  - {fileID: 616090752561413410}
   runtime: 0
 --- !u!114 &160744277348079491
 MonoBehaviour:
@@ -420,6 +416,24 @@ MonoBehaviour:
   blackboard:
   - {fileID: -5796432903998192358}
   tree: {fileID: 11400000}
+--- !u!114 &1294399057741739978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: modifierFunction
+  m_EditorClassIdentifier: Assembly-CSharp::CurveBlackboardProperty
+  value:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &2158679158916450394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,6 +592,51 @@ MonoBehaviour:
   m_Name: message2
   m_EditorClassIdentifier: 
   value: 
+--- !u!114 &7185936694324181260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: AnimationCurve
+  m_EditorClassIdentifier: Assembly-CSharp::CurveBlackboardProperty
+  value:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.83324444
+      value: 0.99502933
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.8128933
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &7661704205053506808
 MonoBehaviour:
   m_ObjectHideFlags: 0
