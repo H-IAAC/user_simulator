@@ -164,6 +164,12 @@ public class BehaviorTreeView : GraphView
 
     void CreateNode(Type type)
     {
+        if(!tree)
+        {
+            Debug.LogError("Cannot create node without active tree asset.");
+            return;
+        }
+        
         Node node = tree.CreateNode(type);
         CreateNodeView(node);
     }
