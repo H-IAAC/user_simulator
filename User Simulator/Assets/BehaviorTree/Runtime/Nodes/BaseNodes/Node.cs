@@ -1,5 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Collections;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+[Serializable]
+public struct NameMap
+{
+    public string variable;
+    public string blackboardProperty;
+}
 
 public abstract class Node: ScriptableObject
 {
@@ -14,6 +27,11 @@ public abstract class Node: ScriptableObject
     [TextArea] public string description;
 
     [HideInInspector] public Node parent;
+
+    [HideInInspector] public List<NameMap> propertyBlackboardMap = new();
+    [HideInInspector] public List<BlackboardProperty> variables = new();
+
+    [HideInInspector] public List<BlackboardProperty> blackboard;
 
     public Node(MemoryMode memoryMode = MemoryMode.Memoryless)
     {
@@ -30,6 +48,11 @@ public abstract class Node: ScriptableObject
             case MemoryMode.Both:
                 break;
         }
+    }
+
+
+    public virtual void OnCreateProperties()
+    {
     }
 
     public MemoryMode MemoryMode
@@ -72,6 +95,53 @@ public abstract class Node: ScriptableObject
 
 
         return state;
+    }
+
+    public void CreateProperty(Type type, string name)
+    {
+        propertyBlackboardMap.Add(new NameMap { variable = name, blackboardProperty = "" });
+
+        BlackboardProperty property = ScriptableObject.CreateInstance(type) as BlackboardProperty;
+        property.name = this.name + "-" + name;
+
+        #if UNITY_EDITOR
+        if (!Application.isPlaying)
+            {
+                AssetDatabase.AddObjectToAsset(property, AssetDatabase.GetAssetPath(this));
+            }
+        #endif
+
+        property.PropertyName = name;
+
+        variables.Add(property);
+    }
+
+    protected T GetPropertyValue<T>(string name)
+    {
+        int index = propertyBlackboardMap.FindIndex(x => x.variable == name);
+
+        if(index < 0)
+        {
+            throw new ArgumentException("Property does not exist in node.");
+        }
+
+        string bbName = propertyBlackboardMap[index].blackboardProperty;
+        if(bbName == "")
+        {
+            return (T)variables[index].Value;
+        }
+        else
+        {
+            index = blackboard.FindIndex(x => x.PropertyName == bbName);
+            if(index < 0)
+            {
+                throw new ArgumentException($"Property does not exist in blackboard. Property name: {bbName}");
+            }
+
+            return (T)blackboard[index].Value;
+        }
+
+        
     }
 
     public virtual Node Clone()

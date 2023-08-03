@@ -8,7 +8,7 @@ using System;
 using System.Reflection;
 using UnityEngine.UIElements;
 
-class BlackboardField2 : BlackboardField
+public class BlackboardField2 : BlackboardField
 {
     public Action OnPropertySelect;
     public Action<BlackboardField2> OnFieldDelete;
@@ -17,6 +17,20 @@ class BlackboardField2 : BlackboardField
     {
         OnPropertySelect();
     }
+
+    protected override void ExecuteDefaultAction(EventBase evt)
+    {
+        base.ExecuteDefaultAction(evt);
+
+        //Debug.Log($"{evt} | {(evt.target as BlackboardField2).text}");
+
+        /*if(evt.eventTypeId == DragLeaveEvent.TypeId())
+        {
+            Debug.Log("DragLeaveEvent");
+        }*/
+    }
+
+    
 }
 
 public class BlackboardView : Blackboard
@@ -104,8 +118,6 @@ public class BlackboardView : Blackboard
         Undo.RegisterCreatedObjectUndo(property, "Behavior Tree (CreateProperty)");
 
         AssetDatabase.SaveAssets();
-
-        Debug.Log($"{tree.name}|{name}|{tree.blackboard.Count}");
 
         drawProperty(property);
     }

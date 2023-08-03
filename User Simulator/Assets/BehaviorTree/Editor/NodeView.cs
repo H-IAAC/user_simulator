@@ -18,6 +18,8 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 
     static string UIFilePath = getUIFilePath();
 
+    SerializedObject serializedNode;
+
     static string getUIFilePath()
     {
         string[] guids = AssetDatabase.FindAssets("t:VisualTreeAsset NodeView");
@@ -27,6 +29,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
     public NodeView(Node node, bool runtime) : base(UIFilePath)
     {
         this.node = node;
+        serializedNode = new(node);
 
         this.title = node.name;
 
@@ -38,7 +41,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 
         CreateInputPorts();
         CreateOutputPorts();
-        
+
         SetupClasses();
 
         Label descriptionLabel = this.Q<Label>("description");

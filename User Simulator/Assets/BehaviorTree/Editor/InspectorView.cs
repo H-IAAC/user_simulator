@@ -34,6 +34,11 @@ public class InspectorView : VisualElement
 
     void OnGUIHandler()
     {
+        if(!editor)
+        {
+            return;
+        }
+        
         if(editor.target)
         {
             editor.OnInspectorGUI();

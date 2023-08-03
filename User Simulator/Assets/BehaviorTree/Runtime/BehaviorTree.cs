@@ -32,6 +32,7 @@ public class BehaviorTree: ScriptableObject
     {
         Node node = CreateInstance(type) as Node;
         node.name = type.Name;
+        node.blackboard = this.blackboard;
 
         node.guid = Guid.NewGuid().ToString();
 
@@ -51,7 +52,7 @@ public class BehaviorTree: ScriptableObject
             AssetDatabase.SaveAssets();
         #endif
 
-        
+        node.OnCreateProperties();
 
         return node;
     }

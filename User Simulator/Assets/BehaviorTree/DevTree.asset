@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8979458523697134346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &-8478380611078246217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
 --- !u!114 &-6840528235819946537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20,10 +46,30 @@ MonoBehaviour:
   useMemory: 0
   description: 
   parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: var1
+    blackboardProperty: aaa
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: 0}
   children:
   - {fileID: 1251371122207359004}
   - {fileID: 4328402559538859698}
   - {fileID: 848509763994974797}
+--- !u!114 &-6438871942789252651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
 --- !u!114 &-4224107270004447822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,11 +85,33 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 39fedd7f51822fc45a33c6b1cf9d3e84
-  position: {x: 38.99996, y: -237.33807}
+  position: {x: 39, y: -248.68}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
   parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: var1
+    blackboardProperty: aaa
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: 0}
+  - {fileID: 5680115038796746879}
+  - {fileID: 2426449136941769030}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   child: {fileID: 8880078963156104924}
 --- !u!114 &-3130002179640355611
 MonoBehaviour:
@@ -65,6 +133,28 @@ MonoBehaviour:
   useMemory: 1
   description: 
   parent: {fileID: 5154269754289353352}
+  propertyBlackboardMap:
+  - variable: var1
+    blackboardProperty: aaa
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: 0}
+  - {fileID: 3723485628939337940}
+  - {fileID: -8478380611078246217}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   duration: 1
 --- !u!114 &-1900621537836985236
 MonoBehaviour:
@@ -99,7 +189,65 @@ MonoBehaviour:
   useMemory: 0
   description: 
   parent: {fileID: 5154269754289353352}
+  propertyBlackboardMap:
+  - variable: var1
+    blackboardProperty: aaa
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: 6782951393995231885}
+  - {fileID: 2424907485538572166}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   message: Tree 2
+--- !u!114 &-1400495988565688840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &-525629124370774359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8480b827507b5954d92fc2a4971aab19, type: 3}
+  m_Name: FallbackNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 4e1c9754-d313-4465-9106-f283181addeb
+  position: {x: 282.99997, y: -9.000015}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: -1400495988565688840}
+  children: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,9 +272,36 @@ MonoBehaviour:
   - {fileID: -1833932416179665659}
   - {fileID: -3130002179640355611}
   - {fileID: 5154269754289353352}
+  - {fileID: -525629124370774359}
   blackboard:
-  - {fileID: -1900621537836985236}
+  - {fileID: 266944360110663075}
   runtime: 0
+--- !u!114 &132667524613495946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &266944360110663075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
+  m_Name: myvar
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &848509763994974797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,12 +317,44 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: faa9f6708879b8b43af7defa9e181f0f
-  position: {x: 247, y: 186}
+  position: {x: 245, y: 186}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
   parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: var1
+    blackboardProperty: aaa
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: 1114887480383226008}
+  - {fileID: -6438871942789252651}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   message: 2
+--- !u!114 &1114887480383226008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
 --- !u!114 &1251371122207359004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +375,107 @@ MonoBehaviour:
   useMemory: 1
   description: 
   parent: {fileID: -6840528235819946537}
+  propertyBlackboardMap:
+  - variable: var1
+    blackboardProperty: aaa
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: 0}
+  - {fileID: 4099822003666288423}
+  - {fileID: 3198269501150175624}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   duration: 1
+--- !u!114 &2424907485538572166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &2426449136941769030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &3198269501150175624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &3723485628939337940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &3980291269389818563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &4099822003666288423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
 --- !u!114 &4328402559538859698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +496,25 @@ MonoBehaviour:
   useMemory: 0
   description: 
   parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: var1
+    blackboardProperty: aaa
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: -8979458523697134346}
+  - {fileID: 132667524613495946}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   message: 1
 --- !u!114 &5154269754289353352
 MonoBehaviour:
@@ -210,9 +536,68 @@ MonoBehaviour:
   useMemory: 0
   description: 
   parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: var1
+    blackboardProperty: aaa
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: 0}
   children:
   - {fileID: -3130002179640355611}
   - {fileID: -1833932416179665659}
+--- !u!114 &5680115038796746879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &6767607316679855534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &6782951393995231885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
+--- !u!114 &6937124870190707652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyVar
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 0
 --- !u!114 &8880078963156104924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,4 +618,26 @@ MonoBehaviour:
   useMemory: 0
   description: 
   parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: var1
+    blackboardProperty: aaa
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  - variable: MyVar
+    blackboardProperty: 
+  variables:
+  - {fileID: 0}
+  - {fileID: 3980291269389818563}
+  - {fileID: 6767607316679855534}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   child: {fileID: -6840528235819946537}

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9085946378416840945
+--- !u!114 &-8616959822278608219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,11 +10,63 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
-  m_Name: 
+  m_Name: message
   m_EditorClassIdentifier: 
-  PropertyName: String
   value: 
---- !u!114 &-3937655756376275034
+--- !u!114 &-8241405908542823432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: duration
+  m_EditorClassIdentifier: Assembly-CSharp::FloatBlackboardProperty
+  value: 0.01
+--- !u!114 &-5796432903998192358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
+  m_Name: message
+  m_EditorClassIdentifier: 
+  value: FromBlackboard
+--- !u!114 &-3386763568733331458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d4081d21-f9c3-4d4e-b148-669966e68bbe
+  position: {x: -118, y: 280}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 1029918347481560378}
+  propertyBlackboardMap:
+  - variable: message
+    blackboardProperty: 
+  variables:
+  - {fileID: 2899094836589859639}
+  blackboard:
+  - {fileID: -5796432903998192358}
+--- !u!114 &-1099103346904749429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,34 +80,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 863c9d1b-495e-4394-82f7-6d4008d656e3
-  position: {x: 0, y: 0}
+  guid: 8965cae5-5db2-4f02-9d96-1d7e1c61fcdf
+  position: {x: -0.000020980835, y: -1.149955}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
   parent: {fileID: 0}
-  child: {fileID: 0}
---- !u!114 &-2393470350570598994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e82e3dfa32a3a948a47cfb306b0a776, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: f3aab209-b52e-4882-adad-b795eb6eae9d
-  position: {x: 114.18727, y: 207.26477}
-  gameObject: {fileID: 0}
-  useMemory: 1
-  description: 
-  parent: {fileID: 0}
-  duration: 1
+  propertyBlackboardMap: []
+  variables: []
+  blackboard: []
+  child: {fileID: 1029918347481560378}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,11 +102,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
   m_Name: New Behavior Tree
   m_EditorClassIdentifier: 
-  rootNode: {fileID: -3937655756376275034}
+  rootNode: {fileID: -1099103346904749429}
   treeState: 0
   nodes:
-  - {fileID: -3937655756376275034}
-  - {fileID: -2393470350570598994}
+  - {fileID: -1099103346904749429}
+  - {fileID: -3386763568733331458}
+  - {fileID: 2967284760407862544}
+  - {fileID: 1029918347481560378}
   blackboard:
-  - {fileID: -9085946378416840945}
+  - {fileID: -5796432903998192358}
   runtime: 0
+--- !u!114 &1029918347481560378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: fca7988c-8973-49bb-ae9a-ec022fb40afb
+  position: {x: -9, y: 130}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -1099103346904749429}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard:
+  - {fileID: -5796432903998192358}
+  children:
+  - {fileID: -3386763568733331458}
+  - {fileID: 2967284760407862544}
+--- !u!114 &2899094836589859639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
+  m_Name: message
+  m_EditorClassIdentifier: 
+  value: FromNode
+--- !u!114 &2967284760407862544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: fe8408c7-dfba-4fef-b6e2-1060a2f1850f
+  position: {x: 103, y: 280}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 1029918347481560378}
+  propertyBlackboardMap:
+  - variable: message
+    blackboardProperty: message
+  variables:
+  - {fileID: 5645173334333132372}
+  blackboard:
+  - {fileID: -5796432903998192358}
+--- !u!114 &5645173334333132372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
+  m_Name: message
+  m_EditorClassIdentifier: 
+  value: 
+--- !u!114 &9155051675919825784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyStruct
+  m_EditorClassIdentifier: Assembly-CSharp::MyStructProperty
+  value:
+    x: 0
+    f: 0
