@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/BehaviorTree/Editor/NodeViewStyle.uss?fileID=7433441132597879392&amp;guid=efae2b8979cd7f248881f931b500c1e0&amp;type=3#NodeViewStyle" />
+    <Style src="project://database/Assets/BehaviorTree/Editor/BehaviorTreeEditor/NodeViewStyle.uss?fileID=7433441132597879392&amp;guid=efae2b8979cd7f248881f931b500c1e0&amp;type=3#NodeViewStyle" />
     <ui:VisualElement name="node-state" />
     <ui:VisualElement name="node-border">
         <ui:VisualElement name="contents">
             <ui:VisualElement name="top">
-                <ui:VisualElement name="input">
+                <ui:VisualElement name="input" style="min-height: 24px;">
                     <ui:Label tabindex="-1" text="M" display-tooltip-when-elided="true" name="memory-label" picking-mode="Ignore" style="position: absolute; right: 10px; color: rgb(0, 0, 0); top: 5px; -unity-font-style: bold;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="divider" class="vertical" />

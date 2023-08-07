@@ -95,6 +95,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
             input.portName = "";
             input.style.flexDirection = FlexDirection.Column;
             inputContainer.Add(input);
+
         }
     }
 
@@ -126,7 +127,6 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         }
     }
 
-    
 
     public override void SetPosition(Rect newPos)
     {
@@ -193,6 +193,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
                     AddToClassList("success");
                     break;
             }
+
         }
 
         if(node.UseMemory)
@@ -205,6 +206,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
             RemoveFromClassList("memoried");
             AddToClassList("memoryless");
         }
+
         
     }
 }

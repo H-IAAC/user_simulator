@@ -16,6 +16,7 @@ public class BehaviorTreeView : GraphView
 
     public BlackboardView blackboard;
 
+
     public BehaviorTreeView()
     {
         Insert(0, new GridBackground());
@@ -30,6 +31,34 @@ public class BehaviorTreeView : GraphView
         styleSheets.Add(styleSheet);
 
         Undo.undoRedoPerformed += OnUndoRedo;
+
+    }
+
+
+            //Create connections if duplicating multiple nodes and originals was connected
+            foreach(Node node in originalToClone.Keys)
+            {
+                if(node.parent == null)
+                {
+                    continue;
+                }
+
+                if(originalToClone.ContainsKey(node.parent))
+                {
+                    Node parentClone = originalToClone[node.parent];
+                    Node clone = originalToClone[node];
+
+                    parentClone.AddChild(clone);
+
+                    NodeView parentView = FindNodeView(parentClone);
+                    NodeView childView = FindNodeView(clone);
+
+                    Edge edge = parentView.output.ConnectTo(childView.input);
+                    AddElement(edge);
+                }
+            }
+        }
+        
     }
 
     void OnUndoRedo()
@@ -50,8 +79,9 @@ public class BehaviorTreeView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
 
-        this.tree = tree;
+        clipboard.Clear();
 
+        this.tree = tree;
         if(tree == null)
         {
             return;
@@ -139,11 +169,13 @@ public class BehaviorTreeView : GraphView
         return graphViewChange;
     }
 
-    void CreateNodeView(Node node)
+    NodeView CreateNodeView(Node node)
     {
         NodeView nodeView = new(node, tree.runtime);
         nodeView.OnNodeSelected = OnNodeSelected;
         AddElement(nodeView);
+
+        return nodeView;
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
