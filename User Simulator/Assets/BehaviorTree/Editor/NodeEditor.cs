@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEditor;
 
 [CustomEditor(typeof(Node), true)]
@@ -7,13 +8,46 @@ public class NodeEditor : Editor
 {
     bool showProperties = true;
 
+    static readonly string[] noDraw = new string[]{ 
+        "useMemory",
+        "useUtility", "utilitySelectionMethod", "utilityThreshould"};
+
+    static readonly string[] utilityProperties = new string[]{
+        "utilityPropagationMethod", "utilitySelectionMethod", "utilityThreshould"
+    };
 
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector();
+        serializedObject.Update();
+        DrawPropertiesExcluding(serializedObject, noDraw);
 
         Node node = target as Node;
         SubtreeNode subtreeNode = node as SubtreeNode;
+
+        if(node.MemoryMode == MemoryMode.Both)
+        {
+            node.UseMemory = EditorGUILayout.Toggle("Use memory", node.UseMemory);
+        }
+
+        if(node is CompositeNode composite)
+        {
+            composite.useUtility = EditorGUILayout.Toggle("Use utility", composite.useUtility);
+
+            if(composite.useUtility)
+            {
+                foreach(string propertyName in utilityProperties)
+                {
+                    if(propertyName == "utilityThreshould" &&
+                        composite.utilitySelectionMethod != UtilitySelectionMethod.RANDOM_THRESHOULD)
+                    {
+                        continue;
+                    }
+
+                    SerializedProperty property = serializedObject.FindProperty(propertyName);
+                    EditorGUILayout.PropertyField(property, true);
+                }
+            }
+        }
 
         if (node.variables.Count > 0)
         {
@@ -63,5 +97,8 @@ public class NodeEditor : Editor
                 }
             }
         }
+
+
+        serializedObject.ApplyModifiedProperties();
     }
 }
