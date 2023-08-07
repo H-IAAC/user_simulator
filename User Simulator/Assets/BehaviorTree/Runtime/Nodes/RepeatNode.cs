@@ -2,22 +2,25 @@ using UnityEngine;
 
 public class RepeatNode: DecoratorNode
 {
-    public int repeatCount = 1;
+    uint repeatCount;
     int currentRepeatCount = 0;
 
     public RepeatNode() : base(MemoryMode.Both)
     {
 
     }
-    
-    void OnEnable()
+
+    public override void OnCreateProperties()
     {
-        currentRepeatCount = 0;
+        CreateProperty(typeof(UIntBlackboardProperty), "repeatCount");
+        SetPropertyValue<uint>("repeatCount", 1);
     }
+    
 
     public override void OnStart()
     {
-
+        currentRepeatCount = 0;
+        repeatCount = GetPropertyValue<uint>("repeatCount");
     }
 
     public override void OnStop()

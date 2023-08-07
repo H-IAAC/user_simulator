@@ -2,21 +2,16 @@ using UnityEngine;
 
 public class SequencerNode: CompositeNode
 {
-    int current = 0;
+    Node currentChild;
 
     public SequencerNode() : base(MemoryMode.Both)
     {
 
     }
 
-    void OnEnable()
-    {
-        current = 0;
-    }
-
     public override void OnStart()
     {
-
+        currentChild = NextChild();
     }
 
     public override void OnStop()
@@ -38,13 +33,12 @@ public class SequencerNode: CompositeNode
 
     NodeState memoriedUpdate()
     {
-        if(current >= children.Count)
+        if(currentChild == null)
         {
-            current = 0;
             return NodeState.Success;
         }
 
-        NodeState childState = children[current].Update();
+        NodeState childState = currentChild.Update();
 
         switch (childState)
         {
@@ -53,7 +47,7 @@ public class SequencerNode: CompositeNode
             case NodeState.Failure:
                 return NodeState.Failure;
             case NodeState.Success:
-                current++;
+                currentChild = NextChild();
                 return memoriedUpdate();
         }
 
@@ -62,14 +56,16 @@ public class SequencerNode: CompositeNode
 
     NodeState memorylessUpdate()
     {
-        foreach(Node child in children)
+        while(currentChild != null)
         {
-            NodeState state = child.Update();
+            NodeState state = currentChild.Update();
 
             if(state != NodeState.Success)
             {
                 return state;
             }
+
+            currentChild = NextChild();            
         }
 
         return NodeState.Success;

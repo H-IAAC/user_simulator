@@ -49,4 +49,10 @@ public class RootNode : Node
 
         return children;
     }
+
+    protected override float OnComputeUtility()
+    {
+        child.ComputeUtility();
+        return child.GetUtility();
+    } 
 }

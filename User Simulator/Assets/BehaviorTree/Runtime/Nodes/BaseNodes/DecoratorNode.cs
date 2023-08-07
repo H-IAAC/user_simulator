@@ -41,8 +41,9 @@ public abstract class DecoratorNode : Node
         return children;
     }
 
-    public override float GetUtility()
+    protected override float OnComputeUtility()
     {
+        child.ComputeUtility();
         return child.GetUtility();
     } 
 }

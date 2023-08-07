@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
   m_Name: message
   m_EditorClassIdentifier: 
-  value: FromBlackboard2
+  value: WillBeOverwrite
 --- !u!114 &-1099103346904749429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
   m_Name: message2
   m_EditorClassIdentifier: 
-  value: Tree2
+  value: FromBlackboard2
 --- !u!114 &1029918347481560378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +195,10 @@ MonoBehaviour:
   - {fileID: 1668516283428024140}
   - {fileID: 2967284760407862544}
   - {fileID: 6480327767322100541}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
 --- !u!114 &1668516283428024140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +227,9 @@ MonoBehaviour:
   blackboard:
   - {fileID: -5796432903998192358}
   tree: {fileID: 11400000}
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
 --- !u!114 &2899094836589859639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +271,9 @@ MonoBehaviour:
   blackboard:
   - {fileID: -5796432903998192358}
   tree: {fileID: 11400000}
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
 --- !u!114 &5645173334333132372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +316,9 @@ MonoBehaviour:
   - {fileID: -5796432903998192358}
   - {fileID: 409358563058533091}
   tree: {fileID: 11400000}
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
 --- !u!114 &9155051675919825784
 MonoBehaviour:
   m_ObjectHideFlags: 0

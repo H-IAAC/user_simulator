@@ -104,6 +104,7 @@ public class BehaviorTree: ScriptableObject
         #endif
 
         nodes.Remove(node);
+        node.ClearPropertyDefinitions();
         
         #if UNITY_EDITOR
             //AssetDatabase.RemoveObjectFromAsset(node);
@@ -184,5 +185,10 @@ public class BehaviorTree: ScriptableObject
         blackboard.RemoveAll(item => item == null);
 
         nodes.ForEach(x => x.tree = this);
+    }
+
+    public float GetUtility()
+    {
+        return rootNode.GetUtility();
     }
 }

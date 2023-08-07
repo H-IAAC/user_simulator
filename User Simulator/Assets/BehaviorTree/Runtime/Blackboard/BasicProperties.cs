@@ -8,6 +8,10 @@ public class IntBlackboardProperty : BlackboardProperty<int>
 {
 }
 
+public class UIntBlackboardProperty : BlackboardProperty<uint>
+{
+}
+
 public class IntArrayBlackboardProperty : BlackboardProperty<int[]>
 {
 }

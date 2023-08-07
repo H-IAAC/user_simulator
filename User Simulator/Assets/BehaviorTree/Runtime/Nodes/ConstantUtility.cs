@@ -21,7 +21,7 @@ public class ConstantUtility : DecoratorNode
         CreateProperty(typeof(FloatBlackboardProperty), "value");
     }
 
-    public override float GetUtility()
+    protected override float OnComputeUtility()
     {
         return GetPropertyValue<float>("value");
     }

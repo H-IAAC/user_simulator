@@ -22,8 +22,9 @@ public class UtilityModifier : DecoratorNode
         CreateProperty(typeof(CurveBlackboardProperty), "modifierFunction");
     }
 
-    public override float GetUtility()
+    protected override float OnComputeUtility()
     {
+        child.ComputeUtility();
         float childUtility = child.GetUtility();
 
         AnimationCurve curve = GetPropertyValue<AnimationCurve>("modifierFunction");

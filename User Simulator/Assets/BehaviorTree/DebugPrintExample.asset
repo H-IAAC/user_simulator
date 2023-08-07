@@ -212,7 +212,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ac4396c3-ba53-4503-8acf-8c5db4ddf375
-  position: {x: 294, y: 280}
+  position: {x: 293, y: 280}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -259,7 +259,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8965cae5-5db2-4f02-9d96-1d7e1c61fcdf
-  position: {x: 51.000008, y: -4.041726}
+  position: {x: 51, y: -26}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -269,6 +269,19 @@ MonoBehaviour:
   blackboard: []
   tree: {fileID: 11400000}
   child: {fileID: 1029918347481560378}
+--- !u!114 &-977695633178543742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: repeatCount
+  m_EditorClassIdentifier: Assembly-CSharp::IntBlackboardProperty
+  value: 40
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +401,10 @@ MonoBehaviour:
   - {fileID: -3386763568733331458}
   - {fileID: 2967284760407862544}
   - {fileID: -1696235273643221027}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
 --- !u!114 &1107234227264891726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,6 +557,19 @@ MonoBehaviour:
   m_Name: message2
   m_EditorClassIdentifier: 
   value: 
+--- !u!114 &4332689997739692553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: duration
+  m_EditorClassIdentifier: Assembly-CSharp::FloatBlackboardProperty
+  value: 0
 --- !u!114 &5203577381438205320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,6 +706,19 @@ MonoBehaviour:
   m_Name: message2
   m_EditorClassIdentifier: 
   value: 
+--- !u!114 &8410941172079948969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: repeatCount
+  m_EditorClassIdentifier: Assembly-CSharp::UIntBlackboardProperty
+  value: 2436
 --- !u!114 &8606315220903152749
 MonoBehaviour:
   m_ObjectHideFlags: 0

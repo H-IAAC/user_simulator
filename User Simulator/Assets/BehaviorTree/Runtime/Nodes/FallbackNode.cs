@@ -1,6 +1,6 @@
 public class FallbackNode: CompositeNode
 {
-    int current = 0;
+    Node currentChild;
 
     public FallbackNode() : base(MemoryMode.Both)
     {
@@ -9,7 +9,6 @@ public class FallbackNode: CompositeNode
 
     public override void OnStart()
     {
-        
     }
 
     public override void OnStop()
@@ -21,28 +20,32 @@ public class FallbackNode: CompositeNode
     {
         if(!UseMemory)
         {
-            current = 0;
+            ResetNext();
+            currentChild = NextChild();
         }
-
-        for (int i = current; i < children.Count; i++)
+        else if (currentChild == null)
         {
-            NodeState state = children[i].Update();
+            currentChild = NextChild();
+        }
+        
+
+        while(currentChild != null)
+        {
+            NodeState state = currentChild.Update();
 
             switch (state)
             {
                 case NodeState.Runnning:
-                    current = i;
                     return NodeState.Runnning;
                 case NodeState.Failure:
+                    currentChild = NextChild();
                     break;
                 case NodeState.Success:
-                    current = 0;
                     return NodeState.Success;
             }
 
         }
 
-        current = 0;
         return NodeState.Failure;
     }
 

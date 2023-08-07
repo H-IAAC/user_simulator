@@ -36,6 +36,8 @@ public abstract class Node: ScriptableObject
 
     [HideInInspector] public BehaviorTree tree;
 
+    float utility = 0f;
+
     public Node(MemoryMode memoryMode = MemoryMode.Memoryless)
     {
         this.MemoryMode = memoryMode;
@@ -84,7 +86,7 @@ public abstract class Node: ScriptableObject
     {
         if(!started)
         {
-            OnStart();
+            Start();
             started = true;
         }
 
@@ -124,8 +126,41 @@ public abstract class Node: ScriptableObject
         variables.Add(property);
     }
 
-    protected T GetPropertyValue<T>(string name)
+    private BlackboardProperty GetProperty(string name, bool forceNodeProperty=false)
     {
+        int index = propertyBlackboardMap.FindIndex(x => x.variable == name);
+
+        if(index < 0)
+        {
+            throw new ArgumentException("Property does not exist in node.");
+        }
+
+        string bbName = propertyBlackboardMap[index].blackboardProperty;
+        if(bbName == "" || forceNodeProperty)
+        {
+            return variables[index];
+        }
+        else
+        {
+            index = blackboard.FindIndex(x => x.PropertyName == bbName);
+            if (index < 0)
+            {
+                throw new ArgumentException($"Property does not exist in blackboard. Property name: {bbName}");
+            }
+
+            return blackboard[index];
+        }
+    }
+
+    public object GetPropertyValue(string name, bool forceNodeProperty = false)
+    {
+        return GetProperty(name, forceNodeProperty).Value;
+    }
+
+    public T GetPropertyValue<T>(string name, bool forceNodeProperty=false)
+    {
+        return (T)GetProperty(name, forceNodeProperty).Value;
+
         int index = propertyBlackboardMap.FindIndex(x => x.variable == name);
 
         if(index < 0)
@@ -150,8 +185,41 @@ public abstract class Node: ScriptableObject
         }
     }
 
+    public void SetPropertyValue<T>(string name, T value, bool forceNodeProperty=false)
+    {
+        GetProperty(name, forceNodeProperty).Value = value;
+
+        /*int index = propertyBlackboardMap.FindIndex(x => x.variable == name);
+
+        if(index < 0)
+        {
+            throw new ArgumentException("Property does not exist in node.");
+        }
+
+        string bbName = propertyBlackboardMap[index].blackboardProperty;
+        if(bbName == "")
+        {
+            variables[index].Value = value;
+        }
+        else
+        {
+            index = blackboard.FindIndex(x => x.PropertyName == bbName);
+            if (index < 0)
+            {
+                throw new ArgumentException($"Property does not exist in blackboard. Property name: {bbName}");
+            }
+
+            blackboard[index].Value = value;
+        }*/
+    }
+
     public void ClearPropertyDefinitions()
     {
+        foreach(BlackboardProperty variable in variables)
+        {
+            AssetDatabase.RemoveObjectFromAsset(variable);
+        }
+
         variables.Clear();
         propertyBlackboardMap.Clear();
     }
@@ -166,9 +234,25 @@ public abstract class Node: ScriptableObject
         return Instantiate(this);
     }
 
-    public virtual float GetUtility()
+    public float GetUtility()
+    {
+        return utility;
+    }
+
+    public void ComputeUtility()
+    {
+        utility = OnComputeUtility();
+    }
+
+    protected virtual float OnComputeUtility()
     {
         return 0f;
+    }
+
+    public void Start()
+    {
+        ComputeUtility();
+        OnStart();
     }
 
     public abstract void OnStart();
