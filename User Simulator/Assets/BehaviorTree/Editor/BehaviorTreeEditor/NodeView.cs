@@ -127,6 +127,24 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         }
     }
 
+    void ConfigurePicking()
+    {
+        Port[] ports = { input, output };
+        string[] names = { "connector", "cap" };
+
+        foreach(Port port in ports)
+        {
+            if(port != null)
+            {
+                foreach(string name in names)
+                {
+                    VisualElement visualElement = port.Query(name);
+                    visualElement.pickingMode = PickingMode.Position;
+                }
+            }
+            
+        }
+    }
 
     public override void SetPosition(Rect newPos)
     {
