@@ -137,3 +137,10 @@
     display: none;
 }
 
+.utility #utility-label {
+    display: flex;
+}
+
+.no-utility #utility-label {
+    display: none;
+}

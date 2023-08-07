@@ -6,6 +6,8 @@
             <ui:VisualElement name="top">
                 <ui:VisualElement name="input" style="min-height: 24px;">
                     <ui:Label tabindex="-1" text="M" display-tooltip-when-elided="true" name="memory-label" picking-mode="Ignore" style="position: absolute; right: 10px; color: rgb(0, 0, 0); top: 5px; -unity-font-style: bold;" />
+                    <ui:Label tabindex="-1" text="U" display-tooltip-when-elided="true" name="utility-label" picking-mode="Ignore" style="position: absolute; right: 28px; color: rgb(0, 0, 0); top: 5px; -unity-font-style: bold;" />
+                    <ui:Label tabindex="-1" text="0.00" display-tooltip-when-elided="true" name="utility-value" picking-mode="Ignore" style="position: absolute; color: rgb(0, 0, 0); top: 5px; -unity-font-style: bold; left: 10px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="divider" class="vertical" />
                 <ui:VisualElement name="title">

@@ -41,6 +41,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 
         CreateInputPorts();
         CreateOutputPorts();
+        ConfigurePicking();
 
         SetupClasses();
 
@@ -212,6 +213,8 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
                     break;
             }
 
+            Label utilityValue = (Label) (VisualElement)  this.Query("utility-value");
+            utilityValue.text = node.GetUtility().ToString("#0.00");
         }
 
         if(node.UseMemory)
@@ -225,6 +228,16 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
             AddToClassList("memoryless");
         }
 
+        RemoveFromClassList("utility");
+        AddToClassList("no-utility");
+        if(node is CompositeNode composite)
+        {
+            if(composite.useUtility)
+            {
+                AddToClassList("utility");
+                RemoveFromClassList("no-utility");
+            }
+        }
         
     }
 }
