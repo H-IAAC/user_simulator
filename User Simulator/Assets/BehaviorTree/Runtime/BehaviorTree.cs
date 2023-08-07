@@ -58,6 +58,45 @@ public class BehaviorTree: ScriptableObject
         return node;
     }
 
+    public Node DuplicateNode(Node node)
+    {
+        if (!nodes.Contains(node))
+        {
+            throw new ArgumentException("Node to duplicate is not in tree.");
+        }
+
+        Node clone = CreateNode(node.GetType());
+        clone.position = node.position;
+        clone.position.x += 10;
+        clone.UseMemory = node.UseMemory;
+        clone.description = node.description;
+
+        foreach(BlackboardProperty var in clone.variables)
+        {
+            var.Value = node.GetPropertyValue(var.PropertyName, true);
+        }
+
+        for(int i = 0; i<node.propertyBlackboardMap.Count; i++)
+        {
+            NameMap map = node.propertyBlackboardMap[i];
+            NameMap cloneMap = new()
+            {
+                blackboardProperty = map.blackboardProperty,
+                variable = map.variable
+            };
+
+            clone.propertyBlackboardMap[i] = cloneMap;
+        }
+
+        if(clone is CompositeNode compositeClone)
+        {
+            CompositeNode composite = node as CompositeNode;
+            compositeClone.useUtility = composite.useUtility;
+        }
+
+        return clone;
+    }
+
     public void DeleteNode(Node node)
     {
         #if UNITY_EDITOR

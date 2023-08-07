@@ -16,6 +16,7 @@ public class BehaviorTreeView : GraphView
 
     public BlackboardView blackboard;
 
+    List<GraphElement> clipboard;
 
     public BehaviorTreeView()
     {
@@ -32,8 +33,42 @@ public class BehaviorTreeView : GraphView
 
         Undo.undoRedoPerformed += OnUndoRedo;
 
+        clipboard = new();
+        serializeGraphElements += OnCopyCut;
+        unserializeAndPaste += OnPaste;
     }
 
+    string OnCopyCut(IEnumerable<GraphElement> elements)
+    {
+        clipboard.Clear();
+        clipboard.AddRange(elements);
+        return "";
+    }
+
+    void OnPaste(string operationName, string data)
+    {
+        if(operationName == "Duplicate")
+        {
+            ClearSelection();
+
+            Dictionary<Node, Node> originalToClone = new();
+
+            foreach(GraphElement element in clipboard)
+            {
+                if(element is NodeView view)
+                {
+                    Node node = view.node;
+                    Node clone = tree.DuplicateNode(node);
+
+                    clone.position.x += 10;
+
+                    NodeView cloneView = CreateNodeView(clone);
+
+                    AddToSelection(cloneView);
+
+                    originalToClone.Add(node, clone);
+                }
+            }
 
             //Create connections if duplicating multiple nodes and originals was connected
             foreach(Node node in originalToClone.Keys)
