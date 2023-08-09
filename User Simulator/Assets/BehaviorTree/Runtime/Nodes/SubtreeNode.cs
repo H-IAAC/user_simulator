@@ -8,7 +8,7 @@ public class SubtreeNode : ActionNode
     [HideInInspector][SerializeField] public List<bool> passValue = new();
     [SerializeField] bool autoRemapOnAssign = false;
 
-    public BehaviorTree runtimeTree;
+    BehaviorTree runtimeTree;
 
     public BehaviorTree Subtree
     {

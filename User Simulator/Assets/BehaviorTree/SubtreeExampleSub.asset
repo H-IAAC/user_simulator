@@ -1,0 +1,248 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8228056207020512670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard2
+  m_EditorClassIdentifier: 
+  value: Blackboard2
+--- !u!114 &-7445236474577323923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 28a88fbb-9792-436a-a0e4-b2333c38b94a
+  position: {x: 0, y: 0}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 0}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard:
+  - {fileID: 2102766317951829953}
+  - {fileID: -8228056207020512670}
+  tree: {fileID: 11400000}
+  child: {fileID: 7665233850838086754}
+--- !u!114 &-4852147407054417267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: message
+  m_EditorClassIdentifier: 
+  value: 
+--- !u!114 &-3753679731348103903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: message
+  m_EditorClassIdentifier: 
+  value: 
+--- !u!114 &-2880330510283004893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 8707e331-421c-4545-b8c3-f989b323def9
+  position: {x: -165, y: 219}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 7665233850838086754}
+  propertyBlackboardMap:
+  - variable: message
+    blackboardProperty: 
+  variables:
+  - {fileID: 9012442507681286436}
+  blackboard:
+  - {fileID: 2102766317951829953}
+  - {fileID: -8228056207020512670}
+  tree: {fileID: 11400000}
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+--- !u!114 &-75886346893287806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 04514d29-dc87-4aa8-bd47-d34b4fdf39ae
+  position: {x: 164, y: 219}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 7665233850838086754}
+  propertyBlackboardMap:
+  - variable: message
+    blackboardProperty: Blackboard2
+  variables:
+  - {fileID: -3753679731348103903}
+  blackboard:
+  - {fileID: 2102766317951829953}
+  - {fileID: -8228056207020512670}
+  tree: {fileID: 11400000}
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: SubtreeExampleSub
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -7445236474577323923}
+  treeState: 0
+  nodes:
+  - {fileID: -7445236474577323923}
+  - {fileID: 7665233850838086754}
+  - {fileID: -2880330510283004893}
+  - {fileID: 3983891901532950934}
+  - {fileID: -75886346893287806}
+  blackboard:
+  - {fileID: 2102766317951829953}
+  - {fileID: -8228056207020512670}
+  runtime: 0
+--- !u!114 &2102766317951829953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: WillBeOverwritten
+  m_EditorClassIdentifier: 
+  value: WillBeOverwritten
+--- !u!114 &3983891901532950934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 7876703f-31e1-47bc-bc86-8eb382f7d820
+  position: {x: 0, y: 219}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 7665233850838086754}
+  propertyBlackboardMap:
+  - variable: message
+    blackboardProperty: WillBeOverwritten
+  variables:
+  - {fileID: -4852147407054417267}
+  blackboard:
+  - {fileID: 2102766317951829953}
+  - {fileID: -8228056207020512670}
+  tree: {fileID: 11400000}
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+--- !u!114 &7665233850838086754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ba322a6d-01f8-46ea-8c86-67d16599d019
+  position: {x: 0, y: 88}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -7445236474577323923}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard:
+  - {fileID: 2102766317951829953}
+  - {fileID: -8228056207020512670}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: -2880330510283004893}
+  - {fileID: 3983891901532950934}
+  - {fileID: -75886346893287806}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+--- !u!114 &9012442507681286436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: message
+  m_EditorClassIdentifier: 
+  value: On subtree
