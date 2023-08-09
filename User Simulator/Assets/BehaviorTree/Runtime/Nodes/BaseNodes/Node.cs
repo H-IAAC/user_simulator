@@ -53,6 +53,13 @@ public abstract class Node: ScriptableObject
             case MemoryMode.Both:
                 break;
         }
+
+        guid = Guid.NewGuid().ToString();
+    }
+
+    void Awake()
+    {
+        guid = Guid.NewGuid().ToString();
     }
 
 
@@ -159,65 +166,24 @@ public abstract class Node: ScriptableObject
 
     public T GetPropertyValue<T>(string name, bool forceNodeProperty=false)
     {
+        
         return (T)GetProperty(name, forceNodeProperty).Value;
-
-        int index = propertyBlackboardMap.FindIndex(x => x.variable == name);
-
-        if(index < 0)
-        {
-            throw new ArgumentException("Property does not exist in node.");
-        }
-
-        string bbName = propertyBlackboardMap[index].blackboardProperty;
-        if(bbName == "")
-        {
-            return (T)variables[index].Value;
-        }
-        else
-        {
-            index = blackboard.FindIndex(x => x.PropertyName == bbName);
-            if (index < 0)
-            {
-                throw new ArgumentException($"Property does not exist in blackboard. Property name: {bbName}");
-            }
-
-            return (T)blackboard[index].Value;
-        }
     }
 
     public void SetPropertyValue<T>(string name, T value, bool forceNodeProperty=false)
     {
         GetProperty(name, forceNodeProperty).Value = value;
-
-        /*int index = propertyBlackboardMap.FindIndex(x => x.variable == name);
-
-        if(index < 0)
-        {
-            throw new ArgumentException("Property does not exist in node.");
-        }
-
-        string bbName = propertyBlackboardMap[index].blackboardProperty;
-        if(bbName == "")
-        {
-            variables[index].Value = value;
-        }
-        else
-        {
-            index = blackboard.FindIndex(x => x.PropertyName == bbName);
-            if (index < 0)
-            {
-                throw new ArgumentException($"Property does not exist in blackboard. Property name: {bbName}");
-            }
-
-            blackboard[index].Value = value;
-        }*/
     }
 
     public void ClearPropertyDefinitions()
     {
         foreach(BlackboardProperty variable in variables)
         {
-            AssetDatabase.RemoveObjectFromAsset(variable);
+            if(variable != null)
+            {
+                AssetDatabase.RemoveObjectFromAsset(variable);
+            }
+            
         }
 
         variables.Clear();
