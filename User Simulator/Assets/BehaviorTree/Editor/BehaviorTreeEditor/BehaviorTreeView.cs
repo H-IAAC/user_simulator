@@ -20,9 +20,14 @@ public class BehaviorTreeView : GraphView
 
     List<BehaviorTree> ghostTrees;
 
+    Vector2 mousePosition;
+
+    GridBackground grid;
+
     public BehaviorTreeView()
     {
-        Insert(0, new GridBackground());
+        grid = new();
+        Insert(0, grid);
 
         this.AddManipulator(new ContentZoomer());
         this.AddManipulator(new ContentDragger());
@@ -340,7 +345,9 @@ public class BehaviorTreeView : GraphView
                 evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", (a) => CreateNode(type));
             }
         }
-        
+
+        mousePosition = evt.localMousePosition;
+
     }
 
     void CreateNode(Type type)
@@ -354,6 +361,10 @@ public class BehaviorTreeView : GraphView
         
     
         Node node = tree.CreateNode(type);
+        NodeView view = CreateNodeView(node);
+
+        Vector2 position = grid.ChangeCoordinatesTo(contentViewContainer, mousePosition);
+        view.SetPosition(position);
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
