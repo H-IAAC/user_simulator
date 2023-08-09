@@ -37,6 +37,14 @@ public class SubtreeNode : ActionNode
         }
     }
 
+    public BehaviorTree RuntimeTree
+    {
+        get
+        {
+            return runtimeTree;
+        }
+    }
+
     public SubtreeNode() : base(MemoryMode.Memoried)
     {
     }

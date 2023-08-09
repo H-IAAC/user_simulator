@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8270857309121899873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard2
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &-7754059851318586595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +154,19 @@ MonoBehaviour:
   - {fileID: 3269002679059331028}
   - {fileID: 3421551867864480930}
   runtime: 0
+--- !u!114 &1270030347199506083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: WillBeOverwritten
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &3269002679059331028
 MonoBehaviour:
   m_ObjectHideFlags: 0

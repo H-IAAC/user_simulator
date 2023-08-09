@@ -166,20 +166,47 @@ public class BehaviorTreeView : GraphView
 
     public void ShowSubtree(SubtreeNode subtreeNode)
     {
-        BehaviorTree ghostTree = subtreeNode.Subtree;
-        if (ghostTree == null)
-        {
-            return;
-        }
+        BehaviorTree staticTree = subtreeNode.Subtree;
+        BehaviorTree runtimeTree = subtreeNode.RuntimeTree;
 
-        if (ghostTrees.Contains(ghostTree))
+        if(runtimeTree == null)
         {
-            RemoveGhostTree(ghostTree);
+            if (staticTree == null || staticTree == tree)
+            {
+                return;
+            }
+
+            if (ghostTrees.Contains(staticTree))
+            {
+                RemoveGhostTree(staticTree);
+            }
+            else
+            {
+                AddGhostTree(staticTree, subtreeNode);
+            }
         }
         else
         {
-            AddGhostTree(ghostTree, subtreeNode);
+            if (runtimeTree == tree)
+            {
+                return;
+            }
+            
+            if (ghostTrees.Contains(staticTree))
+            {
+                RemoveGhostTree(staticTree);
+            }
+            else if (ghostTrees.Contains(runtimeTree))
+            {
+                RemoveGhostTree(runtimeTree);
+            }
+            else
+            {
+                AddGhostTree(runtimeTree, subtreeNode);
+            }
+
         }
+        
 
 
     }

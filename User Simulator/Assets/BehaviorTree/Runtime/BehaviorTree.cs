@@ -141,8 +141,6 @@ public class BehaviorTree: ScriptableObject
         
         Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
 
-        Debug.Log($"Before 2 pass {tree.nodes.Count}");
-
         foreach(Node origNode in this.nodes)
         {
             if(!clonedGUID.Contains(origNode.guid))
@@ -158,8 +156,6 @@ public class BehaviorTree: ScriptableObject
                 Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
             }
         }
-
-        Debug.Log($"After 2 pass {tree.nodes.Count}");
 
         tree.blackboard = new();
         foreach(BlackboardProperty property in blackboard)
