@@ -26,6 +26,19 @@ MonoBehaviour:
   m_Name: message
   m_EditorClassIdentifier: 
   value: On main tree
+--- !u!114 &-6233022148059352493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: FromMainTree
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &-5157757185886535993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,6 +70,19 @@ MonoBehaviour:
   onStart: 0
   onStop: 0
   onUpdate: 1
+--- !u!114 &-4887279296225840141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: WillBeOverwritten
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &-4824822724000086160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,24 +98,24 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: fc59cf78-ee64-45f3-9b8c-163df63c3566
-  position: {x: 178, y: 216}
+  position: {x: 176.99998, y: 216}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
   parent: {fileID: 6616603776995768503}
   propertyBlackboardMap:
   - variable: WillBeOverwritten
-    blackboardProperty: FromMainTree
+    blackboardProperty: 
   - variable: Blackboard2
     blackboardProperty: 
   variables:
-  - {fileID: 6269487403677460606}
-  - {fileID: 6250126241839455163}
+  - {fileID: 8836818480006378238}
+  - {fileID: -1946703100318512138}
   blackboard:
   - {fileID: 3269002679059331028}
   tree: {fileID: 11400000}
   subtree: {fileID: 11400000, guid: 9929c0fd4bb2fb341a7189933c927e9c, type: 2}
-  passValue: 0100
+  passValue: 0000
   autoRemapOnAssign: 0
 --- !u!114 &-2723813346271644966
 MonoBehaviour:
@@ -117,6 +143,19 @@ MonoBehaviour:
   - {fileID: 3269002679059331028}
   tree: {fileID: 11400000}
   child: {fileID: 6616603776995768503}
+--- !u!114 &-1946703100318512138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard2
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &-389901200508444862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +206,19 @@ MonoBehaviour:
   m_Name: WillBeOverwritten
   m_EditorClassIdentifier: 
   value: 
+--- !u!114 &2130095943546625175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard1
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &3269002679059331028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +232,19 @@ MonoBehaviour:
   m_Name: Blackboard1
   m_EditorClassIdentifier: 
   value: Blackboard1
+--- !u!114 &3292822978142516428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard2
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &3421551867864480930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,3 +348,16 @@ MonoBehaviour:
   utilityPropagationMethod: 0
   utilitySelectionMethod: 0
   utilityThreshould: 0
+--- !u!114 &8836818480006378238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: WillBeOverwritten
+  m_EditorClassIdentifier: 
+  value: 

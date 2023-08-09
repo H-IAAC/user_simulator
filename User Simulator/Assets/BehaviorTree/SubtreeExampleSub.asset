@@ -27,8 +27,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 28a88fbb-9792-436a-a0e4-b2333c38b94a
-  position: {x: 0, y: 0}
+  guid: 150122cc-df56-4a94-8f57-a30918690027
+  position: {x: 0, y: -44}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 8707e331-421c-4545-b8c3-f989b323def9
+  guid: f1eef0d8-a256-4701-af5f-a6cdb03be3b9
   position: {x: -165, y: 219}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 04514d29-dc87-4aa8-bd47-d34b4fdf39ae
+  guid: a84a7602-f064-40f3-8d6c-20f5bd6bdc92
   position: {x: 164, y: 219}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 7876703f-31e1-47bc-bc86-8eb382f7d820
+  guid: e627db85-ad37-4dab-a269-c196d1840e71
   position: {x: 0, y: 219}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: ba322a6d-01f8-46ea-8c86-67d16599d019
+  guid: eba87ab3-00d1-4fb3-89cb-ebefafb88534
   position: {x: 0, y: 88}
   gameObject: {fileID: 0}
   useMemory: 0

@@ -191,7 +191,7 @@ public class BehaviorTreeView : GraphView
             {
                 return;
             }
-            
+
             if (ghostTrees.Contains(staticTree))
             {
                 RemoveGhostTree(staticTree);
@@ -242,7 +242,6 @@ public class BehaviorTreeView : GraphView
         {
             NodeView view = CreateNodeView(node, ghostTree.runtime, true);
             view.PositionOffset = offset;
-            view.Selectable = false;
         }
 
         foreach (Node node in ghostTree.nodes)
@@ -255,7 +254,8 @@ public class BehaviorTreeView : GraphView
                 NodeView childView = FindNodeView(child);
 
                 Edge edge = parentView.output.ConnectTo(childView.input);
-                edge.capabilities &= ~Capabilities.Selectable;
+                edge.capabilities = 0;
+                edge.pickingMode = PickingMode.Ignore;
                 AddElement(edge);
             }
         }

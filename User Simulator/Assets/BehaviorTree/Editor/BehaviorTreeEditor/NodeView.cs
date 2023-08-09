@@ -40,6 +40,11 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         this.runtime = runtime;
         this.ghost = ghost;
 
+        if(ghost)
+        {
+            Selectable = false;
+        }
+
         title = node.name;
         viewDataKey = node.guid;
         positionBase = new Vector2(node.position.x, node.position.y);
