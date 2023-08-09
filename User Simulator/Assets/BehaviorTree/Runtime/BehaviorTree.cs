@@ -35,7 +35,7 @@ public class BehaviorTree: ScriptableObject
         node.blackboard = this.blackboard;
         node.tree = this;
 
-        node.guid = Guid.NewGuid().ToString();
+        
 
         #if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (CreateNode)");
@@ -54,6 +54,8 @@ public class BehaviorTree: ScriptableObject
         #endif
 
         node.OnCreateProperties();
+
+        AssetDatabase.SaveAssets();
 
         return node;
     }
