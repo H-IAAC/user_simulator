@@ -197,7 +197,9 @@ public abstract class Node: ScriptableObject
 
     public virtual Node Clone()
     {
-        return Instantiate(this);
+        Node clone = Instantiate(this);
+        clone.guid = guid;
+        return clone;
     }
 
     public float GetUtility()

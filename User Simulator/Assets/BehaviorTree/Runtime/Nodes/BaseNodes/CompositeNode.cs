@@ -45,6 +45,8 @@ public abstract class CompositeNode : Node
             node.children.Add(child.Clone());
         }
 
+        node.guid = guid;
+
         return node;
     }
 

@@ -23,7 +23,7 @@ public class RootNode : Node
     {
         RootNode node = Instantiate(this);
         node.child = child.Clone();
-
+        node.guid = guid;
         return node;
     }
 

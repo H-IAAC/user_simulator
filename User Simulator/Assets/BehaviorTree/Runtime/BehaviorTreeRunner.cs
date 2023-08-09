@@ -7,8 +7,11 @@ public class BehaviorTreeRunner : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(tree.nodes.Count);
         tree = tree.Clone();
+        Debug.Log(tree.nodes.Count);
         tree.Bind(gameObject);
+        Debug.Log(tree.nodes.Count);
     }
 
     void Update()
