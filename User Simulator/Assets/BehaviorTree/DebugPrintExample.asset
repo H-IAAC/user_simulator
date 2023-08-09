@@ -13,6 +13,34 @@ MonoBehaviour:
   m_Name: message
   m_EditorClassIdentifier: 
   value: 
+--- !u!114 &-8266922112640914379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e82e3dfa32a3a948a47cfb306b0a776, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 868be999-c4b3-4bf8-b21d-51cb36802124
+  position: {x: -98.99997, y: 120.4175}
+  gameObject: {fileID: 0}
+  useMemory: 1
+  description: 
+  parent: {fileID: 1779643875829974600}
+  propertyBlackboardMap:
+  - variable: duration
+    blackboardProperty: 
+  variables:
+  - {fileID: 0}
+  blackboard:
+  - {fileID: 0}
+  tree: {fileID: 11400000}
 --- !u!114 &-8241405908542823432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,6 +65,19 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
   m_Name: String
+  m_EditorClassIdentifier: 
+  value: 
+--- !u!114 &-6504039882108029613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
+  m_Name: message
   m_EditorClassIdentifier: 
   value: 
 --- !u!114 &-6423028726945420696
@@ -157,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: d4081d21-f9c3-4d4e-b148-669966e68bbe
+  guid: 5b00b778-ad6e-4ca4-a0a0-d319f70d26e2
   position: {x: -118, y: 280}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -167,10 +208,13 @@ MonoBehaviour:
   - variable: message
     blackboardProperty: 
   variables:
-  - {fileID: 2899094836589859639}
+  - {fileID: 0}
   blackboard:
-  - {fileID: -5796432903998192358}
+  - {fileID: 0}
   tree: {fileID: 11400000}
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
 --- !u!114 &-1940671223097450434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,8 +255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: ac4396c3-ba53-4503-8acf-8c5db4ddf375
-  position: {x: 293, y: 280}
+  guid: da730f5a-f2ad-497a-b191-9191baa639a7
+  position: {x: 298.75296, y: 280}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -223,14 +267,15 @@ MonoBehaviour:
   - variable: message2
     blackboardProperty: 
   variables:
-  - {fileID: 160744277348079491}
-  - {fileID: 2158679158916450394}
+  - {fileID: 0}
+  - {fileID: 0}
   blackboard:
-  - {fileID: -5796432903998192358}
+  - {fileID: 0}
   tree: {fileID: 11400000}
-  subtree: {fileID: 11400000, guid: b7d8c6596e22e1a4d891ba86eeff1c43, type: 2}
-  passValue: 0100
+  subtree: {fileID: 11400000, guid: b3b30f3705464e84f9febf8d273c17c8, type: 2}
+  passValue: 01000000
   autoRemapOnAssign: 0
+  runtimeTree: {fileID: 0}
 --- !u!114 &-1432568811254515283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +289,31 @@ MonoBehaviour:
   m_Name: message
   m_EditorClassIdentifier: 
   value: In 1
+--- !u!114 &-1349647976108800003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349ec68fc3a086e479aa5b19ac8f7030, type: 3}
+  m_Name: DebugGameObjectNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: c1c8acf7-131d-49bb-99c1-42bb910e4bfa
+  position: {x: -258, y: 120}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 1779643875829974600}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard:
+  - {fileID: 0}
+  tree: {fileID: 11400000}
 --- !u!114 &-1099103346904749429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,8 +328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 8965cae5-5db2-4f02-9d96-1d7e1c61fcdf
-  position: {x: 51, y: -26}
+  guid: 3a9bbb64-fdea-425c-8e5b-1a4fd8e0c3b9
+  position: {x: 51.00006, y: -149.11427}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -268,7 +338,20 @@ MonoBehaviour:
   variables: []
   blackboard: []
   tree: {fileID: 11400000}
-  child: {fileID: 1029918347481560378}
+  child: {fileID: 1779643875829974600}
+--- !u!114 &-1096776443704524804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: duration
+  m_EditorClassIdentifier: Assembly-CSharp::FloatBlackboardProperty
+  value: 5
 --- !u!114 &-977695633178543742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,10 +386,13 @@ MonoBehaviour:
   - {fileID: 1029918347481560378}
   - {fileID: -1696235273643221027}
   - {fileID: 1107234227264891726}
-  blackboard:
-  - {fileID: -5796432903998192358}
+  - {fileID: -8266922112640914379}
+  - {fileID: 1779643875829974600}
+  - {fileID: -1349647976108800003}
+  - {fileID: 4718557633827764666}
+  blackboard: []
   runtime: 0
---- !u!114 &160744277348079491
+--- !u!114 &19806981584528898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,7 +402,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94717cd76e3496a4f81afb34d5173130, type: 3}
-  m_Name: message
+  m_Name: message2
   m_EditorClassIdentifier: 
   value: 
 --- !u!114 &226749221651696924
@@ -385,16 +471,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: fca7988c-8973-49bb-ae9a-ec022fb40afb
+  guid: 63c3b4ed-69de-4741-a180-92716bd8498e
   position: {x: 51, y: 108}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
-  parent: {fileID: -1099103346904749429}
+  parent: {fileID: 1779643875829974600}
   propertyBlackboardMap: []
   variables: []
   blackboard:
-  - {fileID: -5796432903998192358}
+  - {fileID: 0}
   tree: {fileID: 11400000}
   children:
   - {fileID: 1107234227264891726}
@@ -419,7 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: c213c18e-ecd1-41ee-b39c-f45c19353456
+  guid: 0015da0b-8860-486e-89eb-99f9ae7973eb
   position: {x: -296.2, y: 280}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -429,10 +515,13 @@ MonoBehaviour:
   - variable: message
     blackboardProperty: 
   variables:
-  - {fileID: -1432568811254515283}
+  - {fileID: 0}
   blackboard:
-  - {fileID: -5796432903998192358}
+  - {fileID: 0}
   tree: {fileID: 11400000}
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
 --- !u!114 &1294399057741739978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +540,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1779643875829974600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 1028c30e-6d97-4f58-93bc-88d43c35cfa3
+  position: {x: 51.00006, y: -37.227158}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -1099103346904749429}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard:
+  - {fileID: 0}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: -1349647976108800003}
+  - {fileID: -8266922112640914379}
+  - {fileID: 1029918347481560378}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
 --- !u!114 &2158679158916450394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: fe8408c7-dfba-4fef-b6e2-1060a2f1850f
+  guid: 4513eb47-5471-4f6c-9fd2-338c3bab6f21
   position: {x: 103, y: 280}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -514,10 +636,13 @@ MonoBehaviour:
   - variable: message
     blackboardProperty: message
   variables:
-  - {fileID: 5645173334333132372}
+  - {fileID: 0}
   blackboard:
-  - {fileID: -5796432903998192358}
+  - {fileID: 0}
   tree: {fileID: 11400000}
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
 --- !u!114 &3257025721383018593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +695,34 @@ MonoBehaviour:
   m_Name: duration
   m_EditorClassIdentifier: Assembly-CSharp::FloatBlackboardProperty
   value: 0
+--- !u!114 &4718557633827764666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9ba61d47ce00438e08dbf72581922, type: 3}
+  m_Name: ConstantUtility
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e64a9a47-33b0-43fa-9cef-b67871f2e0a8
+  position: {x: 373.99994, y: -60.999996}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: value
+    blackboardProperty: 
+  variables:
+  - {fileID: 8544953612219697793}
+  blackboard: []
+  tree: {fileID: 11400000}
+  child: {fileID: 0}
 --- !u!114 &5203577381438205320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,6 +872,19 @@ MonoBehaviour:
   m_Name: repeatCount
   m_EditorClassIdentifier: Assembly-CSharp::UIntBlackboardProperty
   value: 2436
+--- !u!114 &8544953612219697793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b601edd9596d0134c85c1ed243c20f3f, type: 3}
+  m_Name: value
+  m_EditorClassIdentifier: 
+  value: 123435176
 --- !u!114 &8606315220903152749
 MonoBehaviour:
   m_ObjectHideFlags: 0

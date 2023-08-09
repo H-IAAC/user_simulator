@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8688191939389555178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e82e3dfa32a3a948a47cfb306b0a776, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: cf3b2a19-e4db-4de8-960f-df8e0a4d66d1
+  position: {x: 0, y: 0}
+  gameObject: {fileID: 0}
+  useMemory: 1
+  description: 
+  parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: duration
+    blackboardProperty: 
+  variables:
+  - {fileID: 5767067882755820156}
+  blackboard:
+  - {fileID: -144219014710110538}
+  tree: {fileID: 11400000}
+--- !u!114 &-4167665611086472503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b601edd9596d0134c85c1ed243c20f3f, type: 3}
+  m_Name: value
+  m_EditorClassIdentifier: 
+  value: 18215
+--- !u!114 &-1112396436708669122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: a6d118de-04ad-4437-ae11-8dedb5531fce
+  position: {x: 0, y: 0}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 0}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard:
+  - {fileID: -144219014710110538}
+  tree: {fileID: 11400000}
+  child: {fileID: 3311538956707092413}
+--- !u!114 &-144219014710110538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b601edd9596d0134c85c1ed243c20f3f, type: 3}
+  m_Name: Single
+  m_EditorClassIdentifier: 
+  value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: New Behavior Tree
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -1112396436708669122}
+  treeState: 0
+  nodes:
+  - {fileID: -1112396436708669122}
+  - {fileID: 3311538956707092413}
+  - {fileID: -8688191939389555178}
+  blackboard:
+  - {fileID: -144219014710110538}
+  runtime: 0
+--- !u!114 &3311538956707092413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9ba61d47ce00438e08dbf72581922, type: 3}
+  m_Name: ConstantUtility
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ec783154-44fa-4939-9aa5-38b52b406014
+  position: {x: 0, y: 128}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -1112396436708669122}
+  propertyBlackboardMap:
+  - variable: value
+    blackboardProperty: 
+  variables:
+  - {fileID: -4167665611086472503}
+  blackboard:
+  - {fileID: -144219014710110538}
+  tree: {fileID: 11400000}
+  child: {fileID: 0}
+--- !u!114 &5767067882755820156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b601edd9596d0134c85c1ed243c20f3f, type: 3}
+  m_Name: duration
+  m_EditorClassIdentifier: 
+  value: 0
