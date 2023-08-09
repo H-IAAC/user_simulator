@@ -13,7 +13,7 @@ public class NodeEditor : Editor
         "useUtility", "utilitySelectionMethod", "utilityThreshould"};
 
     static readonly string[] utilityProperties = new string[]{
-        "utilityPropagationMethod", "utilitySelectionMethod", "utilityThreshould"
+        "utilitySelectionMethod", "utilityThreshould"
     };
 
     public override void OnInspectorGUI()
