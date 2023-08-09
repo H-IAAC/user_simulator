@@ -144,3 +144,7 @@
 .no-utility #utility-label {
     display: none;
 }
+
+.ghost #node-border {
+    opacity: 0.5;
+}

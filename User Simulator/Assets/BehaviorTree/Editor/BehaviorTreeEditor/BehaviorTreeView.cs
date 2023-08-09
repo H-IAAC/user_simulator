@@ -10,7 +10,7 @@ public class BehaviorTreeView : GraphView
 {
     public Action<NodeView> OnNodeSelected;
 
-    public new class UxmlFactory : UxmlFactory<BehaviorTreeView, GraphView.UxmlTraits>{}
+    public new class UxmlFactory : UxmlFactory<BehaviorTreeView, GraphView.UxmlTraits> { }
 
     public BehaviorTree tree;
 
@@ -18,14 +18,20 @@ public class BehaviorTreeView : GraphView
 
     List<GraphElement> clipboard;
 
+    List<BehaviorTree> ghostTrees;
+
     public BehaviorTreeView()
     {
         Insert(0, new GridBackground());
 
         this.AddManipulator(new ContentZoomer());
         this.AddManipulator(new ContentDragger());
+        this.AddManipulator(new BTViewDoubleClick(this));
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
+
+
+
 
         string[] guids = AssetDatabase.FindAssets("t:StyleSheet BehaviorTreeEditor");
         StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(AssetDatabase.GUIDToAssetPath(guids[0]));
@@ -36,6 +42,8 @@ public class BehaviorTreeView : GraphView
         clipboard = new();
         serializeGraphElements += OnCopyCut;
         unserializeAndPaste += OnPaste;
+
+        ghostTrees = new();
     }
 
     string OnCopyCut(IEnumerable<GraphElement> elements)
@@ -47,15 +55,15 @@ public class BehaviorTreeView : GraphView
 
     void OnPaste(string operationName, string data)
     {
-        if(operationName == "Duplicate")
+        if (operationName == "Duplicate")
         {
             ClearSelection();
 
             Dictionary<Node, Node> originalToClone = new();
 
-            foreach(GraphElement element in clipboard)
+            foreach (GraphElement element in clipboard)
             {
-                if(element is NodeView view)
+                if (element is NodeView view)
                 {
                     Node node = view.node;
                     Node clone = tree.DuplicateNode(node);
@@ -71,14 +79,14 @@ public class BehaviorTreeView : GraphView
             }
 
             //Create connections if duplicating multiple nodes and originals was connected
-            foreach(Node node in originalToClone.Keys)
+            foreach (Node node in originalToClone.Keys)
             {
-                if(node.parent == null)
+                if (node.parent == null)
                 {
                     continue;
                 }
 
-                if(originalToClone.ContainsKey(node.parent))
+                if (originalToClone.ContainsKey(node.parent))
                 {
                     Node parentClone = originalToClone[node.parent];
                     Node clone = originalToClone[node];
@@ -93,7 +101,7 @@ public class BehaviorTreeView : GraphView
                 }
             }
         }
-        
+
     }
 
     void OnUndoRedo()
@@ -107,22 +115,22 @@ public class BehaviorTreeView : GraphView
         return GetNodeByGuid(node.guid) as NodeView;
     }
 
-    internal void PopulateView(BehaviorTree tree)
+    public void PopulateView(BehaviorTree tree)
     {
-
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
 
         clipboard.Clear();
+        ghostTrees.Clear();
 
         this.tree = tree;
-        if(tree == null)
+        if (tree == null)
         {
             return;
         }
 
-        if(tree.rootNode == null)
+        if (tree.rootNode == null)
         {
             tree.rootNode = tree.CreateNode(typeof(RootNode)) as RootNode;
             EditorUtility.SetDirty(tree);
@@ -130,18 +138,18 @@ public class BehaviorTreeView : GraphView
         }
 
         //Create node views
-        foreach(Node node in tree.nodes)
+        foreach (Node node in tree.nodes)
         {
             CreateNodeView(node);
         }
 
         //Connect node views (create edges)
-        foreach(Node node in tree.nodes)
+        foreach (Node node in tree.nodes)
         {
             NodeView parentView = FindNodeView(node);
 
             List<Node> children = node.GetChildren();
-            foreach(Node child in children)
+            foreach (Node child in children)
             {
                 NodeView childView = FindNodeView(child);
 
@@ -151,13 +159,108 @@ public class BehaviorTreeView : GraphView
         }
     }
 
+    public void ShowSubtree(SubtreeNode subtreeNode)
+    {
+        BehaviorTree ghostTree = subtreeNode.Subtree;
+        if (ghostTree == null)
+        {
+            return;
+        }
+
+        if (ghostTrees.Contains(ghostTree))
+        {
+            RemoveGhostTree(ghostTree);
+        }
+        else
+        {
+            AddGhostTree(ghostTree, subtreeNode);
+        }
+
+
+    }
+
+    void RemoveGhostTree(BehaviorTree ghostTree)
+    {
+
+        foreach (Node node in ghostTree.nodes)
+        {
+            NodeView view = FindNodeView(node);
+
+            if (view.output != null)
+            {
+                foreach (Edge edge in view.output.connections)
+                {
+                    RemoveElement(edge);
+                }
+
+            }
+
+            RemoveElement(view);
+        }
+
+        ghostTrees.Remove(ghostTree);
+        return;
+    }
+
+    void AddGhostTree(BehaviorTree ghostTree, SubtreeNode subtreeNode)
+    {
+        Vector2 offset = subtreeNode.position + new Vector2(0, 100) - subtreeNode.Subtree.rootNode.position;
+
+        foreach (Node node in ghostTree.nodes)
+        {
+            NodeView view = CreateNodeView(node, ghostTree.runtime, true);
+            view.PositionOffset = offset;
+            view.Selectable = false;
+        }
+
+        foreach (Node node in ghostTree.nodes)
+        {
+            NodeView parentView = FindNodeView(node);
+
+            List<Node> children = node.GetChildren();
+            foreach (Node child in children)
+            {
+                NodeView childView = FindNodeView(child);
+
+                Edge edge = parentView.output.ConnectTo(childView.input);
+                edge.capabilities &= ~Capabilities.Selectable;
+                AddElement(edge);
+            }
+        }
+
+        ghostTrees.Add(ghostTree);
+    }
+
+    void UpdateGhostTree(SubtreeNode subtreeNode)
+    {
+        BehaviorTree ghostTree = subtreeNode.Subtree;
+        if (ghostTree == null)
+        {
+            return;
+        }
+
+        if(!ghostTrees.Contains(ghostTree))
+        {
+            return;
+        }
+
+        Vector2 offset = subtreeNode.position + new Vector2(0, 100) - subtreeNode.Subtree.rootNode.position;
+
+        foreach (Node node in ghostTree.nodes)
+        {
+            NodeView view = FindNodeView(node);
+
+            view.PositionOffset = offset;
+        }
+    }
+
     GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
     {
-        if(graphViewChange.elementsToRemove != null)
+        if (graphViewChange.elementsToRemove != null)
         {
-            foreach(GraphElement elem in graphViewChange.elementsToRemove)
+            foreach (GraphElement elem in graphViewChange.elementsToRemove)
             {
-                if (elem is NodeView nodeView)
+                if (elem is NodeView nodeView && nodeView.Ghost == false)
                 {
                     tree.DeleteNode(nodeView.node);
                 }
@@ -191,12 +294,17 @@ public class BehaviorTreeView : GraphView
             }
         }
 
-        if(graphViewChange.movedElements != null)
+        if (graphViewChange.movedElements != null)
         {
-            foreach(var node in nodes)
+            foreach (var node in nodes)
             {
                 NodeView view = node as NodeView;
                 view.SortChildren();
+
+                if(view.node is SubtreeNode subtreeNode)
+                {
+                    UpdateGhostTree(subtreeNode);
+                }
             }
         }
 
@@ -206,7 +314,12 @@ public class BehaviorTreeView : GraphView
 
     NodeView CreateNodeView(Node node)
     {
-        NodeView nodeView = new(node, tree.runtime);
+        return CreateNodeView(node, tree.runtime);
+    }
+
+    NodeView CreateNodeView(Node node, bool runtime, bool ghost = false)
+    {
+        NodeView nodeView = new(node, runtime, ghost);
         nodeView.OnNodeSelected = OnNodeSelected;
         AddElement(nodeView);
 
@@ -219,10 +332,10 @@ public class BehaviorTreeView : GraphView
 
         Type[] baseTypes = { typeof(ActionNode), typeof(CompositeNode), typeof(DecoratorNode) };
 
-        foreach(Type baseType in baseTypes)
+        foreach (Type baseType in baseTypes)
         {
             TypeCache.TypeCollection types = TypeCache.GetTypesDerivedFrom(baseType);
-            foreach(Type type in types)
+            foreach (Type type in types)
             {
                 evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", (a) => CreateNode(type));
             }
@@ -232,29 +345,32 @@ public class BehaviorTreeView : GraphView
 
     void CreateNode(Type type)
     {
-        if(!tree)
+        if (!tree)
         {
             Debug.LogError("Cannot create node without active tree asset.");
             return;
         }
+
         
+    
         Node node = tree.CreateNode(type);
-        CreateNodeView(node);
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
-                                            // It's not input-input connection            It's not connected to itself
+        // It's not input-input connection            It's not connected to itself
         return ports.ToList().Where(endPort => endPort.direction != startPort.direction && endPort.node != startPort.node).ToList();
     }
 
     public void UpdateNodeStates()
     {
-        foreach(var node in nodes)
+        foreach (var node in nodes)
         {
             NodeView view = node as NodeView;
             view.UpdateState();
         }
     }
+
+
 
 }

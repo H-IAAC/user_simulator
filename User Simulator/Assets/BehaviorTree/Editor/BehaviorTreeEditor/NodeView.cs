@@ -13,8 +13,14 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 
     public Port input;
     public Port output;
+    
+
+    Vector2 positionOffset = Vector2.zero;
+    Vector2 positionBase = Vector2.zero;
 
     bool runtime;
+
+    bool ghost;
 
     static string UIFilePath = getUIFilePath();
 
@@ -26,14 +32,17 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         return AssetDatabase.GUIDToAssetPath(guids[0]);
     }
 
-    public NodeView(Node node, bool runtime) : base(UIFilePath)
+    public NodeView(Node node, bool runtime, bool ghost=false) : base(UIFilePath)
     {
         this.node = node;
         serializedNode = new(node);
 
-        this.title = node.name;
+        this.runtime = runtime;
+        this.ghost = ghost;
 
-        this.viewDataKey = node.guid;
+        title = node.name;
+        viewDataKey = node.guid;
+        positionBase = new Vector2(node.position.x, node.position.y);
 
         //Position of the node
         style.left = node.position.x;
@@ -48,8 +57,6 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         Label descriptionLabel = this.Q<Label>("description");
         descriptionLabel.bindingPath = "description";
         descriptionLabel.Bind(new SerializedObject(node));
-
-        this.runtime = runtime;
     }
 
     void SetupClasses()
@@ -69,6 +76,11 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         else if(node is RootNode)
         {
             AddToClassList("root");
+        }
+
+        if(ghost)
+        {
+            AddToClassList("ghost");
         }
     }
 
@@ -147,27 +159,80 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         }
     }
 
+    public Vector2 PositionOffset
+    {
+        get
+        {
+            return positionOffset;
+        }
+
+        set
+        {
+            positionOffset = value;
+
+            UpdateViewPosition();
+        }
+    }
+
     public override void SetPosition(Rect newPos)
     {
-        base.SetPosition(newPos);
-
         Undo.RecordObject(node, "Behavior Tree (Set Position)");
 
         node.position.x = newPos.xMin;
         node.position.y = newPos.yMin;
 
         EditorUtility.SetDirty(node);
+
+        positionBase = newPos.position;
+        UpdateViewPosition();
+    }
+
+    public void SetPosition(Vector2 positionBase)
+    {
+        node.position.x = positionBase.x;
+        node.position.y = positionBase.y;
+        EditorUtility.SetDirty(node);
+
+        SortChildren();
+
+        this.positionBase = positionBase;
+        UpdateViewPosition();
+    }
+
+    private void UpdateViewPosition()
+    {
+        //Debug.Log($"{positionBase}|{positionOffset}");
+        Vector2 position = positionBase + positionOffset;
+        Rect newPos = new(position, Vector2.one);
+
+        base.SetPosition(newPos);
     }
 
     public override void OnSelected()
     {
         base.OnSelected();
 
-        if(OnNodeSelected != null)
+        OnNodeSelected?.Invoke(this);
+
+    }
+
+    public bool Selectable
+    {
+        set
         {
-            OnNodeSelected.Invoke(this);
+            if(value)
+            {
+                capabilities |= Capabilities.Selectable;
+            }
+            else
+            {
+                capabilities &= ~Capabilities.Selectable;
+            }
         }
-        
+        get
+        {
+            return IsSelectable();
+        }
     }
 
     public void SortChildren()
@@ -194,6 +259,8 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         RemoveFromClassList("running");
         RemoveFromClassList("failure");
         RemoveFromClassList("success");
+
+        
 
         if(Application.isPlaying && runtime)
         {
@@ -238,6 +305,10 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
                 RemoveFromClassList("no-utility");
             }
         }
-        
+    }
+
+    public bool Ghost
+    {
+        get{ return ghost; }
     }
 }

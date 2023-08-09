@@ -8,7 +8,7 @@ public class SubtreeNode : ActionNode
     [HideInInspector][SerializeField] public List<bool> passValue = new();
     [SerializeField] bool autoRemapOnAssign = false;
 
-    BehaviorTree runtimeTree;
+    public BehaviorTree runtimeTree;
 
     public BehaviorTree Subtree
     {
@@ -18,6 +18,12 @@ public class SubtreeNode : ActionNode
         }
         set
         {
+            if(runtimeTree != null)
+            {
+                Debug.LogError("Subtree can only be set before node start");
+            }
+
+
             if(value != subtree)
             {
                 subtree = value;
