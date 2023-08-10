@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEditor;
+using UnityEngine;
 
 public class InspectorView : VisualElement
 {
-    public new class UxmlFactory : UxmlFactory<InspectorView, VisualElement.UxmlTraits>{}
+    public new class UxmlFactory : UxmlFactory<InspectorView, VisualElement.UxmlTraits> { }
 
     Editor editor;
 
@@ -32,14 +33,40 @@ public class InspectorView : VisualElement
         Add(container);
     }
 
+    public void UpdateSelection(SerializedProperty property)
+    {
+        Clear();
+
+        IMGUIContainer container = new()
+        {
+            onGUIHandler = () =>
+            {
+                if(property.serializedObject.targetObject == null)
+                {
+                    this.Clear();
+                }
+                else
+                {
+                    property.serializedObject.Update();
+                    EditorGUILayout.PropertyField(property, true);
+                    property.serializedObject.ApplyModifiedProperties();
+                }
+
+                
+            }
+        };
+
+        Add(container);
+    }
+
     void OnGUIHandler()
     {
-        if(!editor)
+        if (!editor)
         {
             return;
         }
-        
-        if(editor.target)
+
+        if (editor.target)
         {
             editor.OnInspectorGUI();
         }

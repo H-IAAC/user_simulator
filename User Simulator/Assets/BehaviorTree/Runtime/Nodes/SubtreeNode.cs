@@ -4,13 +4,13 @@ using System.Linq;
 
 public class SubtreeNode : ActionNode
 {
-    [SerializeField][SerializeProperty("Subtree")] BehaviorTree subtree;
+    [SerializeField][SerializeProperty("Subtree")] protected BehaviorTree subtree;
     [HideInInspector][SerializeField] public List<bool> passValue = new();
     [SerializeField] bool autoRemapOnAssign = false;
 
     BehaviorTree runtimeTree;
 
-    public BehaviorTree Subtree
+    public virtual BehaviorTree Subtree
     {
         get
         {
@@ -27,13 +27,18 @@ public class SubtreeNode : ActionNode
             if(value != subtree)
             {
                 subtree = value;
-                checkProperties();
-
-                if(autoRemapOnAssign)
-                {
-                    autoRemap();
-                }
+                ValidateSubtree();
             }
+        }
+    }
+
+    protected void ValidateSubtree()
+    {
+        checkProperties();
+
+        if(autoRemapOnAssign)
+        {
+            autoRemap();
         }
     }
 
@@ -60,6 +65,7 @@ public class SubtreeNode : ActionNode
         {
             runtimeTree = subtree.Clone();
             runtimeTree.Bind(gameObject);
+            runtimeTree.Start();
         }
     }
 
@@ -131,9 +137,28 @@ public class SubtreeNode : ActionNode
                 if (myProperty.variable == bbProperty.name)
                 {
                     propertyBlackboardMap[i] = new() { variable = myProperty.variable, blackboardProperty = bbProperty.name };
+                    passValue[i] = true;
                 }
             }
         }
+    }
+
+    protected override float OnComputeUtility()
+    {
+        if(!subtree)
+        {
+            return 0f;
+        }
+
+        if(runtimeTree == null)
+        {
+            runtimeTree = subtree.Clone();
+            runtimeTree.Bind(gameObject);
+
+            runtimeTree.Start();
+        }
+
+        return runtimeTree.GetUtility();
     }
 
 }

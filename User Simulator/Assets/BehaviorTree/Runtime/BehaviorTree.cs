@@ -16,6 +16,8 @@ public class BehaviorTree: ScriptableObject
 
     public List<BlackboardProperty> blackboard = new();
 
+    public List<BTagParameter> bTagParameters = new();
+
     [HideInInspector] public bool runtime = false;
 
     public NodeState Update()
@@ -192,5 +194,13 @@ public class BehaviorTree: ScriptableObject
     public float GetUtility()
     {
         return rootNode.GetUtility();
+    }
+
+    public void Start()
+    {
+        if (!rootNode.started)
+        {
+            rootNode.Start();
+        }
     }
 }

@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3235514876609949787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8480b827507b5954d92fc2a4971aab19, type: 3}
+  m_Name: FallbackNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 4ddb782e-bb90-42ac-8cf9-cd609987253e
+  position: {x: 0, y: 127}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -1116426152149312725}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard: []
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: 2308288592995821952}
+  - {fileID: 7292454839897341303}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+--- !u!114 &-1116426152149312725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 302cbf80-8789-4ae3-918a-56bd3569b5f4
+  position: {x: 0, y: 0}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 0}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard: []
+  tree: {fileID: 11400000}
+  child: {fileID: -3235514876609949787}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: RequestExample
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -1116426152149312725}
+  treeState: 0
+  nodes:
+  - {fileID: -1116426152149312725}
+  - {fileID: 2308288592995821952}
+  - {fileID: 7292454839897341303}
+  - {fileID: -3235514876609949787}
+  blackboard:
+  - {fileID: 7996230200442618730}
+  bTagParameters:
+  - type: {fileID: 11400000, guid: f4e0433407ef7ae44815e21592db5946, type: 2}
+    value: 1
+  runtime: 0
+--- !u!114 &2308288592995821952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919242ca5e2abab4d94ad5002dbae9ee, type: 3}
+  m_Name: RequestBehaviorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e7ac6324-5879-4882-b2da-9a9ee29c06c7
+  position: {x: -75, y: 272.05002}
+  gameObject: {fileID: 0}
+  useMemory: 1
+  description: 
+  parent: {fileID: -3235514876609949787}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard: []
+  tree: {fileID: 11400000}
+  subtree: {fileID: 0}
+  passValue: 
+  autoRemapOnAssign: 0
+  tagProvider: {fileID: 11400000, guid: 4fbfcc44154d4934ba31986cedde2334, type: 2}
+  minimumValueParameters: []
+  maximumValueParameters: []
+--- !u!114 &7292454839897341303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919242ca5e2abab4d94ad5002dbae9ee, type: 3}
+  m_Name: RequestBehaviorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 84af17d2-5cf2-44af-bff1-a4ed1f22ef33
+  position: {x: 74.999985, y: 272}
+  gameObject: {fileID: 0}
+  useMemory: 1
+  description: 
+  parent: {fileID: -3235514876609949787}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard: []
+  tree: {fileID: 11400000}
+  subtree: {fileID: 0}
+  passValue: 
+  autoRemapOnAssign: 1
+  tagProvider: {fileID: 11400000, guid: 4a8cb41133142a94e962129ceefc2d83, type: 2}
+  minimumValueParameters: []
+  maximumValueParameters: []
+--- !u!114 &7996230200442618730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard1
+  m_EditorClassIdentifier: 
+  value: From Request Example

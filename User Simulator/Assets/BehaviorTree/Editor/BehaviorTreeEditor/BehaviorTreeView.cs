@@ -236,7 +236,7 @@ public class BehaviorTreeView : GraphView
 
     void AddGhostTree(BehaviorTree ghostTree, SubtreeNode subtreeNode)
     {
-        Vector2 offset = subtreeNode.position + new Vector2(0, 100) - subtreeNode.Subtree.rootNode.position;
+        Vector2 offset = subtreeNode.position + new Vector2(0, 100) - subtreeNode.Subtree.rootNode.position + FindNodeView(subtreeNode).PositionOffset;
 
         foreach (Node node in ghostTree.nodes)
         {
@@ -369,7 +369,7 @@ public class BehaviorTreeView : GraphView
             TypeCache.TypeCollection types = TypeCache.GetTypesDerivedFrom(baseType);
             foreach (Type type in types)
             {
-                evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", (a) => CreateNode(type));
+                evt.menu.AppendAction($"{baseType.Name}/{type.Name}", (a) => CreateNode(type));
             }
         }
 

@@ -15,7 +15,7 @@ public struct NameMap
     public string blackboardProperty;
 }
 
-public abstract class Node: ScriptableObject
+public abstract class Node : ScriptableObject
 {
     [HideInInspector] public NodeState state = NodeState.Runnning;
     [HideInInspector] public bool started = false;
@@ -23,7 +23,8 @@ public abstract class Node: ScriptableObject
     [HideInInspector] public Vector2 position;
     [HideInInspector] public GameObject gameObject;
 
-    [SerializeField][SerializeProperty("UseMemory")]
+    [SerializeField]
+    [SerializeProperty("UseMemory")]
     bool useMemory = false;
     [TextArea] public string description;
 
@@ -81,7 +82,7 @@ public abstract class Node: ScriptableObject
 
         set
         {
-            if(MemoryMode == MemoryMode.Both)
+            if (MemoryMode == MemoryMode.Both)
             {
                 useMemory = value;
             }
@@ -91,7 +92,7 @@ public abstract class Node: ScriptableObject
 
     public NodeState Update()
     {
-        if(!started)
+        if (!started)
         {
             Start();
             started = true;
@@ -99,7 +100,7 @@ public abstract class Node: ScriptableObject
 
         state = OnUpdate();
 
-        if(state == NodeState.Failure || state == NodeState.Success)
+        if (state == NodeState.Failure || state == NodeState.Success)
         {
             OnStop();
             started = false;
@@ -116,34 +117,37 @@ public abstract class Node: ScriptableObject
         BlackboardProperty property = ScriptableObject.CreateInstance(type) as BlackboardProperty;
         property.name = this.name + "-" + name;
 
-        #if UNITY_EDITOR
-        if(AssetDatabase.GetAssetPath(this) == "")
+#if UNITY_EDITOR
+        if (gameObject == null)
         {
-            throw new Exception("Creating property before object initalization.");
-        }
+            if (AssetDatabase.GetAssetPath(this) == "")
+            {
+                throw new Exception("Creating property before object initalization.");
+            }
 
-        if (!Application.isPlaying)
+            if (!Application.isPlaying)
             {
                 AssetDatabase.AddObjectToAsset(property, AssetDatabase.GetAssetPath(this));
             }
-        #endif
+        }
+#endif
 
         property.PropertyName = name;
 
         variables.Add(property);
     }
 
-    private BlackboardProperty GetProperty(string name, bool forceNodeProperty=false)
+    private BlackboardProperty GetProperty(string name, bool forceNodeProperty = false)
     {
         int index = propertyBlackboardMap.FindIndex(x => x.variable == name);
 
-        if(index < 0)
+        if (index < 0)
         {
             throw new ArgumentException("Property does not exist in node.");
         }
 
         string bbName = propertyBlackboardMap[index].blackboardProperty;
-        if(bbName == "" || forceNodeProperty)
+        if (bbName == "" || forceNodeProperty)
         {
             return variables[index];
         }
@@ -164,32 +168,32 @@ public abstract class Node: ScriptableObject
         return GetProperty(name, forceNodeProperty).Value;
     }
 
-    public T GetPropertyValue<T>(string name, bool forceNodeProperty=false)
+    public T GetPropertyValue<T>(string name, bool forceNodeProperty = false)
     {
-        
+
         return (T)GetProperty(name, forceNodeProperty).Value;
     }
 
-    public void SetPropertyValue<T>(string name, T value, bool forceNodeProperty=false)
+    public void SetPropertyValue<T>(string name, T value, bool forceNodeProperty = false)
     {
         GetProperty(name, forceNodeProperty).Value = value;
     }
 
     public void ClearPropertyDefinitions()
     {
-        foreach(BlackboardProperty variable in variables)
+        foreach (BlackboardProperty variable in variables)
         {
-            if(variable != null)
+            if (variable != null)
             {
                 AssetDatabase.RemoveObjectFromAsset(variable);
             }
-            
+
         }
 
         variables.Clear();
         propertyBlackboardMap.Clear();
     }
-    
+
     public bool HasProperty(string name)
     {
         return propertyBlackboardMap.Any(x => x.variable == name);

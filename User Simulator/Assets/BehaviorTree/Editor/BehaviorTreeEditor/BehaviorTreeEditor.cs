@@ -9,6 +9,7 @@ public class BehaviorTreeEditor : EditorWindow
     BehaviorTreeView treeView;
     InspectorView inspectorView;
     BlackboardView blackboardView;
+    InspectorView agentParameters;
     SerializedObject treeObject;
 
     [SerializeField]
@@ -34,7 +35,8 @@ public class BehaviorTreeEditor : EditorWindow
         root.styleSheets.Add(styleSheet);
 
         treeView = root.Q<BehaviorTreeView>();
-        inspectorView = root.Q<InspectorView>();
+        inspectorView = root.Q<InspectorView>("inspector");
+        agentParameters = root.Q<InspectorView>("agent-parameters");
         GenerateBlackboard();
 
         treeView.OnNodeSelected = (node) => { OnNodeSelectionChanged(node.node); };
@@ -102,17 +104,17 @@ public class BehaviorTreeEditor : EditorWindow
         }
 
         tree.Validate();
+        treeObject = new SerializedObject(tree);
 
-        if(treeView != null)
+        if (treeView != null)
         {
-            if(Application.isPlaying || AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
+            if (Application.isPlaying || AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
             {
                 treeView.PopulateView(tree);
                 blackboardView.PopulateView(tree);
+                agentParameters.UpdateSelection(treeObject.FindProperty("bTagParameters"));
             }
         }
-
-        treeObject = new SerializedObject(tree);
     }
 
     void OnNodeSelectionChanged(UnityEngine.Object obj)

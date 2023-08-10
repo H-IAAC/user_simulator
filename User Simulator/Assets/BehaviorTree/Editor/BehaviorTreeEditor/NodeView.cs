@@ -46,6 +46,12 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         }
 
         title = node.name;
+
+        if(title.EndsWith("Node"))
+        {
+            title = title.Substring(0, title.Length-4);
+        }
+
         viewDataKey = node.guid;
         positionBase = new Vector2(node.position.x, node.position.y);
 

@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: c76e7a03-45c5-456e-97a7-4d319338690b
+  guid: b8d37461-5227-4ec6-af7a-8305a90289f2
   position: {x: 0, y: 216}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: fc59cf78-ee64-45f3-9b8c-163df63c3566
+  guid: 99c1cc00-ffb3-4984-8b7c-74d0dca8cb1b
   position: {x: 176.99998, y: 216}
   gameObject: {fileID: 0}
   useMemory: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
   parent: {fileID: 6616603776995768503}
   propertyBlackboardMap:
   - variable: WillBeOverwritten
-    blackboardProperty: 
+    blackboardProperty: FromMainTree
   - variable: Blackboard2
     blackboardProperty: 
   variables:
@@ -115,7 +115,7 @@ MonoBehaviour:
   - {fileID: 3269002679059331028}
   tree: {fileID: 11400000}
   subtree: {fileID: 11400000, guid: 9929c0fd4bb2fb341a7189933c927e9c, type: 2}
-  passValue: 0000
+  passValue: 0100
   autoRemapOnAssign: 0
 --- !u!114 &-2723813346271644966
 MonoBehaviour:
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: e0617075-5812-499f-9b5d-5c2a5b14b74c
+  guid: 645ef0ed-b395-4b72-962f-d32e7a74feac
   position: {x: 0, y: 0}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 24915846-c534-4e1d-9e16-70393bfcebde
+  guid: 8b5ae528-be45-41a5-bf5f-5ec51517e9bb
   position: {x: -175, y: 216}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: b26d474a-1c97-4b42-9fe4-02022c6aeed8
+  guid: 3dcdac96-9845-41ec-987d-bb9e288ffaca
   position: {x: 0.000021219254, y: 87.99999}
   gameObject: {fileID: 0}
   useMemory: 0
