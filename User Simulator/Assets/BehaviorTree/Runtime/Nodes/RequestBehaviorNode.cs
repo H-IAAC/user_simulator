@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
+
 public class RequestBehaviorNode : SubtreeNode
 {
     public RequestBehaviorNode() : base()
@@ -25,13 +26,17 @@ public class RequestBehaviorNode : SubtreeNode
     public List<BTagParameter> minimumValueParameters = new();
     public List<BTagParameter> maximumValueParameters = new();
 
+    
+    bool overrideMode = false;
+
+    BehaviorTag currentTag;
+
     public override void OnCreateProperties()
     {
         CreateProperty(typeof(TagProviderProperty), "tagProvider");
         passValue.Add(false);
     }
 
-    BehaviorTag currentTag;
 
     BehaviorTag requestTag()
     {
@@ -59,18 +64,56 @@ public class RequestBehaviorNode : SubtreeNode
 
     public override void OnStart()
     {
-        if(currentTag == null)
+        if(currentTag == null || overrideMode)
         {
-            currentTag = requestTag();
+            BehaviorTag newTag = requestTag();
+            
+            if(newTag == null)
+            {
+                if(!overrideMode)
+                {
+                    currentTag = newTag;
+                }
+            }
+            else
+            {
+                currentTag = newTag;
+                overrideMode = false;
+            }
+            
             if(currentTag != null)
             {
-                subtree = currentTag.tree;
-                ValidateSubtree();
+                base.Subtree = currentTag.tree;
+            }
+            else
+            {
+                base.Subtree = null;
             }
             
         }
 
         base.OnStart();
+
+        //Debug.Log($"Current subtree: {subtree}");
+    }
+
+    void DoLifecycleBehavior(TagLifecycleType lifecyleType, NodeState state)
+    {
+        switch (lifecyleType)
+        {
+            case TagLifecycleType.DROP:
+                currentTag = null;
+                break;
+            case TagLifecycleType.HOLD:
+                break;
+            case TagLifecycleType.OVERRIDABLE:
+                if(state != NodeState.Runnning)
+                {
+                    overrideMode = true;
+                }
+                
+                break;
+        }
     }
 
     public override NodeState OnUpdate()
@@ -80,7 +123,22 @@ public class RequestBehaviorNode : SubtreeNode
             return NodeState.Failure;
         }
 
-        return base.OnUpdate();
+        NodeState state = base.OnUpdate();
+
+        switch (state)
+        {
+            case NodeState.Runnning:
+                DoLifecycleBehavior(currentTag.onRunning, state);
+                break;
+            case NodeState.Failure:
+                DoLifecycleBehavior(currentTag.onFailure, state);
+                break;
+            case NodeState.Success:
+                DoLifecycleBehavior(currentTag.onSuccess, state);
+                break;
+        }
+
+        return state;
     }
 
 }

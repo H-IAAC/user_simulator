@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class BTagContainer :  ScriptableObject, IBTagProvider
 {
     public List<BehaviorTag> tags;
+    public bool randomizeOnProvide;
 
     public List<BehaviorTag> ProvideTags(List<BTagParameter> agentParameters)
     {
@@ -15,6 +16,11 @@ public class BTagContainer :  ScriptableObject, IBTagProvider
             {
                 availableTags.Add(tag);
             }
+        }
+
+        if(randomizeOnProvide && availableTags.Count != 0)
+        {
+            tags.Shuffle();
         }
 
         return availableTags;

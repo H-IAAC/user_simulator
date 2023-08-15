@@ -22,7 +22,7 @@ public class SubtreeNode : ActionNode
         {
             if(runtimeTree != null)
             {
-                Debug.LogError("Subtree can only be set before node start");
+                runtimeTree = null;
             }
 
 
@@ -77,9 +77,9 @@ public class SubtreeNode : ActionNode
 
     public override NodeState OnUpdate()
     {
-        if(!subtree)
+        if(!runtimeTree)
         {
-            return NodeState.Success;
+            return NodeState.Failure;
         }
 
         for (int i = 0; i < runtimeTree.blackboard.Count; i++)
