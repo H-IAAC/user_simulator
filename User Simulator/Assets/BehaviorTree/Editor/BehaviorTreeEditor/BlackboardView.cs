@@ -160,11 +160,12 @@ public class BlackboardView : Blackboard
 
     public void OnFieldDelete(BlackboardField field)
     {
+        Debug.Log("Aqui");
         string name = field.text;
 
         int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
 
-        tree.blackboard.RemoveAt(index);
+        tree.DeleteProperty(tree.blackboard[index]);
     }
 
 }
