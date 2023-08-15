@@ -4,6 +4,11 @@ using System.Linq;
 
 public class RequestBehaviorNode : SubtreeNode
 {
+    public RequestBehaviorNode() : base()
+    {
+        propertiesDontDeleteOnValidate.Add("tagProvider");
+    }
+
     public override BehaviorTree Subtree
     {
         get
@@ -17,15 +22,28 @@ public class RequestBehaviorNode : SubtreeNode
         }
     }
 
-    public UnityEngine.Object tagProvider;
     public List<BTagParameter> minimumValueParameters = new();
     public List<BTagParameter> maximumValueParameters = new();
+
+    public override void OnCreateProperties()
+    {
+        CreateProperty(typeof(TagProviderProperty), "tagProvider");
+        passValue.Add(false);
+    }
 
     BehaviorTag currentTag;
 
     BehaviorTag requestTag()
     {
-        IBTagProvider provider = tagProvider as IBTagProvider;
+        object providerObj = GetPropertyValue("tagProvider");
+        
+        IBTagProvider provider = providerObj as IBTagProvider;
+
+        if(provider == null)
+        {
+            return null;
+        }
+
         List<BehaviorTag> tags = provider.ProvideTags(tree.bTagParameters);
 
         foreach (BehaviorTag tag in tags)
@@ -63,14 +81,6 @@ public class RequestBehaviorNode : SubtreeNode
         }
 
         return base.OnUpdate();
-    }
-
-    void OnValidate()
-    {
-        if(tagProvider is not IBTagProvider)
-        {
-            tagProvider = null;
-        }
     }
 
 }

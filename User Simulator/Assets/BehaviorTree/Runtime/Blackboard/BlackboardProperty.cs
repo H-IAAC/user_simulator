@@ -38,8 +38,6 @@ public abstract class BlackboardProperty<T> : BlackboardProperty
     [SerializeField]
     public T value = default;
 
-    SerializedObject thisSerialized;
-
     public override object Value
     {
         get { return value; }

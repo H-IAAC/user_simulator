@@ -118,6 +118,22 @@ public class BehaviorTree: ScriptableObject
         #endif
     }
 
+    public void DeleteProperty(BlackboardProperty property)
+    {
+        #if UNITY_EDITOR
+            Undo.RecordObject(this, "Behavior Tree (DeleteTreeProperty)");
+        #endif
+
+        blackboard.Remove(property);
+
+        #if UNITY_EDITOR
+            //AssetDatabase.RemoveObjectFromAsset(node);
+            Undo.DestroyObjectImmediate(property);
+
+            AssetDatabase.SaveAssets();
+        #endif
+    }
+
 
     public void Traverse(Node node, Action<Node> visiter)
     {

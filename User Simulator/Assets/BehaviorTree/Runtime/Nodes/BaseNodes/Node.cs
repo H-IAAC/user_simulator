@@ -179,19 +179,36 @@ public abstract class Node : ScriptableObject
         GetProperty(name, forceNodeProperty).Value = value;
     }
 
-    public void ClearPropertyDefinitions()
+    public void ClearPropertyDefinitions(List<string> dontDelete = null)
     {
+
+#if UNITY_EDITOR
+
         foreach (BlackboardProperty variable in variables)
         {
             if (variable != null)
             {
-                AssetDatabase.RemoveObjectFromAsset(variable);
+                if(!dontDelete.Contains(variable.name))
+                {
+                    AssetDatabase.RemoveObjectFromAsset(variable);
+                }
+                
             }
-
         }
 
-        variables.Clear();
-        propertyBlackboardMap.Clear();
+#endif
+
+        if(dontDelete != null)
+        {
+            variables.RemoveAll(x => !dontDelete.Contains(x.name));
+            propertyBlackboardMap.RemoveAll(x => !dontDelete.Contains(x.variable));
+        }
+        else
+        {
+            variables.Clear();
+            propertyBlackboardMap.Clear();
+        }
+        
     }
 
     public bool HasProperty(string name)

@@ -10,7 +10,8 @@ public class NodeEditor : Editor
 
     static readonly string[] noDraw = new string[]{ 
         "useMemory",
-        "useUtility", "utilitySelectionMethod", "utilityThreshould"};
+        "useUtility", "utilitySelectionMethod", "utilityThreshould",
+        "subtree"};
 
     static readonly string[] utilityProperties = new string[]{
         "utilitySelectionMethod", "utilityThreshould"
@@ -23,6 +24,7 @@ public class NodeEditor : Editor
 
         Node node = target as Node;
         SubtreeNode subtreeNode = node as SubtreeNode;
+        RequestBehaviorNode requestBehaviorNode = node as RequestBehaviorNode;
 
         if(node.MemoryMode == MemoryMode.Both)
         {
@@ -49,6 +51,12 @@ public class NodeEditor : Editor
             }
         }
 
+        if(subtreeNode && !requestBehaviorNode)
+        {
+            SerializedProperty property = serializedObject.FindProperty("subtree");
+            EditorGUILayout.PropertyField(property, true);
+        }
+
         if (node.variables.Count > 0)
         {
             showProperties = EditorGUILayout.BeginFoldoutHeaderGroup(showProperties, "Properties");
@@ -56,13 +64,19 @@ public class NodeEditor : Editor
             {
                 for (int i = 0; i < node.propertyBlackboardMap.Count; i++)
                 {
+                    if(node.variables[i] == null)
+                    {
+                        Debug.LogWarning($"Property {i} of node {node.name} is null");
+                        continue;
+                    }
+
                     NameMap map = node.propertyBlackboardMap[i];
 
                     EditorGUILayout.LabelField(map.variable, EditorStyles.boldLabel);
 
                     EditorGUILayout.BeginHorizontal();
 
-                    if (subtreeNode)
+                    if (subtreeNode && !requestBehaviorNode)
                     {
                         float oldWidth2 = EditorGUIUtility.labelWidth;
                         EditorGUIUtility.labelWidth = 70;
@@ -89,7 +103,7 @@ public class NodeEditor : Editor
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
 
-            if(subtreeNode)
+            if(subtreeNode && !requestBehaviorNode)
             {
                 if(GUILayout.Button("Autoremap"))
                 {

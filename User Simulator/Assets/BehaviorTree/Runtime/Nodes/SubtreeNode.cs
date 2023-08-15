@@ -8,6 +8,8 @@ public class SubtreeNode : ActionNode
     [HideInInspector][SerializeField] public List<bool> passValue = new();
     [SerializeField] bool autoRemapOnAssign = false;
 
+    [HideInInspector][SerializeField] protected List<string> propertiesDontDeleteOnValidate = new();
+
     BehaviorTree runtimeTree;
 
     public virtual BehaviorTree Subtree
@@ -97,7 +99,7 @@ public class SubtreeNode : ActionNode
     {
         if(!subtree)
         {
-            ClearPropertyDefinitions();
+            ClearPropertyDefinitions(propertiesDontDeleteOnValidate);
             return;
         }
 
@@ -113,6 +115,12 @@ public class SubtreeNode : ActionNode
         for (int i = propertyBlackboardMap.Count - 1; i >= 0; i--)
         {
             NameMap map = propertyBlackboardMap[i];
+
+            if(propertiesDontDeleteOnValidate.Contains(map.variable))
+            {
+                continue;
+            }
+
             if (!subtree.blackboard.Any(x => x.PropertyName == map.variable))
             {
                 propertyBlackboardMap.RemoveAt(i);
