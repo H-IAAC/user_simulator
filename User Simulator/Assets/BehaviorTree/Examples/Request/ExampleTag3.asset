@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: ExampleTag3
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: 9929c0fd4bb2fb341a7189933c927e9c, type: 2}
+  onSuccess: 0
+  onFailure: 0
+  onRunning: 1
   parameters: []
   minimumValueParameters: []
   maximumValueParameters: []

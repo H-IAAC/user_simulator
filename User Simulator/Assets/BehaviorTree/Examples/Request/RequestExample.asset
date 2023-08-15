@@ -1,5 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8482181159328072708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d1609614-dea0-49cf-aa50-28e4dd0edb60
+  position: {x: 0, y: 0}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 0}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard:
+  - {fileID: 7996230200442618730}
+  tree: {fileID: 11400000}
+  children: []
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+--- !u!114 &-7339145959541849673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b601edd9596d0134c85c1ed243c20f3f, type: 3}
+  m_Name: duration
+  m_EditorClassIdentifier: 
+  value: 0
 --- !u!114 &-7067514802510600778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,6 +56,34 @@ MonoBehaviour:
   m_Name: FromMainTree
   m_EditorClassIdentifier: 
   value: 
+--- !u!114 &-6798806829233507640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e82e3dfa32a3a948a47cfb306b0a776, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d386b776-9f41-4c29-808d-d02026911448
+  position: {x: -218, y: 274}
+  gameObject: {fileID: 0}
+  useMemory: 1
+  description: 
+  parent: {fileID: 0}
+  propertyBlackboardMap:
+  - variable: duration
+    blackboardProperty: 
+  variables:
+  - {fileID: -7339145959541849673}
+  blackboard:
+  - {fileID: 7996230200442618730}
+  tree: {fileID: 11400000}
 --- !u!114 &-3235514876609949787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,11 +99,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: bf4c685a-f63f-4a66-bf2a-ec4a39e5c8b2
-  position: {x: 0, y: 127}
+  position: {x: 0, y: 274}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
-  parent: {fileID: -1116426152149312725}
+  parent: {fileID: 8970362275988990835}
   propertyBlackboardMap: []
   variables: []
   blackboard: []
@@ -56,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694841fbf077a084383c3531f31a6a4a, type: 3}
   m_Name: repeatCount
   m_EditorClassIdentifier: 
-  value: 1
+  value: 3
 --- !u!114 &-1116426152149312725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +152,7 @@ MonoBehaviour:
   variables: []
   blackboard: []
   tree: {fileID: 11400000}
-  child: {fileID: -3235514876609949787}
+  child: {fileID: 8970362275988990835}
 --- !u!114 &-717246508357780701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +186,8 @@ MonoBehaviour:
   - {fileID: 1202538265212907538}
   - {fileID: 6384127949016640251}
   - {fileID: 8970362275988990835}
+  - {fileID: -6798806829233507640}
+  - {fileID: -8482181159328072708}
   blackboard:
   - {fileID: 7996230200442618730}
   bTagParameters:
@@ -136,7 +209,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 20f0474b-fec7-4fb3-afed-f3013109ae59
-  position: {x: -113, y: 273}
+  position: {x: -113, y: 420}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
@@ -197,7 +270,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9a8243a7-4222-4aa9-a332-0a3c4949f42d
-  position: {x: 103, y: 273}
+  position: {x: 103, y: 420}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
@@ -245,11 +318,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e4288605-613c-4a62-b3b4-dda1fef0d4fe
-  position: {x: 0, y: 0}
+  position: {x: 0, y: 136}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
-  parent: {fileID: 0}
+  parent: {fileID: -1116426152149312725}
   propertyBlackboardMap:
   - variable: repeatCount
     blackboardProperty: 
@@ -258,4 +331,4 @@ MonoBehaviour:
   blackboard:
   - {fileID: 7996230200442618730}
   tree: {fileID: 11400000}
-  child: {fileID: 0}
+  child: {fileID: -3235514876609949787}
