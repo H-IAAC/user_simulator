@@ -1,43 +1,46 @@
 using UnityEngine;
 
-class TagProviderProperty : BlackboardProperty
+namespace HIAAC.BehaviorTree
 {
-    [SerializeField][SerializeProperty("Value")]
-    UnityEngine.Object tagProviderObj;
-
-    public override object Value
+    class TagProviderProperty : BlackboardProperty
     {
-        get
+        [SerializeField]
+        [SerializeProperty("Value")]
+        UnityEngine.Object tagProviderObj;
+
+        public override object Value
         {
-            return tagProviderObj;
-        }
-        set
-        {
-            if(value is IBTagProvider)
+            get
             {
-                tagProviderObj = value as UnityEngine.Object;
+                return tagProviderObj;
             }
-            else
+            set
             {
-                tagProviderObj = null;
+                if (value is IBTagProvider)
+                {
+                    tagProviderObj = value as UnityEngine.Object;
+                }
+                else
+                {
+                    tagProviderObj = null;
+                }
+            }
+        }
+
+        public IBTagProvider TagProvider
+        {
+            get
+            {
+                return tagProviderObj as IBTagProvider;
+            }
+        }
+
+        public override string PropertyTypeName
+        {
+            get
+            {
+                return "TagProvider";
             }
         }
     }
-
-    public IBTagProvider TagProvider
-    {
-        get
-        {
-            return tagProviderObj as IBTagProvider;
-        }
-    }
-
-    public override string PropertyTypeName
-    {
-        get
-        {
-            return "TagProvider";
-        }
-    }
-
 }

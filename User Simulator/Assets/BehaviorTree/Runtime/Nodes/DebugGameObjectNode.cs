@@ -1,21 +1,24 @@
 using UnityEngine;
 
-public class DebugGameObjectNode : ActionNode
+namespace HIAAC.BehaviorTree
 {
-
-    public override void OnStart()
+    public class DebugGameObjectNode : ActionNode
     {
 
-    }
+        public override void OnStart()
+        {
 
-    public override void OnStop()
-    {
-    }
+        }
 
-    public override NodeState OnUpdate()
-    {
-        Debug.Log($"GameObject: {gameObject}");
+        public override void OnStop()
+        {
+        }
 
-        return NodeState.Success;
+        public override NodeState OnUpdate()
+        {
+            Debug.Log($"GameObject: {gameObject}");
+
+            return NodeState.Success;
+        }
     }
 }

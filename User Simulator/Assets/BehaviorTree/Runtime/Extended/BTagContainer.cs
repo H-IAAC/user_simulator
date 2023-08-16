@@ -1,28 +1,31 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(menuName="Behavior Tree/Behavior Tag Container")]
-public class BTagContainer :  ScriptableObject, IBTagProvider
+namespace HIAAC.BehaviorTree
 {
-    public List<BehaviorTag> tags;
-    public bool randomizeOnProvide;
-
-    public List<BehaviorTag> ProvideTags(List<BTagParameter> agentParameters)
+    [CreateAssetMenu(menuName = "Behavior Tree/Behavior Tag Container")]
+    public class BTagContainer : ScriptableObject, IBTagProvider
     {
-        List<BehaviorTag> availableTags = new();
-        foreach(BehaviorTag tag in tags)
+        public List<BehaviorTag> tags;
+        public bool randomizeOnProvide;
+
+        public List<BehaviorTag> ProvideTags(List<BTagParameter> agentParameters)
         {
-            if(BTagParameter.IsCompatible(agentParameters, tag.minimumValueParameters, tag.maximumValueParameters))
+            List<BehaviorTag> availableTags = new();
+            foreach (BehaviorTag tag in tags)
             {
-                availableTags.Add(tag);
+                if (BTagParameter.IsCompatible(agentParameters, tag.minimumValueParameters, tag.maximumValueParameters))
+                {
+                    availableTags.Add(tag);
+                }
             }
-        }
 
-        if(randomizeOnProvide && availableTags.Count != 0)
-        {
-            tags.Shuffle();
-        }
+            if (randomizeOnProvide && availableTags.Count != 0)
+            {
+                tags.Shuffle();
+            }
 
-        return availableTags;
+            return availableTags;
+        }
     }
 }

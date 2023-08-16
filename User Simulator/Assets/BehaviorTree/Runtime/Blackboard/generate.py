@@ -12,8 +12,11 @@ types = {
 
 template = """using UnityEngine;
 
-public class {fullname} : BlackboardProperty<{type}>
-{{}}
+namespace HIAAC.BehaviorTree
+{{
+    public class {fullname} : BlackboardProperty<{type}>
+    {{}}
+}}
 """
 
 

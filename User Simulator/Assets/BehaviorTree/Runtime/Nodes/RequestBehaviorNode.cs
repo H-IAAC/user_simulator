@@ -2,143 +2,144 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-
-public class RequestBehaviorNode : SubtreeNode
+namespace HIAAC.BehaviorTree
 {
-    public RequestBehaviorNode() : base()
+    public class RequestBehaviorNode : SubtreeNode
     {
-        propertiesDontDeleteOnValidate.Add("tagProvider");
-    }
-
-    public override BehaviorTree Subtree
-    {
-        get
+        public RequestBehaviorNode() : base()
         {
-            return subtree;
+            propertiesDontDeleteOnValidate.Add("tagProvider");
         }
 
-        set
+        public override BehaviorTree Subtree
         {
-            Debug.LogError("Can't direct assign RequestBehaviorNode subtree. Use SubtreeNode instead.");
+            get
+            {
+                return subtree;
+            }
+
+            set
+            {
+                Debug.LogError("Can't direct assign RequestBehaviorNode subtree. Use SubtreeNode instead.");
+            }
         }
-    }
 
-    public List<BTagParameter> minimumValueParameters = new();
-    public List<BTagParameter> maximumValueParameters = new();
-
-    
-    bool overrideMode = false;
-
-    BehaviorTag currentTag;
-
-    public override void OnCreateProperties()
-    {
-        CreateProperty(typeof(TagProviderProperty), "tagProvider");
-        passValue.Add(false);
-    }
+        public List<BTagParameter> minimumValueParameters = new();
+        public List<BTagParameter> maximumValueParameters = new();
 
 
-    BehaviorTag requestTag()
-    {
-        object providerObj = GetPropertyValue("tagProvider");
-        
-        IBTagProvider provider = providerObj as IBTagProvider;
+        bool overrideMode = false;
 
-        if(provider == null)
+        BehaviorTag currentTag;
+
+        public override void OnCreateProperties()
         {
+            CreateProperty(typeof(TagProviderProperty), "tagProvider");
+            passValue.Add(false);
+        }
+
+
+        BehaviorTag requestTag()
+        {
+            object providerObj = GetPropertyValue("tagProvider");
+
+            IBTagProvider provider = providerObj as IBTagProvider;
+
+            if (provider == null)
+            {
+                return null;
+            }
+
+            List<BehaviorTag> tags = provider.ProvideTags(tree.bTagParameters);
+
+            foreach (BehaviorTag tag in tags)
+            {
+                if (BTagParameter.IsCompatible(tag.parameters, minimumValueParameters, maximumValueParameters))
+                {
+                    return tag;
+                }
+            }
+
             return null;
         }
 
-        List<BehaviorTag> tags = provider.ProvideTags(tree.bTagParameters);
-
-        foreach (BehaviorTag tag in tags)
+        public override void OnStart()
         {
-            if(BTagParameter.IsCompatible(tag.parameters, minimumValueParameters, maximumValueParameters))
+            if (currentTag == null || overrideMode)
             {
-                return tag;
-            }
-        }
+                BehaviorTag newTag = requestTag();
 
-        return null;
-    }
-
-    public override void OnStart()
-    {
-        if(currentTag == null || overrideMode)
-        {
-            BehaviorTag newTag = requestTag();
-            
-            if(newTag == null)
-            {
-                if(!overrideMode)
+                if (newTag == null)
+                {
+                    if (!overrideMode)
+                    {
+                        currentTag = newTag;
+                    }
+                }
+                else
                 {
                     currentTag = newTag;
+                    overrideMode = false;
                 }
-            }
-            else
-            {
-                currentTag = newTag;
-                overrideMode = false;
-            }
-            
-            if(currentTag != null)
-            {
-                base.Subtree = currentTag.tree;
-            }
-            else
-            {
-                base.Subtree = null;
-            }
-            
-        }
 
-        base.OnStart();
-
-        //Debug.Log($"Current subtree: {subtree}");
-    }
-
-    void DoLifecycleBehavior(TagLifecycleType lifecyleType, NodeState state)
-    {
-        switch (lifecyleType)
-        {
-            case TagLifecycleType.DROP:
-                currentTag = null;
-                break;
-            case TagLifecycleType.HOLD:
-                break;
-            case TagLifecycleType.OVERRIDABLE:
-                if(state != NodeState.Runnning)
+                if (currentTag != null)
                 {
-                    overrideMode = true;
+                    base.Subtree = currentTag.tree;
                 }
-                
-                break;
+                else
+                {
+                    base.Subtree = null;
+                }
+
+            }
+
+            base.OnStart();
+
+            //Debug.Log($"Current subtree: {subtree}");
+        }
+
+        void DoLifecycleBehavior(TagLifecycleType lifecyleType, NodeState state)
+        {
+            switch (lifecyleType)
+            {
+                case TagLifecycleType.DROP:
+                    currentTag = null;
+                    break;
+                case TagLifecycleType.HOLD:
+                    break;
+                case TagLifecycleType.OVERRIDABLE:
+                    if (state != NodeState.Runnning)
+                    {
+                        overrideMode = true;
+                    }
+
+                    break;
+            }
+        }
+
+        public override NodeState OnUpdate()
+        {
+            if (currentTag == null)
+            {
+                return NodeState.Failure;
+            }
+
+            NodeState state = base.OnUpdate();
+
+            switch (state)
+            {
+                case NodeState.Runnning:
+                    DoLifecycleBehavior(currentTag.onRunning, state);
+                    break;
+                case NodeState.Failure:
+                    DoLifecycleBehavior(currentTag.onFailure, state);
+                    break;
+                case NodeState.Success:
+                    DoLifecycleBehavior(currentTag.onSuccess, state);
+                    break;
+            }
+
+            return state;
         }
     }
-
-    public override NodeState OnUpdate()
-    {
-        if(currentTag == null)
-        {
-            return NodeState.Failure;
-        }
-
-        NodeState state = base.OnUpdate();
-
-        switch (state)
-        {
-            case NodeState.Runnning:
-                DoLifecycleBehavior(currentTag.onRunning, state);
-                break;
-            case NodeState.Failure:
-                DoLifecycleBehavior(currentTag.onFailure, state);
-                break;
-            case NodeState.Success:
-                DoLifecycleBehavior(currentTag.onSuccess, state);
-                break;
-        }
-
-        return state;
-    }
-
 }

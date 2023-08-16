@@ -3,7 +3,8 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEditor;
 
-
+namespace HIAAC.BehaviorTree
+{
 public abstract class BlackboardProperty : ScriptableObject
 {
     public string PropertyName
@@ -33,56 +34,32 @@ public abstract class BlackboardProperty : ScriptableObject
 
 }
 
-public abstract class BlackboardProperty<T> : BlackboardProperty
-{
-    [SerializeField]
-    public T value = default;
-
-    public override object Value
+    public abstract class BlackboardProperty<T> : BlackboardProperty
     {
-        get { return value; }
-        set { this.value = (T) value; }
-    }
+        [SerializeField]
+        public T value = default;
 
-
-    /*public override VisualElement CreateField()
-    {
-        IMGUIContainer container = new()
+        public override object Value
         {
-            onGUIHandler = () =>
-        {
-            if(thisSerialized == null)
-            {
-                thisSerialized = new SerializedObject(this);
-            }
-
-            thisSerialized.Update();
-
-            SerializedProperty b = thisSerialized.FindProperty("value");
-            EditorGUILayout.PropertyField(b, true);
-            
-            thisSerialized.ApplyModifiedProperties();
+            get { return value; }
+            set { this.value = (T)value; }
         }
-        };
 
-
-        return container;
-    }*/
-
-    public override string PropertyTypeName  
-    { 
-        get 
+        public override string PropertyTypeName
         {
-            string name = typeof(T).Name;
-
-            string sufix = "Property";
-            if(name.EndsWith(sufix))
+            get
             {
-                name = name.Substring(0, name.Length - sufix.Length);
+                string name = typeof(T).Name;
+
+                string sufix = "Property";
+                if (name.EndsWith(sufix))
+                {
+                    name = name.Substring(0, name.Length - sufix.Length);
+                }
+
+                return name;
             }
+        }
 
-            return name;  
-        } 
     }
-
 }

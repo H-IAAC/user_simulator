@@ -1,53 +1,54 @@
-public class FallbackNode: CompositeNode
+namespace HIAAC.BehaviorTree
 {
-    Node currentChild;
-
-    public FallbackNode() : base(MemoryMode.Both)
+    public class FallbackNode : CompositeNode
     {
+        Node currentChild;
 
-    }
-
-    public override void OnStart()
-    {
-    }
-
-    public override void OnStop()
-    {
-
-    }
-
-    public override NodeState OnUpdate()
-    {
-        if(!UseMemory)
+        public FallbackNode() : base(MemoryMode.Both)
         {
-            ResetNext();
-            currentChild = NextChild();
+
         }
-        else if (currentChild == null)
+
+        public override void OnStart()
         {
-            currentChild = NextChild();
         }
-        
 
-        while(currentChild != null)
+        public override void OnStop()
         {
-            NodeState state = currentChild.Update();
 
-            switch (state)
+        }
+
+        public override NodeState OnUpdate()
+        {
+            if (!UseMemory)
             {
-                case NodeState.Runnning:
-                    return NodeState.Runnning;
-                case NodeState.Failure:
-                    currentChild = NextChild();
-                    break;
-                case NodeState.Success:
-                    return NodeState.Success;
+                ResetNext();
+                currentChild = NextChild();
+            }
+            else if (currentChild == null)
+            {
+                currentChild = NextChild();
             }
 
+
+            while (currentChild != null)
+            {
+                NodeState state = currentChild.Update();
+
+                switch (state)
+                {
+                    case NodeState.Runnning:
+                        return NodeState.Runnning;
+                    case NodeState.Failure:
+                        currentChild = NextChild();
+                        break;
+                    case NodeState.Success:
+                        return NodeState.Success;
+                }
+
+            }
+
+            return NodeState.Failure;
         }
-
-        return NodeState.Failure;
     }
-
-
 }

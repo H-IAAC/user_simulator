@@ -1,40 +1,43 @@
 using System;
 using UnityEngine;
 
-public class BehaviorTreeRunner : MonoBehaviour
+namespace HIAAC.BehaviorTree
 {
-    [SerializeField] public BehaviorTree tree;
-
-    void Start()
+    public class BehaviorTreeRunner : MonoBehaviour
     {
-        tree = tree.Clone();
-        tree.Bind(gameObject);
-    }
+        [SerializeField] public BehaviorTree tree;
 
-    void Update()
-    {
-        tree.Update();
-    }
-
-    public void SetBlackboardProperty(string name, object value)
-    {
-        int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
-        if(index < 0)
+        void Start()
         {
-            throw new ArgumentException("Property does not exist in tree.");
+            tree = tree.Clone();
+            tree.Bind(gameObject);
         }
 
-        tree.blackboard[index].Value = value;
-    }
-
-    public T GetBlackboardProperty<T>(string name)
-    {
-        int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
-        if(index < 0)
+        void Update()
         {
-            throw new ArgumentException("Property does not exist in tree.");
+            tree.Update();
         }
 
-        return (T)tree.blackboard[index].Value;
+        public void SetBlackboardProperty(string name, object value)
+        {
+            int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
+            if (index < 0)
+            {
+                throw new ArgumentException("Property does not exist in tree.");
+            }
+
+            tree.blackboard[index].Value = value;
+        }
+
+        public T GetBlackboardProperty<T>(string name)
+        {
+            int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
+            if (index < 0)
+            {
+                throw new ArgumentException("Property does not exist in tree.");
+            }
+
+            return (T)tree.blackboard[index].Value;
+        }
     }
 }

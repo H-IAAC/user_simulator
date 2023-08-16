@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 
-public interface IBTagProvider
+namespace HIAAC.BehaviorTree
 {
-    public List<BehaviorTag> ProvideTags(List<BTagParameter> agentParameters);
+    public interface IBTagProvider
+    {
+        public List<BehaviorTag> ProvideTags(List<BTagParameter> agentParameters);
+    }
 }

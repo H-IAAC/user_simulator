@@ -1,36 +1,39 @@
 using UnityEngine;
 
-public class WaitNode : ActionNode
+namespace HIAAC.BehaviorTree
 {
-    float startTime;
-
-    public WaitNode() : base(MemoryMode.Memoried)
+    public class WaitNode : ActionNode
     {
-    }
+        float startTime;
 
-    public override void OnCreateProperties()
-    {
-        CreateProperty(typeof(FloatBlackboardProperty), "duration");
-    }
-
-    public override void OnStart()
-    {
-        startTime = Time.time;
-    }
-
-    public override void OnStop()
-    {
-        
-    }
-
-    public override NodeState OnUpdate()
-    {
-        float duration = GetPropertyValue<float>("duration");
-        if(Time.time - startTime >= duration)
+        public WaitNode() : base(MemoryMode.Memoried)
         {
-            return NodeState.Success;
         }
 
-        return NodeState.Runnning;
+        public override void OnCreateProperties()
+        {
+            CreateProperty(typeof(FloatBlackboardProperty), "duration");
+        }
+
+        public override void OnStart()
+        {
+            startTime = Time.time;
+        }
+
+        public override void OnStop()
+        {
+
+        }
+
+        public override NodeState OnUpdate()
+        {
+            float duration = GetPropertyValue<float>("duration");
+            if (Time.time - startTime >= duration)
+            {
+                return NodeState.Success;
+            }
+
+            return NodeState.Runnning;
+        }
     }
 }

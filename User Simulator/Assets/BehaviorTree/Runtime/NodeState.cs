@@ -1,6 +1,9 @@
-public enum NodeState
+namespace HIAAC.BehaviorTree
 {
-    Runnning,
-    Failure,
-    Success
+    public enum NodeState
+    {
+        Runnning,
+        Failure,
+        Success
+    }
 }

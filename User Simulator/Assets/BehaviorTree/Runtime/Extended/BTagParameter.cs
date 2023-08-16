@@ -3,69 +3,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class BTagParameter
+namespace HIAAC.BehaviorTree
 {
-    public BTagParameterType type;
-    [SerializeField] float value = 0;
-
-    [SerializeField] public float Value
+    [Serializable]
+    public class BTagParameter
     {
-        get
-        {
-            return value;
-        }
-        set
-        {
-            if(value < 0 || value > 1)
-            {
-                Debug.Log("Value must be in [0, 1].");
-            }
-            else
-            {
-                this.value = value;
-            }
-        }
-    }
+        public BTagParameterType type;
+        [SerializeField] float value = 0;
 
-    public static bool IsCompatible(List<BTagParameter> parameters, List<BTagParameter> minimumValueParameters, List<BTagParameter> maximumValueParameters)
-    {
-        foreach(BTagParameter minConstraint in minimumValueParameters)
+        [SerializeField]
+        public float Value
         {
-            bool satisfied = false;
-            foreach(BTagParameter parameter in parameters)
+            get
             {
-                if(parameter.type == minConstraint.type && parameter.Value >= minConstraint.Value)
+                return value;
+            }
+            set
+            {
+                if (value < 0 || value > 1)
                 {
-                    satisfied = true;
-                    break;
+                    Debug.Log("Value must be in [0, 1].");
+                }
+                else
+                {
+                    this.value = value;
+                }
+            }
+        }
+
+        public static bool IsCompatible(List<BTagParameter> parameters, List<BTagParameter> minimumValueParameters, List<BTagParameter> maximumValueParameters)
+        {
+            foreach (BTagParameter minConstraint in minimumValueParameters)
+            {
+                bool satisfied = false;
+                foreach (BTagParameter parameter in parameters)
+                {
+                    if (parameter.type == minConstraint.type && parameter.Value >= minConstraint.Value)
+                    {
+                        satisfied = true;
+                        break;
+                    }
+                }
+
+                if (!satisfied)
+                {
+                    return false;
                 }
             }
 
-            if(!satisfied)
+            foreach (BTagParameter parameter in parameters)
             {
-                return false;
-            }
-        }
-    
-        foreach (BTagParameter parameter in parameters)
-        {
-            bool satisfied = true;
-            foreach(BTagParameter maxConstraint in maximumValueParameters)
-            {
-                if(parameter.type == maxConstraint.type && parameter.Value > maxConstraint.Value)
+                bool satisfied = true;
+                foreach (BTagParameter maxConstraint in maximumValueParameters)
                 {
-                    satisfied = false;
-                    break;
+                    if (parameter.type == maxConstraint.type && parameter.Value > maxConstraint.Value)
+                    {
+                        satisfied = false;
+                        break;
+                    }
+                }
+
+                if (!satisfied)
+                {
+                    return false;
                 }
             }
 
-            if(!satisfied)
-            {
-                return false;
-            }
+            return true;
         }
-
-        return true;
     }
 }

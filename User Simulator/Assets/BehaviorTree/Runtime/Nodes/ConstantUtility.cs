@@ -1,28 +1,31 @@
 using UnityEngine;
 
-public class ConstantUtility : DecoratorNode
+namespace HIAAC.BehaviorTree
 {
-
-    public override void OnStart()
+    public class ConstantUtility : DecoratorNode
     {
-    }
 
-    public override void OnStop()
-    {
-    }
+        public override void OnStart()
+        {
+        }
 
-    public override NodeState OnUpdate()
-    {
-        return child.Update();
-    }
+        public override void OnStop()
+        {
+        }
 
-    public override void OnCreateProperties()
-    {
-        CreateProperty(typeof(FloatBlackboardProperty), "value");
-    }
+        public override NodeState OnUpdate()
+        {
+            return child.Update();
+        }
 
-    protected override float OnComputeUtility()
-    {
-        return GetPropertyValue<float>("value");
+        public override void OnCreateProperties()
+        {
+            CreateProperty(typeof(FloatBlackboardProperty), "value");
+        }
+
+        protected override float OnComputeUtility()
+        {
+            return GetPropertyValue<float>("value");
+        }
     }
 }

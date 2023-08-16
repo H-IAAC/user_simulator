@@ -1,74 +1,77 @@
 using UnityEngine;
 
-public class SequencerNode: CompositeNode
+namespace HIAAC.BehaviorTree
 {
-    Node currentChild;
-
-    public SequencerNode() : base(MemoryMode.Both)
+    public class SequencerNode : CompositeNode
     {
+        Node currentChild;
 
-    }
-
-    public override void OnStart()
-    {
-        currentChild = NextChild();
-    }
-
-    public override void OnStop()
-    {
-
-    }
-
-    public override NodeState OnUpdate()
-    {
-        if(UseMemory)
+        public SequencerNode() : base(MemoryMode.Both)
         {
-            return memoriedUpdate();
+
         }
-        else
-        {
-            return memorylessUpdate();
-        }
-    }
 
-    NodeState memoriedUpdate()
-    {
-        if(currentChild == null)
+        public override void OnStart()
         {
+            currentChild = NextChild();
+        }
+
+        public override void OnStop()
+        {
+
+        }
+
+        public override NodeState OnUpdate()
+        {
+            if (UseMemory)
+            {
+                return memoriedUpdate();
+            }
+            else
+            {
+                return memorylessUpdate();
+            }
+        }
+
+        NodeState memoriedUpdate()
+        {
+            if (currentChild == null)
+            {
+                return NodeState.Success;
+            }
+
+            NodeState childState = currentChild.Update();
+
+            switch (childState)
+            {
+                case NodeState.Runnning:
+                    return NodeState.Runnning;
+                case NodeState.Failure:
+                    return NodeState.Failure;
+                case NodeState.Success:
+                    currentChild = NextChild();
+                    return memoriedUpdate();
+            }
+
             return NodeState.Success;
         }
 
-        NodeState childState = currentChild.Update();
-
-        switch (childState)
+        NodeState memorylessUpdate()
         {
-            case NodeState.Runnning:
-                return NodeState.Runnning;
-            case NodeState.Failure:
-                return NodeState.Failure;
-            case NodeState.Success:
-                currentChild = NextChild();
-                return memoriedUpdate();
-        }
-
-        return NodeState.Success;
-    }
-
-    NodeState memorylessUpdate()
-    {
-        while(currentChild != null)
-        {
-            NodeState state = currentChild.Update();
-
-            if(state != NodeState.Success)
+            while (currentChild != null)
             {
-                return state;
+                NodeState state = currentChild.Update();
+
+                if (state != NodeState.Success)
+                {
+                    return state;
+                }
+
+                currentChild = NextChild();
             }
 
-            currentChild = NextChild();            
+            return NodeState.Success;
         }
 
-        return NodeState.Success;
     }
-
 }

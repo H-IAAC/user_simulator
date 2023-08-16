@@ -1,4 +1,7 @@
 using UnityEngine;
 
-public class Vector2BlackboardProperty : BlackboardProperty<Vector2>
-{}
+namespace HIAAC.BehaviorTree
+{
+    public class Vector2BlackboardProperty : BlackboardProperty<Vector2>
+    {}
+}

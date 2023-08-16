@@ -1,4 +1,7 @@
 using UnityEngine;
 
-public class FloatBlackboardProperty : BlackboardProperty<float>
-{}
+namespace HIAAC.BehaviorTree
+{
+    public class FloatBlackboardProperty : BlackboardProperty<float>
+    {}
+}

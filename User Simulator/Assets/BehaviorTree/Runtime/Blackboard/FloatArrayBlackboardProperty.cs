@@ -1,4 +1,7 @@
 using UnityEngine;
 
-public class FloatArrayBlackboardProperty : BlackboardProperty<float[]>
-{}
+namespace HIAAC.BehaviorTree
+{
+    public class FloatArrayBlackboardProperty : BlackboardProperty<float[]>
+    {}
+}

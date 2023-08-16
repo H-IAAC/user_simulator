@@ -1,6 +1,9 @@
-public enum MemoryMode
+namespace HIAAC.BehaviorTree
 {
-    Memoried,
-    Memoryless,
-    Both
+    public enum MemoryMode
+    {
+        Memoried,
+        Memoryless,
+        Both
+    }
 }

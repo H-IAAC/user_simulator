@@ -6,46 +6,48 @@ using UnityEngine;
     using UnityEditor;
 #endif
 
-[CreateAssetMenu(menuName="Behavior Tree/Behavior Tree")]
-public class BehaviorTree: ScriptableObject
+namespace HIAAC.BehaviorTree
 {
-    public RootNode rootNode;
-    public NodeState treeState = NodeState.Runnning;
-
-    public List<Node> nodes = new();
-
-    public List<BlackboardProperty> blackboard = new();
-
-    public List<BTagParameter> bTagParameters = new();
-
-    [HideInInspector] public bool runtime = false;
-
-    public NodeState Update()
+    [CreateAssetMenu(menuName = "Behavior Tree/Behavior Tree")]
+    public class BehaviorTree : ScriptableObject
     {
-        if(rootNode.state == NodeState.Runnning)
+        public RootNode rootNode;
+        public NodeState treeState = NodeState.Runnning;
+
+        public List<Node> nodes = new();
+
+        public List<BlackboardProperty> blackboard = new();
+
+        public List<BTagParameter> bTagParameters = new();
+
+        [HideInInspector] public bool runtime = false;
+
+        public NodeState Update()
         {
-            treeState = rootNode.Update();
+            if (rootNode.state == NodeState.Runnning)
+            {
+                treeState = rootNode.Update();
+            }
+
+            return treeState;
         }
 
-        return treeState;
-    }
+        public Node CreateNode(Type type)
+        {
+            Node node = CreateInstance(type) as Node;
+            node.name = type.Name;
+            node.blackboard = this.blackboard;
+            node.tree = this;
 
-    public Node CreateNode(Type type)
-    {
-        Node node = CreateInstance(type) as Node;
-        node.name = type.Name;
-        node.blackboard = this.blackboard;
-        node.tree = this;
 
-        
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (CreateNode)");
-        #endif
+#endif
 
-        nodes.Add(node);
+            nodes.Add(node);
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (!Application.isPlaying)
             {
                 AssetDatabase.AddObjectToAsset(node, this);
@@ -53,170 +55,171 @@ public class BehaviorTree: ScriptableObject
             Undo.RegisterCreatedObjectUndo(node, "Behavior Tree (CreateNode)");
 
             AssetDatabase.SaveAssets();
-        #endif
+#endif
 
-        node.OnCreateProperties();
+            node.OnCreateProperties();
 
-        AssetDatabase.SaveAssets();
+            AssetDatabase.SaveAssets();
 
-        return node;
-    }
-
-    public Node DuplicateNode(Node node)
-    {
-        if (!nodes.Contains(node))
-        {
-            throw new ArgumentException("Node to duplicate is not in tree.");
+            return node;
         }
 
-        Node clone = CreateNode(node.GetType());
-        clone.position = node.position;
-        clone.position.x += 10;
-        clone.UseMemory = node.UseMemory;
-        clone.description = node.description;
-
-        foreach(BlackboardProperty var in clone.variables)
+        public Node DuplicateNode(Node node)
         {
-            var.Value = node.GetPropertyValue(var.PropertyName, true);
-        }
-
-        for(int i = 0; i<node.propertyBlackboardMap.Count; i++)
-        {
-            NameMap map = node.propertyBlackboardMap[i];
-            NameMap cloneMap = new()
+            if (!nodes.Contains(node))
             {
-                blackboardProperty = map.blackboardProperty,
-                variable = map.variable
-            };
+                throw new ArgumentException("Node to duplicate is not in tree.");
+            }
 
-            clone.propertyBlackboardMap[i] = cloneMap;
+            Node clone = CreateNode(node.GetType());
+            clone.position = node.position;
+            clone.position.x += 10;
+            clone.UseMemory = node.UseMemory;
+            clone.description = node.description;
+
+            foreach (BlackboardProperty var in clone.variables)
+            {
+                var.Value = node.GetPropertyValue(var.PropertyName, true);
+            }
+
+            for (int i = 0; i < node.propertyBlackboardMap.Count; i++)
+            {
+                NameMap map = node.propertyBlackboardMap[i];
+                NameMap cloneMap = new()
+                {
+                    blackboardProperty = map.blackboardProperty,
+                    variable = map.variable
+                };
+
+                clone.propertyBlackboardMap[i] = cloneMap;
+            }
+
+            if (clone is CompositeNode compositeClone)
+            {
+                CompositeNode composite = node as CompositeNode;
+                compositeClone.useUtility = composite.useUtility;
+            }
+
+            return clone;
         }
 
-        if(clone is CompositeNode compositeClone)
+        public void DeleteNode(Node node)
         {
-            CompositeNode composite = node as CompositeNode;
-            compositeClone.useUtility = composite.useUtility;
-        }
-
-        return clone;
-    }
-
-    public void DeleteNode(Node node)
-    {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (DeleteNode)");
-        #endif
+#endif
 
-        nodes.Remove(node);
-        node.ClearPropertyDefinitions();
-        
-        #if UNITY_EDITOR
+            nodes.Remove(node);
+            node.ClearPropertyDefinitions();
+
+#if UNITY_EDITOR
             //AssetDatabase.RemoveObjectFromAsset(node);
             Undo.DestroyObjectImmediate(node);
 
             AssetDatabase.SaveAssets();
-        #endif
-    }
+#endif
+        }
 
-    public void DeleteProperty(BlackboardProperty property)
-    {
-        #if UNITY_EDITOR
+        public void DeleteProperty(BlackboardProperty property)
+        {
+#if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (DeleteTreeProperty)");
-        #endif
+#endif
 
-        blackboard.Remove(property);
+            blackboard.Remove(property);
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             //AssetDatabase.RemoveObjectFromAsset(node);
             Undo.DestroyObjectImmediate(property);
 
             AssetDatabase.SaveAssets();
-        #endif
-    }
-
-
-    public void Traverse(Node node, Action<Node> visiter)
-    {
-        if(node)
-        {
-            visiter.Invoke(node);
-            List<Node> children = node.GetChildren();
-
-            foreach(Node child in children)
-            {
-                Traverse(child, visiter);
-            }
+#endif
         }
-    }
 
-    public BehaviorTree Clone()
-    {
-        BehaviorTree tree = Instantiate(this);
-        tree.rootNode = tree.rootNode.Clone() as RootNode;
 
-        tree.nodes = new List<Node>();
-        List<string> clonedGUID = new();
-        
-        Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
-
-        foreach(Node origNode in this.nodes)
+        public void Traverse(Node node, Action<Node> visiter)
         {
-            if(!clonedGUID.Contains(origNode.guid))
+            if (node)
             {
-                Node parent = origNode;
-                while(parent.parent != null)
+                visiter.Invoke(node);
+                List<Node> children = node.GetChildren();
+
+                foreach (Node child in children)
                 {
-                    parent = parent.parent;
+                    Traverse(child, visiter);
                 }
-
-                Node cloned = parent.Clone();
-
-                Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
             }
         }
 
-        tree.blackboard = new();
-        foreach(BlackboardProperty property in blackboard)
+        public BehaviorTree Clone()
         {
-            tree.blackboard.Add(property.Clone());
-        }
-        foreach(Node node in tree.nodes)
-        {
-            node.blackboard = tree.blackboard;
-            node.tree = tree;
-        }
+            BehaviorTree tree = Instantiate(this);
+            tree.rootNode = tree.rootNode.Clone() as RootNode;
 
-        return tree;
-    }
+            tree.nodes = new List<Node>();
+            List<string> clonedGUID = new();
 
-    public void Bind(GameObject gameObject)
-    {
-        runtime = true;
-        Traverse(rootNode, (node) =>
+            Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+
+            foreach (Node origNode in this.nodes)
             {
-                node.gameObject = gameObject;
+                if (!clonedGUID.Contains(origNode.guid))
+                {
+                    Node parent = origNode;
+                    while (parent.parent != null)
+                    {
+                        parent = parent.parent;
+                    }
+
+                    Node cloned = parent.Clone();
+
+                    Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+                }
             }
-        );
-    }
 
-    public void Validate()
-    {
-        nodes.RemoveAll(item => item == null);
-        blackboard.RemoveAll(item => item == null);
+            tree.blackboard = new();
+            foreach (BlackboardProperty property in blackboard)
+            {
+                tree.blackboard.Add(property.Clone());
+            }
+            foreach (Node node in tree.nodes)
+            {
+                node.blackboard = tree.blackboard;
+                node.tree = tree;
+            }
 
-        nodes.ForEach(x => x.tree = this);
-    }
+            return tree;
+        }
 
-    public float GetUtility()
-    {
-        return rootNode.GetUtility();
-    }
-
-    public void Start()
-    {
-        if (!rootNode.started)
+        public void Bind(GameObject gameObject)
         {
-            rootNode.Start();
+            runtime = true;
+            Traverse(rootNode, (node) =>
+                {
+                    node.gameObject = gameObject;
+                }
+            );
+        }
+
+        public void Validate()
+        {
+            nodes.RemoveAll(item => item == null);
+            blackboard.RemoveAll(item => item == null);
+
+            nodes.ForEach(x => x.tree = this);
+        }
+
+        public float GetUtility()
+        {
+            return rootNode.GetUtility();
+        }
+
+        public void Start()
+        {
+            if (!rootNode.started)
+            {
+                rootNode.Start();
+            }
         }
     }
 }

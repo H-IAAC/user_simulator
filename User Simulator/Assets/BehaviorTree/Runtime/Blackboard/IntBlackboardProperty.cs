@@ -1,4 +1,7 @@
 using UnityEngine;
 
-public class IntBlackboardProperty : BlackboardProperty<int>
-{}
+namespace HIAAC.BehaviorTree
+{
+    public class IntBlackboardProperty : BlackboardProperty<int>
+    {}
+}

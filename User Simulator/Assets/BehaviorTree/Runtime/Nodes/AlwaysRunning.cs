@@ -1,21 +1,24 @@
 using UnityEngine;
 
-public class AlwaysRunning : DecoratorNode
+namespace HIAAC.BehaviorTree
 {
-
-    public override void OnStart()
+    public class AlwaysRunning : DecoratorNode
     {
-    }
 
-    public override void OnStop()
-    {
-        
-    }
+        public override void OnStart()
+        {
+        }
 
-    public override NodeState OnUpdate()
-    {
-        child.Update();
+        public override void OnStop()
+        {
 
-        return NodeState.Runnning;
+        }
+
+        public override NodeState OnUpdate()
+        {
+            child.Update();
+
+            return NodeState.Runnning;
+        }
     }
 }

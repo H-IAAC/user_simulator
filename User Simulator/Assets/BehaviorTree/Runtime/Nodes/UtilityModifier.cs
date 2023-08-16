@@ -1,33 +1,36 @@
 using UnityEngine;
 
-public class UtilityModifier : DecoratorNode
+namespace HIAAC.BehaviorTree
 {
-
-    public override void OnStart()
+    public class UtilityModifier : DecoratorNode
     {
-    }
 
-    public override void OnStop()
-    {
-        
-    }
+        public override void OnStart()
+        {
+        }
 
-    public override NodeState OnUpdate()
-    {
-        return child.Update();
-    }
+        public override void OnStop()
+        {
 
-    public override void OnCreateProperties()
-    {
-        CreateProperty(typeof(CurveBlackboardProperty), "modifierFunction");
-    }
+        }
 
-    protected override float OnComputeUtility()
-    {
-        child.ComputeUtility();
-        float childUtility = child.GetUtility();
+        public override NodeState OnUpdate()
+        {
+            return child.Update();
+        }
 
-        AnimationCurve curve = GetPropertyValue<AnimationCurve>("modifierFunction");
-        return curve.Evaluate(childUtility);
+        public override void OnCreateProperties()
+        {
+            CreateProperty(typeof(CurveBlackboardProperty), "modifierFunction");
+        }
+
+        protected override float OnComputeUtility()
+        {
+            child.ComputeUtility();
+            float childUtility = child.GetUtility();
+
+            AnimationCurve curve = GetPropertyValue<AnimationCurve>("modifierFunction");
+            return curve.Evaluate(childUtility);
+        }
     }
 }

@@ -1,48 +1,51 @@
 using UnityEngine;
 
-public class DebugLogNode : ActionNode
+namespace HIAAC.BehaviorTree
 {
-    [SerializeField] bool onStart = false;
-    [SerializeField] bool onStop = false;
-    [SerializeField] bool onUpdate = true;
-
-    public override void OnCreateProperties()
+    public class DebugLogNode : ActionNode
     {
-        CreateProperty(typeof(StringBlackboardProperty), "message");
-    }
+        [SerializeField] bool onStart = false;
+        [SerializeField] bool onStop = false;
+        [SerializeField] bool onUpdate = true;
 
-    public override void OnStart()
-    {
-        if(!onStart)
+        public override void OnCreateProperties()
         {
-            return;
+            CreateProperty(typeof(StringBlackboardProperty), "message");
         }
 
-        string message = GetPropertyValue<string>("message");
-        Debug.Log($"OnStart {message}");
-    }
-
-    public override void OnStop()
-    {
-        if(!onStop)
+        public override void OnStart()
         {
-            return;
+            if (!onStart)
+            {
+                return;
+            }
+
+            string message = GetPropertyValue<string>("message");
+            Debug.Log($"OnStart {message}");
         }
 
-        string message = GetPropertyValue<string>("message");
-        Debug.Log($"OnStop {message}");
-    }
-
-    public override NodeState OnUpdate()
-    {
-        if(!onUpdate)
+        public override void OnStop()
         {
+            if (!onStop)
+            {
+                return;
+            }
+
+            string message = GetPropertyValue<string>("message");
+            Debug.Log($"OnStop {message}");
+        }
+
+        public override NodeState OnUpdate()
+        {
+            if (!onUpdate)
+            {
+                return NodeState.Success;
+            }
+
+            string message = GetPropertyValue<string>("message");
+            Debug.Log($"OnUpdate {message}");
+
             return NodeState.Success;
         }
-
-        string message = GetPropertyValue<string>("message");
-        Debug.Log($"OnUpdate {message}");
-
-        return NodeState.Success;
     }
 }

@@ -1,6 +1,9 @@
-public enum TagLifecycleType
+namespace HIAAC.BehaviorTree
 {
-    DROP,
-    HOLD,
-    OVERRIDABLE
+    public enum TagLifecycleType
+    {
+        DROP,
+        HOLD,
+        OVERRIDABLE
+    }
 }

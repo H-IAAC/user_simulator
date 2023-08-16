@@ -1,4 +1,7 @@
 using UnityEngine;
 
-public class CurveBlackboardProperty : BlackboardProperty<AnimationCurve>
-{}
+namespace HIAAC.BehaviorTree
+{
+    public class CurveBlackboardProperty : BlackboardProperty<AnimationCurve>
+    {}
+}
