@@ -62,6 +62,16 @@ public class NodeEditor : Editor
             showProperties = EditorGUILayout.BeginFoldoutHeaderGroup(showProperties, "Properties");
             if (showProperties)
             {
+                List<string> blackboardPropertiesList = new();
+                blackboardPropertiesList.Add("None");
+
+                foreach(BlackboardProperty property in node.tree.blackboard)
+                {
+                    blackboardPropertiesList.Add(property.PropertyName);
+                }
+
+                string[] blackboardProperties = blackboardPropertiesList.ToArray();
+
                 for (int i = 0; i < node.propertyBlackboardMap.Count; i++)
                 {
                     if(node.variables[i] == null)
@@ -84,10 +94,35 @@ public class NodeEditor : Editor
                         EditorGUIUtility.labelWidth = oldWidth2;
                     }
 
+                    //float oldWidth = EditorGUIUtility.labelWidth;
+                    //EditorGUIUtility.labelWidth = 110;
+                    //string newValue = EditorGUILayout.TextField("Blackboard target", map.blackboardProperty);
+                    //EditorGUIUtility.labelWidth = oldWidth;
+
+                    int currentIndex = 0;
+                    for(int j = 0; j<blackboardProperties.Length; j++)
+                    {
+                        string name = blackboardProperties[j];
+                        if(map.blackboardProperty == name)
+                        {
+                            currentIndex = j;
+                            break;
+                        } 
+                    }
+
                     float oldWidth = EditorGUIUtility.labelWidth;
                     EditorGUIUtility.labelWidth = 110;
-                    string newValue = EditorGUILayout.TextField("Blackboard target", map.blackboardProperty);
+                    currentIndex = EditorGUILayout.Popup("Blackboard target", currentIndex, blackboardProperties);
                     EditorGUIUtility.labelWidth = oldWidth;
+
+                    string newValue = "";
+
+                    if(currentIndex != 0)
+                    {
+                        newValue = blackboardProperties[currentIndex];
+                    }
+
+
 
                     node.propertyBlackboardMap[i] = new NameMap { variable = map.variable, blackboardProperty = newValue };
                     EditorGUILayout.EndHorizontal();
