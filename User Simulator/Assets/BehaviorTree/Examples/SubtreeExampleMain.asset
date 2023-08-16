@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: b8d37461-5227-4ec6-af7a-8305a90289f2
+  guid: d035c217-7bb4-436c-9796-c3a872aa2a4b
   position: {x: 0, y: 216}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 99c1cc00-ffb3-4984-8b7c-74d0dca8cb1b
+  guid: 8df56078-6c25-40bd-bb25-4d36732ef817
   position: {x: 176.99998, y: 216}
   gameObject: {fileID: 0}
   useMemory: 1
@@ -117,6 +117,7 @@ MonoBehaviour:
   subtree: {fileID: 11400000, guid: 9929c0fd4bb2fb341a7189933c927e9c, type: 2}
   passValue: 0100
   autoRemapOnAssign: 0
+  propertiesDontDeleteOnValidate: []
 --- !u!114 &-2723813346271644966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,8 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 645ef0ed-b395-4b72-962f-d32e7a74feac
-  position: {x: 0, y: 0}
+  guid: 2f489e80-6ccb-4562-8306-31fe366de224
+  position: {x: 0, y: -43}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
@@ -192,6 +193,7 @@ MonoBehaviour:
   blackboard:
   - {fileID: 3269002679059331028}
   - {fileID: 3421551867864480930}
+  bTagParameters: []
   runtime: 0
 --- !u!114 &1270030347199506083
 MonoBehaviour:
@@ -272,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 8b5ae528-be45-41a5-bf5f-5ec51517e9bb
+  guid: bccabbca-c19f-48c8-a89b-29a7268656a3
   position: {x: -175, y: 216}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -329,7 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 3dcdac96-9845-41ec-987d-bb9e288ffaca
+  guid: 476ba41d-71dc-4611-9e3f-4a504b97e8a3
   position: {x: 0.000021219254, y: 87.99999}
   gameObject: {fileID: 0}
   useMemory: 0

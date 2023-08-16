@@ -21,7 +21,9 @@
                 <ui:Label tabindex="-1" text="Node description" display-tooltip-when-elided="true" name="description" />
                 <ui:VisualElement name="properties" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
                 <ui:VisualElement name="divider" class="horizontal" />
-                <ui:VisualElement name="output" />
+                <ui:VisualElement name="output">
+                    <ui:VisualElement name="subtree-marker" style="background-color: rgb(235, 47, 172); min-height: 10px; min-width: 341px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

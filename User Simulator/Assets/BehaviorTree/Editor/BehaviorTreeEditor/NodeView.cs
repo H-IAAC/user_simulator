@@ -89,6 +89,15 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
             AddToClassList("root");
         }
 
+        if(node is SubtreeNode)
+        {
+            AddToClassList("subtree-node");
+        }
+        else
+        {
+            AddToClassList("base-node");
+        }
+
         if(ghost)
         {
             AddToClassList("ghost");

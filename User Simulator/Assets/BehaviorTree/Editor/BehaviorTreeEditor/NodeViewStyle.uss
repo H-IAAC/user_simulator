@@ -148,3 +148,11 @@
 .ghost #node-border {
     opacity: 0.5;
 }
+
+.subtree-node #subtree-marker {
+    display: flex;
+}
+
+.base-node #subtree-marker {
+    display: none;
+}
