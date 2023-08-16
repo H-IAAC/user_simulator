@@ -8,26 +8,28 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-/// <summary>
-/// Marks the field to use a property when editing in Inspector.
-/// </summary>
-[System.AttributeUsage(System.AttributeTargets.Field)]
-public class SerializeProperty : PropertyAttribute
+namespace HIAAC.BehaviorTree
 {
     /// <summary>
-    /// Name of the corresponding property
+    /// Marks the field to use a property when editing in Inspector.
     /// </summary>
-    public string PropertyName { get; private set; }
-
-    /// <summary>
-    /// SerializeProperty constructor
-    /// </summary>
-    /// <param name="propertyName">Name of the corresponding property.</param>
-    public SerializeProperty(string propertyName)
+    [System.AttributeUsage(System.AttributeTargets.Field)]
+    public class SerializeProperty : PropertyAttribute
     {
-        PropertyName = propertyName;
+        /// <summary>
+        /// Name of the corresponding property
+        /// </summary>
+        public string PropertyName { get; private set; }
+
+        /// <summary>
+        /// SerializeProperty constructor
+        /// </summary>
+        /// <param name="propertyName">Name of the corresponding property.</param>
+        public SerializeProperty(string propertyName)
+        {
+            PropertyName = propertyName;
+        }
     }
-}
 
 #if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(SerializeProperty))]
@@ -148,3 +150,4 @@ public class SerializePropertyAttributeDrawer : PropertyDrawer
 
 }
 #endif
+}
