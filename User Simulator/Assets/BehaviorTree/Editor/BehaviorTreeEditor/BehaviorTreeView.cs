@@ -19,6 +19,7 @@ public class BehaviorTreeView : GraphView
     List<GraphElement> clipboard;
 
     List<BehaviorTree> ghostTrees;
+    Dictionary<SubtreeNode, BehaviorTree> subtreeNodesVisible;
 
     Vector2 mousePosition;
 
@@ -49,6 +50,7 @@ public class BehaviorTreeView : GraphView
         unserializeAndPaste += OnPaste;
 
         ghostTrees = new();
+        subtreeNodesVisible = new();
     }
 
     string OnCopyCut(IEnumerable<GraphElement> elements)
@@ -83,7 +85,7 @@ public class BehaviorTreeView : GraphView
                 }
             }
 
-            //Create connections if duplicating multiple nodes and originals was connected
+            //Create connections if duplicating multiple nodes and originals were connected
             foreach (Node node in originalToClone.Keys)
             {
                 if (node.parent == null)
@@ -166,45 +168,45 @@ public class BehaviorTreeView : GraphView
 
     public void ShowSubtree(SubtreeNode subtreeNode)
     {
-        BehaviorTree staticTree = subtreeNode.Subtree;
-        BehaviorTree runtimeTree = subtreeNode.RuntimeTree;
-
-        if(runtimeTree == null)
+        if(subtreeNodesVisible.ContainsKey(subtreeNode)) //Already showing this node subtree (even if old changed tree)
         {
-            if (staticTree == null || staticTree == tree)
+            BehaviorTree tree = subtreeNodesVisible[subtreeNode];
+            
+            if (ghostTrees.Contains(tree))
             {
-                return;
+                RemoveGhostTree(tree);
             }
 
-            if (ghostTrees.Contains(staticTree))
-            {
-                RemoveGhostTree(staticTree);
-            }
-            else
-            {
-                AddGhostTree(staticTree, subtreeNode);
-            }
+            subtreeNodesVisible.Remove(subtreeNode);
         }
         else
         {
-            if (runtimeTree == tree)
-            {
-                return;
-            }
+            BehaviorTree staticTree = subtreeNode.Subtree;
+            BehaviorTree runtimeTree = subtreeNode.RuntimeTree;
 
-            if (ghostTrees.Contains(staticTree))
-            {
-                RemoveGhostTree(staticTree);
-            }
-            else if (ghostTrees.Contains(runtimeTree))
-            {
-                RemoveGhostTree(runtimeTree);
-            }
-            else
-            {
-                AddGhostTree(runtimeTree, subtreeNode);
-            }
+            BehaviorTree[] trees = new[] { runtimeTree, staticTree };
 
+            foreach(BehaviorTree tree in trees)
+            {
+                if(tree == null || tree == this.tree)
+                {
+                    continue;
+                }
+
+                if(ghostTrees.Contains(tree)) //Showing tree, but for another node
+                {
+                    RemoveGhostTree(tree);
+
+                    SubtreeNode key = subtreeNodesVisible.FirstOrDefault(x => x.Value == tree).Key;
+                    subtreeNodesVisible.Remove(key);
+                }
+
+                //Have tree and is not the editor tree
+                AddGhostTree(tree, subtreeNode);
+                subtreeNodesVisible.Add(subtreeNode, tree);
+
+                break;
+            }
         }
         
 
@@ -294,6 +296,14 @@ public class BehaviorTreeView : GraphView
             {
                 if (elem is NodeView nodeView && nodeView.Ghost == false)
                 {
+                    if(nodeView.node is SubtreeNode subtreeNode)
+                    {
+                        if(subtreeNodesVisible.ContainsKey(subtreeNode))
+                        {
+                            ShowSubtree(subtreeNode);
+                        }
+                    }
+
                     tree.DeleteNode(nodeView.node);
                 }
                 else if (elem is Edge edge)

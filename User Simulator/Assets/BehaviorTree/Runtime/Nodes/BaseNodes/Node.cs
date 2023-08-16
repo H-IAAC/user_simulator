@@ -120,6 +120,7 @@ public abstract class Node : ScriptableObject
 #if UNITY_EDITOR
         if (gameObject == null)
         {
+            Debug.Log("Aqui");
             if (AssetDatabase.GetAssetPath(this) == "")
             {
                 throw new Exception("Creating property before object initalization.");
@@ -188,7 +189,7 @@ public abstract class Node : ScriptableObject
         {
             if (variable != null)
             {
-                if(!dontDelete.Contains(variable.name))
+                if(dontDelete != null && !dontDelete.Contains(variable.name))
                 {
                     AssetDatabase.RemoveObjectFromAsset(variable);
                 }
