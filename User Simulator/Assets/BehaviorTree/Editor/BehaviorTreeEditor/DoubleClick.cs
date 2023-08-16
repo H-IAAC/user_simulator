@@ -49,7 +49,7 @@ namespace HIAAC.BehaviorTree
 
                 if (clickedElement.node is SubtreeNode subtreeNode)
                 {
-                    view.ShowSubtree(subtreeNode);
+                    view.ToggleSubtreeView(subtreeNode);
                 }
 
 

@@ -2,21 +2,27 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.Callbacks;
-using UnityEditor.Experimental.GraphView;
 
 namespace HIAAC.BehaviorTree
 {
+    /// <summary>
+    /// Main BT Editor Windows class
+    /// </summary>
     public class BehaviorTreeEditor : EditorWindow
     {
-        BehaviorTreeView treeView;
-        InspectorView inspectorView;
-        BlackboardView blackboardView;
-        InspectorView agentParameters;
-        SerializedObject treeObject;
+        BehaviorTreeView treeView; //Main tree view
+        InspectorView inspectorView; //Lateral inspector view
+        BlackboardView blackboardView; //Blackboard view over the treeView
+        InspectorView agentParameters; //Lateral BTag parameters view
+        
+        SerializedObject treeObject; //Active tree asset
 
-        [SerializeField]
-        private VisualTreeAsset m_VisualTreeAsset = default;
+        private VisualTreeAsset m_VisualTreeAsset; //UXML asset
 
+
+        /// <summary>
+        /// Creates option to open the editor in the menu.
+        /// </summary>
         [MenuItem("Window/AI/Behavior Tree Editor")]
         public static void OpenWindow()
         {
@@ -24,29 +30,44 @@ namespace HIAAC.BehaviorTree
             wnd.titleContent = new GUIContent("BehaviorTreeEditor");
         }
 
+        /// <summary>
+        /// Creates the editor
+        /// </summary>
         public void CreateGUI()
         {
             // Each editor window contains a root VisualElement object
             VisualElement root = rootVisualElement;
+            
+            //Get the UXML object
+            if(m_VisualTreeAsset == null)
+            {
+                string[] guidsVisualTree = AssetDatabase.FindAssets("t:VisualTreeAsset BehaviorTreeEditor");
+                m_VisualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(AssetDatabase.GUIDToAssetPath(guidsVisualTree[0]));
+            }
 
             // Instantiate UXML
             m_VisualTreeAsset.CloneTree(root);
 
+            //Gets the USS
             string[] guids = AssetDatabase.FindAssets("t:StyleSheet BehaviorTreeEditor");
             StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(AssetDatabase.GUIDToAssetPath(guids[0]));
             root.styleSheets.Add(styleSheet);
 
+            //Get the reference to each editor piece
             treeView = root.Q<BehaviorTreeView>();
             inspectorView = root.Q<InspectorView>("inspector");
             agentParameters = root.Q<InspectorView>("agent-parameters");
             GenerateBlackboard();
 
+            //Define the delegate methods
             treeView.OnNodeSelected = (node) => { OnNodeSelectionChanged(node.node); };
             blackboardView.OnPropertySelect = OnNodeSelectionChanged;
 
+            //Update the view
             OnSelectionChange();
         }
 
+        
         void OnEnable()
         {
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;

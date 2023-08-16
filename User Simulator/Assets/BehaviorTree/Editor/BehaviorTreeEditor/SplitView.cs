@@ -4,6 +4,9 @@ using UnityEngine.UIElements;
 
 namespace HIAAC.BehaviorTree
 {
+    /// <summary>
+    /// Wrapper to built-in TwoPaneSplitView
+    /// </summary>
     public class SplitView : TwoPaneSplitView
     {
         public new class UxmlFactory : UxmlFactory<SplitView, TwoPaneSplitView.UxmlTraits> { }

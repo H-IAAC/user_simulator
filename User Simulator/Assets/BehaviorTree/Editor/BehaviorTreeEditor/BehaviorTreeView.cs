@@ -168,128 +168,6 @@ namespace HIAAC.BehaviorTree
             }
         }
 
-        public void ShowSubtree(SubtreeNode subtreeNode)
-        {
-            if (subtreeNodesVisible.ContainsKey(subtreeNode)) //Already showing this node subtree (even if old changed tree)
-            {
-                BehaviorTree tree = subtreeNodesVisible[subtreeNode];
-
-                if (ghostTrees.Contains(tree))
-                {
-                    RemoveGhostTree(tree);
-                }
-
-                subtreeNodesVisible.Remove(subtreeNode);
-            }
-            else
-            {
-                BehaviorTree staticTree = subtreeNode.Subtree;
-                BehaviorTree runtimeTree = subtreeNode.RuntimeTree;
-
-                BehaviorTree[] trees = new[] { runtimeTree, staticTree };
-
-                foreach (BehaviorTree tree in trees)
-                {
-                    if (tree == null || tree == this.tree)
-                    {
-                        continue;
-                    }
-
-                    if (ghostTrees.Contains(tree)) //Showing tree, but for another node
-                    {
-                        RemoveGhostTree(tree);
-
-                        SubtreeNode key = subtreeNodesVisible.FirstOrDefault(x => x.Value == tree).Key;
-                        subtreeNodesVisible.Remove(key);
-                    }
-
-                    //Have tree and is not the editor tree
-                    AddGhostTree(tree, subtreeNode);
-                    subtreeNodesVisible.Add(subtreeNode, tree);
-
-                    break;
-                }
-            }
-
-
-
-        }
-
-        void RemoveGhostTree(BehaviorTree ghostTree)
-        {
-
-            foreach (Node node in ghostTree.nodes)
-            {
-                NodeView view = FindNodeView(node);
-
-                if (view.output != null)
-                {
-                    foreach (Edge edge in view.output.connections)
-                    {
-                        RemoveElement(edge);
-                    }
-
-                }
-
-                RemoveElement(view);
-            }
-
-            ghostTrees.Remove(ghostTree);
-            return;
-        }
-
-        void AddGhostTree(BehaviorTree ghostTree, SubtreeNode subtreeNode)
-        {
-            Vector2 offset = subtreeNode.position + new Vector2(0, 100) - subtreeNode.Subtree.rootNode.position + FindNodeView(subtreeNode).PositionOffset;
-
-            foreach (Node node in ghostTree.nodes)
-            {
-                NodeView view = CreateNodeView(node, ghostTree.runtime, true);
-                view.PositionOffset = offset;
-            }
-
-            foreach (Node node in ghostTree.nodes)
-            {
-                NodeView parentView = FindNodeView(node);
-
-                List<Node> children = node.GetChildren();
-                foreach (Node child in children)
-                {
-                    NodeView childView = FindNodeView(child);
-
-                    Edge edge = parentView.output.ConnectTo(childView.input);
-                    edge.capabilities = 0;
-                    edge.pickingMode = PickingMode.Ignore;
-                    AddElement(edge);
-                }
-            }
-
-            ghostTrees.Add(ghostTree);
-        }
-
-        void UpdateGhostTree(SubtreeNode subtreeNode)
-        {
-            BehaviorTree ghostTree = subtreeNode.Subtree;
-            if (ghostTree == null)
-            {
-                return;
-            }
-
-            if (!ghostTrees.Contains(ghostTree))
-            {
-                return;
-            }
-
-            Vector2 offset = subtreeNode.position + new Vector2(0, 100) - subtreeNode.Subtree.rootNode.position;
-
-            foreach (Node node in ghostTree.nodes)
-            {
-                NodeView view = FindNodeView(node);
-
-                view.PositionOffset = offset;
-            }
-        }
-
         GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
         {
             if (graphViewChange.elementsToRemove != null)
@@ -302,7 +180,7 @@ namespace HIAAC.BehaviorTree
                         {
                             if (subtreeNodesVisible.ContainsKey(subtreeNode))
                             {
-                                ShowSubtree(subtreeNode);
+                                ToggleSubtreeView(subtreeNode);
                             }
                         }
 
@@ -418,6 +296,129 @@ namespace HIAAC.BehaviorTree
             {
                 NodeView view = node as NodeView;
                 view.UpdateState();
+            }
+        }
+
+        // Subtree view //---------------------------------------------------------------------------//
+
+        public void ToggleSubtreeView(SubtreeNode subtreeNode)
+        {
+            if (subtreeNodesVisible.ContainsKey(subtreeNode)) //Already showing this node subtree (even if old changed tree)
+            {
+                BehaviorTree tree = subtreeNodesVisible[subtreeNode];
+
+                if (ghostTrees.Contains(tree))
+                {
+                    RemoveGhostTree(tree);
+                }
+
+                subtreeNodesVisible.Remove(subtreeNode);
+            }
+            else
+            {
+                BehaviorTree staticTree = subtreeNode.Subtree;
+                BehaviorTree runtimeTree = subtreeNode.RuntimeTree;
+
+                BehaviorTree[] trees = new[] { runtimeTree, staticTree };
+
+                foreach (BehaviorTree tree in trees)
+                {
+                    if (tree == null || tree == this.tree)
+                    {
+                        continue;
+                    }
+
+                    if (ghostTrees.Contains(tree)) //Showing tree, but for another node
+                    {
+                        RemoveGhostTree(tree);
+
+                        SubtreeNode key = subtreeNodesVisible.FirstOrDefault(x => x.Value == tree).Key;
+                        subtreeNodesVisible.Remove(key);
+                    }
+
+                    //Have tree and is not the editor tree
+                    AddGhostTree(tree, subtreeNode);
+                    subtreeNodesVisible.Add(subtreeNode, tree);
+
+                    break;
+                }
+            }
+        }
+
+
+
+        void RemoveGhostTree(BehaviorTree ghostTree)
+        {
+
+            foreach (Node node in ghostTree.nodes)
+            {
+                NodeView view = FindNodeView(node);
+
+                if (view.output != null)
+                {
+                    foreach (Edge edge in view.output.connections)
+                    {
+                        RemoveElement(edge);
+                    }
+
+                }
+
+                RemoveElement(view);
+            }
+
+            ghostTrees.Remove(ghostTree);
+            return;
+        }
+
+        void AddGhostTree(BehaviorTree ghostTree, SubtreeNode subtreeNode)
+        {
+            Vector2 offset = subtreeNode.position + new Vector2(0, 100) - subtreeNode.Subtree.rootNode.position + FindNodeView(subtreeNode).PositionOffset;
+
+            foreach (Node node in ghostTree.nodes)
+            {
+                NodeView view = CreateNodeView(node, ghostTree.runtime, true);
+                view.PositionOffset = offset;
+            }
+
+            foreach (Node node in ghostTree.nodes)
+            {
+                NodeView parentView = FindNodeView(node);
+
+                List<Node> children = node.GetChildren();
+                foreach (Node child in children)
+                {
+                    NodeView childView = FindNodeView(child);
+
+                    Edge edge = parentView.output.ConnectTo(childView.input);
+                    edge.capabilities = 0;
+                    edge.pickingMode = PickingMode.Ignore;
+                    AddElement(edge);
+                }
+            }
+
+            ghostTrees.Add(ghostTree);
+        }
+
+        void UpdateGhostTree(SubtreeNode subtreeNode)
+        {
+            BehaviorTree ghostTree = subtreeNode.Subtree;
+            if (ghostTree == null)
+            {
+                return;
+            }
+
+            if (!ghostTrees.Contains(ghostTree))
+            {
+                return;
+            }
+
+            Vector2 offset = subtreeNode.position + new Vector2(0, 100) - subtreeNode.Subtree.rootNode.position;
+
+            foreach (Node node in ghostTree.nodes)
+            {
+                NodeView view = FindNodeView(node);
+
+                view.PositionOffset = offset;
             }
         }
     }
