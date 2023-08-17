@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: d4de0c57-9d14-4fe4-a715-945b64ca04b2
+  guid: 676a33fa-69ad-419e-b21e-b5471aaf75ab
   position: {x: 0, y: 216}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -97,27 +97,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: c4d8f9ab-c837-4ed2-8706-e8f8fb8ceb5b
-  position: {x: 176.99998, y: 216}
+  guid: 6296fed1-0172-4515-8f0b-17446ded0ff6
+  position: {x: 178, y: 216}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
   parent: {fileID: 6616603776995768503}
   propertyBlackboardMap:
   - variable: WillBeOverwritten
-    blackboardProperty: FromMainTree
+    blackboardProperty: 
   - variable: Blackboard2
     blackboardProperty: 
   variables:
-  - {fileID: 8836818480006378238}
-  - {fileID: -1946703100318512138}
+  - {fileID: 8084928028044390065}
+  - {fileID: 4163244228776922837}
   blackboard:
   - {fileID: 3269002679059331028}
   tree: {fileID: 11400000}
   subtree: {fileID: 11400000, guid: 9929c0fd4bb2fb341a7189933c927e9c, type: 2}
-  passValue: 0100
+  passValue: 0000
   autoRemapOnAssign: 0
   propertiesDontDeleteOnValidate: []
+--- !u!114 &-4434624259681220391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard1
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &-2723813346271644966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 55beb146-a168-4d96-bcd5-02944169f07d
+  guid: 094da1cd-14d4-40a3-853c-7877af5e3b84
   position: {x: 0, y: -43}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -261,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 022637ac-37c8-4fba-a739-9e1e3f7ed490
+  guid: 2e798551-31eb-466b-845b-bbad0a5afe51
   position: {x: -175, y: 216}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -278,6 +291,19 @@ MonoBehaviour:
   onStart: 0
   onStop: 0
   onUpdate: 1
+--- !u!114 &4163244228776922837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard2
+  m_EditorClassIdentifier: 
+  value: 
 --- !u!114 &6250126241839455163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 7c80052a-21d8-4e59-b3eb-a8f0aa70147b
+  guid: 49c77739-2687-46a3-a2ee-ff5d3959b5d2
   position: {x: 0.000021219254, y: 87.99999}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -337,3 +363,29 @@ MonoBehaviour:
   utilityPropagationMethod: 0
   utilitySelectionMethod: 0
   utilityThreshould: 0
+--- !u!114 &7086750300281496335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: FromMainTree
+  m_EditorClassIdentifier: 
+  value: 
+--- !u!114 &8084928028044390065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: WillBeOverwritten
+  m_EditorClassIdentifier: 
+  value: 

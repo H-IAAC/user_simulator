@@ -122,7 +122,6 @@ namespace HIAAC.BehaviorTree
 #if UNITY_EDITOR
             if (gameObject == null)
             {
-                Debug.Log("Aqui");
                 if (AssetDatabase.GetAssetPath(this) == "")
                 {
                     throw new Exception("Creating property before object initalization.");
@@ -251,9 +250,9 @@ namespace HIAAC.BehaviorTree
         public abstract void OnStop();
         public abstract NodeState OnUpdate();
 
-        public abstract void AddChild(Node child);
+        public abstract void AddChild(Node child); //Must set child parent
 
-        public abstract void RemoveChild(Node child);
+        public abstract void RemoveChild(Node child); //Must set child parent
 
         public abstract List<Node> GetChildren();
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
 #endif
 
 namespace HIAAC.BehaviorTree
@@ -207,6 +207,12 @@ namespace HIAAC.BehaviorTree
             blackboard.RemoveAll(item => item == null);
 
             nodes.ForEach(x => x.tree = this);
+
+            if(blackboard == null)
+            {
+                this.blackboard = new();
+            }
+
         }
 
         public float GetUtility()

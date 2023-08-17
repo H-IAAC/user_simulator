@@ -10,71 +10,121 @@ using UnityEngine.UIElements;
 
 namespace HIAAC.BehaviorTree
 {
-    public class BlackboardField2 : BlackboardField
-    {
-        public Action OnPropertySelect;
-        public Action<BlackboardField2> OnFieldDelete;
-
-        public override void OnSelected()
-        {
-            OnPropertySelect();
-        }
-
-        protected override void ExecuteDefaultAction(EventBase evt)
-        {
-            base.ExecuteDefaultAction(evt);
-
-            //Debug.Log($"{evt} | {(evt.target as BlackboardField2).text}");
-
-            /*if(evt.eventTypeId == DragLeaveEvent.TypeId())
-            {
-                Debug.Log("DragLeaveEvent");
-            }*/
-        }
-
-
-    }
 
     public class BlackboardView : Blackboard
     {
-        public Action<UnityEngine.Object> OnPropertySelect;
+        public Action<UnityEngine.Object> OnPropertySelect; //Action to execute on field selection
 
-        BehaviorTree tree;
+        BehaviorTree tree; //Active behavior tree
 
-        public BlackboardView(GraphView associatedGraphView = null) : base(associatedGraphView)
+        /// <summary>
+        /// View constructor.
+        /// </summary>
+        /// <param name="associatedGraphView">Associated BT View.</param>
+        public BlackboardView(BehaviorTreeView associatedGraphView = null) : base(associatedGraphView)
         {
             SetPosition(new Rect(10, 30, 200, 300));
             scrollable = true;
-
-
             Add(new BlackboardSection { title = "Exposed Properties" });
 
-            addItemRequested = _blackboard => { AddItemRequestHandler(); };
+            //Configure actions
+            addItemRequested = _blackboard => AddItemRequestHandler();
+            editTextRequested = (blackboard, element, newText) => EditItemRequestHandler(element, newText);
+        }
 
-            editTextRequested = (blackboard, element, newText) =>
+        /// <summary>
+        /// Draw property on the view.
+        /// </summary>
+        /// <param name="property">Property to draw.</param>
+        void drawProperty(BlackboardProperty property)
+        {
+            VisualElement container = new();
+
+            BlackboardField2 field = new()
             {
-                if (newText == "")
-                {
-                    Debug.LogError("Name cannot be empty.");
-                    return;
-                }
-
-                BlackboardField field = element as BlackboardField;
-                string oldName = field.text;
-
-                if (tree.blackboard.Any(x => x.PropertyName == newText))
-                {
-                    Debug.LogError("This name is already in use.");
-                    return;
-                }
-
-                int index = tree.blackboard.FindIndex(x => x.PropertyName == oldName);
-                tree.blackboard[index].PropertyName = newText;
-                field.text = newText;
+                text = property.PropertyName,
+                typeText = $"{property.PropertyTypeName} property",
+                OnPropertySelect = () => { OnPropertySelect(property); }
             };
 
+            container.Add(field);
+            Add(container);
 
         }
+
+        /// <summary>
+        /// Create new property.
+        /// </summary>
+        /// <param name="type">Property type. Must inherit from BlackboardProperty.</param>
+        public void CreateProperty(Type type)
+        {
+            //Check if have active tree
+            if (tree == null)
+            {
+                Debug.LogError("Cannot create property without active tree asset.");
+                return;
+            }
+
+            BlackboardProperty property = ScriptableObject.CreateInstance(type) as BlackboardProperty;
+
+            //Ensures name isn't duplicated
+            string name = property.PropertyTypeName;
+            while (tree.blackboard.Any(x => x.PropertyName == name))
+            {
+                name += "(1)";
+            }
+            property.PropertyName = name;
+
+            //Add property to tree.
+            tree.blackboard.Add(property);
+            if (!Application.isPlaying)
+            {
+                AssetDatabase.AddObjectToAsset(property, tree);
+            }
+            Undo.RegisterCreatedObjectUndo(property, "Behavior Tree (CreateProperty)");
+            AssetDatabase.SaveAssets();
+
+            //Draw property on the view.
+            drawProperty(property);
+        }
+
+        /// <summary>
+        /// Delete an property.
+        /// </summary>
+        /// <param name="field">Property to delete.</param>
+        public void DeleteProperty(BlackboardField field)
+        {   
+            //Get property index on blackboard
+            string name = field.text;
+            int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
+
+            //Remove property
+            tree.DeleteProperty(tree.blackboard[index]);
+        }
+
+        /// <summary>
+        /// Populate view with new behavior tree.
+        /// </summary>
+        /// <param name="tree">Behavior Tree to populate view.</param>
+        public void PopulateView(BehaviorTree tree)
+        {
+            //Clear previous tree properties.
+            Clear();
+
+            this.tree = tree;
+            if (tree == null)
+            {
+                return;
+            }
+
+            //Draw tree properties
+            foreach (BlackboardProperty property in tree.blackboard)
+            {
+                drawProperty(property);
+            }
+        }
+
+        // Event handlers // ----------------------------------------------------------------------------- //
 
         public void AddItemRequestHandler()
         {
@@ -94,81 +144,28 @@ namespace HIAAC.BehaviorTree
             menu.ShowAsContext();
         }
 
-        public void CreateProperty(Type type)
+        public void EditItemRequestHandler(VisualElement element, string newText)
         {
-            if (tree == null)
+            if (newText == "")
             {
-                Debug.LogError("Cannot create property without active tree asset.");
+                Debug.LogError("Name cannot be empty.");
                 return;
             }
 
+            BlackboardField field = element as BlackboardField;
+            string oldName = field.text;
 
-            BlackboardProperty property = ScriptableObject.CreateInstance(type) as BlackboardProperty;
-
-            string name = property.PropertyTypeName;
-            while (tree.blackboard.Any(x => x.PropertyName == name))
+            if (tree.blackboard.Any(x => x.PropertyName == newText))
             {
-                name += "(1)";
-            }
-            property.PropertyName = name;
-
-            tree.blackboard.Add(property);
-            if (!Application.isPlaying)
-            {
-                AssetDatabase.AddObjectToAsset(property, tree);
-            }
-            Undo.RegisterCreatedObjectUndo(property, "Behavior Tree (CreateProperty)");
-
-            AssetDatabase.SaveAssets();
-
-            drawProperty(property);
-        }
-
-        void drawProperty(BlackboardProperty property)
-        {
-            VisualElement container = new();
-
-            BlackboardField2 field = new() { text = property.PropertyName, typeText = $"{property.PropertyTypeName} property" };
-            field.OnPropertySelect = () => { OnPropertySelect(property); };
-
-            container.Add(field);
-            Add(container);
-
-
-
-        }
-
-        public void PopulateView(BehaviorTree tree)
-        {
-            Clear();
-
-            this.tree = tree;
-
-            if (tree == null)
-            {
+                Debug.LogError("This name is already in use.");
                 return;
             }
 
-            if (tree.blackboard == null)
-            {
-                tree.blackboard = new();
-            }
-
-            foreach (BlackboardProperty property in tree.blackboard)
-            {
-                drawProperty(property);
-            }
+            int index = tree.blackboard.FindIndex(x => x.PropertyName == oldName);
+            tree.blackboard[index].PropertyName = newText;
+            field.text = newText;
         }
 
-        public void OnFieldDelete(BlackboardField field)
-        {
-            Debug.Log("Aqui");
-            string name = field.text;
-
-            int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
-
-            tree.DeleteProperty(tree.blackboard[index]);
-        }
 
     }
 }

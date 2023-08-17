@@ -60,25 +60,134 @@ namespace HIAAC.BehaviorTree
             GenerateBlackboard();
 
             //Define the delegate methods
-            treeView.OnNodeSelected = (node) => { OnNodeSelectionChanged(node.node); };
-            blackboardView.OnPropertySelect = OnNodeSelectionChanged;
+            treeView.OnNodeSelected = (node) => { OnElementSelectionChanged(node.node); };
+            blackboardView.OnPropertySelect = OnElementSelectionChanged;
 
             //Update the view
             OnSelectionChange();
         }
 
+        /// <summary>
+        /// Create and configure blackboard view
+        /// </summary>
+        void GenerateBlackboard()
+        {
+            blackboardView = new BlackboardView(treeView);
+
+            treeView.Add(blackboardView);
+            treeView.blackboard = blackboardView;
+        }
+
+        /// <summary>
+        /// Update the tree view each frame
+        /// </summary>
+        void OnInspectorUpdate()
+        {
+            treeView.UpdateNodeStates();
+        }
+
         
+        /// <summary>
+        /// Update the inspector view if the selected element changed.
+        /// </summary>
+        /// <param name="obj">Selected element (Node or BlackboardProperty) </param>
+        void OnElementSelectionChanged(UnityEngine.Object obj)
+        {
+            inspectorView.UpdateSelection(obj);
+        }
+
+
+        /// <summary>
+        /// Update active tree if avaiable
+        /// </summary>
+        void OnSelectionChange()
+        {  
+            //Clear inspector view
+            if (inspectorView != null)
+            {
+                inspectorView.Clear();
+            }
+
+
+            //Get tree from selection
+            BehaviorTree tree = Selection.activeObject as BehaviorTree;
+
+            //If tree not selected, check if Game Object have tree in BehaviorTreeRunner
+            if (!tree && Selection.activeGameObject)
+            {
+                BehaviorTreeRunner runner = Selection.activeGameObject.GetComponent<BehaviorTreeRunner>();
+
+                if (runner)
+                {
+                    tree = runner.tree;
+                }
+            }
+
+            //No tree -> return
+            if (!tree)
+            {
+                return;
+            }
+
+            //Validate asset and get serialized
+            tree.Validate();
+            treeObject = new SerializedObject(tree);
+
+            //Update tree view
+            if (treeView != null)
+            {
+                if (Application.isPlaying || AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) //Check if valid (asset or play mode)
+                {
+                    treeView.PopulateView(tree);
+                    blackboardView.PopulateView(tree);
+                    agentParameters.UpdateSelection(treeObject.FindProperty("bTagParameters"));
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Open editor if opened asset is Behavior Tree
+        /// </summary>
+        /// <param name="instanceId">Not used</param>
+        /// <param name="line">Not used</param>
+        /// <returns>True if the asset is BT</returns>
+        [OnOpenAsset]
+        public static bool OnOpenAsset(int instanceId, int line)
+        {
+            if (Selection.activeObject is BehaviorTree)
+            {
+                OpenWindow();
+                return true;
+            }
+            return false;
+        }
+
+
+        // Change active tree on switch Editor/Play mode //--------------------------------------
+
+        /// <summary>
+        /// Add play mode changed event callback
+        /// </summary>
         void OnEnable()
         {
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         }
 
+        /// <summary>
+        /// Remove play mode changed callback
+        /// </summary>
         void OnDisable()
         {
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
         }
 
+
+        /// <summary>
+        /// Update the selection when entering new mode
+        /// </summary>
+        /// <param name="change">Change to check if entered in new mode</param>
         void OnPlayModeStateChanged(PlayModeStateChange change)
         {
             switch (change)
@@ -98,76 +207,6 @@ namespace HIAAC.BehaviorTree
                     break;
             }
 
-        }
-
-        void OnSelectionChange()
-        {
-            if (inspectorView != null)
-            {
-                inspectorView.Clear();
-            }
-
-
-            BehaviorTree tree = Selection.activeObject as BehaviorTree;
-
-            //If tree not selected, check if GO have tree
-            if (!tree && Selection.activeGameObject)
-            {
-                BehaviorTreeRunner runner = Selection.activeGameObject.GetComponent<BehaviorTreeRunner>();
-
-                if (runner)
-                {
-                    tree = runner.tree;
-                }
-            }
-
-            if (!tree)
-            {
-                return;
-            }
-
-            tree.Validate();
-            treeObject = new SerializedObject(tree);
-
-            if (treeView != null)
-            {
-                if (Application.isPlaying || AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
-                {
-                    treeView.PopulateView(tree);
-                    blackboardView.PopulateView(tree);
-                    agentParameters.UpdateSelection(treeObject.FindProperty("bTagParameters"));
-                }
-            }
-        }
-
-        void OnNodeSelectionChanged(UnityEngine.Object obj)
-        {
-            inspectorView.UpdateSelection(obj);
-        }
-
-
-        [OnOpenAsset]
-        public static bool OnOpenAsset(int instanceId, int line)
-        {
-            if (Selection.activeObject is BehaviorTree)
-            {
-                OpenWindow();
-                return true;
-            }
-            return false;
-        }
-
-        void OnInspectorUpdate()
-        {
-            treeView.UpdateNodeStates();
-        }
-
-        void GenerateBlackboard()
-        {
-            blackboardView = new BlackboardView(treeView);
-
-            treeView.Add(blackboardView);
-            treeView.blackboard = blackboardView;
         }
     }
 }

@@ -28,6 +28,7 @@ namespace HIAAC.BehaviorTree
 
         public override void RemoveChild(Node child)
         {
+            this.child.parent = null;
             this.child = null;
         }
 

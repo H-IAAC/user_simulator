@@ -60,6 +60,7 @@ namespace HIAAC.BehaviorTree
         public override void RemoveChild(Node child)
         {
             children.Remove(child);
+            child.parent = null;
         }
 
         public override List<Node> GetChildren()
