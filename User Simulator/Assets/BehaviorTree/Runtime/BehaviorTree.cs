@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -8,22 +9,83 @@ using UnityEditor;
 
 namespace HIAAC.BehaviorTree
 {
+    /// <summary>
+    /// Main Behavior Tree class.
+    /// </summary>
     [CreateAssetMenu(menuName = "Behavior Tree/Behavior Tree")]
     public class BehaviorTree : ScriptableObject
     {
-        public RootNode rootNode;
-        public NodeState treeState = NodeState.Runnning;
+        NodeState treeState = NodeState.Runnning; //Current tree state (same as root)
 
-        public List<Node> nodes = new();
+        public RootNode rootNode; //Root node 
+        public List<Node> nodes = new(); //All nodes
 
-        public List<BlackboardProperty> blackboard = new();
+        public List<BlackboardProperty> blackboard = new(); //Blackboard proprieties of the tree.
 
-        public List<BTagParameter> bTagParameters = new();
+        public List<BTagParameter> bTagParameters = new(); //BehaviorTags of the tree.
 
-        [HideInInspector] public bool runtime = false;
+        bool runtime = false; //If the tree is runtime (is binded to object and can be runned).
 
+        /// <summary>
+        /// If the tree is runtime (is binded to object and can be runned).
+        /// </summary>
+        public bool Runtime
+        {
+            get
+            {
+                return runtime;
+            }
+        }
+
+        // Lifecyle // ----------------------------------------------------------------------------------- //
+
+        /// <summary>
+        /// Binds the tree to the game object. 
+        /// All nodes will have the refence to the object.
+        /// </summary>
+        /// <param name="gameObject">GameObject to bind the tree.</param>
+        public void Bind(GameObject gameObject)
+        {
+            runtime = true;
+
+            Node.Traverse(rootNode, (node) =>
+                {
+                    node.gameObject = gameObject;
+                }
+            );
+        }
+
+        /// <summary>
+        /// Start the tree.
+        /// 
+        /// Is automatically done when calling Update for the first time.
+        /// </summary>
+        /// <exception cref="Exception">If the tree is not runtime (can't be run).</exception>
+        public void Start()
+        {
+            if(!runtime)
+            {
+                throw new Exception("Trying to run non-runtime tree");
+            }
+
+            if (!rootNode.started)
+            {
+                rootNode.Start();
+            }
+        }
+
+        /// <summary>
+        /// Updates the tree, tranversing it's nodes.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception">If the tree is not runtime (can't be run).</exception>
         public NodeState Update()
         {
+            if(!runtime)
+            {
+                throw new Exception("Trying to run non-runtime tree");
+            }
+
             if (rootNode.state == NodeState.Runnning)
             {
                 treeState = rootNode.Update();
@@ -31,6 +93,133 @@ namespace HIAAC.BehaviorTree
 
             return treeState;
         }
+
+        /// <summary>
+        /// Get the tree utility value (same as the root node).
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception">If the tree is not runtime (doesn't have utility value).</exception>
+        public float GetUtility()
+        {
+            if(!runtime)
+            {
+                throw new Exception("Trying to run non-runtime tree");
+            }
+            
+            return rootNode.GetUtility();
+        }
+        
+        // Tree manipulation // -------------------------------------------------------------------------- //
+
+
+        public BehaviorTree Clone()
+        {
+            //Create new tree and clone nodes.
+            BehaviorTree tree = Instantiate(this);
+            tree.rootNode = tree.rootNode.Clone() as RootNode;
+
+            //Add nodes to tree and create new-original map.
+            tree.nodes = new List<Node>();
+            List<string> clonedGUID = new();
+            Node.Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+
+            //Check for nodes that aren't in main tree (not child of root) and clone.
+            foreach (Node origNode in this.nodes)
+            {
+                if (!clonedGUID.Contains(origNode.guid)) //Node not cloned
+                {
+                    //Get root node of other tree
+                    Node parent = origNode;
+                    while (parent.parent != null)
+                    {
+                        parent = parent.parent;
+                    }
+
+                    //Clone nodes and add to the tree
+                    Node cloned = parent.Clone();
+                    Node.Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+                }
+            }
+
+            //Clone blackboard properties
+            tree.blackboard = new();
+            foreach (BlackboardProperty property in blackboard)
+            {
+                tree.blackboard.Add(property.Clone());
+            }
+
+            //Assign blackboard and tree to nodes
+            foreach (Node node in tree.nodes)
+            {
+                node.blackboard = tree.blackboard;
+                node.tree = tree;
+            }
+
+            return tree;
+        }
+
+        public void Validate()
+        {
+            nodes.RemoveAll(item => item == null);
+            blackboard.RemoveAll(item => item == null);
+
+            nodes.ForEach(x => x.tree = this);
+
+            if (blackboard == null)
+            {
+                blackboard = new();
+            }
+
+        }
+
+        // Properties // --------------------------------------------------------------------------------- //
+
+        public BlackboardProperty CreateProperty(Type type)
+        {
+            BlackboardProperty property = ScriptableObject.CreateInstance(type) as BlackboardProperty;
+
+            //Ensures name isn't duplicated
+            string name = property.PropertyTypeName;
+            while (blackboard.Any(x => x.PropertyName == name))
+            {
+                name += "(1)";
+            }
+            property.PropertyName = name;
+
+            //Add property
+            blackboard.Add(property);
+            if (!Application.isPlaying)
+            {
+                AssetDatabase.AddObjectToAsset(property, this);
+            }
+
+            //Save property to asset
+#if UNITY_EDITOR
+            Undo.RegisterCreatedObjectUndo(property, "Behavior Tree (CreateProperty)");
+            AssetDatabase.SaveAssets();
+#endif
+
+            return property;
+        }
+
+        public void DeleteProperty(BlackboardProperty property)
+        {
+#if UNITY_EDITOR
+            Undo.RecordObject(this, "Behavior Tree (DeleteTreeProperty)");
+#endif
+
+            blackboard.Remove(property);
+
+#if UNITY_EDITOR
+            //AssetDatabase.RemoveObjectFromAsset(node);
+            Undo.DestroyObjectImmediate(property);
+
+            AssetDatabase.SaveAssets();
+#endif
+        }
+
+
+        // Nodes // -------------------------------------------------------------------------------------- //
 
         public Node CreateNode(Type type)
         {
@@ -118,114 +307,6 @@ namespace HIAAC.BehaviorTree
 
             AssetDatabase.SaveAssets();
 #endif
-        }
-
-        public void DeleteProperty(BlackboardProperty property)
-        {
-#if UNITY_EDITOR
-            Undo.RecordObject(this, "Behavior Tree (DeleteTreeProperty)");
-#endif
-
-            blackboard.Remove(property);
-
-#if UNITY_EDITOR
-            //AssetDatabase.RemoveObjectFromAsset(node);
-            Undo.DestroyObjectImmediate(property);
-
-            AssetDatabase.SaveAssets();
-#endif
-        }
-
-
-        public void Traverse(Node node, Action<Node> visiter)
-        {
-            if (node)
-            {
-                visiter.Invoke(node);
-                List<Node> children = node.GetChildren();
-
-                foreach (Node child in children)
-                {
-                    Traverse(child, visiter);
-                }
-            }
-        }
-
-        public BehaviorTree Clone()
-        {
-            BehaviorTree tree = Instantiate(this);
-            tree.rootNode = tree.rootNode.Clone() as RootNode;
-
-            tree.nodes = new List<Node>();
-            List<string> clonedGUID = new();
-
-            Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
-
-            foreach (Node origNode in this.nodes)
-            {
-                if (!clonedGUID.Contains(origNode.guid))
-                {
-                    Node parent = origNode;
-                    while (parent.parent != null)
-                    {
-                        parent = parent.parent;
-                    }
-
-                    Node cloned = parent.Clone();
-
-                    Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
-                }
-            }
-
-            tree.blackboard = new();
-            foreach (BlackboardProperty property in blackboard)
-            {
-                tree.blackboard.Add(property.Clone());
-            }
-            foreach (Node node in tree.nodes)
-            {
-                node.blackboard = tree.blackboard;
-                node.tree = tree;
-            }
-
-            return tree;
-        }
-
-        public void Bind(GameObject gameObject)
-        {
-            runtime = true;
-            Traverse(rootNode, (node) =>
-                {
-                    node.gameObject = gameObject;
-                }
-            );
-        }
-
-        public void Validate()
-        {
-            nodes.RemoveAll(item => item == null);
-            blackboard.RemoveAll(item => item == null);
-
-            nodes.ForEach(x => x.tree = this);
-
-            if(blackboard == null)
-            {
-                this.blackboard = new();
-            }
-
-        }
-
-        public float GetUtility()
-        {
-            return rootNode.GetUtility();
-        }
-
-        public void Start()
-        {
-            if (!rootNode.started)
-            {
-                rootNode.Start();
-            }
         }
     }
 }

@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 676a33fa-69ad-419e-b21e-b5471aaf75ab
+  guid: 444f60aa-14cc-4a07-9b50-3b4ad918feac
   position: {x: 0, y: 216}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -97,15 +97,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 6296fed1-0172-4515-8f0b-17446ded0ff6
-  position: {x: 178, y: 216}
+  guid: 03a0ed4f-a7df-45d9-b7e9-43b748426337
+  position: {x: 177.47917, y: 215.99998}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
   parent: {fileID: 6616603776995768503}
   propertyBlackboardMap:
   - variable: WillBeOverwritten
-    blackboardProperty: 
+    blackboardProperty: FromMainTree
   - variable: Blackboard2
     blackboardProperty: 
   variables:
@@ -115,7 +115,7 @@ MonoBehaviour:
   - {fileID: 3269002679059331028}
   tree: {fileID: 11400000}
   subtree: {fileID: 11400000, guid: 9929c0fd4bb2fb341a7189933c927e9c, type: 2}
-  passValue: 0000
+  passValue: 0100
   autoRemapOnAssign: 0
   propertiesDontDeleteOnValidate: []
 --- !u!114 &-4434624259681220391
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 094da1cd-14d4-40a3-853c-7877af5e3b84
+  guid: 0d921cef-5c20-4b5e-8452-a9dce61cbd16
   position: {x: 0, y: -43}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -183,7 +183,6 @@ MonoBehaviour:
   m_Name: SubtreeExampleMain
   m_EditorClassIdentifier: 
   rootNode: {fileID: -2723813346271644966}
-  treeState: 0
   nodes:
   - {fileID: -2723813346271644966}
   - {fileID: 6616603776995768503}
@@ -274,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 2e798551-31eb-466b-845b-bbad0a5afe51
+  guid: 193f6b00-3f60-44db-b88a-410cde395901
   position: {x: -175, y: 216}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -344,7 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 49c77739-2687-46a3-a2ee-ff5d3959b5d2
+  guid: 67195645-8483-44e1-a65c-62eaacd9c7e0
   position: {x: 0.000021219254, y: 87.99999}
   gameObject: {fileID: 0}
   useMemory: 0

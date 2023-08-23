@@ -141,7 +141,7 @@ namespace HIAAC.BehaviorTree
         /// <returns>Created view.</returns>
         NodeView CreateNodeView(Node node)
         {
-            return CreateNodeView(node, tree.runtime);
+            return CreateNodeView(node, tree.Runtime);
         }
 
 
@@ -466,7 +466,7 @@ namespace HIAAC.BehaviorTree
             Vector2 offset = ComputeGhostViewOffset(subtreeNode);
             foreach (Node node in ghostTree.nodes)
             {
-                NodeView view = CreateNodeView(node, ghostTree.runtime, true);
+                NodeView view = CreateNodeView(node, ghostTree.Runtime, true);
                 view.PositionOffset = offset;
             }
 

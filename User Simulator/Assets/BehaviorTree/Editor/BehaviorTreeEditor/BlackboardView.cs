@@ -65,24 +65,8 @@ namespace HIAAC.BehaviorTree
                 return;
             }
 
-            BlackboardProperty property = ScriptableObject.CreateInstance(type) as BlackboardProperty;
-
-            //Ensures name isn't duplicated
-            string name = property.PropertyTypeName;
-            while (tree.blackboard.Any(x => x.PropertyName == name))
-            {
-                name += "(1)";
-            }
-            property.PropertyName = name;
-
-            //Add property to tree.
-            tree.blackboard.Add(property);
-            if (!Application.isPlaying)
-            {
-                AssetDatabase.AddObjectToAsset(property, tree);
-            }
-            Undo.RegisterCreatedObjectUndo(property, "Behavior Tree (CreateProperty)");
-            AssetDatabase.SaveAssets();
+            //Create property
+            BlackboardProperty property = tree.CreateProperty(type);
 
             //Draw property on the view.
             drawProperty(property);

@@ -246,6 +246,25 @@ namespace HIAAC.BehaviorTree
             OnStart();
         }
 
+        /// <summary>
+        /// Tranverse the node and all children applying some action.
+        /// </summary>
+        /// <param name="node">Start node to visit.</param>
+        /// <param name="visiter">Action to aply on the nodes.</param>
+        public static void Traverse(Node node, Action<Node> visiter)
+        {
+            if (node)
+            {
+                visiter.Invoke(node);
+                List<Node> children = node.GetChildren();
+
+                foreach (Node child in children)
+                {
+                    Traverse(child, visiter);
+                }
+            }
+        }
+
         public abstract void OnStart();
         public abstract void OnStop();
         public abstract NodeState OnUpdate();

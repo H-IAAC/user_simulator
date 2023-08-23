@@ -5,34 +5,34 @@ using UnityEditor;
 
 namespace HIAAC.BehaviorTree
 {
-public abstract class BlackboardProperty : ScriptableObject
-{
-    public string PropertyName
+    public abstract class BlackboardProperty : ScriptableObject
     {
-        get
+        public string PropertyName
         {
-            return name;
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
         }
-        set
+
+        public abstract string PropertyTypeName { get; }
+
+        public abstract object Value { get; set; }
+
+        public virtual BlackboardProperty Clone()
         {
-            name = value;
+            BlackboardProperty clone = CreateInstance(this.GetType()) as BlackboardProperty;
+            clone.PropertyName = this.PropertyName;
+            clone.Value = Value;
+
+            return clone;
         }
+
     }
-
-    public abstract string PropertyTypeName{ get; }
-
-    public abstract object Value{ get; set; }
-
-    public virtual BlackboardProperty Clone()
-    {
-        BlackboardProperty clone = CreateInstance(this.GetType()) as BlackboardProperty;
-        clone.PropertyName = this.PropertyName;
-        clone.Value = Value;
-
-        return clone;
-    }
-
-}
 
     public abstract class BlackboardProperty<T> : BlackboardProperty
     {
