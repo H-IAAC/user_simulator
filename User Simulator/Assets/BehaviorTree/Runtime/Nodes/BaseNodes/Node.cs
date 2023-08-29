@@ -265,6 +265,9 @@ namespace HIAAC.BehaviorTree
             }
         }
 
+
+        // To override // ----------------------------------------------------- //
+        
         public abstract void OnStart();
         public abstract void OnStop();
         public abstract NodeState OnUpdate();

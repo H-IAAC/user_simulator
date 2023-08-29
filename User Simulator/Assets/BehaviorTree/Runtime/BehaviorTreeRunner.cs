@@ -10,12 +10,18 @@ namespace HIAAC.BehaviorTree
     {
         [Tooltip("Tree to execute.")][SerializeField] public BehaviorTree tree;
 
+        /// <summary>
+        /// Initializes the tree
+        /// </summary>
         void Start()
         {
             tree = tree.Clone();
             tree.Bind(gameObject);
         }
 
+        /// <summary>
+        /// Run the tree
+        /// </summary>
         void Update()
         {
             tree.Update();

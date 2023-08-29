@@ -63,7 +63,7 @@ namespace HIAAC.BehaviorTree
         /// <exception cref="Exception">If the tree is not runtime (can't be run).</exception>
         public void Start()
         {
-            if(!runtime)
+            if (!runtime)
             {
                 throw new Exception("Trying to run non-runtime tree");
             }
@@ -81,7 +81,7 @@ namespace HIAAC.BehaviorTree
         /// <exception cref="Exception">If the tree is not runtime (can't be run).</exception>
         public NodeState Update()
         {
-            if(!runtime)
+            if (!runtime)
             {
                 throw new Exception("Trying to run non-runtime tree");
             }
@@ -101,17 +101,20 @@ namespace HIAAC.BehaviorTree
         /// <exception cref="Exception">If the tree is not runtime (doesn't have utility value).</exception>
         public float GetUtility()
         {
-            if(!runtime)
+            if (!runtime)
             {
                 throw new Exception("Trying to run non-runtime tree");
             }
-            
+
             return rootNode.GetUtility();
         }
-        
+
         // Tree manipulation // -------------------------------------------------------------------------- //
 
-
+        /// <summary>
+        /// Creates a clone of the tree, with same nodes and properties.
+        /// </summary>
+        /// <returns>Cloned tree.</returns>
         public BehaviorTree Clone()
         {
             //Create new tree and clone nodes.
@@ -158,13 +161,21 @@ namespace HIAAC.BehaviorTree
             return tree;
         }
 
+        /// <summary>
+        /// Validate tree elements, searching for inconsistencies.
+        /// 
+        /// Used when opening the asset.
+        /// </summary>
         public void Validate()
         {
+            //Remove null elements
             nodes.RemoveAll(item => item == null);
             blackboard.RemoveAll(item => item == null);
 
+            //Force node.tree = this
             nodes.ForEach(x => x.tree = this);
 
+            //Create blackboard if null
             if (blackboard == null)
             {
                 blackboard = new();
@@ -174,6 +185,11 @@ namespace HIAAC.BehaviorTree
 
         // Properties // --------------------------------------------------------------------------------- //
 
+        /// <summary>
+        /// Create new BlackboardProperty.
+        /// </summary>
+        /// <param name="type">Type of property. Must inherit BlackboardProperty.</param>
+        /// <returns>Created property</returns>
         public BlackboardProperty CreateProperty(Type type)
         {
             BlackboardProperty property = ScriptableObject.CreateInstance(type) as BlackboardProperty;
@@ -186,22 +202,33 @@ namespace HIAAC.BehaviorTree
             }
             property.PropertyName = name;
 
+
+            //Record creation
+#if UNITY_EDITOR
+            Undo.RecordObject(this, "Behavior Tree (CreateProperty)");
+#endif
+
             //Add property
             blackboard.Add(property);
+
+            //Save property to asset
+#if UNITY_EDITOR
             if (!Application.isPlaying)
             {
                 AssetDatabase.AddObjectToAsset(property, this);
             }
-
-            //Save property to asset
-#if UNITY_EDITOR
             Undo.RegisterCreatedObjectUndo(property, "Behavior Tree (CreateProperty)");
             AssetDatabase.SaveAssets();
 #endif
 
+
             return property;
         }
 
+        /// <summary>
+        /// Deletes BlackboardProperty of the tree.
+        /// </summary>
+        /// <param name="property">Property to delete.</param>
         public void DeleteProperty(BlackboardProperty property)
         {
 #if UNITY_EDITOR
@@ -221,21 +248,27 @@ namespace HIAAC.BehaviorTree
 
         // Nodes // -------------------------------------------------------------------------------------- //
 
+        /// <summary>
+        /// Creates new node in the tree.
+        /// </summary>
+        /// <param name="type">Type of node to create. Must inherit Node.</param>
+        /// <returns>Created node.</returns>
         public Node CreateNode(Type type)
         {
+            //Creates and configures the node.
             Node node = CreateInstance(type) as Node;
             node.name = type.Name;
             node.blackboard = this.blackboard;
             node.tree = this;
 
-
-
+            //Record adding the node
 #if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (CreateNode)");
 #endif
 
             nodes.Add(node);
 
+            //Save node to asset
 #if UNITY_EDITOR
             if (!Application.isPlaying)
             {
@@ -246,31 +279,47 @@ namespace HIAAC.BehaviorTree
             AssetDatabase.SaveAssets();
 #endif
 
+            //Create node properties
             node.OnCreateProperties();
 
+            //Save changes
+#if UNITY_EDITOR
             AssetDatabase.SaveAssets();
+#endif
 
             return node;
         }
 
+        /// <summary>
+        /// Duplicates tree node.
+        /// 
+        /// Node subclass specific properties may not be cloned. 
+        /// </summary>
+        /// <param name="node">Node to duplicate.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If node isn't in the tree.</exception>
         public Node DuplicateNode(Node node)
         {
+            //Check if node is in the tree
             if (!nodes.Contains(node))
             {
                 throw new ArgumentException("Node to duplicate is not in tree.");
             }
 
+            //Clone node and basic properties
             Node clone = CreateNode(node.GetType());
             clone.position = node.position;
             clone.position.x += 10;
             clone.UseMemory = node.UseMemory;
             clone.description = node.description;
 
+            //Clone blackboard values
             foreach (BlackboardProperty var in clone.variables)
             {
                 var.Value = node.GetPropertyValue(var.PropertyName, true);
             }
 
+            //Clone blackboard map
             for (int i = 0; i < node.propertyBlackboardMap.Count; i++)
             {
                 NameMap map = node.propertyBlackboardMap[i];
@@ -283,6 +332,7 @@ namespace HIAAC.BehaviorTree
                 clone.propertyBlackboardMap[i] = cloneMap;
             }
 
+            //Clone useUtility if composite.
             if (clone is CompositeNode compositeClone)
             {
                 CompositeNode composite = node as CompositeNode;
@@ -292,21 +342,27 @@ namespace HIAAC.BehaviorTree
             return clone;
         }
 
+        /// <summary>
+        /// Deletes node from tree;
+        /// </summary>
+        /// <param name="node">Node to delete</param>
         public void DeleteNode(Node node)
         {
+            //Record delete action
 #if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (DeleteNode)");
 #endif
 
+            //Delete node
             nodes.Remove(node);
             node.ClearPropertyDefinitions();
 
+            //Destroy asset
 #if UNITY_EDITOR
-            //AssetDatabase.RemoveObjectFromAsset(node);
             Undo.DestroyObjectImmediate(node);
-
             AssetDatabase.SaveAssets();
 #endif
         }
+        
     }
 }
