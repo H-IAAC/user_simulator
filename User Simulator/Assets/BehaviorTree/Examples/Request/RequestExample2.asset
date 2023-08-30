@@ -149,7 +149,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5129be6a-a7c2-4959-9d0b-a9372143c645
-  position: {x: -150, y: 521}
+  position: {x: -131, y: 511}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
@@ -191,7 +191,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 98f57b2b-f825-4855-947a-e70bd369a86e
-  position: {x: 104, y: 531}
+  position: {x: 99.24999, y: 511.4502}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
@@ -235,9 +235,9 @@ MonoBehaviour:
   guid: 9e68959f-5891-4e41-a5f5-7fa3b4c1c1e0
   position: {x: 0, y: 107}
   gameObject: {fileID: 0}
-  useMemory: 0
+  useMemory: 1
   description: 
-  parent: {fileID: 210294509508170890}
+  parent: {fileID: 0}
   tree: {fileID: 11400000}
   blackboard:
     properties:
@@ -253,7 +253,7 @@ MonoBehaviour:
       type: {class: UIntBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: repeatCount
-        value: 1
+        value: 2
 --- !u!114 &8223607755525894717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4c2e4af1-639d-498c-9734-a5081fc9e9e5
-  position: {x: -194, y: 354}
+  position: {x: -187.09996, y: 354}
   gameObject: {fileID: 0}
   useMemory: 1
   description: 
@@ -288,4 +288,4 @@ MonoBehaviour:
       type: {class: FloatBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: duration
-        value: 0
+        value: 2
