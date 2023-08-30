@@ -1,10 +1,15 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace HIAAC.BehaviorTree
 {
-    public class RootNode : Node
+    /// <summary>
+    /// Root node of the tree.
+    /// 
+    /// The tree have one and only one root node.
+    /// </summary>
+    public class RootNode : DecoratorNode
     {
-        public Node child;
 
         public override void OnStart()
         {
@@ -16,47 +21,15 @@ namespace HIAAC.BehaviorTree
 
         }
 
+        /// <summary>
+        /// Root update.
+        /// 
+        /// Call if child update.
+        /// </summary>
+        /// <returns>New state (same as child)</returns>
         public override NodeState OnUpdate()
         {
             return child.Update();
-        }
-
-        public override Node Clone()
-        {
-            RootNode node = Instantiate(this);
-            node.child = child.Clone();
-            node.guid = guid;
-            return node;
-        }
-
-        public override void AddChild(Node child)
-        {
-            this.child = child;
-            child.parent = this;
-        }
-
-        public override void RemoveChild(Node child)
-        {
-            this.child.parent = null;
-            this.child = null;
-        }
-
-        public override List<Node> GetChildren()
-        {
-            List<Node> children = new();
-
-            if (child != null)
-            {
-                children.Add(child);
-            }
-
-            return children;
-        }
-
-        protected override float OnComputeUtility()
-        {
-            child.ComputeUtility();
-            return child.GetUtility();
         }
     }
 }

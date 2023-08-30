@@ -287,14 +287,15 @@ namespace HIAAC.BehaviorTree
             {
                 AddToClassList("composite");
             }
-            else if (node is DecoratorNode)
-            {
-                AddToClassList("decorator");
-            }
             else if (node is RootNode)
             {
                 AddToClassList("root");
             }
+            else if (node is DecoratorNode)
+            {
+                AddToClassList("decorator");
+            }
+            
 
             //Subtree or base node
             if (node is SubtreeNode)
@@ -345,7 +346,7 @@ namespace HIAAC.BehaviorTree
             {
                 output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool)); //Dummy type
             }
-            else if (node is DecoratorNode or RootNode)
+            else if (node is DecoratorNode)
             {
                 output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool)); //Dummy type
             }

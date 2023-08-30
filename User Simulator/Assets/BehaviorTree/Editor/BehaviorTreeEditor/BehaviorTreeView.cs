@@ -215,6 +215,11 @@ namespace HIAAC.BehaviorTree
                 //Add action for create new node of type
                 foreach (Type type in types)
                 {
+                    if(type == typeof(RootNode))
+                    {
+                        continue;
+                    }
+                    
                     evt.menu.AppendAction($"{baseType.Name}/{type.Name}", (a) => CreateNode(type));
                 }
             }

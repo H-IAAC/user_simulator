@@ -3,33 +3,22 @@ using UnityEngine;
 
 namespace HIAAC.BehaviorTree
 {
-    public enum UtilityPropagationMethod
-    {
-        MAXIMUM,
-        MINIMUM,
-        ALL_SUCESS_PROBABILITY,
-        AT_LEAST_ONE_SUCESS_PROBABILITY,
-        SUM,
-        AVERAGE
-    }
-
-    public enum UtilitySelectionMethod
-    {
-        MAXIMUM,
-        WEIGHT_RANDOM,
-        RANDOM_THRESHOULD
-    }
 
     public abstract class CompositeNode : Node
     {
-        //[HideInInspector]
-        public List<Node> children = new();
+        [HideInInspector] public List<Node> children = new(); // List of node children
 
-        [SerializeField] public bool useUtility = false;
-        [SerializeField] public UtilityPropagationMethod utilityPropagationMethod = UtilityPropagationMethod.MAXIMUM;
-        [SerializeField] public UtilitySelectionMethod utilitySelectionMethod = UtilitySelectionMethod.MAXIMUM;
-        [SerializeField] public float utilityThreshould = 0f;
+        [SerializeField] public bool useUtility = false; //If should use utility to select next child
+        [SerializeField] public UtilityPropagationMethod utilityPropagationMethod = UtilityPropagationMethod.MAXIMUM; //Method for propagating the utility
+        [SerializeField] public UtilitySelectionMethod utilitySelectionMethod = UtilitySelectionMethod.MAXIMUM; //Method for selecting the next child using utility
+        [SerializeField] public float utilityThreshould = 0f; //Threshould for RANDOM_THRESHOULD selection method.
+        List<Node> nextChildren = new(); //List with the sequence of next children.
+        int currentIndex = -1; //Index of the current child.
 
+        /// <summary>
+        /// CompositeNode node constructor.
+        /// </summary>
+        /// <param name="memoryMode">MemoryMode specifing if node can use memory.</param>
         public CompositeNode(MemoryMode memoryMode = MemoryMode.Memoryless) : base(memoryMode)
         {
 
@@ -66,6 +55,110 @@ namespace HIAAC.BehaviorTree
         public override List<Node> GetChildren()
         {
             return children;
+        }
+
+        protected void ResetNext()
+        {
+            currentIndex = -1;
+        }
+
+        protected Node NextChild()
+        {
+            currentIndex += 1;
+            if (currentIndex >= nextChildren.Count)
+            {
+                return null;
+            }
+
+            return nextChildren[currentIndex];
+        }
+
+         void UpdateNextChildren()
+        {
+            currentIndex = -1;
+            if (!useUtility)
+            {
+                nextChildren = children;
+                return;
+            }
+
+
+            switch (utilitySelectionMethod)
+            {
+
+                //sort(a,b)
+                //-1: a fica antes de b
+                //1: a fica depois de b
+                case UtilitySelectionMethod.MAXIMUM:
+                    nextChildren = new(children);
+                    nextChildren.Sort((node1, node2) =>
+                    {
+                        if (node1.GetUtility() > node2.GetUtility()) { return -1; }
+                        else if (node1.GetUtility() < node2.GetUtility()) { return 1; }
+                        return 0;
+                    });
+                    break;
+
+                case UtilitySelectionMethod.WEIGHT_RANDOM:
+                    {
+                        nextChildren.Clear();
+                        float weightTotal = 0;
+                        List<Node> nodes = new();
+                        foreach (Node node in children)
+                        {
+                            nodes.Add(node);
+                            weightTotal += node.GetUtility();
+                        }
+
+                        nodes.Sort((node1, node2) =>
+                        {
+                            if (node1.GetUtility() > node2.GetUtility()) { return -1; }
+                            else if (node1.GetUtility() < node2.GetUtility()) { return 1; }
+                            return 0;
+                        });
+
+                        while (nodes.Count > 1)
+                        {
+                            int result;
+                            float total = 0;
+                            float randVal = Random.Range(0, weightTotal);
+                            for (result = 0; result < nodes.Count; result++)
+                            {
+                                total += nodes[result].GetUtility();
+                                if (total > randVal) break;
+                            }
+
+
+                            Node next = nodes[result];
+
+                            weightTotal -= next.GetUtility();
+                            nodes.RemoveAt(result);
+
+                            nextChildren.Add(next);
+                        }
+
+                        nextChildren.Add(nodes[0]);
+
+                        break;
+                    }
+                case UtilitySelectionMethod.RANDOM_THRESHOULD:
+                    {
+                        nextChildren = new(children);
+
+                        for (int i = children.Count - 1; i >= 0; i--)
+                        {
+                            if (nextChildren[i].GetUtility() < utilityThreshould)
+                            {
+                                nextChildren.RemoveAt(i);
+                            }
+                        }
+
+                        nextChildren.Shuffle();
+
+
+                        break;
+                    }
+            }
         }
 
         protected void SortChildrenByUtility()
@@ -170,113 +263,6 @@ namespace HIAAC.BehaviorTree
                     return 0;
             }
 
-        }
-
-        List<Node> nextChildren = new();
-        int currentIndex = -1;
-
-        protected void ResetNext()
-        {
-            currentIndex = -1;
-        }
-
-        protected Node NextChild()
-        {
-            currentIndex += 1;
-            if (currentIndex >= nextChildren.Count)
-            {
-                return null;
-            }
-
-            return nextChildren[currentIndex];
-        }
-
-        void UpdateNextChildren()
-        {
-            currentIndex = -1;
-            if (!useUtility)
-            {
-                nextChildren = children;
-                return;
-            }
-
-
-            switch (utilitySelectionMethod)
-            {
-
-                //sort(a,b)
-                //-1: a fica antes de b
-                //1: a fica depois de b
-                case UtilitySelectionMethod.MAXIMUM:
-                    nextChildren = new(children);
-                    nextChildren.Sort((node1, node2) =>
-                    {
-                        if (node1.GetUtility() > node2.GetUtility()) { return -1; }
-                        else if (node1.GetUtility() < node2.GetUtility()) { return 1; }
-                        return 0;
-                    });
-                    break;
-
-                case UtilitySelectionMethod.WEIGHT_RANDOM:
-                    {
-                        nextChildren.Clear();
-                        float weightTotal = 0;
-                        List<Node> nodes = new();
-                        foreach (Node node in children)
-                        {
-                            nodes.Add(node);
-                            weightTotal += node.GetUtility();
-                        }
-
-                        nodes.Sort((node1, node2) =>
-                        {
-                            if (node1.GetUtility() > node2.GetUtility()) { return -1; }
-                            else if (node1.GetUtility() < node2.GetUtility()) { return 1; }
-                            return 0;
-                        });
-
-                        while (nodes.Count > 1)
-                        {
-                            int result;
-                            float total = 0;
-                            float randVal = Random.Range(0, weightTotal);
-                            for (result = 0; result < nodes.Count; result++)
-                            {
-                                total += nodes[result].GetUtility();
-                                if (total > randVal) break;
-                            }
-
-
-                            Node next = nodes[result];
-
-                            weightTotal -= next.GetUtility();
-                            nodes.RemoveAt(result);
-
-                            nextChildren.Add(next);
-                        }
-
-                        nextChildren.Add(nodes[0]);
-
-                        break;
-                    }
-                case UtilitySelectionMethod.RANDOM_THRESHOULD:
-                    {
-                        nextChildren = new(children);
-
-                        for (int i = children.Count - 1; i >= 0; i--)
-                        {
-                            if (nextChildren[i].GetUtility() < utilityThreshould)
-                            {
-                                nextChildren.RemoveAt(i);
-                            }
-                        }
-
-                        nextChildren.Shuffle();
-
-
-                        break;
-                    }
-            }
         }
 
     }
