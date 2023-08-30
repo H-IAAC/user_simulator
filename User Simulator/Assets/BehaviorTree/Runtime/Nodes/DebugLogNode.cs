@@ -8,7 +8,7 @@ namespace HIAAC.BehaviorTree
         [SerializeField] bool onStop = false;
         [SerializeField] bool onUpdate = true;
 
-        public override void OnCreateProperties()
+        public DebugLogNode()
         {
             CreateProperty(typeof(StringBlackboardProperty), "message");
         }

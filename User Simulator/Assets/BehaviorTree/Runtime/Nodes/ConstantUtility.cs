@@ -4,6 +4,11 @@ namespace HIAAC.BehaviorTree
 {
     public class ConstantUtility : DecoratorNode
     {
+        public ConstantUtility()
+        {
+            CreateProperty(typeof(FloatBlackboardProperty), "value");
+        }
+
 
         public override void OnStart()
         {
@@ -18,10 +23,6 @@ namespace HIAAC.BehaviorTree
             return child.Update();
         }
 
-        public override void OnCreateProperties()
-        {
-            CreateProperty(typeof(FloatBlackboardProperty), "value");
-        }
 
         protected override float OnComputeUtility()
         {

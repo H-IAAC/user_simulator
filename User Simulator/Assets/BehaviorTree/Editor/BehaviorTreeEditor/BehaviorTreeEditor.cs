@@ -96,6 +96,11 @@ namespace HIAAC.BehaviorTree
             inspectorView.UpdateSelection(obj);
         }
 
+        void OnElementSelectionChanged(SerializedProperty obj)
+        {
+            inspectorView.UpdateSelection(obj);
+        }
+
 
         /// <summary>
         /// Update active tree if avaiable

@@ -35,13 +35,7 @@ namespace HIAAC.BehaviorTree
         /// <exception cref="ArgumentException">If property does not exist.</exception>
         public void SetBlackboardProperty(string name, object value)
         {
-            int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
-            if (index < 0)
-            {
-                throw new ArgumentException("Property does not exist in tree.");
-            }
-
-            tree.blackboard[index].Value = value;
+            tree.SetPropertyValue(name, value);
         }
 
         /// <summary>
@@ -53,13 +47,7 @@ namespace HIAAC.BehaviorTree
         /// <exception cref="ArgumentException">If property does not exist.</exception>
         public T GetBlackboardProperty<T>(string name)
         {
-            int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
-            if (index < 0)
-            {
-                throw new ArgumentException("Property does not exist in tree.");
-            }
-
-            return (T)tree.blackboard[index].Value;
+            return tree.blackboard.GetPropertyValue<T>(name);
         }
 
         /// <summary>
@@ -68,7 +56,7 @@ namespace HIAAC.BehaviorTree
         /// <param name="name">Name of the property.</param>
         /// <returns>Property value.</returns>
         /// <exception cref="ArgumentException">If property does not exist.</exception>
-        public object GetBlackboardProperty(string name)
+        /*public object GetBlackboardProperty(string name)
         {
             int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
             if (index < 0)
@@ -77,6 +65,6 @@ namespace HIAAC.BehaviorTree
             }
 
             return tree.blackboard[index].Value;
-        }
+        }*/
     }
 }

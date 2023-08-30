@@ -11,9 +11,9 @@ using UnityEngine.UIElements;
 namespace HIAAC.BehaviorTree
 {
 
-    public class BlackboardView : Blackboard
+    public class BlackboardView : UnityEditor.Experimental.GraphView.Blackboard
     {
-        public Action<UnityEngine.Object> OnPropertySelect; //Action to execute on field selection
+        public Action<SerializedProperty> OnPropertySelect; //Action to execute on field selection
 
         BehaviorTree tree; //Active behavior tree
 
@@ -36,7 +36,7 @@ namespace HIAAC.BehaviorTree
         /// Draw property on the view.
         /// </summary>
         /// <param name="property">Property to draw.</param>
-        void drawProperty(BlackboardProperty property)
+        void drawProperty(BlackboardProperty property, int index)
         {
             VisualElement container = new();
 
@@ -44,7 +44,10 @@ namespace HIAAC.BehaviorTree
             {
                 text = property.PropertyName,
                 typeText = $"{property.PropertyTypeName} property",
-                OnPropertySelect = () => { OnPropertySelect(property); }
+                OnPropertySelect = OnPropertySelect,
+                tree = this.tree,
+                index = index
+
             };
 
             container.Add(field);
@@ -69,7 +72,7 @@ namespace HIAAC.BehaviorTree
             BlackboardProperty property = tree.CreateProperty(type);
 
             //Draw property on the view.
-            drawProperty(property);
+            drawProperty(property, tree.blackboard.properties.Count-1);
         }
 
         /// <summary>
@@ -80,10 +83,12 @@ namespace HIAAC.BehaviorTree
         {   
             //Get property index on blackboard
             string name = field.text;
-            int index = tree.blackboard.FindIndex(x => x.PropertyName == name);
+            int index = tree.blackboard.properties.FindIndex(x => x.Name == name);
 
             //Remove property
-            tree.DeleteProperty(tree.blackboard[index]);
+            tree.DeleteProperty(tree.blackboard.properties[index].property);
+
+            OnPropertySelect.Invoke(null);
         }
 
         /// <summary>
@@ -102,9 +107,10 @@ namespace HIAAC.BehaviorTree
             }
 
             //Draw tree properties
-            foreach (BlackboardProperty property in tree.blackboard)
+            for(int i = 0; i<tree.blackboard.properties.Count; i++)
             {
-                drawProperty(property);
+                BlackboardOverridableProperty property = tree.blackboard.properties[i];
+                drawProperty(property.property, i);
             }
         }
 
@@ -139,14 +145,14 @@ namespace HIAAC.BehaviorTree
             BlackboardField field = element as BlackboardField;
             string oldName = field.text;
 
-            if (tree.blackboard.Any(x => x.PropertyName == newText))
+            if (tree.blackboard.properties.Any(x => x.Name == newText))
             {
                 Debug.LogError("This name is already in use.");
                 return;
             }
 
-            int index = tree.blackboard.FindIndex(x => x.PropertyName == oldName);
-            tree.blackboard[index].PropertyName = newText;
+            int index = tree.blackboard.properties.FindIndex(x => x.Name == oldName);
+            tree.blackboard.properties[index].Name = newText;
             field.text = newText;
         }
 

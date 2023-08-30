@@ -54,7 +54,11 @@ namespace HIAAC.BehaviorTree
             {
                 onGUIHandler = () =>
                 {
-                    if (property.serializedObject.targetObject == null)
+                    if(property == null)
+                    {
+                        
+                    }
+                    else if (property.serializedObject.targetObject == null)
                     {
                         this.Clear();
                     }

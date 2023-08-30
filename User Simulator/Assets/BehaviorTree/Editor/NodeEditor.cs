@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using UnityEditor;
+using System.Reflection;
+using System;
 
 namespace HIAAC.BehaviorTree
 {
@@ -53,6 +54,15 @@ namespace HIAAC.BehaviorTree
             DrawSubtree();
            
             DrawProperties();
+
+            if(node is DevNode devNode)
+            {
+                //var property = serializedObject.FindProperty("dataTest.Array.data[0]");
+
+                //EditorGUILayout.PropertyField(property, true);
+
+
+            }
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -111,24 +121,23 @@ namespace HIAAC.BehaviorTree
         /// </summary>
         void DrawProperties()
         {
-            if (node.variables.Count > 0)
+            if (node.blackboard.properties.Count > 0)
             {
                 showProperties = EditorGUILayout.BeginFoldoutHeaderGroup(showProperties, "Properties");
                 if (showProperties)
                 {
-                    string[] blackboardProperties = getTreeBlackboardProperties(true);
+                    string[] treeBlackboardProperties = getTreeBlackboardProperties(true);
 
-                    for (int i = 0; i < node.propertyBlackboardMap.Count; i++)
+                    for (int i = 0; i < node.blackboard.properties.Count; i++)
                     {
-                        if (node.variables[i] == null)
+                        BlackboardOverridableProperty property = node.blackboard.properties[i];
+                        if (property.property == null)
                         {
                             Debug.LogWarning($"Property {i} of node {node.name} is null");
                             continue;
                         }
 
-                        NameMap map = node.propertyBlackboardMap[i];
-
-                        EditorGUILayout.LabelField(map.variable, EditorStyles.boldLabel); //Property label
+                        EditorGUILayout.LabelField(property.Name, EditorStyles.boldLabel); //Property label
 
                         EditorGUILayout.BeginHorizontal(); //Pass value | "Blackboard target" Map dropdown
                         {
@@ -143,10 +152,10 @@ namespace HIAAC.BehaviorTree
 
                             //Get current map index
                             int currentIndex = 0;
-                            for (int j = 0; j < blackboardProperties.Length; j++)
+                            for (int j = 0; j < treeBlackboardProperties.Length; j++)
                             {
-                                string name = blackboardProperties[j];
-                                if (map.blackboardProperty == name)
+                                string name = treeBlackboardProperties[j];
+                                if (property.parentName == name)
                                 {
                                     currentIndex = j;
                                     break;
@@ -156,25 +165,37 @@ namespace HIAAC.BehaviorTree
                             //Create dropdown
                             float oldWidth = EditorGUIUtility.labelWidth;
                             EditorGUIUtility.labelWidth = 110;
-                            currentIndex = EditorGUILayout.Popup("Blackboard target", currentIndex, blackboardProperties);
+                            currentIndex = EditorGUILayout.Popup("Blackboard target", currentIndex, treeBlackboardProperties);
                             EditorGUIUtility.labelWidth = oldWidth;
 
                             //Get value from dropdown choice
-                            string newValue = "";
                             if (currentIndex != 0)
                             {
-                                newValue = blackboardProperties[currentIndex];
+                                property.parentName = treeBlackboardProperties[currentIndex];
+                            }
+                            else
+                            {
+                                property.parentName = "";
                             }
 
-                            //Update map
-                            node.propertyBlackboardMap[i] = new NameMap { variable = map.variable, blackboardProperty = newValue };
                         }
                         EditorGUILayout.EndHorizontal();
 
-                        if (node.propertyBlackboardMap[i].blackboardProperty == "")
+                        if (property.parentName == "")
                         {
-                            Editor editor = CreateEditor(node.variables[i]);
-                            editor.OnInspectorGUI();
+                            SerializedProperty propertyData = serializedObject.FindProperty($"blackboard.properties.Array.data[{i}].property.value");
+                            Type propertyType = property.property.GetType().GetField("value", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).FieldType;
+
+                            if(propertyType.IsSubclassOf(typeof(UnityEngine.Object)) || propertyType == typeof(UnityEngine.Object))
+                            {
+                                EditorGUILayout.ObjectField(propertyData);
+                            }
+                            else
+                            {
+                                EditorGUILayout.PropertyField(propertyData, true);
+                            }
+
+                            property.property.Validate();
                         }
 
                         EditorGUILayout.Space();
@@ -209,9 +230,9 @@ namespace HIAAC.BehaviorTree
                 blackboardPropertiesList.Add("None");
             }
             
-            foreach (BlackboardProperty property in node.tree.blackboard)
+            foreach (BlackboardOverridableProperty property in node.tree.blackboard.properties)
             {
-                blackboardPropertiesList.Add(property.PropertyName);
+                blackboardPropertiesList.Add(property.property.PropertyName);
             }
             return blackboardPropertiesList.ToArray();
         }

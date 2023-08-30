@@ -56,6 +56,7 @@ namespace HIAAC.BehaviorTree
 
         public SubtreeNode() : base(MemoryMode.Memoried)
         {
+            
         }
 
         public override void OnStart()
@@ -84,11 +85,11 @@ namespace HIAAC.BehaviorTree
                 return NodeState.Failure;
             }
 
-            for (int i = 0; i < runtimeTree.blackboard.Count; i++)
+            for (int i = 0; i < runtimeTree.blackboard.properties.Count; i++)
             {
                 if (passValue[i])
                 {
-                    BlackboardProperty property = runtimeTree.blackboard[i];
+                    BlackboardProperty property = runtimeTree.blackboard.properties[i].property;
                     property.Value = GetPropertyValue<object>(property.PropertyName);
                 }
 
@@ -105,29 +106,27 @@ namespace HIAAC.BehaviorTree
                 return;
             }
 
-            foreach (BlackboardProperty property in subtree.blackboard)
+            foreach (BlackboardOverridableProperty property in subtree.blackboard.properties)
             {
-                if (!HasProperty(property.PropertyName))
+                if (!HasProperty(property.property.PropertyName))
                 {
-                    CreateProperty(property.GetType(), property.PropertyName);
+                    CreateProperty(property.property.GetType(), property.property.PropertyName);
                     passValue.Add(false);
                 }
             }
 
-            for (int i = propertyBlackboardMap.Count - 1; i >= 0; i--)
+            for (int i = blackboard.properties.Count - 1; i >= 0; i--)
             {
-                NameMap map = propertyBlackboardMap[i];
+                BlackboardOverridableProperty op = blackboard.properties[i];
 
-                if (propertiesDontDeleteOnValidate.Contains(map.variable))
+                if (propertiesDontDeleteOnValidate.Contains(op.property.PropertyName))
                 {
                     continue;
                 }
 
-                if (!subtree.blackboard.Any(x => x.PropertyName == map.variable))
+                if (!subtree.blackboard.properties.Any(x => x.property.PropertyName == op.property.PropertyName))
                 {
-                    propertyBlackboardMap.RemoveAt(i);
-                    variables.RemoveAt(i);
-                    passValue.RemoveAt(i);
+                    blackboard.properties.RemoveAt(i);
                 }
             }
         }
@@ -139,14 +138,15 @@ namespace HIAAC.BehaviorTree
 
         public void autoRemap()
         {
-            for (int i = 0; i < propertyBlackboardMap.Count; i++)
+            for (int i = 0; i < blackboard.properties.Count; i++)
             {
-                NameMap myProperty = propertyBlackboardMap[i];
-                foreach (BlackboardProperty bbProperty in tree.blackboard)
+                BlackboardOverridableProperty myProperty = blackboard.properties[i];
+
+                foreach (BlackboardOverridableProperty bbProperty in tree.blackboard.properties)
                 {
-                    if (myProperty.variable == bbProperty.name)
+                    if (myProperty.property.PropertyName == bbProperty.property.PropertyName)
                     {
-                        propertyBlackboardMap[i] = new() { variable = myProperty.variable, blackboardProperty = bbProperty.name };
+                        myProperty.parentName = bbProperty.property.PropertyName;
                         passValue[i] = true;
                     }
                 }

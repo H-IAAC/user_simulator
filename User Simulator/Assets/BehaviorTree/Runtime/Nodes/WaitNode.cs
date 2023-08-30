@@ -8,10 +8,6 @@ namespace HIAAC.BehaviorTree
 
         public WaitNode() : base(MemoryMode.Memoried)
         {
-        }
-
-        public override void OnCreateProperties()
-        {
             CreateProperty(typeof(FloatBlackboardProperty), "duration");
         }
 

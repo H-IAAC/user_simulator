@@ -10,10 +10,12 @@ types = {
     "AnimationCurve" : "Curve",
 }
 
-template = """using UnityEngine;
+template = """using System;
+using UnityEngine;
 
 namespace HIAAC.BehaviorTree
 {{
+    [Serializable]
     public class {fullname} : BlackboardProperty<{type}>
     {{}}
 }}

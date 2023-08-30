@@ -5,19 +5,10 @@ using UnityEditor;
 
 namespace HIAAC.BehaviorTree
 {
-    public abstract class BlackboardProperty : ScriptableObject
+    [Serializable]
+    public abstract class BlackboardProperty
     {
-        public string PropertyName
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
+        public string PropertyName;
 
         public abstract string PropertyTypeName { get; }
 
@@ -25,15 +16,32 @@ namespace HIAAC.BehaviorTree
 
         public virtual BlackboardProperty Clone()
         {
-            BlackboardProperty clone = CreateInstance(this.GetType()) as BlackboardProperty;
-            clone.PropertyName = this.PropertyName;
+            BlackboardProperty clone = CreateInstance(this.GetType());
+            clone.PropertyName = PropertyName;
             clone.Value = Value;
 
             return clone;
         }
+        
+
+        public static BlackboardProperty CreateInstance<T>()
+        {
+            return Activator.CreateInstance(typeof(T)) as BlackboardProperty;
+        }
+
+        public static BlackboardProperty CreateInstance(Type type)
+        {
+            return Activator.CreateInstance(type) as BlackboardProperty;
+        }
+
+        public virtual void Validate()
+        {
+
+        }
 
     }
 
+    [Serializable]
     public abstract class BlackboardProperty<T> : BlackboardProperty
     {
         [SerializeField]

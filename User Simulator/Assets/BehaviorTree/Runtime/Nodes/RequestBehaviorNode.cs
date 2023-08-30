@@ -8,6 +8,9 @@ namespace HIAAC.BehaviorTree
     {
         public RequestBehaviorNode() : base()
         {
+            CreateProperty(typeof(TagProviderProperty), "tagProvider");
+            passValue.Add(false);
+
             propertiesDontDeleteOnValidate.Add("tagProvider");
         }
 
@@ -32,12 +35,6 @@ namespace HIAAC.BehaviorTree
 
         BehaviorTag currentTag;
 
-        public override void OnCreateProperties()
-        {
-            CreateProperty(typeof(TagProviderProperty), "tagProvider");
-            passValue.Add(false);
-        }
-
 
         BehaviorTag requestTag()
         {
@@ -51,7 +48,6 @@ namespace HIAAC.BehaviorTree
             }
 
             List<BehaviorTag> tags = provider.ProvideTags(tree.bTagParameters);
-
             foreach (BehaviorTag tag in tags)
             {
                 if (BTagParameter.IsCompatible(tag.parameters, minimumValueParameters, maximumValueParameters))
@@ -68,6 +64,7 @@ namespace HIAAC.BehaviorTree
             if (currentTag == null || overrideMode)
             {
                 BehaviorTag newTag = requestTag();
+
 
                 if (newTag == null)
                 {
@@ -94,8 +91,6 @@ namespace HIAAC.BehaviorTree
             }
 
             base.OnStart();
-
-            //Debug.Log($"Current subtree: {subtree}");
         }
 
         void DoLifecycleBehavior(TagLifecycleType lifecyleType, NodeState state)

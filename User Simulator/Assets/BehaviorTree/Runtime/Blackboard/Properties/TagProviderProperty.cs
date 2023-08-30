@@ -1,28 +1,30 @@
+using System;
 using UnityEngine;
 
 namespace HIAAC.BehaviorTree
 {
+    [Serializable]
     class TagProviderProperty : BlackboardProperty
     {
         [SerializeField]
         [SerializeProperty("Value")]
-        UnityEngine.Object tagProviderObj;
+        UnityEngine.Object value;
 
         public override object Value
         {
             get
             {
-                return tagProviderObj;
+                return value;
             }
             set
             {
                 if (value is IBTagProvider)
                 {
-                    tagProviderObj = value as UnityEngine.Object;
+                    this.value = value as UnityEngine.Object;
                 }
                 else
                 {
-                    tagProviderObj = null;
+                    this.value = null;
                 }
             }
         }
@@ -31,7 +33,7 @@ namespace HIAAC.BehaviorTree
         {
             get
             {
-                return tagProviderObj as IBTagProvider;
+                return value as IBTagProvider;
             }
         }
 
@@ -40,6 +42,14 @@ namespace HIAAC.BehaviorTree
             get
             {
                 return "TagProvider";
+            }
+        }
+
+        public override void Validate()
+        {
+            if (value is not IBTagProvider)
+            {
+                value = null;
             }
         }
     }

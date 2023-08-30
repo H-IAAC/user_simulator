@@ -1,205 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8228056207020512670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
-  m_Name: Blackboard2
-  m_EditorClassIdentifier: 
-  value: Blackboard2
---- !u!114 &-7445236474577323923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
-  m_Name: RootNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 150122cc-df56-4a94-8f57-a30918690027
-  position: {x: 0, y: -44}
-  gameObject: {fileID: 0}
-  useMemory: 0
-  description: 
-  parent: {fileID: 0}
-  propertyBlackboardMap: []
-  variables: []
-  blackboard:
-  - {fileID: 2102766317951829953}
-  - {fileID: -8228056207020512670}
-  tree: {fileID: 11400000}
-  child: {fileID: 7665233850838086754}
---- !u!114 &-4852147407054417267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
-  m_Name: message
-  m_EditorClassIdentifier: 
-  value: 
---- !u!114 &-3753679731348103903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
-  m_Name: message
-  m_EditorClassIdentifier: 
-  value: 
---- !u!114 &-2880330510283004893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: f1eef0d8-a256-4701-af5f-a6cdb03be3b9
-  position: {x: -165, y: 219}
-  gameObject: {fileID: 0}
-  useMemory: 0
-  description: 
-  parent: {fileID: 7665233850838086754}
-  propertyBlackboardMap:
-  - variable: message
-    blackboardProperty: 
-  variables:
-  - {fileID: 9012442507681286436}
-  blackboard:
-  - {fileID: 2102766317951829953}
-  - {fileID: -8228056207020512670}
-  tree: {fileID: 11400000}
-  onStart: 0
-  onStop: 0
-  onUpdate: 1
---- !u!114 &-75886346893287806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: a84a7602-f064-40f3-8d6c-20f5bd6bdc92
-  position: {x: 164, y: 219}
-  gameObject: {fileID: 0}
-  useMemory: 0
-  description: 
-  parent: {fileID: 7665233850838086754}
-  propertyBlackboardMap:
-  - variable: message
-    blackboardProperty: Blackboard2
-  variables:
-  - {fileID: -3753679731348103903}
-  blackboard:
-  - {fileID: 2102766317951829953}
-  - {fileID: -8228056207020512670}
-  tree: {fileID: 11400000}
-  onStart: 0
-  onStop: 0
-  onUpdate: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
-  m_Name: SubtreeExampleSub
-  m_EditorClassIdentifier: 
-  rootNode: {fileID: -7445236474577323923}
-  treeState: 0
-  nodes:
-  - {fileID: -7445236474577323923}
-  - {fileID: 7665233850838086754}
-  - {fileID: -2880330510283004893}
-  - {fileID: 3983891901532950934}
-  - {fileID: -75886346893287806}
-  blackboard:
-  - {fileID: 2102766317951829953}
-  - {fileID: -8228056207020512670}
-  runtime: 0
---- !u!114 &2102766317951829953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
-  m_Name: WillBeOverwritten
-  m_EditorClassIdentifier: 
-  value: WillBeOverwritten
---- !u!114 &3983891901532950934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: e627db85-ad37-4dab-a269-c196d1840e71
-  position: {x: 0, y: 219}
-  gameObject: {fileID: 0}
-  useMemory: 0
-  description: 
-  parent: {fileID: 7665233850838086754}
-  propertyBlackboardMap:
-  - variable: message
-    blackboardProperty: WillBeOverwritten
-  variables:
-  - {fileID: -4852147407054417267}
-  blackboard:
-  - {fileID: 2102766317951829953}
-  - {fileID: -8228056207020512670}
-  tree: {fileID: 11400000}
-  onStart: 0
-  onStop: 0
-  onUpdate: 1
---- !u!114 &7665233850838086754
+--- !u!114 &-3297239115332773467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,27 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: eba87ab3-00d1-4fb3-89cb-ebefafb88534
+  guid: 6851bd64-5e9e-4697-9ef2-9e6403b56361
   position: {x: 0, y: 88}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
-  parent: {fileID: -7445236474577323923}
-  propertyBlackboardMap: []
-  variables: []
-  blackboard:
-  - {fileID: 2102766317951829953}
-  - {fileID: -8228056207020512670}
+  parent: {fileID: -1097403174093695077}
   tree: {fileID: 11400000}
+  blackboard:
+    properties: []
+    runtime: 0
   children:
-  - {fileID: -2880330510283004893}
-  - {fileID: 3983891901532950934}
-  - {fileID: -75886346893287806}
+  - {fileID: -2720860665856187830}
+  - {fileID: 6892321940944733366}
+  - {fileID: 2209656077179077914}
   useUtility: 0
   utilityPropagationMethod: 0
   utilitySelectionMethod: 0
   utilityThreshould: 0
---- !u!114 &9012442507681286436
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-2720860665856187830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,7 +44,178 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
-  m_Name: message
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
   m_EditorClassIdentifier: 
-  value: On subtree
+  state: 0
+  started: 0
+  guid: ea722555-c2c1-4021-9afe-9a7a9bd183ad
+  position: {x: -150, y: 221}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -3297239115332773467}
+  tree: {fileID: 11400000}
+  blackboard:
+    properties:
+    - property:
+        rid: 6199964247437344773
+      parentName: 
+    runtime: 0
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 6199964247437344773
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: message
+        value: Subtree
+--- !u!114 &-1097403174093695077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: a1ac8309-c155-44af-b9c9-3c5f6eb3d526
+  position: {x: 0, y: 0}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 0}
+  tree: {fileID: 11400000}
+  blackboard:
+    properties: []
+    runtime: 0
+  child: {fileID: -3297239115332773467}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: SubtreeExampleSub
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -1097403174093695077}
+  nodes:
+  - {fileID: -1097403174093695077}
+  - {fileID: -3297239115332773467}
+  - {fileID: -2720860665856187830}
+  - {fileID: 6892321940944733366}
+  - {fileID: 2209656077179077914}
+  bTagParameters: []
+  blackboard:
+    properties:
+    - property:
+        rid: 6199964247437344776
+      parentName: 
+    - property:
+        rid: 6199964247437344777
+      parentName: 
+    runtime: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6199964247437344776
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: WillBeOvewriten
+        value: WillBeOvewriten
+    - rid: 6199964247437344777
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: Sub Blackboard
+        value: Sub Blackboard
+--- !u!114 &2209656077179077914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 00570770-876b-4860-ac84-973caec14480
+  position: {x: 150, y: 221}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -3297239115332773467}
+  tree: {fileID: 11400000}
+  blackboard:
+    properties:
+    - property:
+        rid: 6199964247437344775
+      parentName: Sub Blackboard
+    runtime: 0
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 6199964247437344775
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: message
+        value: 
+--- !u!114 &6892321940944733366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: fff35e72-0f20-4784-a80f-8d7010ea12b4
+  position: {x: 0, y: 221}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -3297239115332773467}
+  tree: {fileID: 11400000}
+  blackboard:
+    properties:
+    - property:
+        rid: 6199964247437344774
+      parentName: WillBeOvewriten
+    runtime: 0
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 6199964247437344774
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: message
+        value: WillBeOvewrite

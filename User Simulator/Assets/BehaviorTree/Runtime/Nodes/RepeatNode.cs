@@ -9,11 +9,6 @@ namespace HIAAC.BehaviorTree
 
         public RepeatNode() : base(MemoryMode.Both)
         {
-
-        }
-
-        public override void OnCreateProperties()
-        {
             CreateProperty(typeof(UIntBlackboardProperty), "repeatCount");
             SetPropertyValue<uint>("repeatCount", 1);
         }

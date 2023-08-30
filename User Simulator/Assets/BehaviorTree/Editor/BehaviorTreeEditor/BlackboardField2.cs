@@ -1,6 +1,7 @@
 using UnityEditor.Experimental.GraphView;
 using System;
 using UnityEngine.UIElements;
+using UnityEditor;
 
 namespace HIAAC.BehaviorTree
 {
@@ -9,14 +10,26 @@ namespace HIAAC.BehaviorTree
     /// </summary>
     public class BlackboardField2 : BlackboardField
     {
-        public Action OnPropertySelect; //Action to execute on field selected
+        public Action<SerializedProperty> OnPropertySelect; //Action to execute on field selected
         
         /// <summary>
         /// Call on select action
         /// </summary>
         public override void OnSelected()
         {
-            OnPropertySelect();
+            OnPropertySelect(serializedProperty);
+        }
+
+        public BehaviorTree tree;
+        public int index;
+
+        public SerializedProperty serializedProperty
+        {
+            get
+            {
+                SerializedObject serializedObject = new(tree);
+                return serializedObject.FindProperty($"blackboard.properties.Array.data[{index}].property.value");
+            }
         }
 
 

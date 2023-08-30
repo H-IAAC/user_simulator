@@ -92,7 +92,7 @@ namespace HIAAC.BehaviorTree
             DeleteElements(graphElements);
             graphViewChanged += OnGraphViewChanged;
 
-            clipboard.Clear();
+            //clipboard.Clear();
             ghostTrees.Clear();
 
             //Update selected tree

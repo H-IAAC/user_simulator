@@ -4,6 +4,10 @@ namespace HIAAC.BehaviorTree
 {
     public class UtilityModifier : DecoratorNode
     {
+        public UtilityModifier()
+        {
+            CreateProperty(typeof(CurveBlackboardProperty), "modifierFunction");
+        }
 
         public override void OnStart()
         {
@@ -17,11 +21,6 @@ namespace HIAAC.BehaviorTree
         public override NodeState OnUpdate()
         {
             return child.Update();
-        }
-
-        public override void OnCreateProperties()
-        {
-            CreateProperty(typeof(CurveBlackboardProperty), "modifierFunction");
         }
 
         protected override float OnComputeUtility()
