@@ -5,6 +5,11 @@ namespace HIAAC.BehaviorTree
 {
     public static class IList
     {
+        /// <summary>
+        /// Randomize the list order.
+        /// </summary>
+        /// <typeparam name="T">Type of the list</typeparam>
+        /// <param name="list">List to randomize</param>
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;

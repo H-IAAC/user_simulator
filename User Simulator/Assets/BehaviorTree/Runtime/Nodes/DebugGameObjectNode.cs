@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace HIAAC.BehaviorTree
 {
+    /// <summary>
+    /// Prints the binded game object in update.
+    /// </summary>
     public class DebugGameObjectNode : ActionNode
     {
 

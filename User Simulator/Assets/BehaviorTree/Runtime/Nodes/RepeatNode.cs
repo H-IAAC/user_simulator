@@ -2,10 +2,21 @@ using UnityEngine;
 
 namespace HIAAC.BehaviorTree
 {
+    /// <summary>
+    /// Repeat the child execution.
+    ///
+    /// The number of times to repeat can be defined on de "repeatCount" property.
+    /// </summary>
+    /// <remarks>
+    /// If using memory, execute one time and return running until "repeatCount". <br/>
+    /// If not using memory, execute the child "repeatCount" times in the same update.<br/>
+    /// <br/>
+    /// If child returns "Running", both modes return "Running", and memoryless don't execute "repeatCount" times.
+    /// </remarks>
     public class RepeatNode : DecoratorNode
     {
-        uint repeatCount;
-        int currentRepeatCount = 0;
+        uint repeatCount; // Number of times to repeat
+        int currentRepeatCount = 0; // Current repeat count
 
         public RepeatNode() : base(MemoryMode.Both)
         {
@@ -14,6 +25,9 @@ namespace HIAAC.BehaviorTree
         }
 
 
+        /// <summary>
+        /// Get repeat count property value.
+        /// </summary>
         public override void OnStart()
         {
             currentRepeatCount = 0;
@@ -37,6 +51,11 @@ namespace HIAAC.BehaviorTree
             }
         }
 
+        /// <summary>
+        /// Update the node in the memoryless mode. 
+        /// See class documentation for more information.
+        /// </summary>
+        /// <returns>Current state.</returns>
         NodeState memorylessUpdate()
         {
             for (int i = 0; i < repeatCount; i++)
@@ -59,6 +78,11 @@ namespace HIAAC.BehaviorTree
             return NodeState.Success;
         }
 
+        /// <summary>
+        /// Update the node in the memoried mode. 
+        /// See class documentation for more information.
+        /// </summary>
+        /// <returns>Current state.</returns>
         NodeState memoriedUpdate()
         {
             NodeState state = child.Update();

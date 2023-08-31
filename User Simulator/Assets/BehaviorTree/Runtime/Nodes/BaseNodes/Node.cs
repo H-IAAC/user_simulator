@@ -110,7 +110,7 @@ namespace HIAAC.BehaviorTree
             guid = Guid.NewGuid().ToString();
 
             //Create blackboard
-            blackboard = new(this, false);
+            blackboard = new(this);
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace HIAAC.BehaviorTree
         /// <returns>Value of the property.</returns>
         public object GetPropertyValue(string name, bool forceNodeProperty = false)
         {
-            return blackboard.GetProperty(name, forceNodeProperty).Value;
+            return blackboard.GetPropertyValue(name, forceNodeProperty);
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace HIAAC.BehaviorTree
         /// <param name="forceNodeProperty">If true, don't uses the parent (tree) blackboard if mapped.</param>
         public void SetPropertyValue<T>(string name, T value, bool forceNodeProperty = false)
         {
-            blackboard.GetProperty(name, forceNodeProperty).Value = value;
+            blackboard.SetPropertyValue(name, value, forceNodeProperty);
         }
 
         /// <summary>

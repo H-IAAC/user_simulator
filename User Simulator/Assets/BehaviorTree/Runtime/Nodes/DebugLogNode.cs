@@ -2,11 +2,16 @@ using UnityEngine;
 
 namespace HIAAC.BehaviorTree
 {
+    /// <summary>
+    /// Prints a debug message.
+    /// 
+    /// Define the message to print on the "message" property.
+    /// </summary>
     public class DebugLogNode : ActionNode
     {
-        [SerializeField] bool onStart = false;
-        [SerializeField] bool onStop = false;
-        [SerializeField] bool onUpdate = true;
+        [Tooltip("If should print the message on the node start.")][SerializeField] bool onStart = false;
+        [Tooltip("If should print the message on the node stop.")][SerializeField] bool onStop = false;
+        [Tooltip("If should print the message on the node update.")][SerializeField] bool onUpdate = true;
 
         public DebugLogNode()
         {
@@ -20,6 +25,7 @@ namespace HIAAC.BehaviorTree
                 return;
             }
 
+            //Get and print message
             string message = GetPropertyValue<string>("message");
             Debug.Log($"OnStart {message}");
         }
@@ -31,6 +37,7 @@ namespace HIAAC.BehaviorTree
                 return;
             }
 
+            //Get and print message
             string message = GetPropertyValue<string>("message");
             Debug.Log($"OnStop {message}");
         }
@@ -42,6 +49,7 @@ namespace HIAAC.BehaviorTree
                 return NodeState.Success;
             }
 
+            //Get and print message
             string message = GetPropertyValue<string>("message");
             Debug.Log($"OnUpdate {message}");
 

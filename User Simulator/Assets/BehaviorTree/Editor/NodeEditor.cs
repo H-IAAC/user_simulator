@@ -55,15 +55,6 @@ namespace HIAAC.BehaviorTree
            
             DrawProperties();
 
-            if(node is DevNode devNode)
-            {
-                //var property = serializedObject.FindProperty("dataTest.Array.data[0]");
-
-                //EditorGUILayout.PropertyField(property, true);
-
-
-            }
-
             serializedObject.ApplyModifiedProperties();
         }
 

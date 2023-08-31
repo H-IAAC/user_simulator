@@ -20,9 +20,12 @@ namespace HIAAC.BehaviorTree
             OnPropertySelect(serializedProperty);
         }
 
-        public BehaviorTree tree;
-        public int index;
+        public BehaviorTree tree; //Tree the property belongs
+        public int index; //Index of property in the tree
 
+        /// <summary>
+        /// Get the serialized property for the value of the property
+        /// </summary>
         public SerializedProperty serializedProperty
         {
             get

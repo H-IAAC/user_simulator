@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace HIAAC.BehaviorTree
 {
+    /// <summary>
+    /// Always return running.
+    /// </summary>
     public class AlwaysRunning : DecoratorNode
     {
 
@@ -14,6 +17,10 @@ namespace HIAAC.BehaviorTree
 
         }
 
+        /// <summary>
+        /// Update child, ignoring state and returning Running.
+        /// </summary>
+        /// <returns>NodeState.Runnning</returns>
         public override NodeState OnUpdate()
         {
             child.Update();

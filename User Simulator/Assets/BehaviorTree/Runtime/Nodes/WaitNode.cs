@@ -2,9 +2,14 @@ using UnityEngine;
 
 namespace HIAAC.BehaviorTree
 {
+    /// <summary>
+    /// Wait some time before Success
+    /// 
+    /// The time can be defined in the "duration" property.
+    /// </summary>
     public class WaitNode : ActionNode
     {
-        float startTime;
+        float startTime; //Time the node started waiting
 
         public WaitNode() : base(MemoryMode.Memoried)
         {

@@ -41,7 +41,7 @@ namespace HIAAC.BehaviorTree
 
         public BehaviorTree()
         {
-            blackboard = new(this, Runtime);
+            blackboard = new(this);
         }
 
         /// <summary>
@@ -52,12 +52,9 @@ namespace HIAAC.BehaviorTree
         public void Bind(GameObject gameObject)
         {
             runtime = true;
-            blackboard.runtime = true;
-
             Node.Traverse(rootNode, (node) =>
                 {
                     node.gameObject = gameObject;
-                    node.blackboard.runtime = true;
                     node.blackboard.parent = blackboard;
                 }
             );
