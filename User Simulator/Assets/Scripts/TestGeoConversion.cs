@@ -13,6 +13,7 @@ public class TestGeoConversion : MonoBehaviour
     [SerializeField] double lon;
 
     [SerializeField] AbstractMap _map;
+    [SerializeField] Transform targetObject;
 
     void OnValidate()
     {
@@ -43,5 +44,10 @@ public class TestGeoConversion : MonoBehaviour
         location = new Vector3(location.x, h, location.z);
 
         print(location);
+
+        if(targetObject != null)
+        {
+            targetObject.position = location;
+        }
     }
 }
