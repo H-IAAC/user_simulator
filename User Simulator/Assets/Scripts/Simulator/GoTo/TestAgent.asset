@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: TestAgent
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 3046399875384672124}
+  nodes:
+  - {fileID: 3046399875384672124}
+  - {fileID: 7244953228494503394}
+  bTagParameters: []
+  blackboard:
+    properties: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &3046399875384672124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 816abadd-a7ac-4464-92cc-c0651cf9b88e
+  position: {x: 0, y: 0}
+  useMemory: 0
+  description: 
+  child: {fileID: 7244953228494503394}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &7244953228494503394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea18cc0d5bb1c624297779a1e7ca6477, type: 3}
+  m_Name: GoToNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 3046399875384672124}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 4942869310837882880
+      parentName: 
+    - property:
+        rid: 4942869310837882881
+      parentName: 
+  guid: b470d9b7-794f-43a9-b774-e7a4c4dd0314
+  position: {x: 0, y: 125}
+  useMemory: 0
+  description: 
+  strategy: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 4942869310837882880
+      type: {class: Vector3BlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: destination
+        value: {x: 10, y: 1, z: 9.25}
+    - rid: 4942869310837882881
+      type: {class: FloatBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: velocity
+        value: 3.5

@@ -11,19 +11,19 @@ public enum LocationSelectionMode
 /// <summary>
 /// Moves the agent between positions
 /// </summary>
-[RequireComponent(typeof(IGoTo))]
+//[RequireComponent(typeof(IGoTo))]
 public class TestAgent : MonoBehaviour
 {
     [SerializeField] Vector3SList locations;
     [SerializeField] LocationSelectionMode locationSelectionMode = LocationSelectionMode.RANDOM;
     
-    IGoTo goToHandler;
+    //IGoTo goToHandler;
 
     int index = 0;
     
     void Start()
     {
-        goToHandler = GetComponent<IGoTo>();
+        //goToHandler = GetComponent<IGoTo>();
 
         if(locations.Count > 0)
         {
@@ -34,10 +34,10 @@ public class TestAgent : MonoBehaviour
 
     void Update()
     {
-        if(goToHandler.Ended)
+        /*if(goToHandler.Ended)
         {
             selectTarget();
-        }
+        }*/
     }
 
     void selectTarget()
@@ -58,7 +58,7 @@ public class TestAgent : MonoBehaviour
             break;
         }
 
-        goToHandler.GoTo(target);
+        //goToHandler.GoTo(target);
     }
 
     Vector3 selectSequentialTarget()
