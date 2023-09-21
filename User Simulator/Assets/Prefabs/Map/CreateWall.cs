@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class CreateWall : MonoBehaviour
 {
     [SerializeField] float meter_per_pixel;
     [SerializeField] float height;
+    [SerializeField] bool floor;
     [SerializeField] Vector4 box_img;
+    
     
     public void Create()
     {
@@ -49,12 +52,23 @@ public class CreateWall : MonoBehaviour
         Vector3 position = new(box_real[0], 0, -box_real[1]);
 
         position[0] += size[0]/2;
-        position[1] += size[1]/2;
+
+        if(floor)
+        {
+            position[1] -= size[1]/2;
+        }
+        else //Wall
+        {
+            position[1] += size[1]/2;
+        }
+
+        
         position[2] -= size[2]/2;
 
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.transform.position = position;
         cube.transform.localScale = size;
 
+        Undo.RegisterCreatedObjectUndo(cube, "Create Wall");
     }
 }

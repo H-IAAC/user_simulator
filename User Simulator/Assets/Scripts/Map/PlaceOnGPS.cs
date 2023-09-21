@@ -8,6 +8,7 @@ public class PlaceOnGPS : MonoBehaviour
     [SerializeField] float lat;
     [SerializeField] float lon;
     [SerializeField] Vector3 rotation;
+    [SerializeField] Vector3 positionOffset = Vector3.zero;
 
     bool placed = false;
 
@@ -16,6 +17,8 @@ public class PlaceOnGPS : MonoBehaviour
         if(!placed)
         {
             Vector3 position = MapboxUtils.gpsToUnity(map.map, lat, lon);
+
+            position += positionOffset;
 
             transform.position = position;
 
