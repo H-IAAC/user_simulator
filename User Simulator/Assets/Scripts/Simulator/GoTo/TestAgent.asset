@@ -86,7 +86,7 @@ MonoBehaviour:
       type: {class: Vector3BlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: destination
-        value: {x: 10, y: 1, z: 9.25}
+        value: {x: 10, y: 1, z: 33.44}
     - rid: 4942869310837882881
       type: {class: FloatBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:

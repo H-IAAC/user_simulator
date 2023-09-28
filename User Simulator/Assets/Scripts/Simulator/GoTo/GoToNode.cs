@@ -50,6 +50,11 @@ public class GoToNode : ActionNode
         SetPropertyValue("velocity", 3.5f);
     }
 
+    void OnValidate()
+    {
+        Strategy = strategy;
+    }
+
     public override void OnStart()
     {
     }
