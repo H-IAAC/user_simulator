@@ -4,11 +4,22 @@ using UnityEngine;
 
 namespace HIAAC.ScriptableList
 {
+    public abstract class ScriptableList : ScriptableObject
+    {
+        public abstract int Count
+        {
+            get;
+        }
+
+        public abstract object getAt(int index); 
+
+    }
+
     /// <summary>
     /// Serializable list for storing values.
     /// </summary>
     /// <typeparam name="T">Type of the list values</typeparam>
-    public abstract class ScriptableList<T> : ScriptableObject, IList<T>
+    public abstract class ScriptableList<T> : ScriptableList, IList<T>
     {
         /// <summary>
         /// List values.
@@ -65,12 +76,17 @@ namespace HIAAC.ScriptableList
             return insertedItem;
         }
 
+        public override object getAt(int index)
+        {
+            return this[index];
+        }
+
         //Interface properties
         
         /// <summary>
         /// Number of elements in the list.
         /// </summary>
-        public int Count
+        public override int Count
         {
             get
             {

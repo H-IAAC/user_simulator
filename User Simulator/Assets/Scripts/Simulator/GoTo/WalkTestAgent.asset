@@ -1,0 +1,238 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8067736187452385357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -5976167719148034093}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: f3a9df9c-fb6b-4f69-88a9-8dbd6a3e2463
+  position: {x: 0, y: 146}
+  useMemory: 1
+  description: 
+  children:
+  - {fileID: 5017373094025947055}
+  - {fileID: 834768860639039930}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-5976167719148034093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898daafb314f770459ece092d54cff88, type: 3}
+  m_Name: AlwaysRunning
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 3046399875384672124}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 326d5c21-190d-44d5-9d97-9f8f7c9f5bc4
+  position: {x: 0, y: 26}
+  useMemory: 0
+  description: 
+  child: {fileID: -8067736187452385357}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-526111023729144048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf79c7489807db44784608e6c7696d6a, type: 3}
+  m_Name: ReadListNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 5017373094025947055}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 4942869467300364309
+      parentName: 
+    - property:
+        rid: 4942869467300364310
+      parentName: destination
+  guid: b243300e-279c-4ca3-97e3-1cfc3523fbf7
+  position: {x: -136, y: 446}
+  useMemory: 1
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 4942869467300364309
+      type: {class: ScriptableListBlackboardProperty, ns: , asm: Assembly-CSharp}
+      data:
+        PropertyName: list
+        value: {fileID: 11400000, guid: 28d1a1b6374a6204c92fb0263d42b62e, type: 2}
+    - rid: 4942869467300364310
+      type: {class: ObjectBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: output
+        value: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: WalkTestAgent
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 3046399875384672124}
+  nodes:
+  - {fileID: 3046399875384672124}
+  - {fileID: 834768860639039930}
+  - {fileID: -8067736187452385357}
+  - {fileID: 5017373094025947055}
+  - {fileID: -5976167719148034093}
+  - {fileID: -526111023729144048}
+  bTagParameters: []
+  blackboard:
+    properties:
+    - property:
+        rid: 4942869467300364294
+      parentName: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 4942869467300364294
+      type: {class: Vector3BlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: destination
+        value: {x: 0, y: 0, z: 0}
+--- !u!114 &834768860639039930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea18cc0d5bb1c624297779a1e7ca6477, type: 3}
+  m_Name: GoToNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -8067736187452385357}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 4942869467300364288
+      parentName: destination
+    - property:
+        rid: 4942869467300364289
+      parentName: 
+  guid: 9d9e6b77-34e7-424f-bec9-aff578a4f266
+  position: {x: 75, y: 282}
+  useMemory: 1
+  description: 
+  strategy: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4942869467300364288
+      type: {class: Vector3BlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: destination
+        value: {x: 10, y: 1, z: 33.44}
+    - rid: 4942869467300364289
+      type: {class: FloatBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: velocity
+        value: 3.5
+--- !u!114 &3046399875384672124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: a9f18b4e-5669-424b-8a5a-4453c63ed568
+  position: {x: 0, y: -94}
+  useMemory: 0
+  description: 
+  child: {fileID: -5976167719148034093}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &5017373094025947055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec77337443c5f4a45aff92dd9c9a183b, type: 3}
+  m_Name: MapStateNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -8067736187452385357}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: e3381451-4a59-4b0a-8240-04ef7b0ec100
+  position: {x: -136, y: 282}
+  useMemory: 0
+  description: 
+  child: {fileID: -526111023729144048}
+  runningStateTarget: 2
+  failureStateTarget: 1
+  successStateTarget: 2
+  references:
+    version: 2
+    RefIds: []

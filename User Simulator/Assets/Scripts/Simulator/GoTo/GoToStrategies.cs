@@ -1,5 +1,6 @@
 public enum GoToStrategies
 {
     Linear,
-    NavMesh
+    NavMesh,
+    Immediate
 }

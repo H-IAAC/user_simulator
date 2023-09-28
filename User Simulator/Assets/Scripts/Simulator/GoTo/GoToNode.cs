@@ -42,7 +42,7 @@ public class GoToNode : ActionNode
         }
     }
 
-    public GoToNode()
+    public GoToNode() : base(MemoryMode.Memoried)
     {
         CreateProperty(typeof(Vector3BlackboardProperty), "destination");
         CreateProperty(typeof(FloatBlackboardProperty), "velocity");
@@ -93,6 +93,9 @@ public class GoToNode : ActionNode
 
             case GoToStrategies.NavMesh:
                 state = NavMeshGoTo(parameterChange);
+                break;
+            case GoToStrategies.Immediate:
+                state = ImmediateGoTo(parameterChange);
                 break;
         }
 
@@ -152,6 +155,13 @@ public class GoToNode : ActionNode
         }
 
         return NodeState.Runnning;
+    }
+
+    NodeState ImmediateGoTo(bool parameterChange)
+    {
+        gameObject.transform.position = destination;
+
+        return NodeState.Success;
     }
 
     void disableNavMeshAgent()

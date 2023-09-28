@@ -20,12 +20,18 @@ start_time = df["Timestamp"].min()
 df["Timestamp"] -= start_time
 df["Timestamp"] /= 1000
 
-df.rename(columns={"Timestamp":"z", "Latitude":"x","Longitude":"y"}, inplace=True)
+df.rename(columns={"Latitude":"x","Longitude":"y"}, inplace=True)
 
-List = df[["x","y","z"]].to_dict(orient="records")
+positionList = df[["x","y"]].to_dict(orient="records")
+data = {"List":positionList, "notResetOnEnable": True, "itemCount":len(df), "type": "HIAAC.ScriptableList.Vector2SList"}
 
-data = {"List":List, "notResetOnEnable": True, "itemCount":len(df), "type": "HIAAC.ScriptableList.GeoSList"}
+file = open(filename+"_locations.json", "w")
+json.dump(data, file)
+file.close()
 
-file = open(filename+".json", "w")
+times = df["Timestamp"].to_list()
+data = {"List":times, "notResetOnEnable": True, "itemCount":len(df), "type": "HIAAC.ScriptableList.FloatSList"}
+
+file = open(filename+"_times.json", "w")
 json.dump(data, file)
 file.close()
