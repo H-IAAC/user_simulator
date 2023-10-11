@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9057061685006781756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: e5217179-3ce1-4cce-ac9f-43a1769457fe
+  position: {x: 0, y: 0}
+  useMemory: 0
+  description: 
+  child: {fileID: -1925621364348647508}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-1925621364348647508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -9057061685006781756}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031449
+      parentName: 
+  guid: 5c5abd74-47c4-4bab-a0f1-b664c835d7a1
+  position: {x: 0, y: 165}
+  useMemory: 0
+  description: Night
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031449
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: message
+        value: Night
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: NightBehavior
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -9057061685006781756}
+  nodes:
+  - {fileID: -9057061685006781756}
+  - {fileID: -1925621364348647508}
+  bTagParameters: []
+  blackboard:
+    properties: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,998 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8490771902958800503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898daafb314f770459ece092d54cff88, type: 3}
+  m_Name: AlwaysRunning
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -3603479875887936325}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: bf736189-38f6-4a79-8d10-57038b1bca4c
+  position: {x: -178.5377, y: -27.45}
+  useMemory: 0
+  description: 
+  child: {fileID: -3433155596498140701}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-7424895023136504915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -5679945308077898660}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: f137ad13-4e15-4d74-8e80-ac335802bef7
+  position: {x: 715.1923, y: 338.05676}
+  useMemory: 0
+  description: Day
+  children:
+  - {fileID: -5359162409831001783}
+  - {fileID: 3226942294466838411}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-7095432148361495883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -5679945308077898660}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: c0d00400-823f-4d45-8db5-698798b1dca0
+  position: {x: 251.19247, y: 338.05676}
+  useMemory: 0
+  description: Night
+  children:
+  - {fileID: 3709787368763112698}
+  - {fileID: -3362596807610050543}
+  - {fileID: 6432234974433726773}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-6812776842901291275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3075c72a0e3326543b019c73ee3dc6ce, type: 3}
+  m_Name: StringConcatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 8322443897879121730}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031486
+      parentName: 
+    - property:
+        rid: 5607335839661031487
+      parentName: objectName
+    - property:
+        rid: 5607335839661031488
+      parentName: debugString
+  guid: 069644cc-ceb3-4adc-8208-878bcdb10a8e
+  position: {x: -1116.2274, y: 618.2499}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031486
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: firstString
+        value: 'Entered: '
+    - rid: 5607335839661031487
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: secondString
+        value: 
+    - rid: 5607335839661031488
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: destination
+        value: 
+--- !u!114 &-6511659444015942249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c1aa9f428080a469855883aed956cd, type: 3}
+  m_Name: GetGameObjectName
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -27587709728789034}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031492
+      parentName: lastExitedObject
+    - property:
+        rid: 5607335839661031493
+      parentName: objectName
+  guid: efc2b03f-299d-4b81-a069-a0af88e4c54f
+  position: {x: -631.2274, y: 618.2499}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031492
+      type: {class: GameObjectBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: gameObject
+        value: {fileID: 0}
+    - rid: 5607335839661031493
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: destination
+        value: 
+--- !u!114 &-6080357779099849632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3075c72a0e3326543b019c73ee3dc6ce, type: 3}
+  m_Name: StringConcatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -27587709728789034}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031494
+      parentName: 
+    - property:
+        rid: 5607335839661031495
+      parentName: objectName
+    - property:
+        rid: 5607335839661031496
+      parentName: debugString
+  guid: 424ddba3-8a54-4d18-8e6e-9150c7072e45
+  position: {x: -481.2275, y: 618.2499}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031494
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: firstString
+        value: 'Exited: '
+    - rid: 5607335839661031495
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: secondString
+        value: 
+    - rid: 5607335839661031496
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: destination
+        value: 
+--- !u!114 &-5679945308077898660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8480b827507b5954d92fc2a4971aab19, type: 3}
+  m_Name: FallbackNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -3433155596498140701}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 7693cc33-3ae4-470c-b0ac-d5c06accab7c
+  position: {x: 476.19244, y: 206.05681}
+  useMemory: 0
+  description: Update
+  children:
+  - {fileID: -7095432148361495883}
+  - {fileID: -7424895023136504915}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-5359162409831001783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874113b814ad0784884d7c39f6754c3a, type: 3}
+  m_Name: RemoveTagNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -7424895023136504915}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031457
+      parentName: AreaContainer
+    - property:
+        rid: 5607335839661031458
+      parentName: 
+  guid: 49b9d0cb-3db0-4042-8a23-8ade9348285a
+  position: {x: 626.1925, y: 493.05676}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031457
+      type: {class: BTagContainerProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: container
+        value: {fileID: 0}
+    - rid: 5607335839661031458
+      type: {class: BehaviorTagListProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: tags
+        value:
+        - {fileID: 11400000, guid: db3294fe65bac1f4fb195ab272bd3034, type: 2}
+--- !u!114 &-3930933930779476336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c1aa9f428080a469855883aed956cd, type: 3}
+  m_Name: GetGameObjectName
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 8322443897879121730}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031484
+      parentName: lastEnteredObject
+    - property:
+        rid: 5607335839661031485
+      parentName: objectName
+  guid: 9c8e21f1-99f1-4b7d-a8bb-82eee6691c42
+  position: {x: -1266.2275, y: 618.2499}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031484
+      type: {class: GameObjectBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: gameObject
+        value: {fileID: 0}
+    - rid: 5607335839661031485
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: destination
+        value: 
+--- !u!114 &-3603479875887936325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 6c13f6b6-7aa2-4023-9e2b-8b914cb80f60
+  position: {x: -178.5377, y: -161.45}
+  useMemory: 0
+  description: 
+  child: {fileID: -8490771902958800503}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-3433155596498140701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -8490771902958800503}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 2fbd8b8d-296e-4dc1-8210-89cba10f28aa
+  position: {x: -179.00015, y: 73.35503}
+  useMemory: 0
+  description: 
+  children:
+  - {fileID: 8801177942420649728}
+  - {fileID: -5679945308077898660}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-3362596807610050543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874113b814ad0784884d7c39f6754c3a, type: 3}
+  m_Name: RemoveTagNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -7095432148361495883}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031455
+      parentName: AreaContainer
+    - property:
+        rid: 5607335839661031456
+      parentName: 
+  guid: 728267c8-42e1-4565-8f71-1b8255b99f3c
+  position: {x: 241.19241, y: 489.0567}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031455
+      type: {class: BTagContainerProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: container
+        value: {fileID: 0}
+    - rid: 5607335839661031456
+      type: {class: BehaviorTagListProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: tags
+        value:
+        - {fileID: 11400000, guid: 36e4dd357f53cf244813f93b13212acd, type: 2}
+--- !u!114 &-3071986399236772867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f4089e166f215498cb324374b0469b, type: 3}
+  m_Name: CheckBoolNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -27587709728789034}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031498
+      parentName: objectExited
+  guid: 496973e2-803c-44e5-a0ec-449ea7889747
+  position: {x: -781.2275, y: 618.2499}
+  useMemory: 0
+  description: 
+  trueState: 2
+  falseState: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031498
+      type: {class: BoolBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: bool
+        value: 0
+--- !u!114 &-701651136925152499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec77337443c5f4a45aff92dd9c9a183b, type: 3}
+  m_Name: MapStateNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 8801177942420649728}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 282b3ef4-abe9-4484-9446-8f09afbfe1c8
+  position: {x: -1191.2274, y: 373.24982}
+  useMemory: 0
+  description: Entered
+  child: {fileID: 8322443897879121730}
+  runningStateTarget: 0
+  failureStateTarget: 2
+  successStateTarget: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &-27587709728789034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 4205823545017941230}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 49de69cb-a85a-4561-a1b1-2642d3360a4c
+  position: {x: -556.22754, y: 461.24982}
+  useMemory: 0
+  description: 
+  children:
+  - {fileID: -3071986399236772867}
+  - {fileID: -6511659444015942249}
+  - {fileID: -6080357779099849632}
+  - {fileID: 9044028066593215157}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: Area2Brain
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -3603479875887936325}
+  nodes:
+  - {fileID: -3603479875887936325}
+  - {fileID: 6432234974433726773}
+  - {fileID: -7095432148361495883}
+  - {fileID: -5679945308077898660}
+  - {fileID: 3226942294466838411}
+  - {fileID: -3362596807610050543}
+  - {fileID: -5359162409831001783}
+  - {fileID: -7424895023136504915}
+  - {fileID: 3709787368763112698}
+  - {fileID: -8490771902958800503}
+  - {fileID: -3433155596498140701}
+  - {fileID: 8322443897879121730}
+  - {fileID: -701651136925152499}
+  - {fileID: 2667229742103567580}
+  - {fileID: -3930933930779476336}
+  - {fileID: -6812776842901291275}
+  - {fileID: 7110414334420857705}
+  - {fileID: 8801177942420649728}
+  - {fileID: 4205823545017941230}
+  - {fileID: -27587709728789034}
+  - {fileID: -6511659444015942249}
+  - {fileID: -6080357779099849632}
+  - {fileID: 9044028066593215157}
+  - {fileID: -3071986399236772867}
+  bTagParameters: []
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031451
+      parentName: 
+    - property:
+        rid: 5607335839661031479
+      parentName: 
+    - property:
+        rid: 5607335839661031480
+      parentName: 
+    - property:
+        rid: 5607335839661031481
+      parentName: 
+    - property:
+        rid: 5607335839661031482
+      parentName: 
+    - property:
+        rid: 5607335839661031490
+      parentName: 
+    - property:
+        rid: 5607335839661031491
+      parentName: 
+    - property:
+        rid: 5607335839661031499
+      parentName: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031451
+      type: {class: BoolBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: Night
+        value: 0
+    - rid: 5607335839661031479
+      type: {class: GameObjectBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: lastEnteredObject
+        value: {fileID: 0}
+    - rid: 5607335839661031480
+      type: {class: GameObjectBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: lastExitedObject
+        value: {fileID: 0}
+    - rid: 5607335839661031481
+      type: {class: BoolBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: objectEntered
+        value: 0
+    - rid: 5607335839661031482
+      type: {class: BoolBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: objectExited
+        value: 0
+    - rid: 5607335839661031490
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: objectName
+        value: 
+    - rid: 5607335839661031491
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: debugString
+        value: 
+    - rid: 5607335839661031499
+      type: {class: BTagContainerProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: tagContainer
+        value: {fileID: 11400000, guid: dfcae8b3555002847809e344c2cc3823, type: 2}
+--- !u!114 &2667229742103567580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f4089e166f215498cb324374b0469b, type: 3}
+  m_Name: CheckBoolNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 8322443897879121730}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031483
+      parentName: objectEntered
+  guid: 77f4d8ed-0493-4d6d-b9c6-0377d296ffa1
+  position: {x: -1416.2274, y: 618.2499}
+  useMemory: 0
+  description: 
+  trueState: 2
+  falseState: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031483
+      type: {class: BoolBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: bool
+        value: 0
+--- !u!114 &3226942294466838411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf91c223a82e524e9372c65345865b6, type: 3}
+  m_Name: AddTagNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -7424895023136504915}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031453
+      parentName: AreaContainer
+    - property:
+        rid: 5607335839661031454
+      parentName: 
+  guid: d87427ea-b395-4868-a2f4-4839bae59e79
+  position: {x: 806.1925, y: 493.05676}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031453
+      type: {class: BTagContainerProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: container
+        value: {fileID: 0}
+    - rid: 5607335839661031454
+      type: {class: BehaviorTagListProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: tags
+        value:
+        - {fileID: 11400000, guid: 36e4dd357f53cf244813f93b13212acd, type: 2}
+--- !u!114 &3709787368763112698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f4089e166f215498cb324374b0469b, type: 3}
+  m_Name: CheckBoolNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -7095432148361495883}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031460
+      parentName: Night
+  guid: 65bc5e54-6f3d-4fa6-bc1f-adfefe30adb1
+  position: {x: 75.192474, y: 489.0567}
+  useMemory: 0
+  description: 
+  trueState: 2
+  falseState: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031460
+      type: {class: BoolBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: bool
+        value: 0
+--- !u!114 &4205823545017941230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec77337443c5f4a45aff92dd9c9a183b, type: 3}
+  m_Name: MapStateNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 8801177942420649728}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 55c5cf46-a30c-4fff-8bad-7010d71ed221
+  position: {x: -556.22754, y: 373.24982}
+  useMemory: 0
+  description: Exited
+  child: {fileID: -27587709728789034}
+  runningStateTarget: 0
+  failureStateTarget: 2
+  successStateTarget: 2
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &6432234974433726773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf91c223a82e524e9372c65345865b6, type: 3}
+  m_Name: AddTagNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -7095432148361495883}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031447
+      parentName: AreaContainer
+    - property:
+        rid: 5607335839661031448
+      parentName: 
+  guid: ff5e110a-5156-4e08-b321-f3cf0748b383
+  position: {x: 424.19238, y: 493.05676}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031447
+      type: {class: BTagContainerProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: container
+        value: {fileID: 11400000, guid: dfcae8b3555002847809e344c2cc3823, type: 2}
+    - rid: 5607335839661031448
+      type: {class: BehaviorTagListProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: tags
+        value:
+        - {fileID: 11400000, guid: db3294fe65bac1f4fb195ab272bd3034, type: 2}
+--- !u!114 &7110414334420857705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 8322443897879121730}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031489
+      parentName: debugString
+  guid: 2d17f090-cf66-4f85-8e58-1d21437e0f06
+  position: {x: -966.22754, y: 618.2499}
+  useMemory: 0
+  description: 
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031489
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: message
+        value: 
+--- !u!114 &8322443897879121730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -701651136925152499}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 903a290f-767d-4176-9c17-11a1b9a13941
+  position: {x: -1191.2274, y: 461.24982}
+  useMemory: 0
+  description: 
+  children:
+  - {fileID: 2667229742103567580}
+  - {fileID: -3930933930779476336}
+  - {fileID: -6812776842901291275}
+  - {fileID: 7110414334420857705}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &8801177942420649728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -3433155596498140701}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 22d1bcb5-e669-4ee4-a5b6-68261104e23e
+  position: {x: -891.2275, y: 228.24985}
+  useMemory: 0
+  description: Entered|Exited
+  children:
+  - {fileID: -701651136925152499}
+  - {fileID: 4205823545017941230}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &9044028066593215157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -27587709728789034}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031497
+      parentName: debugString
+  guid: 7898005d-d632-4283-8af0-62e8003feed8
+  position: {x: -331.22757, y: 618.2499}
+  useMemory: 0
+  description: 
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031497
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: message
+        value: 

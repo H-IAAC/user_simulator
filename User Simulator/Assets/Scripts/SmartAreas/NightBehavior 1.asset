@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5087b5d23bd60a0478414164789a890c, type: 3}
-  m_Name: Tag0
+  m_Name: NightBehavior 1
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: c0254f91ec59aeb4fa877d9ffb822f8a, type: 2}
+  tree: {fileID: 11400000, guid: 43ec30a9d0937a345bdca4568d101435, type: 2}
   maxUsers:
-    enabled: 1
-    value: 1
-  onSuccess: 2
+    enabled: 0
+    value: 0
+  onSuccess: 0
   onFailure: 0
   onRunning: 1
   parameters: []

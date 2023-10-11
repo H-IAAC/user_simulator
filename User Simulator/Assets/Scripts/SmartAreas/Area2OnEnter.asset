@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4898471616334634782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -3754158920089756327}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031466
+      parentName: enteredObjectName
+  guid: 61ebf55b-2d64-484c-b98e-8b8888faf9a6
+  position: {x: 172, y: 250}
+  useMemory: 0
+  description: 
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031466
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: message
+        value: 
+--- !u!114 &-3754158920089756327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 675837612706944892}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: ddab2707-004b-4aa2-bb1e-9cc019cd24ab
+  position: {x: 0, y: 122}
+  useMemory: 0
+  description: 
+  children:
+  - {fileID: 2967358902060296029}
+  - {fileID: 5430844010953504452}
+  - {fileID: -4898471616334634782}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: Area2OnEnter
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 675837612706944892}
+  nodes:
+  - {fileID: 675837612706944892}
+  - {fileID: 2967358902060296029}
+  - {fileID: -4898471616334634782}
+  - {fileID: -3754158920089756327}
+  - {fileID: 5430844010953504452}
+  bTagParameters: []
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031461
+      parentName: 
+    - property:
+        rid: 5607335839661031465
+      parentName: 
+    - property:
+        rid: 5607335839661031467
+      parentName: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031461
+      type: {class: GameObjectBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: lastEnteredObject
+        value: {fileID: 0}
+    - rid: 5607335839661031465
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: enteredObjectName
+        value: 
+    - rid: 5607335839661031467
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: debugString
+        value: 
+--- !u!114 &675837612706944892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 840f11ad-1f38-4007-bb60-1849972d7aa8
+  position: {x: 0, y: 0}
+  useMemory: 0
+  description: 
+  child: {fileID: -3754158920089756327}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &2967358902060296029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c1aa9f428080a469855883aed956cd, type: 3}
+  m_Name: GetGameObjectName
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -3754158920089756327}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031463
+      parentName: lastEnteredObject
+    - property:
+        rid: 5607335839661031464
+      parentName: enteredObjectName
+  guid: 0ef09f22-4c9b-4e8e-8dd8-ef8484d94818
+  position: {x: -186, y: 250}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031463
+      type: {class: GameObjectBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: gameObject
+        value: {fileID: 0}
+    - rid: 5607335839661031464
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: destination
+        value: 
+--- !u!114 &5430844010953504452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3075c72a0e3326543b019c73ee3dc6ce, type: 3}
+  m_Name: StringConcatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -3754158920089756327}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 5607335839661031468
+      parentName: 
+    - property:
+        rid: 5607335839661031469
+      parentName: enteredObjectName
+    - property:
+        rid: 5607335839661031470
+      parentName: debugString
+  guid: ebd5730c-dd5c-4eda-8786-111488b21411
+  position: {x: 0, y: 250}
+  useMemory: 0
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5607335839661031468
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: firstString
+        value: 'Entered: '
+    - rid: 5607335839661031469
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: secondString
+        value: 
+    - rid: 5607335839661031470
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: destination
+        value: 
