@@ -16,9 +16,13 @@ MonoBehaviour:
   maxUsers:
     enabled: 0
     value: 0
-  onSuccess: 0
+  maxTrackedUsers: 10
+  onSuccess: 2
   onFailure: 0
   onRunning: 1
   parameters: []
   minimumValueParameters: []
   maximumValueParameters: []
+  container: {fileID: 11400000, guid: dfcae8b3555002847809e344c2cc3823, type: 2}
+  newUsers: []
+  droppedUsers: []

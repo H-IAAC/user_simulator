@@ -12,13 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5087b5d23bd60a0478414164789a890c, type: 3}
   m_Name: Tag0
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: c0254f91ec59aeb4fa877d9ffb822f8a, type: 2}
+  tree: {fileID: 11400000, guid: b0bf71a204a57f843b9f6513853603a2, type: 2}
   maxUsers:
-    enabled: 1
+    enabled: 0
     value: 1
+  maxTrackedUsers: 10
   onSuccess: 2
   onFailure: 0
   onRunning: 1
   parameters: []
   minimumValueParameters: []
   maximumValueParameters: []
+  container: {fileID: 11400000, guid: c972982f20f631d40b8697ad6eac121c, type: 2}
+  newUsers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  droppedUsers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
