@@ -1,0 +1,215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7523969068673821634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9ba61d47ce00438e08dbf72581922, type: 3}
+  m_Name: ConstantUtility
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 4764262268349135350}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 149015909774655494
+      parentName: 
+  guid: 00a001f6-903d-49c4-8d74-62dac1a2d8bf
+  position: {x: -92, y: 379}
+  useMemory: 0
+  description: 
+  child: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 149015909774655494
+      type: {class: FloatBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: value
+        value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: UtilityBT
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 6232891809119684876}
+  nodes:
+  - {fileID: 6232891809119684876}
+  - {fileID: 4764262268349135350}
+  - {fileID: 378923118340357704}
+  - {fileID: -7523969068673821634}
+  - {fileID: 4540745666708187907}
+  bTagParameters: []
+  blackboard:
+    properties: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &378923118340357704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef78802da346fb47bde5e3b39bfd7b0, type: 3}
+  m_Name: UtilityModifier
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 6232891809119684876}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 149015909774655493
+      parentName: 
+  guid: 753bf845-941e-4a9e-a151-af29ff98a32d
+  position: {x: 0.000015258789, y: 115.552505}
+  useMemory: 0
+  description: 
+  child: {fileID: 4764262268349135350}
+  references:
+    version: 2
+    RefIds:
+    - rid: 149015909774655493
+      type: {class: CurveBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: modifierFunction
+        value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+--- !u!114 &4540745666708187907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9ba61d47ce00438e08dbf72581922, type: 3}
+  m_Name: ConstantUtility
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 4764262268349135350}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 149015909774655495
+      parentName: 
+  guid: a52da003-adb1-444f-a4ca-6283a1d20d11
+  position: {x: 91, y: 379}
+  useMemory: 0
+  description: 
+  child: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 149015909774655495
+      type: {class: FloatBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: value
+        value: 1
+--- !u!114 &4764262268349135350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8480b827507b5954d92fc2a4971aab19, type: 3}
+  m_Name: FallbackNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 378923118340357704}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 6e46f3ba-e5c4-4105-bf8c-c3f5f3fad2a4
+  position: {x: 0.000016212463, y: 224.8675}
+  useMemory: 0
+  description: 
+  children:
+  - {fileID: -7523969068673821634}
+  - {fileID: 4540745666708187907}
+  useUtility: 1
+  utilityPropagationMethod: 5
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &6232891809119684876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: ad5dd5fc-d07a-46ca-9dcc-15b11f9996f5
+  position: {x: 0, y: 0}
+  useMemory: 0
+  description: 
+  child: {fileID: 378923118340357704}
+  references:
+    version: 2
+    RefIds: []
