@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5087b5d23bd60a0478414164789a890c, type: 3}
-  m_Name: CoffeeBehavior
+  m_Name: SO_BTag
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: 378a07a3048569b448f1653e024cdd96, type: 2}
   maxUsers:
     enabled: 0
     value: 0
   maxTrackedUsers: 10
-  onSuccess: 1
+  onSuccess: 2
   onFailure: 0
   onRunning: 1
   parameters: []
@@ -29,9 +29,9 @@ MonoBehaviour:
         rid: 149015909774655505
       parentName: 
     - property:
-        rid: 149015909774655507
+        rid: 149015931994767379
       parentName: 
-  passValue: 0001
+  passValue: 0000
   container: {fileID: 0}
   newUsers: []
   droppedUsers: []
@@ -43,8 +43,8 @@ MonoBehaviour:
       data:
         PropertyName: SO_Object
         value: {fileID: 0}
-    - rid: 149015909774655507
-      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+    - rid: 149015931994767379
+      type: {class: Vector3BlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
-        PropertyName: String
-        value: AAAAA
+        PropertyName: SO_Position
+        value: {x: 0, y: 0, z: 0}

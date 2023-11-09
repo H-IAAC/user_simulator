@@ -19,11 +19,11 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 1b9633fa-5c7e-456c-b3be-ccf48a25958a
+  guid: 324aac98-a009-4128-bdcb-179a0e965abf
   position: {x: 0, y: 0}
   useMemory: 0
   description: 
-  child: {fileID: -1938601357367073038}
+  child: {fileID: 5823256258040270784}
   references:
     version: 2
     RefIds: []
@@ -42,12 +42,12 @@ MonoBehaviour:
   state: 0
   started: 0
   tree: {fileID: 11400000}
-  parent: {fileID: -7227730742462297319}
+  parent: {fileID: 5823256258040270784}
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 18a1bbfa-4867-4ce9-a7c5-a7d6c1f520d4
-  position: {x: 0, y: 143}
+  guid: 35a3c938-12be-4808-a521-9575a471e56d
+  position: {x: 0, y: 202}
   useMemory: 1
   description: 
   subtree: {fileID: 0}
@@ -77,9 +77,37 @@ MonoBehaviour:
   nodes:
   - {fileID: -7227730742462297319}
   - {fileID: -1938601357367073038}
+  - {fileID: 5823256258040270784}
   bTagParameters: []
   blackboard:
     properties: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &5823256258040270784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898daafb314f770459ece092d54cff88, type: 3}
+  m_Name: AlwaysRunning
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -7227730742462297319}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: 15d3159e-f0ed-4084-a45b-e85017babf6f
+  position: {x: 0, y: 88}
+  useMemory: 0
+  description: 
+  child: {fileID: -1938601357367073038}
   references:
     version: 2
     RefIds: []

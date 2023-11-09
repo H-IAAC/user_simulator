@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Area TagContainer
   m_EditorClassIdentifier: 
   tags: []
-  randomizeOnProvide: 0
+  randomizeOnProvide: 1
   randomizeOnEnable: 0

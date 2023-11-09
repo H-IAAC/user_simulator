@@ -21,17 +21,6 @@ public class GoToNode : ActionNode
     {
         set
         {
-            if(value == GoToStrategies.NavMesh && agent == null)
-            {
-                agent = gameObject.GetComponent<NavMeshAgent>();
-
-                if(!agent)
-                {
-                    Debug.LogWarning($"Object {gameObject.name} doesn't have NavMeshAgent. Aborting stategy change.");
-                    return;
-                }
-            }
-
             strategy = value;
             parameterChange = true;
         }
