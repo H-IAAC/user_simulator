@@ -19,7 +19,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 324aac98-a009-4128-bdcb-179a0e965abf
+  guid: 90557bda-40d9-49aa-bf94-beb683226a8e
   position: {x: 0, y: 0}
   useMemory: 0
   description: 
@@ -46,7 +46,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 35a3c938-12be-4808-a521-9575a471e56d
+  guid: 1d9b8ed2-40eb-41c8-8621-c0499fb8989c
   position: {x: 0, y: 202}
   useMemory: 1
   description: 
@@ -81,6 +81,10 @@ MonoBehaviour:
   bTagParameters: []
   blackboard:
     properties: []
+  needsContainer:
+    needs:
+    - need: {fileID: 11400000, guid: 6ff9ea9b8a9e553448db5f630a2a2ccd, type: 2}
+      value: 0.51
   references:
     version: 2
     RefIds: []
@@ -103,7 +107,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 15d3159e-f0ed-4084-a45b-e85017babf6f
+  guid: f821f5ef-27c7-42a7-b819-7fda281c0aa5
   position: {x: 0, y: 88}
   useMemory: 0
   description: 

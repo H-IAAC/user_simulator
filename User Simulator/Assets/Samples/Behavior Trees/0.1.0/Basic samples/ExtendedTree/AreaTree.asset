@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: AreaTree
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 2866072862538288454}
+  nodes:
+  - {fileID: 2866072862538288454}
+  bTagParameters: []
+  blackboard:
+    properties: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &2866072862538288454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+  guid: dd7ea2c6-13bc-49ae-9379-5a9fd9fda1bd
+  position: {x: 0, y: 0}
+  useMemory: 0
+  description: 
+  child: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
