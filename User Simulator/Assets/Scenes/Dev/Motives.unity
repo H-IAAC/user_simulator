@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 196384388}
   - component: {fileID: 196384392}
   m_Layer: 0
-  m_Name: Bladder
+  m_Name: Bathroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,14 +356,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196384387}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -4.019872, y: -0.57319903, z: 6.033512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 604033798}
   m_Father: {fileID: 334075236}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!114 &196384392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +386,16 @@ MonoBehaviour:
         rid: 149015931994767375
       parentName: 
   passValue: 0100
+  overrideNeeds:
+    needs:
+    - need: {fileID: 11400000, guid: d2b9cc9c2c9c5ff458fcc85742aef8ae, type: 2}
+      value: 1
+      weight:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
   references:
     version: 2
     RefIds:
@@ -729,7 +739,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bladder
+  m_text: Bathroom
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -913,7 +923,7 @@ GameObject:
   - component: {fileID: 949574992}
   - component: {fileID: 949574991}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1656,7 +1666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1584811303
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1766,6 +1776,8 @@ MonoBehaviour:
         rid: 149015931994767373
       parentName: 
   passValue: 0100
+  overrideNeeds:
+    needs: []
   references:
     version: 2
     RefIds:
@@ -1810,7 +1822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485314675acf7fe49a2e3dc698fb5fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 96b67f4b2cae0774b86c67456c0a13d9, type: 2}
+  tree: {fileID: 0}
   tagContainer: {fileID: 11400000, guid: efb9f06fc239b7541b1cabb0592e0371, type: 2}
   priority: 0
   children: []
@@ -1889,6 +1901,7 @@ GameObject:
   - component: {fileID: 1721473158}
   - component: {fileID: 1721473157}
   - component: {fileID: 1721473156}
+  - component: {fileID: 1721473160}
   m_Layer: 0
   m_Name: Work
   m_TagString: Untagged
@@ -1975,14 +1988,59 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721473155}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 1.9801279, y: -0.57319903, z: 2.033512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 335363638}
   m_Father: {fileID: 334075236}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!114 &1721473160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721473155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba667bda6d991a47a6f0ca96a249f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bTag: {fileID: 11400000, guid: 8ab8d0d4002bd12479d4ec29d2f032cf, type: 2}
+  blackboard:
+    properties:
+    - property:
+        rid: 149015931994767362
+      parentName: 
+    - property:
+        rid: 149015931994767371
+      parentName: 
+  passValue: 0100
+  overrideNeeds:
+    needs:
+    - need: {fileID: 11400000, guid: 17a2ba0b13c9f6c4e98c7f8db5c952bc, type: 2}
+      value: 0.2
+      weight:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 149015931994767362
+      type: {class: GameObjectBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: SO_Object
+        value: {fileID: 1721473155}
+    - rid: 149015931994767371
+      type: {class: Vector3BlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: SO_Position
+        value: {x: 0, y: 0, z: 0}
 --- !u!1 &1758380640
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,14 +2140,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758380640}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -4.019872, y: -0.57319903, z: -1.9664879}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1000096673}
   m_Father: {fileID: 334075236}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!114 &1758380645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2112,6 +2170,24 @@ MonoBehaviour:
         rid: 149015931994767371
       parentName: 
   passValue: 0100
+  overrideNeeds:
+    needs:
+    - need: {fileID: 11400000, guid: 1a2e5b58bdec80c4b89f33cfe608f8dd, type: 2}
+      value: 1
+      weight:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+    - need: {fileID: 11400000, guid: d2b9cc9c2c9c5ff458fcc85742aef8ae, type: 2}
+      value: -0.2
+      weight:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
   references:
     version: 2
     RefIds:

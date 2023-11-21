@@ -22,7 +22,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782426
       parentName: debugString
-  guid: 4634f02b-3e85-44e6-8fdd-950642ef36d6
+  guid: 401d2f8d-00bd-4596-b9e2-c9a76301f674
   position: {x: 431.44376, y: 771.99994}
   useMemory: 0
   description: 
@@ -56,7 +56,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 896497a2-571f-4fb5-a209-3386df3e899e
+  guid: 67798046-2d19-47d5-ad3f-ebd31fe08bcb
   position: {x: -178.5377, y: -27.45}
   useMemory: 0
   description: 
@@ -83,7 +83,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 42370c2e-ea13-4653-9682-9ab4138dca9f
+  guid: 46f542f9-c246-40ff-b901-00100c4ef341
   position: {x: -443, y: 615.00006}
   useMemory: 0
   description: Adopted
@@ -118,7 +118,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 2f372890-5c0b-44ad-9753-023d924dc694
+  guid: 88357635-3981-4fdf-a3cc-d430432719c9
   position: {x: 1289.7653, y: 372.19305}
   useMemory: 0
   description: Day
@@ -151,7 +151,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: e0e03bfe-7588-4bd0-a6a5-bde6d2a08401
+  guid: 4a553e43-bd7b-40d5-a798-746260f00326
   position: {x: 825.76544, y: 372.19305}
   useMemory: 0
   description: Night
@@ -194,7 +194,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031488
       parentName: debugString
-  guid: ba552383-c234-420f-9707-b7a2a5699645
+  guid: c4a97770-53c1-477b-a72a-c2af54a62371
   position: {x: -1608.7822, y: 617.99994}
   useMemory: 0
   description: 
@@ -241,7 +241,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031493
       parentName: objectName
-  guid: 7a14d837-3106-4929-a6b3-b8ebfdd72301
+  guid: e442dbd3-7e6a-4062-b923-c5216f58601c
   position: {x: -1123.7822, y: 617.99994}
   useMemory: 0
   description: 
@@ -286,7 +286,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782418
       parentName: debugString
-  guid: cdaf1987-ce4d-4b41-bdda-ad29e3b967c0
+  guid: dd733799-14ea-41f5-a847-a2af0205dbe7
   position: {x: -363.00006, y: 769}
   useMemory: 0
   description: 
@@ -336,7 +336,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031496
       parentName: debugString
-  guid: d0688654-1526-4288-a6b4-577e449abd04
+  guid: 07f2ac99-bdfd-4dc6-8ce8-78b6d23fbabd
   position: {x: -973.7821, y: 617.99994}
   useMemory: 0
   description: 
@@ -377,7 +377,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 6c22b15f-4c87-404c-b3f7-415255b0747b
+  guid: 2230b2a0-6845-410b-ab86-55121517e3d0
   position: {x: 1050.7654, y: 240.19307}
   useMemory: 0
   description: Update
@@ -416,7 +416,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031458
       parentName: 
-  guid: 668b0096-14dc-4ae1-bc09-b0aa4234b2d9
+  guid: c95a7180-9401-4ebf-80d1-7f6390b1dcce
   position: {x: 1200.7654, y: 527.19305}
   useMemory: 0
   description: 
@@ -456,7 +456,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782403
       parentName: lastExitedObject
-  guid: 0c41283b-2470-457a-9d71-ec20885f5cea
+  guid: bb413977-2c31-4ef2-ab5e-e0dc72648a52
   position: {x: -1273.7822, y: 617.99994}
   useMemory: 0
   description: 
@@ -495,7 +495,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031485
       parentName: objectName
-  guid: 34efba20-5958-4c22-92c8-90504bfa7e33
+  guid: d2e21aaa-5c8c-4c88-ad06-404286b4269d
   position: {x: -1758.782, y: 617.99994}
   useMemory: 0
   description: 
@@ -531,7 +531,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 241bc4e9-2043-4e87-bad4-e680761a3a9f
+  guid: 96066e44-5be4-4d3c-a4f3-68e271f5118c
   position: {x: -178.5377, y: -161.45}
   useMemory: 0
   description: 
@@ -564,7 +564,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782410
       parentName: adoptedBehavior
-  guid: 1cb8aa79-0d78-41ef-bdad-97cb91679c00
+  guid: 918fce4b-fd68-464e-babb-7102731eec6e
   position: {x: -663, y: 769}
   useMemory: 0
   description: 
@@ -601,7 +601,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: a82ccd44-8081-4771-999d-f19e7a9c38d9
+  guid: 33e7f1d2-2247-44bf-8a5c-b84322c6f8a6
   position: {x: -179.00015, y: 73.35503}
   useMemory: 0
   description: 
@@ -641,7 +641,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031456
       parentName: 
-  guid: 82a7b34a-7a64-4389-ae41-029d6cb497be
+  guid: eb4703d9-0d93-4fe0-8ac6-12c88976d7c5
   position: {x: 815.7654, y: 523.19305}
   useMemory: 0
   description: 
@@ -681,7 +681,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782402
       parentName: lastEnteredObject
-  guid: b3ade93c-0c8f-4d57-a274-41a628c6dd2b
+  guid: 2941fc11-777f-40e8-9c66-e38cecec4fe6
   position: {x: -1908.7822, y: 617.99994}
   useMemory: 0
   description: 
@@ -714,7 +714,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 9217d8f0-ab4e-4a45-9fd5-c559ce2894cd
+  guid: 4214a44c-e998-4e7a-866d-bef78d05371b
   position: {x: -178.99988, y: 360.90005}
   useMemory: 0
   description: 
@@ -741,7 +741,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 1a79aa4a-f721-4956-b4b0-6c23f1462421
+  guid: d3ca283f-4a58-4e1e-9d54-776bc00b73b3
   position: {x: -1683.7822, y: 373}
   useMemory: 0
   description: Entered
@@ -774,7 +774,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782415
       parentName: debugString
-  guid: 1af1a0a5-0375-40b3-a461-e00e521c279a
+  guid: 200c9290-60af-4eda-80a6-6f7f7945c3a8
   position: {x: -212.99995, y: 769}
   useMemory: 0
   description: 
@@ -808,7 +808,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 074740b5-6553-4e45-9310-53056a32dc40
+  guid: b98bdf99-eb2f-48c4-a552-86d0a39809da
   position: {x: -179.00005, y: 479.0001}
   useMemory: 0
   description: 
@@ -841,7 +841,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 60702822-baab-4ee5-8093-5958d7cf4ce6
+  guid: e9866ead-68ca-419d-8593-2ee6a1702bfc
   position: {x: -1048.7821, y: 461}
   useMemory: 0
   description: 
@@ -932,6 +932,8 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782411
       parentName: 
+  needsContainer:
+    needs: []
   references:
     version: 2
     RefIds:
@@ -998,7 +1000,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782425
       parentName: debugString
-  guid: b4675689-9db1-474e-a00b-fc2e269360a9
+  guid: 1249727f-fac8-48d9-a48b-56b0d69de2c0
   position: {x: 281.44366, y: 771.99994}
   useMemory: 0
   description: 
@@ -1084,7 +1086,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782420
       parentName: objectName
-  guid: 8a58b561-9aa8-4ef8-919d-cc28fc8aacdf
+  guid: 86a598ac-98b7-40b9-8116-57c2c0a6b2b0
   position: {x: 131.44368, y: 771.99994}
   useMemory: 0
   description: 
@@ -1126,7 +1128,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031454
       parentName: 
-  guid: 4b1c9698-0a71-4db2-b97e-91d37d5cd48e
+  guid: 52df679b-fb67-4a02-9737-b3f44538282f
   position: {x: 1380.7654, y: 527.19305}
   useMemory: 0
   description: 
@@ -1163,7 +1165,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: f5a1914b-f442-465a-b5f5-7c8b0720c052
+  guid: 71330644-3127-4e16-b0c3-162bc69e6ced
   position: {x: -178.99988, y: 242.3501}
   useMemory: 0
   description: 
@@ -1196,7 +1198,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031460
       parentName: Night
-  guid: 8e96f7e6-43b7-42da-a682-78e61ec87652
+  guid: 8be40cd4-8d45-47a9-8194-884a29c88e52
   position: {x: 649.76544, y: 523.19305}
   useMemory: 0
   description: 
@@ -1229,7 +1231,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 1f5f1e08-3027-41be-8acb-73f3ab767ebd
+  guid: 243d8641-7a23-4c87-9b7f-62d32755708f
   position: {x: -1048.7821, y: 373}
   useMemory: 0
   description: Exited
@@ -1265,7 +1267,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782413
       parentName: objectName
-  guid: 1ecbdd2a-2904-44aa-afa2-e135744d5e83
+  guid: 6d6f7b97-4ed1-4496-9606-7762c404abc3
   position: {x: -513.00006, y: 769}
   useMemory: 0
   description: 
@@ -1307,7 +1309,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031448
       parentName: 
-  guid: f4a1506b-eaaa-411f-9af3-b56a6da1caff
+  guid: d18f7d74-dbb1-490b-996d-2a9e9731d580
   position: {x: 1000.7654, y: 527.19305}
   useMemory: 0
   description: 
@@ -1350,7 +1352,7 @@ MonoBehaviour:
     - property:
         rid: 5607336025351782422
       parentName: adoptedBehavior
-  guid: b3dd057a-2e1a-4d6c-973b-bee46f8012d1
+  guid: 7e492263-320b-4939-a343-ae494186f022
   position: {x: -18.55629, y: 771.99994}
   useMemory: 0
   description: 
@@ -1390,8 +1392,8 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031489
       parentName: debugString
-  guid: e2803d7f-4f38-401d-a3ea-58d51e5d1fdf
-  position: {x: -1458.7821, y: 617.99994}
+  guid: 32f39d79-c2c2-4ad2-a4d9-2c03553a148e
+  position: {x: -1459.0002, y: 618.00006}
   useMemory: 0
   description: 
   onStart: 0
@@ -1424,7 +1426,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: aeb3f728-5697-4a03-bef6-90d52a7ac3e5
+  guid: 9ab6f53c-b0a3-41dd-83d9-2c9b47455c72
   position: {x: 201.44371, y: 618}
   useMemory: 0
   description: Dropped
@@ -1459,7 +1461,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: f7aad4dc-b0d1-42cc-81a5-9b87a795be25
+  guid: 2945cff8-851b-4cee-bc1b-a594eee0e5c1
   position: {x: -1683.7822, y: 461}
   useMemory: 0
   description: 
@@ -1494,7 +1496,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 224d8dfd-2144-4b8f-910a-7b011a5c0e69
+  guid: be323c79-72c5-427f-a9ed-fcaf14b1fd3c
   position: {x: -1383.7822, y: 227.99998}
   useMemory: 0
   description: Entered|Exited
@@ -1530,7 +1532,7 @@ MonoBehaviour:
     - property:
         rid: 5607335839661031497
       parentName: debugString
-  guid: e5a54e40-6884-422e-b21f-e9b20fd04b8b
+  guid: c8a880dc-3bc9-46b0-903a-3904eddc4c74
   position: {x: -823.78235, y: 617.99994}
   useMemory: 0
   description: 

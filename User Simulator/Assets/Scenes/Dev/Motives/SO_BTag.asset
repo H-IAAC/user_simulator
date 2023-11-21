@@ -35,6 +35,8 @@ MonoBehaviour:
   container: {fileID: 0}
   newUsers: []
   droppedUsers: []
+  needsContainer:
+    needs: []
   references:
     version: 2
     RefIds:
