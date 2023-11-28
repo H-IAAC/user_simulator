@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079733771981809249}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.3983955, y: -504.22955, z: 36.613327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2079733771981809255
 MonoBehaviour:
@@ -47,13 +47,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layermask:
     serializedVersion: 2
-    m_Bits: 2839
+    m_Bits: 2835
   maxDistance: 100
   onHit:
     m_PersistentCalls:
       m_Calls: []
   showDebugRay: 0
   onlyDeselectWhenOver: 1
+  allowToggle: 1
 --- !u!114 &2079733771981809253
 MonoBehaviour:
   m_ObjectHideFlags: 0

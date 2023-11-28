@@ -57,18 +57,7 @@ public class Selector : CursorCast
                 return;
             }
 
-            Selectable selectable = null;
-
-            Selectable hitSelectable = lastHit.transform.gameObject.GetComponent<Selectable>();
-            if(hitSelectable != null)
-            {
-                selectable = hitSelectable;
-            }
-            else
-            {
-                Selectable colliderSelectable = lastHit.collider.gameObject.GetComponent<Selectable>();
-                selectable = colliderSelectable;
-            }
+            Selectable selectable = getSelectable(lastHit);
 
             if(selectable == null)
             {
@@ -145,6 +134,7 @@ public class Selector : CursorCast
             Selectable colliderSelectable = lastHit.collider.gameObject.GetComponent<Selectable>();
             selectable = colliderSelectable;
         }
+        
 
         return selectable;
     }
