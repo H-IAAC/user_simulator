@@ -19,7 +19,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 9b61ea73-15b3-4c77-af24-f113278e50d7
+  guid: d30876b6-d264-4805-8620-89af44aba59a
   position: {x: 199.46364, y: -7.982048}
   useMemory: 0
   description: 
@@ -46,7 +46,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: df8a028d-0f2a-4c0d-9d65-d348b758bdc4
+  guid: b9db70a0-3804-4081-957a-1216a1bf2888
   position: {x: -309, y: 639}
   useMemory: 0
   description: 
@@ -85,7 +85,7 @@ MonoBehaviour:
     - property:
         rid: 149016200582529062
       parentName: 
-  guid: 4c8be7e0-5697-49fd-acf6-018eca1bfd26
+  guid: b5c5150b-aaa9-46f5-905c-80d0fc200a03
   position: {x: -234, y: 777}
   useMemory: 0
   description: 
@@ -127,7 +127,7 @@ MonoBehaviour:
     - property:
         rid: 149016200582529156
       parentName: 
-  guid: ba893bbf-a939-4a77-91ce-4cb79f4a23be
+  guid: 55ffe3bb-de28-4475-b684-7e68dd25d8d4
   position: {x: 113, y: 777}
   useMemory: 0
   description: 
@@ -166,7 +166,7 @@ MonoBehaviour:
     - property:
         rid: 149016200582529154
       parentName: 
-  guid: 177276e6-ca16-4dea-bcd5-796bf2a447ab
+  guid: 08515434-4657-487a-ac28-933c627479e5
   position: {x: -47, y: 777}
   useMemory: 1
   description: 
@@ -197,7 +197,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: b8b91546-9b57-480d-b31c-48b1c3fe0ad7
+  guid: dab25b13-4545-4985-be48-fc717daf9769
   position: {x: -309, y: 528}
   useMemory: 0
   description: 
@@ -227,8 +227,8 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: c3f0eb9f-3141-4ba7-982c-9732661cc63e
-  position: {x: 274, y: 365}
+  guid: 3e675411-c9dd-4439-9357-854dd4be9885
+  position: {x: 541.14496, y: 395}
   useMemory: 1
   description: 
   subtree: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
     - property:
         rid: 149016200582529060
       parentName: 
-  guid: cc4ae373-d3e8-4b91-8dca-de97af414fb7
+  guid: eb25b519-3ebf-49b4-bf14-d11795fd5c26
   position: {x: -394, y: 777}
   useMemory: 1
   description: 
@@ -298,7 +298,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: d7865870-476a-4f61-8038-1858be9d9056
+  guid: b46b598e-89c4-4386-85d8-a7875b025517
   position: {x: -122, y: 395}
   useMemory: 0
   description: 
@@ -331,7 +331,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 842f1800-4ff7-42af-9211-4ea29fcf7a30
+  guid: 2f92d85c-b0dc-4960-be5d-8ab79fa3cd63
   position: {x: 199.46364, y: 231.01797}
   useMemory: 0
   description: 
@@ -474,19 +474,37 @@ MonoBehaviour:
           time: 0
           value: 1
           inSlope: 0
-          outSlope: -1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: -1
-          outSlope: 0
+          time: 0.00025371744
+          value: 0.99974626
+          inSlope: 0.04656964
+          outSlope: 0.04656964
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.4726027
+        - serializedVersion: 3
+          time: 0.30347958
+          value: 0.46631128
+          inSlope: -1.5554489
+          outSlope: -1.5554489
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -0.16870764
+          outSlope: -0.16870764
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33196142
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -513,7 +531,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 5cb12d3c-2e5b-4311-8191-03b1e3908ee1
+  guid: 86c013b7-d255-4db6-be97-3cd90edebe7d
   position: {x: 199.46364, y: 80.01797}
   useMemory: 0
   description: 
@@ -540,12 +558,12 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: fb8fc75e-005d-415e-a108-0194bb461785
+  guid: 36515c1c-baa2-4d65-8089-fb78ef926760
   position: {x: 38, y: 528}
   useMemory: 0
   description: 
   child: {fileID: 7569142642397453486}
-  runningStateTarget: 0
+  runningStateTarget: 2
   failureStateTarget: 1
   successStateTarget: 2
   references:
@@ -570,7 +588,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 865263c4-3ff7-4716-8018-ce1f3f2658e3
+  guid: 5b850f17-4d12-4a19-af9d-ffa5426a49fb
   position: {x: 38, y: 639}
   useMemory: 0
   description: 

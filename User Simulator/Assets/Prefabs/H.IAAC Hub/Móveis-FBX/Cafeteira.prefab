@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1873068425237140340, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -100,10 +100,74 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3a055561fdc4c3e4b8c118891e8fc580, type: 2}
+    - target: {fileID: 6445584090052728885, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.615
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445584090052728885, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.027
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445584090052728885, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 105.5882
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445584090052728885, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9735519
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445584090052728885, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445584090052728885, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.22846608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445584090052728885, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 26.414
+      objectReference: {fileID: 0}
     - target: {fileID: 6707491344195160794, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4b975afd6acfd8b4fb1b89a7aeca1e1e, type: 2}
+    - target: {fileID: 7543566348490615870, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0014038086
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543566348490615870, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0053983927
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543566348490615870, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.19891357
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543566348490615870, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.00000006147842
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543566348490615870, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.99998075
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543566348490615870, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 3.8219625e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543566348490615870, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0062166033
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543566348490615870, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543566348490615870, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.7120056
+      objectReference: {fileID: 0}
     - target: {fileID: 7742784755284187987, guid: f0de3157f2e38ab4b932d68d72a9a031, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
