@@ -76,13 +76,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 4d1f7267b89bbd44a88a8e48fc394481, type: 2}
+    - target: {fileID: -6211354005987398483, guid: c7560aa8b952d9842a89b5c93410549e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4374443849842981307, guid: c7560aa8b952d9842a89b5c93410549e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4d1f7267b89bbd44a88a8e48fc394481, type: 2}
+    - target: {fileID: -4269824661134919691, guid: c7560aa8b952d9842a89b5c93410549e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c7560aa8b952d9842a89b5c93410549e, type: 3}
       propertyPath: m_Name
       value: PiaBanheiro
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539706638696808622, guid: c7560aa8b952d9842a89b5c93410549e, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

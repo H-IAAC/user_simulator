@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6876959509833495128, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6057471538381413922, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -72,10 +76,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 19cf3a1218dfc08469bd70fc65a6cae9, type: 2}
+    - target: {fileID: -2947630935426072227, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -843006507207485010, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7303617317402991, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 19cf3a1218dfc08469bd70fc65a6cae9, type: 2}
+    - target: {fileID: 511145722439425663, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
       propertyPath: m_Name
       value: "Divis\xF3riaBanheiro"
@@ -88,6 +104,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 19cf3a1218dfc08469bd70fc65a6cae9, type: 2}
+    - target: {fileID: 3767666083275266582, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4647634048634500471, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -96,10 +116,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 28657ef052514a940ab5c39b2806d3da, type: 2}
+    - target: {fileID: 4981885384161865337, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328782432725239349, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6155663253467148843, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 19cf3a1218dfc08469bd70fc65a6cae9, type: 2}
+    - target: {fileID: 6370021361286132311, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518898343488373133, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8137071032228852482, guid: f64c9d0e53294214d95fa34d52077f10, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

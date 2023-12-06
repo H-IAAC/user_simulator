@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Divis\xF3riaMict\xF3rioBanheiro"
       objectReference: {fileID: 0}
+    - target: {fileID: 2356651101511042946, guid: 37d4e5b5ef5b5404bb1e63f976912894, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431519283924258744, guid: 37d4e5b5ef5b5404bb1e63f976912894, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5783686272356117769, guid: 37d4e5b5ef5b5404bb1e63f976912894, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

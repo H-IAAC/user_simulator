@@ -11,9 +11,25 @@ public struct PlotData
 
 public class Plot : VisualElement
 {
-    public new class UxmlFactory : UxmlFactory<Plot, VisualElement.UxmlTraits> { }
+    public new class UxmlTraits : VisualElement.UxmlTraits
+        {
+            UxmlBoolAttributeDescription centerZero = new UxmlBoolAttributeDescription()
+            {
+                name = "center-zero"
+            };
+
+            public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
+            {
+                base.Init(ve, bag, cc);
+
+                (ve as Plot).centerZero = centerZero.GetValueFromBag(bag, cc);
+            }
+        }
+    public new class UxmlFactory : UxmlFactory<Plot, UxmlTraits> { }
 
     public List<PlotData> data = new();
+
+    public bool centerZero;
 
     public Plot()
     {
@@ -47,6 +63,13 @@ public class Plot : VisualElement
                 {
                     maxValue = value;
                 }
+            }
+
+            if(centerZero)
+            {
+                float maxAbs = Mathf.Max(Mathf.Abs(minValue), Mathf.Abs(maxValue));
+                minValue = -maxAbs;
+                maxValue = maxAbs;
             }
 
             Painter2D painter = context.painter2D;

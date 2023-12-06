@@ -50,8 +50,6 @@ public class PlotAcceleration : MonoBehaviour
             data[i].values.RemoveAt(0);
             data[i].values.Add(sensor.Acceleration[i]);
         }
-
-        Debug.Log(sensor.Acceleration);
         
         plot.MarkDirtyRepaint();
     }
