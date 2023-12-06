@@ -26,7 +26,7 @@ namespace HIAAC.UserSimulator
         protected abstract void Compute();
 
         /// <summary>
-        /// Resets the sensor state.
+        /// Resets the sensor state. Called in Start and when simulation ends.
         /// </summary>
         protected abstract void ResetSensorState();
 
@@ -73,6 +73,7 @@ namespace HIAAC.UserSimulator
         void Start()
         {
             DatasetCapture.SimulationEnding += ResetSensorState;
+            ResetSensorState();
         }
 
         /// <summary>
