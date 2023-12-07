@@ -17,7 +17,7 @@ MonoBehaviour:
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
       data1: 140666621263709
-      data2: 4539628436200587288
+      data2: 13763000473055363096
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
   m_RenderingPathDefaultBakedOrCustomReflectionFrameSettings:
     bitDatas:
       data1: 139746950279965
-      data2: 4539628424389492760
+      data2: 13763000461244268568
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_RenderingPathDefaultRealtimeReflectionFrameSettings:
     bitDatas:
       data1: 139720912016133
-      data2: 4539628424389492760
+      data2: 13763000461244268568
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
     msaaMode: 1
     materialQuality: 0
   m_RenderPipelineResources: {fileID: 11400000, guid: 3ce144cff5783da45aa5d4fdc2da14b7, type: 2}
-  m_RenderPipelineRayTracingResources: {fileID: 0}
+  m_RenderPipelineRayTracingResources: {fileID: 11400000, guid: ba6e7f30e5cffc249a8bf7ee5756c196, type: 2}
   beforeTransparentCustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []
   afterPostProcessBlursCustomPostProcesses: []
@@ -96,11 +96,60 @@ MonoBehaviour:
   supportRuntimeDebugDisplay: 0
   autoRegisterDiffusionProfiles: 1
   apvScenesData:
-    serializedBounds: []
-    serializedHasVolumes: []
-    serializedProfiles: []
-    serializedBakeSettings: []
-    serializedBakingSets: []
+    serializedBounds:
+    - sceneGUID: 228222d8bf89f704cbc7addec082b915
+      bounds:
+        m_Center: {x: 0, y: 0, z: -121.5}
+        m_Extent: {x: 81, y: 81, z: 40.5}
+    serializedHasVolumes:
+    - sceneGUID: 228222d8bf89f704cbc7addec082b915
+      hasProbeVolumes: 1
+    serializedProfiles:
+    - sceneGUID: 228222d8bf89f704cbc7addec082b915
+      profile: {fileID: 11400000, guid: 06471c0bb06da5743bd1c0047058888d, type: 2}
+    serializedBakeSettings:
+    - sceneGUID: 228222d8bf89f704cbc7addec082b915
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    serializedBakingSets:
+    - name: New Baking Set
+      sceneGUIDs:
+      - 228222d8bf89f704cbc7addec082b915
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+      profile: {fileID: 11400000, guid: 06471c0bb06da5743bd1c0047058888d, type: 2}
+      lightingScenarios:
+      - Default
     m_LightingScenario: Default
   m_Version: 5
   m_ShaderVariantLogLevel: 0
