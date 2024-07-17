@@ -1,6 +1,8 @@
 
 # User Simulator
 
+**In progress**
+
 H.IAAC User Simulator for generating mobile devices synthetic data.
 
 This project was developed as part of the Cognitive Architectures research line from 
