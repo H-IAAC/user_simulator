@@ -8,7 +8,7 @@
       "url": "https://packages.unity.com"
     },
     "com.hiaac.behaviortrees": {
-      "version": "file:C:/Users/Elton/Documents/GitHub/BehaviorTrees/BehaviorTrees",
+      "version": "file:D:/Github/BehaviorTrees/BehaviorTrees",
       "depth": 0,
       "source": "local",
       "dependencies": {}
