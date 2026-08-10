@@ -504,6 +504,7 @@ public class BVHExporter : MonoBehaviour {
     {
         try {
             saveBVH();
+            sendBVHtoRedis();
         } catch (Exception ex) {
             Debug.LogError("An error has occurred while saving the BVH file: " + ex);
         }

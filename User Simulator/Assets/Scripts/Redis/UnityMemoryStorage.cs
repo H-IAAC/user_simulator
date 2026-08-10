@@ -51,7 +51,6 @@ namespace HIAAC.CstUnity
         public void SetBvhPose(string bvhData)
         {
             bvh_pose.setI(bvhData);
-            Debug.Log($"BVH data set in memory storage: {bvhData}");
         }
 
         public void SetSensorConfig(string sensorConfig)
