@@ -14,6 +14,15 @@
       "dependencies": {},
       "hash": "beaabfb5cd6a0fc1f0383727ec657ba5ce1b1161"
     },
+    "com.hiaac.cst-unity": {
+      "version": "https://github.com/H-IAAC/CST-Unity.git?path=CST-Unity",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.2"
+      },
+      "hash": "8eefdd65706b9176fca1e34812b7ed8319d6ce98"
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.4",
       "depth": 0,
@@ -170,8 +179,8 @@
       "hash": "8b86648e5385bf393cc14e751bbb56503a48e10c"
     },
     "com.unity.nuget.newtonsoft-json": {
-      "version": "3.2.1",
-      "depth": 0,
+      "version": "3.2.2",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.hiaac.behaviortrees": "https://github.com/H-IAAC/BehaviorTrees.git?path=BehaviorTrees",
+    "com.hiaac.cst-unity": "https://github.com/H-IAAC/CST-Unity.git?path=CST-Unity",
     "com.unity.ai.navigation": "1.1.4",
     "com.unity.animation.rigging": "1.2.1",
     "com.unity.cinemachine": "2.9.5",

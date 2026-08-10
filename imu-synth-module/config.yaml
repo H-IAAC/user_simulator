@@ -1,0 +1,19 @@
+version: 'ideal' # ideal / sim
+
+file_bvh: 'data.bvh'
+file_acc: 'generated/acc.npz'
+file_gyro: 'generated/gyro.npz'
+
+plot: true
+dir_result: 'generated'
+
+custom_sensors:
+  - name: 'Phone_pocket'
+    joint_name_bvh: 'RightUpperLeg'
+    position_offset_xyz_m: [0.0, -0.10, 0.03]
+    rotation_offset_zyx_deg: [0, 0, 0]
+
+  - name: 'Smartwatch'
+    joint_name_bvh: 'RightLowerArm'
+    position_offset_xyz_m: [0.0, 0.0, 0.23]
+    rotation_offset_zyx_deg: [0, 0, 0]
