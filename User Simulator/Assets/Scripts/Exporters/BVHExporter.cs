@@ -1,7 +1,4 @@
-// Things to fix:
-// - Handle non-zero-rotation bones without producing a stupid rest pose
-// - Add support recording translation too
-// - Update API documentation
+// Code adapted from https://github.com/emilianavt/BVHTools
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +8,13 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+using HIAAC.CstUnity;
+
 public class BVHExporter : MonoBehaviour {
+
+    [Header("Redis")]
+    [SerializeField] private UnityMemoryStorage memoryStorage;
+
     [Header("Recorder settings")]
     [Tooltip("The bone rotations will be recorded this many times per second. Bone locations are recorded when this script starts running or genHierarchy() is called.")]
     public float frameRate = 60.0f;
@@ -475,16 +478,35 @@ public class BVHExporter : MonoBehaviour {
         lastSavedFile = outputFile;
     }
 
+    public void sendBVHtoRedis() {
+        if (frames == null || hierarchy == "") {
+            throw new InvalidOperationException("Hierarchy not initialized. You can initialize the hierarchy by calling genHierarchy().");
+        }
+
+        string bvhData = genBVH();
+        memoryStorage.SetBvhPose(bvhData);
+    }
+
     void Start () {
         if (scripted) {
             return;
         }
 
-        if (bones.Count == 0) {
-            getBones();
-        }
+        getBones();
         buildSkeleton();
         genHierarchy();
+
+        cleanupBones();
+        clearCapture();
+    }
+
+    void OnApplicationQuit()
+    {
+        try {
+            saveBVH();
+        } catch (Exception ex) {
+            Debug.LogError("An error has occurred while saving the BVH file: " + ex);
+        }
     }
     
     void LateUpdate () {
