@@ -8,6 +8,7 @@ using HIAAC.CstUnity.MemoryStorage;
 using NRedisStack;
 using NRedisStack.RedisStackCommands;
 using StackExchange.Redis;
+using Newtonsoft.Json;
 
 namespace HIAAC.CstUnity
 {
@@ -32,11 +33,12 @@ namespace HIAAC.CstUnity
         public Memory SensorConfig => sensor_cofig;
         public Memory SimulationRunning => simulation_running;
 
+        private ConnectionMultiplexer _muxer;
 
         void Start()
         {
-            var muxer = ConnectionMultiplexer.Connect("localhost,allowAdmin=true");
-            var server = muxer.GetServer(redisHost, redisPort);
+            _muxer = ConnectionMultiplexer.Connect("localhost,allowAdmin=true");
+            var server = _muxer.GetServer(redisHost, redisPort);
             server.FlushAllDatabases();
 
             mind = new Mind();
@@ -46,6 +48,8 @@ namespace HIAAC.CstUnity
             simulation_running = mind.createMemoryObject("simulation_running", true);
 
             memoryStorageCodelet = new MemoryStorageCodelet(mind, NodeName, MindName, 0.5, $"{redisHost}:{redisPort},abortConnect=true");
+            mind.insertCodelet(memoryStorageCodelet);
+            mind.start();
         }
 
         public void SetBvhPose(string bvhData)

@@ -31,5 +31,13 @@ public class BVHExporterEditor : Editor {
                 Debug.LogError("An error has occurred while saving the BVH file: " + ex);
             }
         }
+
+        if (GUILayout.Button("Send motion data to Redis")) {
+            try {
+                bvhExporter.sendBVHtoRedis();
+            } catch (Exception ex) {
+                Debug.LogError("An error has occurred while sending motion data to Redis: " + ex);
+            }
+        }
     }
 }
