@@ -166,9 +166,10 @@ public class BVHExporter : MonoBehaviour {
 
         List<Component> meshes = new List<Component>(targetAvatar.GetComponents<SkinnedMeshRenderer>());
         meshes.AddRange(targetAvatar.GetComponentsInChildren<SkinnedMeshRenderer>(true));
-        
+
         HashSet<Transform> boneSet = new HashSet<Transform>();
 
+        // 1) Collect bones from all SkinnedMeshRenderers
         foreach (SkinnedMeshRenderer smr in meshes) {
             foreach (Transform bone in smr.bones) {
                 if (rootBone == null || (bone.IsChildOf(rootBone) && bone != rootBone)) {
@@ -182,7 +183,22 @@ public class BVHExporter : MonoBehaviour {
                 }
             }
         }
-        
+
+        // 2) Also include ALL humanoid bones from the Animator avatar,
+        //    so that bones like Hips and legs are captured even when they
+        //    are not (or no longer) referenced by any SkinnedMeshRenderer
+        //    or are siblings of the manually-set rootBone.
+        if (targetAvatar.avatar != null && targetAvatar.avatar.isHuman) {
+            HumanBodyBones[] allBones = (HumanBodyBones[])Enum.GetValues(typeof(HumanBodyBones));
+            foreach (HumanBodyBones b in allBones) {
+                if (b < 0 || b >= HumanBodyBones.LastBone) continue;
+                Transform boneTransform = targetAvatar.GetBoneTransform(b);
+                if (boneTransform != null) {
+                    boneSet.Add(boneTransform);
+                }
+            }
+        }
+
         bones = boneSet.OrderBy(bone => bone.name).ToList();
     }
 
@@ -485,9 +501,13 @@ public class BVHExporter : MonoBehaviour {
 
         string bvhData = genBVH();
         memoryStorage.SetBvhPose(bvhData);
+        memoryStorage.SetSimulationRunning(false);
     }
 
     void Start () {
+
+        // memoryStorage.SetSimulationRunning(true);
+
         if (scripted) {
             return;
         }
