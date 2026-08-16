@@ -1,6 +1,6 @@
-version: 'ideal' # ideal / sim
+version: 'sim' # ideal / sim
 
-file_bvh: 'data.bvh'
+file_bvh: '../User Simulator/Export/pose.bvh'
 file_acc: 'generated/acc.npz'
 file_gyro: 'generated/gyro.npz'
 

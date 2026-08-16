@@ -3,6 +3,7 @@ import numpy as np
 import subprocess
 import shlex
 import socket
+import io
 
 import sys
 
@@ -135,25 +136,37 @@ def build_sensor_trajectories(splinedModel, config):
  
     return sensor_trajectories
 
-def extract_vir_imu(file_bvh, file_acc, file_gyro, config):
+def extract_vir_imu(bvh_source):
+
+    with open('config.yaml', 'r') as f:
+        config = yaml.safe_load(f)
+
+    dir_result = config['dir_result']
+    if not os.path.exists(dir_result):
+        os.makedirs(dir_result)
+
+    file_acc = config['file_acc']
+    file_gyro = config['file_gyro']
 
     sensor = {}
  
     # Extact virtual sensor with imusim
     # updated to python 3 version
-    path_bvh = file_bvh
     path_acc = file_acc
     path_gyro = file_gyro
  
-    # load mocap
-    with open(path_bvh, 'r') as bvhFile:
-        conversionFactor = 1
-        loader = BVHLoader(bvhFile, conversionFactor)
-        loader._readHeader()
-        loader._readMotionData()
-        model = loader.model
-    print('load mocap from ...', path_bvh)
-    # print (model)
+    # load mocap — bvh_source pode ser str (caminho) ou file-like
+    conversionFactor = 1
+    if isinstance(bvh_source, str):
+        with open(bvh_source, 'r') as f:
+            loader = BVHLoader(f, conversionFactor)
+        # print('load mocap from ...', bvh_source)
+    else:
+        loader = BVHLoader(bvh_source, conversionFactor)
+        # print('load mocap from in-memory bvh data')
+    loader._readHeader()
+    loader._readMotionData()
+    model = loader.model
  
     # spline intrepolation
     splinedModel = SplinedBodyModel(model)
@@ -253,17 +266,17 @@ def extract_vir_imu(file_bvh, file_acc, file_gyro, config):
     return sensor
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    with open('config.yaml', 'r') as f:
-        config = yaml.safe_load(f)
+#     with open('config.yaml', 'r') as f:
+#         config = yaml.safe_load(f)
 
-    file_bvh = config['file_bvh']
-    file_acc = config['file_acc']
-    file_gyro = config['file_gyro']
+#     bvh_source = config['file_bvh']
+#     file_acc = config['file_acc']
+#     file_gyro = config['file_gyro']
 
-    dir_result = config['dir_result']
-    if not os.path.exists(dir_result):
-        os.makedirs(dir_result)
+#     dir_result = config['dir_result']
+#     if not os.path.exists(dir_result):
+#         os.makedirs(dir_result)
 
-    sensor = extract_vir_imu(file_bvh, file_acc, file_gyro, config)
+#     sensor = extract_vir_imu(bvh_source)

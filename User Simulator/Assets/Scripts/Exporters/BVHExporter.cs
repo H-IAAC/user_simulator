@@ -506,11 +506,11 @@ public class BVHExporter : MonoBehaviour {
 
     void Start () {
 
-        // memoryStorage.SetSimulationRunning(true);
-
         if (scripted) {
             return;
         }
+
+        // memoryStorage.SetSimulationRunning(true);
 
         getBones();
         buildSkeleton();

@@ -1,7 +1,10 @@
+import io
 import time
 import signal
 import cst_python as cst
 from cst_python.memory_storage import MemoryStorageCodelet
+
+from sensor import extract_vir_imu
 
 class RedisReader:
 
@@ -44,14 +47,21 @@ class RedisReader:
 
         try:
             while running:
-                
-                print(self.bvh_pose)
+                # print(self.simulation_running)
                 for name, mem in self.memories.items():
                     ts = mem.get_timestamp()
                     if ts != last_timestamps[name]:
                         last_timestamps[name] = ts
                         # print(f"[{name}]-> {mem.get_info()}")
-                        print(mem)
+
+                if self.simulation_running.get_info() == False:
+                    print("Simulation finished. Extracting virtual IMU data...")
+                    bvh = self.bvh_pose.get_info()
+                    extract_vir_imu(io.StringIO(bvh))
+                    # extract_vir_imu(bvh)
+                    
+                    print("Virtual IMU data extracted. Exiting...")
+                    break
 
                 time.sleep(0.05)  # 50 ms
         finally:
