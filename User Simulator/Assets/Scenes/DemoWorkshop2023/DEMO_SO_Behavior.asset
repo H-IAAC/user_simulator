@@ -25,7 +25,7 @@ MonoBehaviour:
     - property:
         rid: 149015931994767365
       parentName: 
-  guid: 566e8ed3-9e04-47ba-8e51-a9736824bce4
+  guid: c23d7536-e415-44b9-81f4-964bf0dd12c9
   position: {x: -156, y: 176}
   useMemory: 1
   description: 
@@ -65,7 +65,7 @@ MonoBehaviour:
     - property:
         rid: 149016200582529157
       parentName: 
-  guid: 0e827890-c574-4051-a7d4-ad7136a64757
+  guid: bf4e7394-16fd-4867-857d-def616098d0a
   position: {x: -115, y: 313}
   useMemory: 1
   description: 
@@ -202,7 +202,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 4ab084d2-2bcb-4172-9cd4-ef427ad43cab
+  guid: 7f6e1da1-1a49-4f39-9cdf-657c89b9219c
   position: {x: 35, y: 15}
   useMemory: 0
   description: 
@@ -243,7 +243,7 @@ MonoBehaviour:
     - property:
         rid: 149015931994767367
       parentName: SO_Position
-  guid: 4ee706f2-1f4c-45b0-8ea8-94b3b1669f30
+  guid: 899d6ded-df01-48c4-9a97-0bb502955479
   position: {x: -383, y: 176}
   useMemory: 0
   description: 
@@ -282,7 +282,7 @@ MonoBehaviour:
     - property:
         rid: 149016200582529117
       parentName: 
-  guid: b077ac69-a536-49d2-8176-6bc4f107772d
+  guid: 564c689f-2d44-4f2b-a142-6ac06a8e6663
   position: {x: 35, y: -120}
   useMemory: 0
   description: 
@@ -317,7 +317,7 @@ MonoBehaviour:
     - property:
         rid: 149016200582529077
       parentName: advertisedNeeds
-  guid: 6151c29f-b818-4fd0-8bd4-9d19508bc9d9
+  guid: 7fb4fe9e-1437-47b2-a10b-3255aa4f2236
   position: {x: 258, y: 176}
   useMemory: 0
   description: 
@@ -351,8 +351,8 @@ MonoBehaviour:
     - property:
         rid: 3168295661816250471
       parentName: SO_Object
-  guid: ac746612-bed7-495f-ba94-53b65c54845a
-  position: {x: 49, y: 176}
+  guid: cebc64b2-11c2-41a7-8a65-725354e7211e
+  position: {x: 49.333313, y: 176}
   useMemory: 1
   description: 
   references:
@@ -382,7 +382,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-  guid: 6a261ff1-e3ae-4c60-be79-5f9b3583f83d
+  guid: 65064971-b5cc-4785-9db9-5eaa77d3fbc4
   position: {x: 35, y: -255.68}
   useMemory: 0
   description: 
