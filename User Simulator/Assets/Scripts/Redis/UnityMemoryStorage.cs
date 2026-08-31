@@ -13,6 +13,9 @@ using Newtonsoft.Json;
 namespace HIAAC.CstUnity
 {
     //C# equivalent of https://h-iaac.github.io/CST-Python/_build/html/_examples/Memory%20Storage.html
+
+    // Runs before other components (e.g. SkillsExporter) so the memories exist when they read/write them
+    [DefaultExecutionOrder(-100)]
     public class UnityMemoryStorage : MonoBehaviour
     {
         [Header("Redis")]
@@ -28,10 +31,16 @@ namespace HIAAC.CstUnity
         private Memory bvh_pose;
         private Memory sensor_cofig;
         private Memory simulation_running;
+        private Memory action_command;
+        private Memory action_status;
+        private Memory skill_manifest;
 
         public Memory BvhPose => bvh_pose;
         public Memory SensorConfig => sensor_cofig;
         public Memory SimulationRunning => simulation_running;
+        public Memory ActionCommand => action_command;
+        public Memory ActionStatus => action_status;
+        public Memory SkillManifest => skill_manifest;
 
         private ConnectionMultiplexer _muxer;
 
@@ -46,6 +55,9 @@ namespace HIAAC.CstUnity
             bvh_pose = mind.createMemoryObject("bvh_pose", "");
             sensor_cofig = mind.createMemoryObject("sensor_config", "");
             simulation_running = mind.createMemoryObject("simulation_running", true);
+            action_command = mind.createMemoryObject("action_command", "");
+            action_status = mind.createMemoryObject("action_status", "");
+            skill_manifest = mind.createMemoryObject("skill_manifest", "");
 
             memoryStorageCodelet = new MemoryStorageCodelet(mind, NodeName, MindName, 0.5, $"{redisHost}:{redisPort},abortConnect=true");
             mind.insertCodelet(memoryStorageCodelet);
@@ -65,6 +77,26 @@ namespace HIAAC.CstUnity
         public void SetSimulationRunning(bool running)
         {
             simulation_running.setI(running);
+        }
+
+        public void SetSkillManifest(string manifest)
+        {
+            skill_manifest.setI(manifest);
+        }
+
+        public void SetActionStatus(string status)
+        {
+            action_status.setI(status);
+        }
+
+        public void ClearActionCommand()
+        {
+            action_command.setI("");
+        }
+
+        public object GetActionCommand()
+        {
+            return action_command.getI();
         }
 
         public object GetBvhPose()
