@@ -7,27 +7,16 @@ using HIAAC.CstUnity.MemoryStorage;
 using HIAAC.BehaviorTrees.SmartAreas;
 using HIAAC.BehaviorTrees;
 
-class DemoMind : MonoBehaviour
+public class AffordanceObserver : MonoBehaviour
 {
-    [SerializeField] string redisHost = "127.0.0.1";
+    [SerializeField] MindReference mindReference;
 
-    Mind mind;
-    MemoryObject surroundingActionsMO;
+    Memory surroundingActionsMO;
 
 
     void Start()
     {
-        mind = new();
-
-        surroundingActionsMO = mind.createMemoryObject("SurroundingActions");
-        surroundingActionsMO.setI(new List<TagInfo>());
-
-
-        MemoryStorageCodelet ms = new(mind, redisConnectionString: redisHost);
-        ms.setTimeStep(50);
-        mind.insertCodelet(ms);
-
-        mind.start();
+        surroundingActionsMO = mindReference.getMemory("SurroundingActions");
     }
 
     void Update()
@@ -51,7 +40,6 @@ class DemoMind : MonoBehaviour
         }
 
         surroundingActionsMO.setI(infos);
-
 
     }
 

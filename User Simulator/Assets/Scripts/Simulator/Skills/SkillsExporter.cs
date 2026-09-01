@@ -1,5 +1,5 @@
 using UnityEngine;
-using HIAAC.CstUnity;
+using HIAAC.CstUnity.Core.Entities;
 
 /// <summary>
 /// Publishes the agent's skill manifest to Redis (skill_manifest memory) so the
@@ -9,7 +9,9 @@ public class SkillsExporter : MonoBehaviour
 {
     [SerializeField] private ActionExecutor executor;
 
-    [SerializeField] private UnityMemoryStorage memoryStorage;
+    [SerializeField] MindReference mindReference;
+
+    Memory skillManifest;
 
     void Start()
     {
@@ -18,12 +20,13 @@ public class SkillsExporter : MonoBehaviour
             executor = GetComponent<ActionExecutor>();
         }
 
-        if (executor == null || memoryStorage == null)
+        if (executor == null || mindReference == null)
         {
-            Debug.LogWarning("[SkillsExporter] Missing ActionExecutor or UnityMemoryStorage reference");
+            Debug.LogWarning("[SkillsExporter] Missing ActionExecutor or MindReference reference");
             return;
         }
 
-        memoryStorage.SetSkillManifest(executor.BuildManifestJson());
+        skillManifest = mindReference.getMemory("SkillManifest", "");
+        skillManifest.setI(executor.BuildManifestJson());
     }
 }

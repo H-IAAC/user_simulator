@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Playables;
-using HIAAC.CstUnity;
+using HIAAC.CstUnity.Core.Entities;
 
 /// <summary>
 /// Executes motor skills requested by an external agent over Redis.
@@ -17,8 +17,8 @@ public class ActionExecutor : MonoBehaviour
     [Header("Skills")]
     [SerializeField] private List<SkillDefinition> skills = new List<SkillDefinition>();
 
-    [Header("Communication")]
-    [SerializeField] private UnityMemoryStorage memoryStorage;
+    [Header("CST")]
+    [SerializeField] MindReference mindReference;
 
     [Header("Navigation")]
     [Tooltip("Walk command is failed if the destination is not reached within this time (seconds).")]
@@ -74,6 +74,15 @@ public class ActionExecutor : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    Memory actionCommand;
+    Memory actionStatus;
+
+    void Start()
+    {
+        actionCommand = mindReference.getMemory("ActionCommand", "");
+        actionStatus = mindReference.getMemory("ActionStatus", "");
+    }
+
     void Update()
     {
         PollCommands();
@@ -82,9 +91,9 @@ public class ActionExecutor : MonoBehaviour
 
     private void PollCommands()
     {
-        if (memoryStorage == null) return;
+        if (mindReference == null) return;
 
-        object payload = memoryStorage.GetActionCommand();
+        object payload = actionCommand.getI();
         if (payload == null) return;
 
         string json = payload.ToString();
@@ -98,17 +107,17 @@ public class ActionExecutor : MonoBehaviour
         catch (JsonException e)
         {
             Debug.LogWarning($"[ActionExecutor] Malformed action command: {e.Message}");
-            memoryStorage.ClearActionCommand();
+            actionCommand.setI("");
             return;
         }
 
         if (command == null || command.Commands.Count == 0 || command.Id == lastExecutedCommandId)
         {
-            memoryStorage.ClearActionCommand();
+            actionCommand.setI("");
             return;
         }
 
-        memoryStorage.ClearActionCommand();
+        actionCommand.setI("");
         lastExecutedCommandId = command.Id;
 
         EnqueueCommands(command);
@@ -352,7 +361,7 @@ public class ActionExecutor : MonoBehaviour
 
     private void PublishStatus(string status)
     {
-        if (memoryStorage == null) return;
+        if (mindReference == null) return;
 
         string json = JsonConvert.SerializeObject(new
         {
@@ -362,7 +371,7 @@ public class ActionExecutor : MonoBehaviour
             state = status
         });
 
-        memoryStorage.SetActionStatus(json);
+        actionStatus.setI(json);
     }
 
     /// <summary>
