@@ -644,8 +644,8 @@ public class BVHExporter : MonoBehaviour
         cleanupBones();
         clearCapture();
 
-        bvhPose = mindReference.getMemory("BVHPose", "");
-        simulationRunning = mindReference.getMemory("SimulationRunning", true);
+        bvhPose = mindReference.getMemory("bvh_pose", "");
+        simulationRunning = mindReference.getMemory("simulation_running", true);
     }
 
     void OnApplicationQuit()

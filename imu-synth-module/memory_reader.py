@@ -55,11 +55,23 @@ class RedisReader:
                         # print(f"[{name}]-> {mem.get_info()}")
 
                 if self.simulation_running.get_info() == False:
-                    print("Simulation finished. Extracting virtual IMU data...")
+                    print("Simulation finished. Waiting for BVH data to sync...")
+
+                    # Aguarda o MemoryStorageCodelet terminar de sincronizar o BVH
+                    # (evita race condition: simulation_running chega antes do bvh_pose)
+                    bvh_ts = self.bvh_pose.get_timestamp()
+                    while self.bvh_pose.get_timestamp() == bvh_ts:
+                        time.sleep(0.01)
+
                     bvh = self.bvh_pose.get_info()
+                    if not bvh or bvh == "":
+                        print("ERROR: BVH data is empty after sync")
+                        break
+
+                    print(f"BVH data received ({len(bvh)} chars). Extracting virtual IMU data...")
                     extract_vir_imu(io.StringIO(bvh))
                     # extract_vir_imu(bvh)
-                    
+
                     print("Virtual IMU data extracted. Exiting...")
                     break
 
